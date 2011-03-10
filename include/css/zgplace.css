@@ -1,0 +1,455 @@
+/*
+ * default.css
+ * -----------
+ * The default theme for this site
+ *
+ */
+
+@import url("master.css");
+/*@import url("fonts.css");*/
+
+/* THE BODY!!! */
+body {
+	color: #505050;
+	background: #282828;
+	/*font-family:  "DejaVu Serif", "Georgia", "Droid Serif", "Times", "Times New Roman", serif;*/
+	font-family: "DejaVu Sans", "Lucida Grande", "Verdana", "Helvetica", "Arial", sans-serif;
+	margin: 0;
+	padding: 0;
+	text-align: center;
+}
+
+#container {
+	background: #f8f8f8;
+	border: none;
+	margin: 0px auto;
+	min-width: 961px;
+	padding: 0;
+	width: 90%;
+}
+
+#body {
+	background: transparent;
+	margin: 0;
+	/*max-width: 48em;*/
+	padding: 2em;
+}
+
+#tools {
+	background: #242424;
+	color: #909090;
+	float: right;
+	font-family: "DejaVu Sans", "Droid Sans", "Verdana", "Helvetica", "Arial", sans-serif;
+	font-size: 90%;
+	line-height: 1.2em;
+	margin: 0;
+	padding: 0;
+	width: 100%;
+}
+
+#tools p {
+	line-height: 2em;
+	margin: 0;
+	padding: 0 2em 0 0;
+	text-align: right;
+}
+
+#tools a, #tools a:link, #tools a:visited {
+	color: #909090;
+	text-decoration: none;
+}
+
+#tools a:hover, #tools a:active, #tools a:focus {
+	color: #fc8000;
+}
+
+#tools a:active, #tools a:focus {
+	color: #fca800;
+}
+
+#header {
+	background: #202020;
+	/*background: transparent url("../img/gorf3.png") 7.5% 50% no-repeat;*/
+	clear: both;
+	margin: 0;
+	padding: 1em;
+	vertical-align: middle;
+}
+
+#header span {
+	color: #fc8000;
+	display: block;
+	font-family: "Droid Sans Mono", "Consolas", sans-serif;
+	font-size: 2.75em; 
+	line-height: 1.5em;
+	margin: 0;
+	padding: 0;
+	text-align: right;
+}
+
+#breadcrumbs {
+	background: #404040;
+	display: block;
+	float: right;
+	font-family: "DejaVu Sans", "Droid Sans", "Verdana", "Helvetica", "Arial", sans-serif;
+	font-size: 90%;
+	line-height: 1.5em;
+	margin: 0;
+	padding: 0;
+	text-align: right;
+	width: 100%;
+}
+
+#breadcrumbs p {
+	color: #909090;
+	margin: 0;
+	padding: 1em;
+	text-align: right;
+}
+
+#breadcrumbs a, #breadcrumbs a:link, #breadcrumbs a:visited {
+	color: #909090;
+	text-decoration: none;
+}
+
+#breadcrumbs a:hover, #breadcrumbs a:active, #breadcrumbs a:focus {
+	color: #fc8000;
+}
+
+#breadcrumbs a:active, #breadcrumbs a:focus {
+	color: #fca800;
+}
+
+#sidebar {
+	background: transparent;
+	float: left;
+	font-family: "DejaVu Sans", "Droid Sans", "Verdana", "Helvetica", "Arial", sans-serif;
+	font-size: 90%;
+	margin: 0;
+	padding: 0;
+	width: 26%;
+}
+
+#sidebar ul {
+	/*color: #686868;*/
+	list-style: none;
+	margin: 0 0 0.5em 0;
+	padding: 0 1em 0 0;
+	text-align: left;
+}
+
+#sidebar li {
+	line-height: 1.5em;
+	padding: 0 1em;
+}
+
+#sidebar ul li.topLevel {
+	border: none;
+	/*font-weight: bold;*/
+	margin: 0.25em 0;
+	padding: 0.5em 1em;
+	/*text-align: right;*/
+}
+
+#sidebar ul li.topLevel > a {
+	font-size: 120%;
+}
+
+#sidebar li.topLevel > ul {
+	font-weight: normal;
+}
+
+#sidebar li.topLevel > ul li {
+	margin: 0.25em 0;
+}
+
+#sidebar li.subHeading {
+	font-weight: normal !important;
+	margin-top: 0.5em;
+	text-align: inherit;
+	text-decoration: underline;
+}
+
+#sidebar li.subsubHeading {
+	font-weight: normal !important;
+	margin-top: 0.25em;
+	text-align: inherit;
+	text-decoration: underline;
+}
+
+#sidebar .levelTwo li > ul {
+	margin: 0;
+}
+
+/*#sidebar ul li.topLevel:first-child {
+border-top: 1px solid #d8d8d8;
+}*/
+
+/*#sidebar ul li a:before, #sidebar ul li a:before {
+	content: "» ";
+}*/
+
+/*#sidebar ul li:hover {
+	background: #f0f0f0;
+	color: #d00000;
+}*/
+
+#sidebar a, #sidebar a:link, #sidebar a:visited {
+	/*color: #686868;*/
+	font-weight: inherit;
+	text-decoration: none;
+}
+
+#sidebar a:hover, #sidebar a:active, #sidebar a:focus {
+	outline: medium none 0px;
+	font-weight: inherit;
+	/*color: #c00000;*/
+}
+
+#sidebar a:active, #sidebar a:focus {
+	/*color: #ff6000;*/
+}
+
+#breadcrumb {
+	float: right;
+	font-size: 90%;
+	margin: 0.5em 1em;
+	text-align: right;
+}
+
+#content {
+	float: right;
+	margin: 0;
+	padding: 0;
+	/*position: relative;*/
+	width: 74%;
+}
+
+#footer {
+	background: #404040;
+	border: none;
+	clear: both;
+	color: #808080;
+	margin: 2em auto 0 auto;
+	padding: 1em 0;
+	position: relative;
+	text-align: center;
+}
+
+#footer p {
+	font-size: 90%;
+	margin: 0 auto;
+	text-align: center;
+}
+
+
+/* Links */
+a, a:link, a:visited {
+	color: #505050;
+	text-decoration: none;
+}
+
+a.quickref, a.quickref:link, a.quickref:visited {
+	/*color: #c00000;*/
+}
+
+a:hover {
+	/*color: #c00000;*/
+	text-decoration: underline;
+}
+
+a:active {
+	/*color: #ff6000;*/
+	outline: medium none 0px;
+	text-decoration: underline;
+}
+
+/* Permalinks */
+a.permalink {
+	text-decoration: none !important;
+}
+a.permalink:hover, a.permalink:active {
+	/*color: #fcfcfc !important;*/
+	text-decoration: none !important;
+}
+
+/*h1 a.permalink:hover {
+	background-color: #004e9c;
+}
+
+h2 a.permalink:hover {
+	background-color: #c00000;
+}
+
+h3 a.permalink:hover {
+	background-color: #004e9c;
+} 
+
+h4 a.permalink:hover {
+	background-color: #c00000;
+} 
+
+h5 a.permalink:hover {
+	background-color: #202020;
+} 
+
+h6 a.permalink:hover {
+	background-color: #202020;
+}*/
+
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
+	/*font-family: "Linux Biolinum", serif;*/
+	font-family: "DejaVu Sans", "Droid Sans", "Verdana", "Helvetica", "Arial", sans-serif;
+	text-align: left;
+}
+
+h1 {
+	/*color: #004e9c;*/
+}
+
+/*Simulate a "h0" for major pages*/
+h1.title {
+	/*color: #00204c;*/
+	font-size: 2.25em;
+	line-height: 1.2em;
+	margin: 0;
+	padding: 0;
+	text-align: center;
+	text-decoration: underline;
+}
+
+h1.title a {
+	/*color: #00204c !important;*/
+}
+
+h2 {
+	/*color: #c00000;*/
+}
+
+h3 {
+	/*color: #004e9c;*/
+}
+
+h4 {
+	/*color: #c00000;*/
+}
+
+h5 {
+	text-decoration: underline;
+}
+
+dl.dictionary dt.h {
+	/*color: #004e9c;*/
+}
+
+/* Boxes */
+.infobox {
+	/*border-color: #d0d0d0;*/
+	clear: right;
+	float: right;
+}
+
+.toc {
+	/*border-color: transparent;*/
+	/*margin: inherit auto;*/
+	/*width: 40%;*/
+}
+
+.thumb, .thumb > img, .thumb > a, .thumb > .signal {
+	/*border-color: #d0d0d0;*/
+}
+
+.thumb {
+	/*background: #e8e8e8;*/
+}
+
+.thumb > img, .thumb > a, .thumb > .signal {
+	/*background: #f8f8f8;*/
+}
+
+.letter {
+	/*border-color: #d0d0d0;*/
+}
+
+.letter strong {
+	/*background: #e8e8e8;*/
+}
+
+.noFloatImg {
+	/*background: #e8e8e8;*/
+	/*border: 1px solid #d0d0d0;*/
+}
+
+.hbox, .ibox {
+	/*border-color: #d0d0d0;*/
+}
+
+.nbox {
+	/* No specific styles here */
+}
+
+.ibox .caption, .nbox .caption {
+	/* No specific styles here */
+}
+
+.hbox .heading {
+	/*background: #e8e8e8;*/
+	/*border-color: #d0d0d0;*/
+}
+
+td, th {
+	/*border: 1px solid #d0d0d0;*/
+	line-height: 1.2em;
+}
+
+.normal tr td, .normal tr th {
+	/*border: 1px solid #d0d0d0 !important;*/
+}
+
+/*tbody > tr > th {*/
+	/*background: none;*/
+/*}*/
+
+th, .normal tr th, thead th {
+	/*background: #e8e8e8;*/
+	font-weight: bold;
+}
+
+table.keyval {
+	font-size: 1.0em;
+	width: 50em;
+}
+
+table.keyval, table.keyval * {
+	background: none;
+	/*border: none;*/
+	text-align: justify;
+	vertical-align: baseline;
+}
+
+table.keyval th {
+	font-style: italic;
+	font-weight: normal;
+	width: 12.5em;
+}
+
+/* Forms */
+form {
+	font-family: "Droid Sans", "DejaVu Sans", "Helvetica", "Verdana", "Arial", sans-serif;
+}
+
+label, input {
+}
+
+label {
+}
+
+input {
+	/*border: 1px solid #d0d0d0;*/
+}
+
+/* Code */
+.pre, pre, .code, code {
+	font-family: "Droid Sans Mono", "DejaVu Sans Mono", monospace, sans-serif;
+}
