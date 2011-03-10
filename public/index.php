@@ -1,7 +1,9 @@
 <?php
 
-require_once("../include/php/simple_html_dom.php");
-require_once("../include/php/htmlfilter.php");
+//require_once("../include/php/simple_html_dom.php");
+//require_once("../include/php/htmlfilter.php");
+//require_once("../include/php/modules/simple_html_dom.php");
+//require_once("../include/php/filters/html.php");
 require_once("../include/php/application.php");
 
 try {
