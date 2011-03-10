@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Route and Speed Indicators</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<base href="../../../../" />
+		<link type="text/css" rel="stylesheet" href="include/css/default.css" title="default" media="all" />
+
+		<script type="text/javascript" src="/include/js/jquery.dataset.js"></script>
+		<script type="text/javascript" src="/include/js/jquery.animateimg.js"></script>
+		<script type="text/javascript" src="/public/js/qz_signal_animations.js"></script>
+	</head>
+	<body>
+		<div id="body">
+
+			<h1 class="title">Qevelian Railway Signalling</h1>
+
+			<h1>Route and Speed indicators</h1>
+
+			<h2>Route Indicators</h2>
+
+			<p>Main signals only provide track occupancy and speed indications. This is quite adequate for most locations, where there are few diverging routes; however, there are a number of cases where provision of route indicators may be necessary, such as when a medium speed indication may take the train towards a number of different routes. There are a number of different designs of route indicators; these are described below, each in a separate section. As Qevelian signalling primarily indicates speed over route, the route indicators are provided only when necessary. </p>
+
+			<h3>Direction Indicators</h3>
+
+			<p>These are the most common form of route indicator. They consist of row of two to six white lights which are lit to indicate the geographical direction; a single light indicates the leftmost route, and subsequent lights indicate which route. </p>
+
+			<div class="ibox">
+				<div class="signal">
+					<img src="ind/f4_l2.png" alt="" style="margin-right: -10px;" />
+					<img src="cl/m3c_y.png" alt="" />
+					<img src="post/p2-unit-20.png" alt="" />
+					<img src="sign/pp-main.png" alt="" />
+					<img src="post/p2-base.png" alt="" />
+				</div>
+				<div class="signal">
+					<img src="ind/f4_l1.png" alt="" style="margin-right: -10px;" />
+					<img src="cl/m3c_g.png" alt="" />
+					<img src="post/p2-unit-20.png" alt="" />
+					<img src="sign/pp-main.png" alt="" />
+					<img src="post/p2-base.png" alt="" />
+				</div>
+			</div>
+
+			<!--<h3>Feather Indicators</h3>
+
+			<p>Feather indicators are provided where there are multiple diverging routes with the same speed restriction when visibility of the actual diverging point is limited due to curves or lineside structures. They consist of rows of four lunar white lights, angled such that they point in the approximate direction of the diverge relative to the direction of the designated through route for that track. The feathers are only illuminated where a route diverges; a distinction is made between a route and switching between tracks. </p>
+
+			<p>Where a large number of routes branches from a given main signal, repeating feather indicators may be provided to give exact route information. </p>
+
+			<div class="ibox vb">
+				<div class="signal">
+					<img src="ind/f4ab_all.png" alt="" style="margin-right: -12px;" />
+					<img src="cl/m3c_y.png" alt="" />
+					<img src="sign/pp-main.png" alt="" />
+					<img src="post/p2-base.png" alt="" />
+				</div>
+				<div class="signal">
+					<img src="ind/f4abd_all.png" alt="" style="margin-right: -12px;" />
+					<img src="cl/m3c_y.png" alt="" />
+					<img src="sign/pp-main.png" alt="" />
+					<img src="post/p2-base.png" alt="" />
+				</div>
+				<div class="signal">
+					<img src="ind/f4b_45.png" alt="" style="margin-right: -12px;" />
+					<img src="cl/m3c_y.png" alt="" />
+					<img src="sign/pp-main.png" alt="" />
+					<img src="post/p2-base.png" alt="" />
+				</div>
+				<div class="signal">
+					<img src="ind/f4bd_all.png" alt="" style="margin-right: -12px;" />
+					<img src="cl/m3c_y.png" alt="" />
+					<img src="sign/pp-main.png" alt="" />
+					<img src="post/p2-base.png" alt="" />
+				</div>
+				<div class="signal">
+					<img src="ind/f4bde_all.png" alt="" style="margin-right: -12px;" />
+					<img src="cl/m3c_y.png" alt="" />
+					<img src="sign/pp-main.png" alt="" />
+					<img src="post/p2-base.png" alt="" />
+				</div>
+				<div class="signal">
+					<img src="ind/f4d_135.png" alt="" style="margin-right: -12px;" />
+					<img src="cl/m3c_y.png" alt="" />
+					<img src="sign/pp-main.png" alt="" />
+					<img src="post/p2-base.png" alt="" />
+				</div>
+				<div class="signal">
+					<img src="ind/f4de_all.png" alt="" style="margin-right: -12px;" />
+					<img src="cl/m3c_y.png" alt="" />
+					<img src="sign/pp-main.png" alt="" />
+					<img src="post/p2-base.png" alt="" />
+				</div>
+			</div>
+
+			<p>Some examples follow:</p>
+
+			<table>
+				<colgroup>
+					<col width="25%" />
+					<col width="75%" />
+				</colgroup>
+				<tr>
+					<th>Aspect</th>
+					<th>Meaning</th>
+				</tr>
+				<tr>
+					<td class="vb">
+						<div class="signal">
+							<img src="ind/f4bde_off.png" alt="" style="margin-right: -12px;" />
+							<img src="cl/m3c_r.png" alt="" />
+							<img src="sign/pp-main.png" alt="" />
+							<img src="post/p2-base.png" alt="" />
+						</div>
+					</td>
+					<td class="tj">The route indicator does not display an indication as there are no routes cleared. </td>
+				</tr>
+				<tr>
+					<td class="vb">
+						<div class="signal">
+							<img src="ind/f4bde_off.png" alt="" style="margin-right: -12px;" />
+							<img src="cl/m3c_g.png" alt="" />
+							<img src="sign/pp-main.png" alt="" />
+							<img src="post/p2-base.png" alt="" />
+						</div>
+					</td>
+					<td class="tj">The route indicator does not display an indication as there is a through route cleared with no speed restriction. </td>
+				</tr>
+				<tr>
+					<td class="vb">
+						<div class="signal">
+							<img src="ind/f4bde_off.png" alt="" style="margin-right: -12px;" />
+							<img src="cl/m3c_y.png" alt="" />
+							<img src="sign/pp-main.png" alt="" />
+							<img src="post/p2-base.png" alt="" />
+						</div>
+						<div class="signal">
+							<img src="ind/f4bde_c.png" alt="" style="margin-right: -12px;" />
+							<img src="cl/m3c_y.png" alt="" />
+							<img src="sign/pp-main.png" alt="" />
+							<img src="post/p2-base.png" alt="" />
+						</div>
+					</td>
+					<td class="tj">There is a medium speed route cleared, but it does not diverge. </td>
+				</tr>
+				<tr>
+					<td class="vb">
+						<div class="signal">
+							<img src="ind/f4bde_45.png" alt="" style="margin-right: -12px;" />
+							<img src="cl/m3c_y.png" alt="" />
+							<img src="sign/pp-main.png" alt="" />
+							<img src="post/p2-base.png" alt="" />
+						</div>
+					</td>
+					<td class="tj">There is a medium speed route cleared that diverges to the left. </td>
+				</tr>
+				<tr>
+					<td class="vb">
+						<div class="signal">
+							<img src="ind/f4bde_135.png" alt="" style="margin-right: -12px;" />
+							<img src="cl/m3c_y.png" alt="" />
+							<img src="sign/pp-main.png" alt="" />
+							<img src="post/p2-base.png" alt="" />
+						</div>
+					</td>
+					<td class="tj">There is a medium speed route cleared that diverges to the right, but it is not the rightmost route. </td>
+				</tr>
+				<tr>
+					<td class="vb">
+						<div class="signal">
+							<img src="ind/f4bde_180.png" alt="" style="margin-right: -12px;" />
+							<img src="cl/m3c_y.png" alt="" />
+							<img src="sign/pp-main.png" alt="" />
+							<img src="post/p2-base.png" alt="" />
+						</div>
+					</td>
+					<td class="tj">There is a medium speed route cleared that diverges to the far right. </td>
+				</tr>
+			</table>
+-->
+
+			<!--<h3>Bi-Directional Indicators</h3>
+
+			<p>All new lines are signalled such that full bi-directional operation is possible. To aid the driver in determining which track they are routed to, bi-directional indicators have been developed. Both illuminated and static signs exist, although the illuminated variant is far more commonly used. </p>
+
+			<table>
+				<tr>
+					<th>Sign</th>
+					<th>Indicator</th>
+					<th>Meaning</th>
+				</tr>
+				<tr>
+					<td class="vb">
+						<div class="signal">
+							<img src="sign/pp2-bidi_right.png" alt="" />
+							<img src="cl/m3c_y.png" alt="" />
+							<img src="sign/pp-main.png" alt="" />
+							<img src="post/p2-base.png" alt="" />
+						</div>
+					</td>
+					<td class="vb">
+						<div class="signal">
+							<img src="ind/il4_bidi-right.png" alt="" />
+							<img src="cl/m3c_y.png" alt="" />
+							<img src="sign/pp-main.png" alt="" />
+							<img src="post/p2-base.png" alt="" />
+						</div>
+					</td>
+					<td class="tj">Proceed to right-hand track. </td>
+				</tr>
+				<tr>
+					<td class="vb">
+						<div class="signal">
+							<img src="sign/pp2-bidi_left.png" alt="" />
+							<img src="cl/m3c_y.png" alt="" />
+							<img src="sign/pp-main.png" alt="" />
+							<img src="post/p2-base.png" alt="" />
+						</div>
+					</td>
+					<td class="vb">
+						<div class="signal">
+							<img src="ind/il4_bidi-left.png" alt="" />
+							<img src="cl/m3c_y.png" alt="" />
+							<img src="sign/pp-main.png" alt="" />
+							<img src="post/p2-base.png" alt="" />
+						</div>
+					</td>
+					<td class="tj">Proceed to left-hand track. </td>
+				</tr>
+			</table>-->
+
+			<!--<h3>Signals for Simultaneous Entry</h3>
+
+			<p>Lengthy crossing loops may be signalled so that two opposing movements may pass each other without stopping. This is especially common for passenger trains, which are often much shorter than the freight trains for which the longer loops were constructed in the first place. Some lines with heavy traffic where duplication is prohibitively expensive (for example, due to heavy earthworks) have frequent short sections of bidirectional double track that are signalled as crossing loops; these sections make use of simultaneous entry for both passenger and freight trains. However, because such <em>passing lanes</em> have intermediate blocks, the simultaneous entry route indicator will only be lit when the train is longer than an intermediate section. </p>
+
+			<div class="ibox">
+				<div class="signal">
+					<img src="ind/il4_60-limit.png" alt="" />
+					<img src="cl/m3c_y.png" alt="" />
+					<img src="cl/d4a_yy.png" alt="" />
+					<img src="ind/il4_se.png" alt="" />
+					<img src="sign/pp-combined.png" alt="" />
+					<img src="post/p2-base.png" alt="" />
+				</div>
+			</div>
+
+			<p>At each end of a crossing loop the above aspect will be displayed (although the <a href="#Medium_Speed_Indicators">speed indication</a> may differ), as a stop is initiated before the exit signal of the loop. Once both trains have entered the loop section, the turnouts will reset to the appropriate position and the exit signal will clear. </p>-->
+
+			<h2>Speed Indications</h2>
+
+			<h3>Medium Speed Indicators</h3>
+
+			<p>Main signals can only indicate a single reduced speed for diverging routes at turnouts, referred to as Medium Speed. To provide a higher speed limit where 60 km/h or faster turnouts were installed, an additional pair of aspects was introduced by wiring the signals to pulsate or flash their lights. A sign displaying the actual turnout speed was also introduced, and this has since been supplemented by illuminated indicators capable of displaying multiple speed restrictions. In contrast to the other speed indicators, Medium Speed Indicators display the speed as a multiplier of 12. </p>
+
+			<p>Originally medium speed indicators only applied to diverging routes within the station limits, up until the train has passed a <em>Resume Line Speed</em> sign. However, with the introduction of solid-state computerised interlocking, the illuminated indicators have been used to implement “train speed optimisation”. This is a technique that attempts to increase train headways by reducing the need for trains to brake and accelerate as they approach an occupied block section. </p>
+
+			<p>Numerical speed indicators for main signals are always located above the signal head, and those for distant signals below the signal head. At combined main/distant signals, up to two illuminated indicators may be provided if necessary. </p>
+
+			<!--<p>At combined main/distant signals, only a single illuminated indicator will be provided. If the main signal displays a <em>Medium</em> indication, the number displayed will be the speed restriction for the main signal; the illuminated indicator will only display the restriction for the next signal if the main signal is clear and the distant displays <em>Expect Medium</em>. </p>-->
+
+			<h4>Examples</h4>
+
+			<table>
+				<colgroup>
+					<col width="35%" />
+					<col />
+				</colgroup>
+				<tr>
+					<th>Signal/Sign</th>
+					<th>Indication</th>
+				</tr>
+				<tr>
+					<td class="vb">
+						<div class="signal">
+							<img src="sign/pp-vm_48.png" alt="" />
+							<img src="post/p2-unit-nl.png" alt="" />
+							<img src="post/p2-base-nl.png" alt="" />
+						</div>
+					</td>
+					<td class="tj">Proceed at 48 km/h within Station limits. </td>
+				</tr>
+				<tr>
+					<td class="vb">
+						<div class="signal">
+							<img src="sign/pp-vm_48.png" alt="" />
+							<img src="cl/m3c_y.png" alt="" />
+							<img src="post/p2-unit-20.png" alt="" />
+							<img src="sign/pp-main.png" alt="" />
+							<img src="post/p2-base.png" alt="" />
+						</div>
+					</td>
+					<td class="tj">
+						<strong>Main indication:</strong> Proceed at 48 km/h when signal displays a Medium Speed indication. 
+					</td>
+				</tr>
+				<tr>
+					<td class="vb">
+						<div class="signal">
+							<img src="sign/pp-vm-a_72.png" alt="" />
+							<img src="post/p2-unit-nl.png" alt="" />
+							<img src="post/p2-base-nl.png" alt="" />
+						</div>
+					</td>
+					<td class="tj">
+						The next station has a speed restriction of 72 km/h at turnouts. <br />
+						This sign is rarely displayed on its own, except as a reminder signal when visibility is limited.
+					</td>
+				</tr>
+				<tr>
+					<td class="vb">
+						<div class="signal">
+							<img src="cl/d4a_gy.png" alt="" />
+							<img src="sign/pp-vm-a_72.png" alt="" />
+							<img src="post/p2-unit-20.png" alt="" />
+							<img src="sign/pp-distant.png" alt="" />
+							<img src="post/p2-base.png" alt="" />
+						</div>
+						<div class="signal">
+							<img src="cl/d2a_g.png" alt="" />
+							<img src="cl/d2a_y.png" alt="" />
+							<img src="sign/pp-vm-a_72.png" alt="" />
+							<img src="post/p2-unit-20.png" alt="" />
+							<img src="sign/pp-distant.png" alt="" />
+							<img src="post/p2-base.png" alt="" />
+						</div>
+					</td>
+					<td class="tj">
+						<strong>Distant indication:</strong> Reduce to 60 km/h when signal displays an Expect Medium indication. <br />
+						If this sign is displayed, the signal will not flash or pulsate its lights for an <em>Expect Medium</em> aspect.
+					</td>
+				</tr>
+				<tr>
+					<td class="vb">
+						<div class="signal">
+							<img src="ind/il4_72.png" alt="" />
+							<img src="post/p2-unit-80.png" alt="" />
+							<img src="post/p2-base.png" alt="" />
+						</div>
+					</td>
+					<td class="tj">
+						Proceed at 72 km/h. <br />
+						Note that standalone distant speed indicators are never used.
+					</td>
+				</tr>
+				<tr>
+					<td class="vb">
+						<div class="signal">
+							<img src="ind/il4_72.png" alt="" />
+							<img src="cl/m3c_y.png" alt="" />
+							<img src="post/p2-unit-20.png" alt="" />
+							<img src="sign/pp-main.png" alt="" />
+							<img src="post/p2-base.png" alt="" />
+						</div>
+					</td>
+					<td class="tj">
+						<strong>Main indication:</strong> Proceed at 72 km/h on possibly diverging route. 
+					</td>
+				</tr>
+				<tr>
+					<td class="vb">
+						<div class="signal">
+							<img src="cl/d4a_gy.png" alt="" />
+							<img src="ind/il4_72.png" alt="" />
+							<img src="post/p2-unit-20.png" alt="" />
+							<img src="sign/pp-distant.png" alt="" />
+							<img src="post/p2-base.png" alt="" />
+						</div>
+					</td>
+					<td class="tj">
+						<!--<strong>Main indication:</strong> Proceed <br />-->
+						<strong>Distant indication:</strong> Reduce to 72 km/h before next signal. 
+					</td>
+				</tr>
+				<tr>
+					<td class="vb">
+						<div class="signal">
+							<img src="ind/il4_72.png" alt="" />
+							<img src="cl/m3c_y.png" alt="" />
+							<img src="cl/d4a_gy.png" alt="" />
+							<img src="post/p2-unit-20.png" alt="" />
+							<img src="sign/pp-combined.png" alt="" />
+							<img src="post/p2-base.png" alt="" />
+						</div>
+						<div class="signal">
+							<img src="ind/il4_72.png" alt="" />
+							<img src="cl/m3c_g.png" alt="" />
+							<img src="cl/d2a_y.png" alt="" />
+							<img src="post/p2-unit-20.png" alt="" />
+							<img src="sign/pp-combined.png" alt="" />
+							<img src="post/p2-base.png" alt="" />
+						</div>
+					</td>
+					<td class="tj">
+						<strong>Main indication:</strong> Proceed at 72 km/h on possibly diverging route. <br />
+						<strong>Distant indication:</strong> Expect proceed at Medium speed.
+					</td>
+				</tr>
+				<tr>
+					<td class="vb">
+						<div class="signal">
+							<img src="ind/il4_72.png" alt="" />
+							<img src="cl/m3c_y.png" alt="" />
+							<img src="cl/d4a_gyf2.png" alt="" class="d4a_gyf2" />
+							<img src="post/p2-unit-20.png" alt="" />
+							<img src="sign/pp-combined.png" alt="" />
+							<img src="post/p2-base.png" alt="" />
+						</div>
+						<div class="signal">
+							<img src="ind/il4_72.png" alt="" />
+							<img src="cl/m3c_gf.png" class="m3c_gf" alt="" />
+							<img src="cl/d2a_yf.png" class="d2a_yf" alt="" />
+							<img src="post/p2-unit-20.png" alt="" />
+							<img src="sign/pp-combined.png" alt="" />
+							<img src="post/p2-base.png" alt="" />
+						</div>
+						<div class="signal">
+							<img src="ind/il4_72.png" alt="" />
+							<img src="cl/m3c_y.png" alt="" />
+							<img src="cl/d4a_gy.png" alt="" />
+							<img src="ind/il4_60.png" alt="" />
+							<img src="post/p2-unit-20.png" alt="" />
+							<img src="sign/pp-combined.png" alt="" />
+							<img src="post/p2-base.png" alt="" />
+						</div>
+						<div class="signal">
+							<img src="ind/il4_72.png" alt="" />
+							<img src="cl/m3c_g.png" alt="" />
+							<img src="cl/d2a_y.png" alt="" />
+							<img src="ind/il4_60.png" alt="" />
+							<img src="post/p2-unit-20.png" alt="" />
+							<img src="sign/pp-combined.png" alt="" />
+							<img src="post/p2-base.png" alt="" />
+						</div>
+					</td>
+					<td class="tj">
+						<strong>Main indication:</strong> Proceed at 72 km/h on possibly diverging route. <br />
+						<strong>Distant indication:</strong> Expect proceed at Medium speed with a minimum speed of 60 km/h.
+					</td>
+				</tr>
+				<tr>
+					<td class="vb">
+						<div class="signal">
+							<img src="cl/m3c_g.png" alt="" />
+							<img src="cl/d4a_gy.png" alt="" />
+							<img src="ind/il4_72.png" alt="" />
+							<img src="post/p2-unit-20.png" alt="" />
+							<img src="sign/pp-combined.png" alt="" />
+							<img src="post/p2-base.png" alt="" />
+						</div>
+						<div class="signal">
+							<img src="cl/m3c_g.png" alt="" />
+							<img src="cl/d2a_y.png" alt="" />
+							<img src="ind/il4_72.png" alt="" />
+							<img src="post/p2-unit-20.png" alt="" />
+							<img src="sign/pp-combined.png" alt="" />
+							<img src="post/p2-base.png" alt="" />
+						</div>
+						<div class="signal">
+							<img src="ind/il4_off.png" alt="" />
+							<img src="cl/m3c_g.png" alt="" />
+							<img src="cl/d4a_gy.png" alt="" />
+							<img src="ind/il4_72.png" alt="" />
+							<img src="post/p2-unit-20.png" alt="" />
+							<img src="sign/pp-combined.png" alt="" />
+							<img src="post/p2-base.png" alt="" />
+						</div>
+						<div class="signal">
+							<img src="ind/il4_off.png" alt="" />
+							<img src="cl/m3c_g.png" alt="" />
+							<img src="cl/d2a_y.png" alt="" />
+							<img src="ind/il4_72.png" alt="" />
+							<img src="post/p2-unit-20.png" alt="" />
+							<img src="sign/pp-combined.png" alt="" />
+							<img src="post/p2-base.png" alt="" />
+						</div>
+					</td>
+					<td class="tj">
+						<strong>Main indication:</strong> Proceed with no restrictions. <br />
+						<strong>Distant indication:</strong> Expect proceed at Medium speed with a speed of 72 km/h.
+					</td>
+				</tr>
+				<tr>
+					<td class="vb">
+						<div class="signal">
+							<img src="cl/d4a_ggf2.png" class="d4a_ggf2" alt="" />
+							<img src="ind/il4_120.png" alt="" />
+							<img src="post/p2-unit-20.png" alt="" />
+							<img src="sign/pp-distant.png" alt="" />
+							<img src="post/p2-base.png" alt="" />
+						</div>
+						<div class="signal">
+							<img src="cl/m3c_gf.png" class="m3c_gf" alt="" />
+							<img src="cl/d2a_gf.png" class="d2a_gf" alt="" />
+							<img src="ind/il4_120.png" alt="" />
+							<img src="post/p2-unit-20.png" alt="" />
+							<img src="sign/pp-combined.png" alt="" />
+							<img src="post/p2-base.png" alt="" />
+						</div>
+					</td>
+					<td class="tj">
+						<strong>Distant indication:</strong> Expect proceed with a speed of 120 km/h. <br />
+						This indication is only shown when the next signal displays Proceed at 100 km/h or better, and the second signal shows Proceed or better.
+					</td>
+				</tr>
+				<tr>
+					<td class="vb">
+						<div class="signal">
+							<img src="ind/il4_120.png" alt="" />
+							<img src="cl/m3c_gf.png" class="m3c_gf" alt="" />
+							<img src="post/p2-unit-20.png" alt="" />
+							<img src="sign/pp-combined.png" alt="" />
+							<img src="post/p2-base.png" alt="" />
+						</div>
+						<div class="signal">
+							<img src="ind/il4_120.png" alt="" />
+							<img src="cl/m3c_gf.png" class="m3c_gf" alt="" />
+							<img src="cl/d2a_off.png" alt="" />
+							<img src="post/p2-unit-20.png" alt="" />
+							<img src="sign/pp-combined.png" alt="" />
+							<img src="post/p2-base.png" alt="" />
+						</div>
+					</td>
+					<td class="tj">
+						<strong>Main indication:</strong> Proceed with a speed of 120 km/h. <br />
+					</td>
+				</tr>
+				<tr>
+					<td class="vb">
+						<div class="signal">
+							<img src="ind/il4_108.png" alt="" />
+							<img src="cl/m3c_gf.png" class="m3c_gf" alt="" />
+							<img src="cl/d4a_yy.png" alt="" />
+							<img src="post/p2-unit-20.png" alt="" />
+							<img src="sign/pp-combined.png" alt="" />
+							<img src="post/p2-base.png" alt="" />
+						</div>
+						<div class="signal">
+							<img src="ind/il4_108.png" alt="" />
+							<img src="cl/m3c_y.png" alt="" />
+							<img src="cl/d2a_y.png" alt="" />
+							<img src="post/p2-unit-20.png" alt="" />
+							<img src="sign/pp-combined.png" alt="" />
+							<img src="post/p2-base.png" alt="" />
+						</div>
+					</td>
+					<td class="tj">
+						<strong>Main indication:</strong> Proceed with a speed of 108 km/h. <br />
+						<strong>Distant indication:</strong> Expect Stop.
+					</td>
+				</tr>
+			</table>
+
+			<h4>Resume Normal Speed signs</h4>
+
+			<p>These signs are provided at the end of station limits to indicate that any speed restrictions that were displayed by Medium Speed signs are no longer valid. </p>
+
+			<div class="ibox">
+				<div class="signal">
+					<img src="sign/pp-vm-end.png" alt="" />
+					<img src="post/p2-unit-nl-20.png" alt="" />
+					<img src="post/p2-base-nl.png" alt="" />
+				</div>
+			</div>
+
+			<h3>Permanent Speed limit signs</h3>
+
+			<p>There are a variety of signs in use that indicate the speed limit for a given section of track. These signs are located adjacent to the track. Note that the actual maximum speed of a particular train is listed in the working timetable; this may be lower than the signposted limit, but will <em>never</em> be higher. </p>
+
+
+			<table class="signal">
+				<colgroup>
+					<col width="25%" />
+					<col />
+				</colgroup>
+				<tr>
+					<th>Sign</th>
+					<th>Meaning</th>
+				</tr>
+				<tr>
+					<td class="vb">
+						<div class="signal">
+							<img src="sign/pp-vp-a_108.png" alt="" />
+							<img src="post/p2-base-nl.png" alt="" />
+						</div>
+						<div class="signal">
+							<img src="sign/pp-vp-a_96.png" alt="" />
+							<img src="sign/pp-vp-a_108.png" alt="" />
+							<img src="post/p2-base-nl.png" alt="" />
+						</div>
+					</td>
+					<td class="tj">
+						<strong>Permanent Speed Restriction announcement</strong><br />
+						Indicates that there is a permanent speed restriction within the braking distance from this sign. <br />
+						When signs are stacked, the higher speed applies to the higher train class.
+					</td>
+				</tr>
+				<!--<tr>
+					<td class="vb">
+						<div class="signal">
+							<img src="sign/pp-vp-at_108.png" alt="" />
+							<img src="post/p2-base-nl.png" alt="" />
+						</div>
+						<div class="signal">
+							<img src="sign/pp-vp-a_96.png" alt="" />
+							<img src="sign/pp-vp-at_108.png" alt="" />
+							<img src="post/p2-base-nl.png" alt="" />
+						</div>
+					</td>
+					<td class="tj">
+						<strong>Permanent Speed Restriction with Timing Loop</strong><br />
+						Indicates that there is a permanent speed restriction within the braking distance from this sign. The speed restriction is enforced by the cab signal apparatus. <br />
+						When signs are stacked, the higher speed applies to the higher train class. As only a single timing loop can operate in a given section, only the higher speed will be checked.
+					</td>
+				</tr>-->
+				<tr>
+					<td class="vb">
+						<div class="signal">
+							<img src="sign/pp-vp-b_96.png" alt="" />
+							<img src="post/p2-base-nl.png" alt="" />
+						</div>
+						<div class="signal">
+							<img src="sign/pp-vp-b_96.png" alt="" />
+							<img src="sign/pp-vp-b_108.png" alt="" />
+							<img src="post/p2-base-nl.png" alt="" />
+						</div>
+					</td>
+					<td class="tj">
+						<strong>Permanent Speed Restriction commencement</strong><br />
+						Indicates the beginning of the permanent speed restriction. <br />
+						When signs are stacked, the higher speed applies to the higher train class.
+					</td>
+				</tr>
+				<tr>
+					<td class="vb">
+						<div class="signal">
+							<img src="sign/pp-vp-end.png" alt="" />
+							<img src="post/p2-base-nl.png" alt="" />
+						</div>
+					</td>
+					<td class="tj">
+						<strong>End Permanent Speed Restriction</strong><br />
+						Resume timetable speed when the rear of the train has passed this sign. 
+						<!--Resume line reference speed when the rear of the train has passed this sign. -->
+					</td>
+				</tr>
+			</table>
+
+			<h3>Temporary Speed Restrictions</h3>
+
+			<p>Temporary speed restrictions are indicated by fixed signs located 50 metres before the affected portion of track. Unlike permanent speed restrictions, temporary speed restrictions always have an advance warning sign, located up to 1200 metres before the affected portion. The end of temporary speed restriction sign is located 50 metres after the affected portion of track. </p>
+
+
+			<table class="signal">
+				<tr>
+					<th>Sign</th>
+					<th>Meaning</th>
+				</tr>
+				<tr>
+					<td class="vb">
+						<div class="signal">
+							<img src="sign/pp-vt-a_48.png" alt="" />
+							<img src="cl/tv2d_lf.png" class="tv2d_lf" alt="" />
+							<img src="post/p2-base-nl.png" alt="" />
+						</div>
+					</td>
+					<td class="tj">Announcement of temporary speed restriction. </td>
+				</tr>
+				<tr>
+					<td class="vb">
+						<div class="signal">
+							<img src="sign/pp-vt-b_48.png" alt="" />
+							<img src="cl/tv2d_yf.png" class="tv2d_yf" alt="" />
+							<img src="post/p2-base-nl.png" alt="" />
+						</div>
+					</td>
+					<td class="tj">Start of temporary speed restriction. </td>
+				</tr>
+				<tr>
+					<td class="vb">
+						<div class="signal">
+							<img src="sign/pp-vt-end.png" alt="" />
+							<img src="cl/tv2d_lf.png" class="tv2d_lf" alt="" />
+							<img src="post/p2-base-nl.png" alt="" />
+						</div>
+					</td>
+					<td class="tj">End of temporary speed restriction. </td>
+				</tr>
+				<tr>
+					<td class="vb">
+						<div class="signal">
+							<img src="sign/pp-vt-a_36.png" alt="" />
+							<img src="sign/pp-vt-end.png" alt="" />
+							<img src="cl/tv2d_yf.png" class="tv2d_yf" alt="" />
+							<img src="post/p2-base-nl.png" alt="" />
+						</div>
+					</td>
+					<td class="tj">End of temporary speed restriction; there is another temporary speed restriction within 1200 metres. </td>
+				</tr>
+			</table>
+
+		</div>
+	</body>
+</html>

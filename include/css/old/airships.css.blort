@@ -1,0 +1,187 @@
+body { /* THE BODY */
+	margin: 0; padding: 0; background: #f8f8f8;
+	/* Serif */
+	/*font-family: 'DejaVu Serif',Georgia,Times New Roman,Serif;*/ 
+	/* Sans-Serif */
+	font-family: 'DejaVu Serif','Bitstream Vera Serif', 'Georgia',Serif;
+	color: #404040;
+	font-size: 11pt; text-align: center;
+}
+
+/* Block Elements */
+#header {
+	margin: 1em; padding: 0; position: absolute; top: 0; left: 8%; right: 280px; height: 225px; 
+	background: transparent url("../img/airships_banner2.png") left center no-repeat;
+}
+
+#sidebar {
+	position: absolute; top: 280px; right: 80px; width: 150px; margin: 0; padding: 0 .25em .25em .25em;
+	font-size: .9em;
+}
+
+#content {
+	position: absolute; top: 280px; left: 10%; right: 280px; min-width: 516px; margin: 0; padding: 0;
+}
+
+#page {
+	margin: 0; padding: 1em;
+}
+
+#footer {
+	position: absolute; bottom: 0; left: 0;
+}
+
+#widgets {
+	position: absolute; top: 8em; width: 12%; right: 0; margin: 0; padding: 2px; font-size: 80%;
+	text-align: left;
+}
+
+.alphabox {
+	margin: .5em auto; padding: .25em; border: 1px solid #c0c0c0; width: 80%;
+	text-align: center; font-weight: bold;
+}
+
+div.toc {
+	float: left;
+}
+
+/* Navbar styles */
+ul#menu {
+	list-style-type: none; margin: 0 .25em 0 0; padding: 120px 0 0 0;
+	background: transparent url("../img/gorf2.png") top center no-repeat;
+}
+#menu li {
+	text-align: center; margin: 0; padding: 2px 20px 2px 10px;
+	border-bottom: 1px solid #d8d8d8;
+}
+	#menu li:first-child {
+		border-top: 1px solid #d8d8d8;
+	}
+
+/* Text Styles */
+
+p {
+	margin: .4em 0 .8em 0; padding: 0pt;
+	font-size: 1em; text-align: justify; text-indent: 1em; line-height: 110%;
+}
+	.alphabox p {
+		margin: 0; padding: .3em;
+		text-align: center;
+	}
+	#noJSerror p, #widgets p {
+		text-align: left; text-indent: 0;
+	}
+
+h1 {
+
+}
+	h1.title { 
+	}
+	h1.MainTitle {
+
+	}
+	#header h1 {
+		display: none;
+	}	
+ 
+h2 {
+
+}
+	
+
+h3 {
+
+}
+
+acronym.secret {
+	border-bottom: none;
+}
+	acronym:hover {
+
+	}
+
+	.blank {
+		color: #b0b0b0; cursor: pointer;
+	}
+		.blank:hover, .blank:active, .blank:focus {
+
+		}
+	
+	.emf:hover {
+
+	}
+	
+/* Links */
+a, a:link, a:visited {
+
+}
+	a.quickref, a.quickref:link, a.quickref:visited {
+	
+	}
+a:hover {
+
+}
+	a.quickref:hover, a.quickref:active, a.quickref:focus {
+
+	}
+
+a:active, a:focus {
+
+}
+
+
+/* Lists */
+
+ol, ul {
+
+}
+	ol.toc {
+
+	}
+	
+ul {
+
+}
+	ul.nobullet {
+		list-style: none;
+	}
+
+li {
+
+}
+	li.explanation {
+		margin: 0 0 0 .5em; list-style: none;
+	}
+
+dl {
+
+}
+
+dt {
+	font-weight: bold;
+}
+	dt.subentry {
+
+	}
+	dt.heading {
+	}
+dd {
+
+}
+	dl.dictionary dd a {
+		font-style: italic;
+	}
+
+/* Tables */
+td, th {
+	border: 1px solid #a0a0a0;
+}
+
+th {
+	background: #c8c8c8;
+}
+
+caption {
+	caption-side: bottom; margin: 0 auto;
+	font-style: oblique; text-align: center;
+}

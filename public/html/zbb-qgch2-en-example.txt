@@ -1,0 +1,23 @@
+Qevesa has the following cases:
+[quote]
+[b]Nominative:[/b] [i]-a[/i]
+- the lemma form of the noun;
+- to mark the experiencer of intransitive sentences (may be prefixed with ergative or objective case to indicate whether the noun was in control or not);
+- to mark the recipient in ditransitive sentences.
+[b]Ergative case:[/b] [i]-(a)m[/i]
+- to mark the agent in transitive and ditransitive sentences.
+[b]Oblique case:[/b] [i]-(i)s[/i]
+- to mark the patient of transitive sentence;
+- to mark the object of ditransitive sentences.
+[b]Genitive case[/b] [i]-ik/-ék[/i]
+- possessor;
+- origin;
+- association.
+[b]Essive case[/b] [i]-(e)sti[/i]
+- duration, or to indicate time;
+- to indicate a (usually temporary) state of existence.
+[b]Postpositional Case[/b] [i]-in/én[/i]
+- to mark additional information that requires a postposition, such as location, instrument, etc 
+[/quote]
+
+

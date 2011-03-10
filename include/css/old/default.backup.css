@@ -1,0 +1,158 @@
+body { /* THE BODY */
+	margin: 0; padding: 0; background: #fcfcfc;
+	font-family: 'DejaVu Sans','Bitstream Vera Sans', 'Verdana','Helvetica',Sans;
+	color: #101010;
+	font-size: 10pt; text-align: center;
+}
+
+/* Block Elements */
+#header {
+	width: 100%; margin: 0; padding: 0 0 80px 0; position: absolute; top: 0; left: 0; z-index: 1000 !important;
+	background: #000000 url("../img/header_default.png") bottom left no-repeat;
+}
+
+#sidebar {
+	position: absolute; top: 180px; left: 60px; width: 150px; margin: 0; padding: 0 .25em .25em .25em;
+	font-size: .9em;
+}
+
+#breadcrumb {
+	position: absolute; top: 180px; left: 230px; right: 7%; min-width: 516px; margin: 0; padding: 0;
+	text-align: right; font-size: 0.8em;
+}
+
+#content {
+	position: absolute; top: 200px; left: 230px; right: 7%; min-width: 516px; margin: 0; padding: 0 0 2em 0;
+}
+
+#page {
+	margin: 0; padding: 1em;
+}
+
+#footer {
+	position: absolute; bottom: 0; left: 0;
+}
+
+#widgets {
+	position: absolute; top: 8em; width: 12%; right: 0; margin: 0; padding: 2px; font-size: 80%;
+	text-align: left;
+}
+
+.alphabox {
+	margin: .5em auto; padding: .25em; border: 1px solid #c0c0c0; width: 80%;
+	text-align: center; font-weight: bold;
+}
+
+div.toc {
+	margin: 0 0 0 2em; padding: .5em .5em 0 .5em;
+	float: right; clear: both;
+}
+
+.illustration {
+	float: right; border: 1px solid #c0c0c0; background: #e8e8e8; font-size: 80%;
+}
+	.illustration * {
+		border: 1px solid #c0c0c0;
+	}
+
+.noFloatImg {
+	border: 1px solid #c0c0c0; background: #e8e8e8;
+}
+/* Navbar styles */
+ul#menu {
+	list-style-type: none; margin: 0 .25em 0 0; padding: 120px 0 0 0;
+	background: transparent url("../img/gorf2.png") top center no-repeat;
+}
+#menu li {
+	text-align: right; margin: 0; padding: 2px 20px 2px 10px;
+	border-bottom: 1px solid #d8d8d8;
+}
+	#menu li:first-child {
+		border-top: 1px solid #d8d8d8;
+	}
+	#menu li {
+		background: transparent url("../img/arrow.png") right center no-repeat;
+	}
+
+/* Text Styles */
+
+h1 {
+	color: #0044ac; text-align: left;
+}
+	h1.title {
+		color: #00204c; text-align: center; font-variant: small-caps; text-decoration: underline;
+	}
+	h1.title a {
+		color: #00204c;
+	}
+	h1.MainTitle {
+		font-size: 2.5em; text-align: left; font-variant: normal; text-decoration: none; margin: .4em 1em;
+	}
+	#header h1 {
+		font-size: 3.5em; font-family: 'DejaVu Serif','Georgia','Times New Roman',Serif; text-align: right;
+		color: #ff6000;
+		margin: 10px 10px 10px 0; padding: 0;
+	}
+
+h2, .toc span {
+	color: #c80000;
+}
+
+h3 {
+	color: #101010;
+}
+
+acronym.secret {
+	border-bottom: none;
+}
+	acronym:hover {
+		color: #880078; font-style: italic;
+	}
+
+
+	.blank {
+		color: #b0b0b0; cursor: pointer;
+	}
+		.blank:hover, .blank:active, .blank:focus {
+			background: transparent; color: #a0a0a0;
+		}
+
+	.emf:hover {
+		font-size: 120%; font-style: normal; color: #ff7800; margin: .5em;
+	}
+
+/* Links */
+a, a:link, a:visited {
+	text-decoration: none; color: #0044ac;
+}
+	a.quickref, a.quickref:link, a.quickref:visited {
+		color: #c00000;
+	}
+a:hover {
+	color: #c80000;
+}
+	#content a:hover {
+		text-decoration: underline;
+	}
+	a.quickref:hover, a.quickref:active, a.quickref:focus {
+		background: transparent; color: #ff7800;
+	}
+
+a:active, a:focus a.active {
+	color: #ff7800;
+	font-weight: bold;
+}
+
+/* Tables */
+td, th {
+	 border: 1px solid #c0c0c0;
+}
+
+th {
+	background: #e8e8e8;
+}
+
+/* Lists */
+dt.heading {
+	color: #ff7800;
+}

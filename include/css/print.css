@@ -1,0 +1,14 @@
+/*
+ * print.css
+ * ---------
+ * Styles to make this site look prettiful when printed
+ *
+ */
+
+@import url("default.css");
+/*@import url("master.css");*/
+
+#body {
+	margin: 0 auto;
+	padding: 1em 2em;
+}

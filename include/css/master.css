@@ -1,0 +1,249 @@
+/*
+ * master.css
+ * ----------
+ * Master CSS file with all default settings, for non-classed and non-other styles.
+ * 
+ */
+
+/* First, we import the reset stylesheet and the common library */
+@import url("reset.css");
+@import url("formatting.css");
+@import url("common.css");
+
+
+/* I want to see where they are! */
+/*
+div {
+	border: 1px dashed red;
+}
+*/
+
+/* THE BODY!!!!! */
+body {
+	font-size: 15px;
+	/*line-height: 1.25em;*/
+}
+
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
+	font-weight: normal;
+	margin: 0.75em 0 0.5em 0;
+	padding: 0;
+	text-align: left;
+	/*word-spacing: -0.125em;*/
+}
+
+h1 { 
+	font-size: 2.0em; 
+	line-height: 1.125em;
+}
+
+h2 { 
+	font-size: 1.75em;
+	line-height: 1.125em;
+}
+
+h3 { 
+	font-size: 1.5em;
+	line-height: 1.125em;
+	/*line-height: 1em;*/
+}
+
+h4 { 
+	font-size: 1.25em; 
+	line-height: 1.125em;
+	text-decoration: underline; 
+}
+
+h5 { 
+	font-size: 1.125em; 
+	line-height: 1.125em;
+}
+
+h6 { 
+	font-size: 1.0em; 
+	line-height: 1.125em;
+}
+
+h1 + h2, h2 + h3, h3 + h4, h4 + h5, h5 + h6 {
+	margin-top: 0.25em;
+}
+
+/* Tables */
+table {
+	border-collapse: collapse;
+	margin-top: 0.5em;
+	margin-left: auto;
+	margin-bottom: 1em;
+	margin-right: auto;
+	padding: 0;
+}
+
+td, th {
+	margin: 0 !important;
+	padding: 0.25em 0.5em;
+	text-align: center;
+	vertical-align: middle;
+}
+
+th {
+	font-size: 90%;
+}
+
+td {
+	font-size: 90%;
+}
+
+td.empty , th.empty {
+	background: transparent;
+	border-bottom: none;
+	border-top: none;
+}
+
+table.no-border * td {
+	border: none;
+	font-size: 111%;
+}
+
+caption {
+	/*caption-side: bottom;*/
+	display: none !important;
+	/*font-size: 90%;*/
+	/*font-style: italic;*/
+	/*line-height: 1em;*/
+	/*margin: 0 0 1em 0;*/
+	/*padding: 0;*/
+	/*text-align: center;*/
+}
+
+/* Paragraph styles */
+br {
+	line-height: 1.2em;
+}
+
+p {
+	font-size: 1em;
+	line-height: 1.25em;
+	margin: 0.5em 0 1.25em 0;
+	max-width: 48em;
+	padding: 0;
+	/*text-align: left;*/
+	text-align: justify;
+	text-indent: 0;
+	word-spacing: 0.25em;
+}
+	
+/*We should only indent paragraphs that are adjacent siblings of other paragraphs.*/
+p + p {
+	/*text-indent: 1em;*/
+}
+
+/* Lists */
+ol, ul {
+	font-size: 1em;
+	margin: 0 0 0 2em;
+	max-width: 50em;
+	padding: 0;
+	text-align: left;
+}
+
+ul {
+	list-style: square;
+}
+
+ol {
+	list-style-type: decimal;
+}
+
+li {
+	line-height: 1.25em;
+	margin: 0.5em 0 0.25em 0;
+	max-width: 48em;
+	padding: 0;
+}
+
+li.explanation {
+	list-style: none;
+	margin: 0 0 0 0.5em;
+}
+
+
+/* Definition lists */
+dl {
+	line-height: 1.2em;
+	margin: 0 0 1em 0;
+	max-width: 48em;
+	padding: 0;
+	text-align: left;
+}
+
+dt {
+	font-weight: bold;
+	margin: 0.5em 0 0 0;
+	padding: 0;
+}
+
+dt.subentry {
+	margin: 0.5em 0 0 1em;
+}
+
+dd {
+	font-weight: normal;
+	margin: 0 0 0 1em;
+	padding: 0;
+}
+
+/* Links */
+a[href^="http://"]:not([href*="zgplace"])::after {
+	content: "➚";
+}
+
+/* Form elements */
+form {
+	/*border: 1px solid red;*/
+	font-size: 90%;
+	margin-top: 0.5em;
+	margin-left: auto;
+	margin-bottom: 1em;
+	margin-right: auto 
+	/*max-width: 50em;*/
+	padding: 0;
+	/*width: 90%;*/
+}
+
+form span {
+	display: block;
+	margin: 0;
+	padding: 0.25em 0;
+}
+
+label, input {
+	vertical-align: baseline;
+}
+
+label {
+	clear: left;
+	display: inline;
+	float: left;
+	font-weight: bold;
+	margin-top: 0.25em;
+	padding: 0.25em 0.5em;
+	text-align: right;
+	width: 7em;
+}
+
+input {
+	display: block;
+	margin: 0;
+	padding: 0.25em 0.5em 0.225em 0.5em;
+	text-align: left;
+	width: 77.5%;
+}
+
+/*
+ * I'm not likely to use <code>, <pre>, <tt>, or <source> tags but this might be
+ * useful
+ */
+tt, code, pre {
+	font-family: monospace, sans-serif;
+}

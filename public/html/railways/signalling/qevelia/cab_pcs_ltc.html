@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Cab Signalling</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<base href="../../../../" />
+		<link type="text/css" rel="stylesheet" href="include/css/default.css" title="default" media="all" />
+	</head>
+	<body>
+		<div id="body">
+
+			<h1 class="title">Qevelian Railway Signalling</h1>
+
+			<h1>Cab Signalling</h1>
+
+			<p>There are two cab signalling systems in use on Qevelian railways. The older system is based on pulse codes transmitted through the running rails that repeats the indication of the next main signal; this has been augmented with a newer system that can transmit more detailed information from cable loops mounted between the rails. </p>
+
+			<h2>Pulse Code Signalling</h2>
+
+			<p>Following electrification of the main lines, a cab signalling system was installed that repeats the speed indication of the next main signal. Coded track circuits transmit the state of the next signal; an antenna mounted on the locomotive immediately behind the pilot detects the signal, and onboard equipment amplifies and decodes it. </p>
+
+			<p>In addition, a trackside magnet is provided at main signals that will automatically apply the brakes if the signal is passed at Stop. This is a last-resort designed to stop a train before it reaches the danger point. </p>
+
+			<p>The original design merely displayed the aspect of the signal ahead in the locomotive cab. Refinements and improvements over the years since the system was first developed have introduced speed checking and braking curve calculation, so that the train can be more finely controlled by the system. </p>
+
+			<h3>Basic Operation</h3>
+
+			<p>Pulse code cab signals work by sending metered pulses along an AC track circuit operating at a particular carrier frequency. The pulses are detected via induction by a sensor located less than ten centimetres above the rail before the leading axle. The codes are transmitted on the carrier wave by means of amplitude modulation; the codes themselves are square waves whose frequency is measured in pulses per minute. The pulse rates are chosen such that no rate is a multiple of any other, avoiding the possibility of reflected harmonics leading to false indications. </p>
+
+			<p>Each time a train receives a new code, a buzzer sounds in the cab, which the driver must acknowledge within four seconds. Failure to do so results in the brakes being applied automatically. Some of the codes have conditional restrictions that require the driver to reduce speed by a certain amount within a set amount of time. </p>
+
+			<p>The “trackside magnet” is a passive inductor circuit tuned to 1728 Hz, activated by locomotive-mounted transmitter coils also tuned to that frequency. When the associated main signal is not at Stop, the resonance circuit is shorted and not able to resonate; when the switch is open, and the trackside magnet is passed by the locomotive's magnet, it will resonate at the tuned frequency, thereby extracting energy from the locomotive's magnet and reducing the voltage in the respective resonance circuit of the locomotive's magnet by some 80-90%. </p>
+
+			<h3>Pulse codes and their meanings</h3>
+
+			<p>There are six pulse codes transmitted to the train, each of which represents a simplified signal indication. </p>
+
+			<table>
+				<colgroup>
+					<col />
+					<col />
+					<col width="70%" />
+				</colgroup>
+				<tr>
+					<th>Pulse Code</th>
+					<th>Name</th>
+					<th>Indication</th>
+				</tr>
+				<tr>
+					<td>0 ppm</td>
+					<td class="em">No signal</td>
+					<td class="tj">(Transmission failure)<br />
+						Unable to decode signal </td>
+				</tr>
+				<tr>
+					<td>72 ppm</td>
+					<td class="em">Caution</td>
+					<td class="tj">Proceed prepared to stop at next signal. </td>
+				</tr>
+				<tr>
+					<td>120 ppm</td>
+					<td class="em">Approach Medium</td>
+					<td class="tj">Proceed and reduce speed to medium (36, 60 or 84 km/h) before the next signal. </td>
+				</tr>
+				<tr>
+					<td>180 ppm</td>
+					<td class="em">Advance Caution</td>
+					<td class="tj">The next signal is at <em>Proceed</em>, but the following signal is at stop or displays a speed restriction. </td>
+				</tr>
+				<tr>
+					<td>228 ppm</td>
+					<td class="em">Clear</td>
+					<td class="tj">Proceed without restrictions. </td>
+				</tr>
+				<!--<tr>
+					<th>288 ppm</th>
+					<td class="em">Clear through</td>
+					<td class="tj">Proceed without restrictions. </td>
+				</tr>-->
+			</table>
+
+			<p>The codes correspond to the lineside signal indications as follows: </p>
+
+			<table class="tl">
+				<tr>
+					<th>Distant Signal</th>
+					<th>Main Signal</th>
+					<th>Corresponding Cab Signal</th>
+				</tr>
+				<tr class="em">
+					<td>Expect Stop</td>
+					<td>Stop</td>
+					<td>Caution</td>
+				</tr>
+				<tr class="em">
+					<td>Expect Medium</td>
+					<td>Medium</td>
+					<td>Approach Medium</td>
+				</tr>
+				<tr class="em">
+					<td>Expect Reduced Stop</td>
+					<td>—</td>
+					<td>Advance Caution</td>
+				</tr>
+				<tr class="em">
+					<td>Expect Proceed</td>
+					<td>Proceed</td>
+					<td>Clear</td>
+				</tr>
+			</table>
+
+			<p>The coded track circuit signal is sent along the rails from the main signal to the sighting distance of the distant signal. The remainder of the block between the distant and the previous main signal has a semi-permanent clear signal (228 ppm) transmitted along it; short isolated sections between circuits are provided so the onboard equipment is able to detect blocks. Where main and distant signals are combined on a single post, the clear half-block is omitted. </p>
+
+			<!--TODO: draw cab display!-->
+
+			<h2>Linear Train Control</h2>
+
+			<p>Limitiations in the pulse code cab signalling system and a desire to increase train speeds without realigning block boundaries led to the development of a new train control system, capable of finer speed limits and transmission of additional information to the trains. Like the pulse-code system, this system is also continuous, but instead of relying on coded track circuits, the track-mounted infrastructure sends and receives telegrams to and from the trains containing the necessary information. </p>
+
+			<h3>Infrastructure</h3>
+
+			<p>The system consists of both lineside and train-borne equipment, and is a form of centralised traffic control. Train control centres are located approximately 30–40 km apart or at major stations. </p>
+
+			<h4>Lineside Equipment</h4>
+
+			<p> Conductive cable loops, located between the rails, are used to communicate between the control centre and trains in the section. The loops can range in length from 50 m to just over 13 km; loops longer than 100 m are divided into 100 m sections by crossing the cables. The train detects the crossing of the cables by the change in phase angle and uses this to help determine its position. To avoid disruption to the entire section if a cable is damaged, loops are physically broken into 300 m lengths. Each of these is fed by repeaters that ensure that all of the loops within a section transmit the same information. </p>
+
+			<p>The train control centres consist of a 2-of-3 computer system with two computers connected to the output and the third as a reserve. All three receive and process input data and interchange their outputs and intermediate results. If one computer disagrees, it is exchanged with the reserve computer. Each computer is physically separate, with its own power supply and frame. </p>
+
+			<p>All of the computers for a section are programmed with the fixed information for that section, including gradients, speed limits, locations of block boundaries, turnouts and signals. They are linked to the interlocking system(s) and signal boxes of the section, from which they receive information about turnout positions, signal indications and track occupancy. </p>
+
+			<p>Other equipment includes fixed loops that transmit start and end telegrams, sectioning cabinets, and lineside signs that indicate the location of block boundaries. </p>
+
+			<h4>Train-borne equipment</h4>
+
+			<p>There are three core train-borne components: </p>
+
+			<ul class="tj">
+				<li>An antenna mounted underneath the locomotive receives and sends telegrams to and from the control centre. </li>
+				<li>An onboard computer, consisting of a 2-of-3 system, that decodes the telegrams and calculates the speed limits and braking curves. If the driver does not take the correct actions, the computer system applies the brakes and controls the train appropriately. </li>
+				<li>The driver display unit presents the driver with the necessary information, including the current permissable speed, the current actual speed, the target speed limit, and the distance until the target is reached. Other information, such as the system status, is also displayed. </li>
+			</ul>
+
+			<h3>Operation</h3>
+			<p>Linear Train Control operates by sending data packets, or telegrams, between the control centre and the trains. The <em>call telegrams</em> are transmitted at 2400 bits per second using frequency-shift keying on a 36 kHz ± 0.4 kHz carrier, and the train replies with a <em>response telegram</em> transmitted at 1200 bits per second on a 60 kHz ± 0.2 kHz carrier. </p>
+
+			<h4>Telegram Format</h4>
+			<p>There are a number of different types of telegram that the infrastructure is capable of transmitting. All the telegrams contain a header followed by data fields. For more information on the packet variables, see <a href="/railways/signalling/qevelia/cab_appendix#List_of_Packet_Variables">the appendix</a>, as the listing is too long to include here. </p>
+
+			<h4>List of Telegrams</h4>
+
+			<h5>Call Telegrams</h5>
+
+			<h6>Movement Authority Call Telegram</h6>
+
+			<p>This is the basic telegram transmitted to the train from the central computer between one and six times a second. </p>
+
+			<table class="tl">
+				<tr>
+					<th>Variable</th>
+					<th>Length</th>
+					<th>Comments</th>
+				</tr>
+				<tr>
+					<td class="code"><a href="/railways/signalling/qevelia/cab_appendix#Packet_identifier">NID_PACKET</a></td>
+					<td>3</td>
+					<td>The default call telegram has an <code>NID_PACKET</code> of 0.</td>
+				</tr>
+				<tr>
+					<td class="code"><a href="/railways/signalling/qevelia/cab_appendix#Section_Number">N_SECTION</a></td>
+					<td>3</td>
+					<td>The section ID for the current section. </td>
+				</tr>
+				<tr>
+					<td class="code"><a href="/railways/signalling/qevelia/cab_appendix#Section_identifier">N_ZONE</a></td>
+					<td>7</td>
+					<td>The zone ID used to address the train. </td>
+				</tr>
+				<tr>
+					<td class="code"><a href="/railways/signalling/qevelia/cab_appendix#Packet_length">L_PACKET</a></td>
+					<td>10</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td class="code"><a href="/railways/signalling/qevelia/cab_appendix#Direction_identifier">Q_DIR</a></td>
+					<td>1</td>
+					<td>Up/Down</td>
+				</tr>
+				<tr>
+					<td class="code"><a href="/railways/signalling/qevelia/cab_appendix#Brake_Type_Qualifier">Q_BRAKETYPE</a></td>
+					<td>2</td>
+					<td>Passenger/Freight</td>
+				</tr>
+				<tr>
+					<td class="code"><a href="/railways/signalling/qevelia/cab_appendix#Brake_Curve_Number">M_BRAKECURVE</a></td>
+					<td>4</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td class="code"><a href="/railways/signalling/qevelia/cab_appendix#Current_Speed_Limit">V_CSL</a></td>
+					<td>6</td>
+					<td class="tj">Current maximum speed limit. </td>
+				</tr>
+				<tr>
+					<td class="code"><a href="/railways/signalling/qevelia/cab_appendix#Target_Distance">D_TARGET</a></td>
+					<td>7</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td class="code"><a href="/railways/signalling/qevelia/cab_appendix#Target_Speed_Limit">V_TARGET</a></td>
+					<td>6</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td class="code"><a href="/railways/signalling/qevelia/cab_appendix#Response_Type_Qualifier">Q_RTYPE</a></td>
+					<td>4</td>
+					<td>Response type required. </td>
+				</tr>
+				<tr>
+					<td class="code"><a href="/railways/signalling/qevelia/cab_appendix#Next_Telegram_Qualifier">Q_NEXTID</a></td>
+					<td>3</td>
+					<td>Indicates the next call telegram to be sent to the receiving train of this telegram. </td>
+				</tr>
+				<tr>
+					<td class="code"><a href="/railways/signalling/qevelia/cab_appendix#Cyclic_Redundancy_Check">M_CRC</a></td>
+					<td>8</td>
+					<td></td>
+				</tr>
+			</table>
+
+			<h6>Position Information</h6>
+
+			<p>Updates the current distance and location of train. This packet is sent to announce that a train is about to switch between tracks, enter a new LTC-equipped section, or reach the end of an LTC-equipped section and leave LTC. </p>
+
+			<table class="tl">
+				<tr>
+					<th>Variable</th>
+					<th>Length</th>
+					<th>Comments</th>
+				</tr>
+				<tr>
+					<td class="code"><a href="/railways/signalling/qevelia/cab_appendix#Packet_identifier">NID_PACKET</a></td>
+					<td>3</td>
+					<td>The default call telegram has an <code>NID_PACKET</code> of 0.</td>
+				</tr>
+				<tr>
+					<td class="code"><a href="/railways/signalling/qevelia/cab_appendix#Section_Number">N_SECTION</a></td>
+					<td>3</td>
+					<td>The section ID for the current section. </td>
+				</tr>
+				<tr>
+					<td class="code"><a href="/railways/signalling/qevelia/cab_appendix#Section_identifier">N_ZONE</a></td>
+					<td>7</td>
+					<td>The zone ID used to address the train. </td>
+				</tr>
+				<tr>
+					<td class="code"><a href="/railways/signalling/qevelia/cab_appendix#Packet_length">L_PACKET</a></td>
+					<td>10</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td class="code"><a href="/railways/signalling/qevelia/cab_appendix#Direction_identifier">Q_DIR</a></td>
+					<td>1</td>
+					<td>Up/Down</td>
+				</tr>
+				<tr>
+					<td class="code"><a href="/railways/signalling/qevelia/cab_appendix#Next_Section_Number">N_NEXTSECTION</a></td>
+					<td>3</td>
+					<td>The section ID for the next section. </td>
+				</tr>
+				<tr>
+					<td class="code"><a href="/railways/signalling/qevelia/cab_appendix#New_Section_identifier">N_NEWZONE</a></td>
+					<td>7</td>
+					<td>Starting zone for train entering next section, ranging from 1–127 or 255–128. If the zone is 0, it indicates that the train is approaching the end of an LTC-equipped section of line. </td>
+				</tr>
+				<tr>
+					<td class="code"><a href="/railways/signalling/qevelia/cab_appendix#Distance_to_New_Zone">D_NEWZONE</a></td>
+					<td>7</td>
+					<td>The distance until the new zone address applies. </td>
+				</tr>
+				<tr>
+					<td class="code"><a href="/railways/signalling/qevelia/cab_appendix#Target_Distance">D_TARGET</a></td>
+					<td>7</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td class="code"><a href="/railways/signalling/qevelia/cab_appendix#Target_Speed_Limit">V_TARGET</a></td>
+					<td>6</td>
+					<td>The speed limit to be enforced once the train enters the new zone. </td>
+				</tr>
+				<tr>
+					<td class="code"><a href="/railways/signalling/qevelia/cab_appendix#Cyclic_Redundancy_Check">M_CRC</a></td>
+					<td>8</td>
+					<td></td>
+				</tr>
+			</table>
+
+			<h6>Gradient Profile</h6>
+
+			<p>Gives a list of gradients, their lengths and distances to start point for the length of the section. This packet can only be transmitted from the fixed loops at the ends of an LTC section. </p>
+
+			<table class="tl">
+				<tr>
+					<th>Variable</th>
+					<th>Length</th>
+					<th>Comments</th>
+				</tr>
+				<tr>
+					<td class="code"><a href="/railways/signalling/qevelia/cab_appendix#Packet_identifier">NID_PACKET</a></td>
+					<td>3</td>
+					<td>The default call telegram has an <code>NID_PACKET</code> of 0.</td>
+				</tr>
+				<tr>
+					<td class="code"><a href="/railways/signalling/qevelia/cab_appendix#Section_Number">N_SECTION</a></td>
+					<td>3</td>
+					<td>Always consists of 0, as fixed loops have no section identifier. </td>
+				</tr>
+				<tr>
+					<td class="code"><a href="/railways/signalling/qevelia/cab_appendix#Section_identifier">N_ZONE</a></td>
+					<td>7</td>
+					<td>Always consists of 0, i.e. this telegram is valid for all trains. </td>
+				</tr>
+				<tr>
+					<td class="code"><a href="/railways/signalling/qevelia/cab_appendix#Packet_length">L_PACKET</a></td>
+					<td>10</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td class="code"><a href="/railways/signalling/qevelia/cab_appendix#Direction_identifier">Q_DIR</a></td>
+					<td>1</td>
+					<td>Up/Down</td>
+				</tr>
+				<tr>
+					<td class="code"><a href="/railways/signalling/qevelia/cab_appendix#Next_Section_Number">N_NEXTSECTION</a></td>
+					<td>3</td>
+					<td>The section ID for the next section. </td>
+				</tr>
+				<tr>
+					<td class="code"><a href="/railways/signalling/qevelia/cab_appendix#New_Section_identifier">N_NEWZONE</a></td>
+					<td>7</td>
+					<td>Starting zone for train, either 1 or 255. </td>
+				</tr>
+				<tr>
+					<td class="code"><a href="/railways/signalling/qevelia/cab_appendix#Number_of_Iterations">N_ITER</a></td>
+					<td>5</td>
+					<td>Number of iterations of the following data sets</td>
+				</tr>
+				<tr>
+					<td class="code"><a href="/railways/signalling/qevelia/cab_appendix#Distance_to_next_Gradient">D_GRADIENT</a>(n)</td>
+					<td>10</td>
+					<td>0 ≥ n ≥ <code>N_ITER</code></td>
+				</tr>
+				<tr>
+					<td class="code"><a href="/railways/signalling/qevelia/cab_appendix#Length_of_Gradient">L_GRADIENT</a>(n)</td>
+					<td>10</td>
+					<td>0 ≥ n ≥ <code>N_ITER</code></td>
+				</tr>
+				<tr>
+					<td class="code"><a href="/railways/signalling/qevelia/cab_appendix#Gradient_Value">G_VAL</a>(n)</td>
+					<td>9</td>
+					<td>0 ≥ n ≥ <code>N_ITER</code></td>
+				</tr>
+				<tr>
+					<td class="code"><a href="/railways/signalling/qevelia/cab_appendix#Cyclic_Redundancy_Check">M_CRC</a></td>
+					<td>8</td>
+					<td></td>
+				</tr>
+			</table>
+
+			<h5>Response Telegrams</h5>
+
+			<p>There are four train response telegrams. </p>
+
+			<h4>Addressing and Zones</h4>
+
+			<p>Before departure the driver must enter the train details into the onboard computer and enable LTC. These details are then used to compute the acceleration and deceleration curves and permissable speeds. </p>
+
+			<p>A LTC section is divided into up to 127 zones, or virtual blocks, each 102.528 m long. The zones are consecutively numbered, from 1–127 in the normal direction of travel and from 255–128 in the opposite direction. When a train enters an LTC controlled section, it will pass over a fixed loop that transmits a “change of section” telegram. This telegram indicates to the train the section number and the starting zone. From then on, the train’s location is used to identify it. When a train enters a new zone, it sends a response telegram indicating that it has advanced into a new zone. The central controller will then use the new zone when addressing the train in the future. As a train travels along the section, its address will either increase or decrease, depending on the direction. A train identifies that it has entered a new zone either by detecting the cable transition point or when it has travelled 100 metres. </p> 
+
+			<p>This procedure for entering LTC controlled sections of track is repeated when a train transitions from one section to another. It also occurs if the train switches to the opposite track as part of bi-directional operation. The train receives a new “change of section” telegram and is given its new starting address. </p>
+
+			<h4>Speed Signalling</h4>
+
+			<p>The main function of LTC is signalling to the train its permitted speed and distance it has authorisation to travel. Telegrams are sent periodically to each train between one and six times a second, depending on the density of traffic on the section. </p>
+
+			<p>The permissable speed of the train is calculated based on its type, maximum speed, braking curve and length. The target speed and distance fields are displayed to the driver on the in-cab display, along with the current speed and the current maximum speed. The onboard computer calculates a parabolic braking curve, and uses this to determine the trains present maximum permissable speed. </p>
+
+			<p>If the train is approaching a decreasing change in maximum speed (a signal at Stop or an occupied block is indicated with a speed limit of 0), the distance will be calculated based on its current location minus an overlap sufficient to ensure that the train, decelerating according to its braking curve, will arrive at the correct speed at the start of the speed restriction. </p>
+
+			<p>If the change in speed is increasing, the distance is calculated based on its current location plus the train length, thus ensuring that a train cannot accelerate until it has completely entered the higher speed limit section. No braking curve is necessary in this situation. </p>
+
+		</div>
+	</body>
+</html>

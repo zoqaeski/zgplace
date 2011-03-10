@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Main and Distant Signals</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<base href="../../../../" />
+		<link type="text/css" rel="stylesheet" href="include/css/default.css" title="default" media="all" />
+
+		<script>
+			;(function($){
+				$(function(){
+					var base_path = "/public/img/railways/signalling/qevelia/";
+					var mainAspects = {
+						"00": "r",
+						"36": "y",
+						"60": "y",
+						"84": "y",
+						"cl": "g",
+						"sh": "rl",
+						"co": "rlf1"
+					};
+					var mvAspects = {
+						"00": "off",
+						"36": "off",
+						"60": "y",
+						"84": "g",
+						"cl": "off",
+						"sh": "off",
+						"co": "off"
+					};
+
+					var distAspects = {
+						"00": "yy",
+						"36": "gy",
+						"60": "gyf1",
+						"84": "gf1y",
+						"cl": "gg",
+						"sh": "yy",
+						"co": "yy"
+					};
+
+					var dAcceptImg = $("#dAccept")
+						, mAcceptImg = $("#mAccept")
+						, mvAcceptImg = $("#mvAccept");
+
+					var dStartImg = $("#dStart")
+						, mStartImg = $("#mStart")
+						, mvStartImg = $("#mvStart");
+
+					// Default positions
+					var dA = distAspects["00"]
+					, mA = mainAspects["00"]
+					, mvA = mvAspects["00"];
+
+					var dS = distAspects["00"]
+					, mS = mainAspects["00"]
+					, mvS = mvAspects["00"];
+
+					$("#acceptSignal").bind("change", function(e) {
+						dA = distAspects[$(this).find("option:selected").attr("value")];
+						mA = mainAspects[$(this).find("option:selected").attr("value")];
+						mvA = mvAspects[$(this).find("option:selected").attr("value")];
+
+						dAcceptImg.attr({src: base_path + "cl/d4a_" + dA + ".png"});
+						mAcceptImg.attr({src: base_path + "cl/m3cs_" + mA + ".png"});
+						mvAcceptImg.attr({src: base_path + "cl/mv2c_" + mvA + ".png"});
+
+						var acceptAspect = $("#acceptSignal").find("option:selected").attr("value");
+						var acceptAtStop = acceptAspect == "00" || acceptAspect == "sh" || acceptAspect == "co";
+
+						if(acceptAtStop) {
+							dStartImg.attr({src: base_path + "cl/d4a_off.png"});
+						}
+						else {
+							dStartImg.attr({src: base_path + "cl/d4a_" + dS + ".png"});
+						}
+
+					});
+
+					$("#startSignal").bind("change", function(e) {
+						dS = distAspects[$(this).find("option:selected").attr("value")];
+						mS = mainAspects[$(this).find("option:selected").attr("value")];
+						mvS = mvAspects[$(this).find("option:selected").attr("value")];
+
+						mStartImg.attr({src: base_path + "cl/m3cs_" + mS + ".png"});
+						mvStartImg.attr({src: base_path + "cl/mv2c_" + mvS + ".png"});
+
+						var acceptAspect = $("#acceptSignal").find("option:selected").attr("value");
+						var acceptAtStop = acceptAspect == "00" || acceptAspect == "sh" || acceptAspect == "co";
+
+						if(acceptAtStop) {
+							dStartImg.attr({src: base_path + "cl/d4a_off.png"});
+						}
+						else {
+							dStartImg.attr({src: base_path + "cl/d4a_" + dS + ".png"});
+						}
+
+					});
+				});
+			})(jQuery);
+		</script>
+
+	</head>
+	<body>
+		<div id="body">
+
+			<h1 class="title">Qevelian Railway Signalling</h1>
+
+			<h1>Main and Distant Signals</h1>
+
+			<h2>Sequence of Operation</h2>
+
+			<p>This is a demonstration of how the main/distant signals function. Use the drop-down lists to choose a signal aspect for the Accepting and Starting signals, and observe how the distant for each changes. </p>
+
+			<table>
+				<colgroup>
+					<col width="30%" />
+					<col width="30%" />
+					<col width="30%" />
+				</colgroup>
+				<tr>
+					<th>Distant Accept</th>
+					<th>Accept<br />
+						Distant Starting</th>
+					<th>Starting</th>
+				</tr>
+				<tr>
+					<td class="vb">
+						<div class="signal">
+							<img src="cl/d4a_yy.png" id="dAccept" alt="" />
+							<img src="post/p2-unit.png" alt="" />
+							<img src="sign/pp-distant.png" alt="" />
+							<img src="post/p2-base.png" alt="" />
+						</div>
+					</td>
+					<td class="vb">
+						<div class="signal">
+							<img src="cl/m3cs_r.png" id="mAccept" alt="" />
+							<img src="cl/d4a_off.png" id="dStart" alt="" />
+							<img src="cl/mv2c_off.png" id="mvAccept" alt="" />
+							<img src="post/p2-unit.png" alt="" />
+							<img src="sign/pp-combined.png" alt="" />
+							<img src="post/p2-base.png" alt="" />
+						</div>
+					</td>
+					<td class="vb">
+						<div class="signal">
+							<img src="cl/m3cs_r.png" id="mStart" alt="" />
+							<img src="cl/mv2c_off.png" id="mvStart" alt="" />
+							<img src="post/p2-unit.png" alt="" />
+							<img src="sign/pp-main.png" alt="" />
+							<img src="post/p2-base.png" alt="" />
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td></td>
+					<td>
+						<form>
+							<select id="acceptSignal">
+								<option value="00" selected="selected">Stop</option>
+								<option value="sh">Stop + Shunting</option>
+								<option value="co">Stop + Call-on</option>
+								<option value="36">Clear with 36 km/h</option>
+								<option value="60">Clear with 60 km/h</option>
+								<option value="84">Clear with 84 km/h</option>
+								<option value="cl">Clear</option>
+							</select>
+						</form>
+					</td>
+					<td>
+						<form>
+							<select id="startSignal">
+								<option value="00" selected="selected">Stop</option>
+								<option value="sh">Stop + Shunting</option>
+								<option value="co">Stop + Call-on</option>
+								<option value="36">Clear with 36 km/h</option>
+								<option value="60">Clear with 60 km/h</option>
+								<option value="84">Clear with 84 km/h</option>
+								<option value="cl">Clear</option>
+							</select>
+						</form>
+					</td>
+				</tr>
+			</table>
+
+
+		</div>
+	</body>
+</html>
