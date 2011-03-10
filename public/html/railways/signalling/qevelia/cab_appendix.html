@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Cab Signalling Appendices</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<base href="../../../../" />
+		<link type="text/css" rel="stylesheet" href="include/css/default.css" title="default" media="all" />
+	</head>
+	<body>
+		<div id="body">
+
+			<h1 class="title">Qevelian Railway Signalling</h1>
+
+			<h1>Cab Signalling Appendices</h1>
+
+			<h2>Linear Train Control</h2>
+
+			<h3>List of Packet Variables</h3>
+
+			<p>The following variables and fields may be used in a packet. Each entry has an identifier, description, size (in bits), data range, and resolution formula. </p>
+
+			<h4>Variable Prefixes</h4>
+
+			<p>All variables have a unique identifier. The following prefixes are used: </p>
+
+			<table class="keyval">
+				<tr>
+					<th class="code">D_</th>
+					<td>Distance</td>
+				</tr>
+				<tr>
+					<th class="code">G_</th>
+					<td>Gradient</td>
+				</tr>
+				<tr>
+					<th class="code">L_</th>
+					<td>Length</td>
+				</tr>
+				<tr>
+					<th class="code">M_</th>
+					<td>Miscellaneous</td>
+				</tr>
+				<tr>
+					<th class="code">N_</th>
+					<td>Number</td>
+				</tr>
+				<tr>
+					<th class="code">Q_</th>
+					<td>Qualifier</td>
+				</tr>
+				<tr>
+					<th class="code">V_</th>
+					<td>Speed</td>
+				</tr>
+			</table>
+
+			<h4>List of Variables (in use)</h4>
+
+			<p>The following variables are presently in use. </p>
+
+			<h5>Nominal Braking Distance</h5>
+
+			<table class="keyval">
+				<tr>
+					<th>Variable</th>
+					<td class="code">D_NBRAKE</td>
+				</tr>
+				<tr>
+					<th>Description</th>
+					<td>The nominal braking distance of a train travelling at speed. This is used to calculate the target distance. </td>
+				</tr>
+				<tr>
+					<th>Length</th>
+					<td>9 bits</td>
+				</tr>
+				<tr>
+					<th>Range</th>
+					<td>0 m – 13123.584 m </td>
+				</tr>
+				<tr>
+					<th>Resolution/Formula</th>
+					<td>25.632 m</td>
+				</tr>
+			</table>
+
+			<h5>Distance to next Gradient</h5>
+
+			<table class="keyval">
+				<tr>
+					<th>Variable</th>
+					<td class="code">D_GRADIENT</td>
+				</tr>
+				<tr>
+					<th>Description</th>
+					<td>The distance until the next change in gradient. </td>
+				</tr>
+				<tr>
+					<th>Length</th>
+					<td>10 bits</td>
+				</tr>
+				<tr>
+					<th>Range</th>
+					<td>0 m – 26247.168 m </td>
+				</tr>
+				<tr>
+					<th>Resolution/Formula</th>
+					<td>25.632 m</td>
+				</tr>
+			</table>
+
+			<h5>Distance to New Zone</h5>
+
+			<table class="keyval">
+				<tr>
+					<th>Variable</th>
+					<td class="code">D_NEWZONE</td>
+				</tr>
+				<tr>
+					<th>Description</th>
+					<td>The distance until the new zone address is relevant. </td>
+				</tr>
+				<tr>
+					<th>Length</th>
+					<td>7 bits</td>
+				</tr>
+				<tr>
+					<th>Range</th>
+					<td>0 m – 3255.264 m </td>
+				</tr>
+				<tr>
+					<th>Resolution/Formula</th>
+					<td>25.632 m</td>
+				</tr>
+			</table>
+
+			<h5>Target Distance</h5>
+
+			<table class="keyval">
+				<tr>
+					<th>Variable</th>
+					<td class="code">D_TARGET</td>
+				</tr>
+				<tr>
+					<th>Description</th>
+					<td>The distance until the target speed limit is enforced. </td>
+				</tr>
+				<tr>
+					<th>Length</th>
+					<td>7 bits</td>
+				</tr>
+				<tr>
+					<th>Range</th>
+					<td>0 m – 13021.056 m </td>
+				</tr>
+				<tr>
+					<th>Resolution/Formula</th>
+					<td>102.528 m</td>
+				</tr>
+			</table>
+
+			<h5>Distance into Zone</h5>
+
+			<table class="keyval">
+				<tr>
+					<th>Variable</th>
+					<td class="code">D_ZONE</td>
+				</tr>
+				<tr>
+					<th>Description</th>
+					<td>The location within the zone. </td>
+				</tr>
+				<tr>
+					<th>Length</th>
+					<td>3 bits</td>
+				</tr>
+				<tr>
+					<th>Range</th>
+					<td>0 m – 89.712 m </td>
+				</tr>
+				<tr>
+					<th>Resolution/Formula</th>
+					<td>12.816 m</td>
+				</tr>
+			</table>
+
+			<h5>Train Length</h5>
+
+			<table class="keyval">
+				<tr>
+					<th>Variable</th>
+					<td class="code">L_TRAIN</td>
+				</tr>
+				<tr>
+					<th>Description</th>
+					<td>The actual length of the train. </td>
+				</tr>
+				<tr>
+					<th>Length</th>
+					<td>7 bits</td>
+				</tr>
+				<tr>
+					<th>Range</th>
+					<td>0 m – 1627.632 m </td>
+				</tr>
+				<tr>
+					<th>Resolution/Formula</th>
+					<td>12.816 m</td>
+				</tr>
+			</table>
+
+			<h5>Brake Curve Number</h5>
+
+			<table class="keyval">
+				<tr>
+					<th>Variable</th>
+					<td class="code">M_BRAKECURVE</td>
+				</tr>
+				<tr>
+					<th>Description</th>
+					<td>The braking curve number of the train. </td>
+				</tr>
+				<tr>
+					<th>Length</th>
+					<td>4 bits</td>
+				</tr>
+				<tr>
+					<th>Range</th>
+					<td>0–15</td>
+				</tr>
+				<tr>
+					<th>Resolution/Formula</th>
+					<td>Numbers</td>
+				</tr>
+			</table>
+
+			<h5>Cyclic Redundancy Check</h5>
+
+			<table class="keyval">
+				<tr>
+					<th>Variable</th>
+					<td class="code">M_CRC</td>
+				</tr>
+				<tr>
+					<th>Description</th>
+					<td>An error checking code that determines the integrity of the packet. </td>
+				</tr>
+				<tr>
+					<th>Length</th>
+					<td>8 bits</td>
+				</tr>
+				<tr>
+					<th>Resolution/Formula</th>
+					<td>Cyclic Redundancy Check</td>
+				</tr>
+			</table>
+
+			<h5>Number of Axles</h5>
+
+			<table class="keyval">
+				<tr>
+					<th>Variable</th>
+					<td class="code">N_AXLES</td>
+				</tr>
+				<tr>
+					<th>Description</th>
+					<td>The number of axles of the train. </td>
+				</tr>
+				<tr>
+					<th>Length</th>
+					<td>11 bits</td>
+				</tr>
+				<tr>
+					<th>Range</th>
+					<td>0–2047</td>
+				</tr>
+			</table>
+
+			<h5>Next Block identifier</h5>
+
+			<table class="keyval">
+				<tr>
+					<th>Variable</th>
+					<td class="code">N_NEXTBLOCK</td>
+				</tr>
+				<tr>
+					<th>Description</th>
+					<td>The next LTC block indicated by this loop. </td>
+				</tr>
+				<tr>
+					<th>Length</th>
+					<td>4 bits</td>
+				</tr>
+				<tr>
+					<th>Range</th>
+					<td>0–15</td>
+				</tr>
+				<tr>
+					<th>Special/Reserved values</th>
+					<td>0: Block is special loop, not used for train location. </td>
+				</tr>
+			</table>
+
+			<h5>New Zone identifier</h5>
+
+			<table class="keyval">
+				<tr>
+					<th>Variable</th>
+					<td class="code">N_NEWZONE</td>
+				</tr>
+				<tr>
+					<th>Description</th>
+					<td>Qualifier to indicate the next zone that the train will enter when performing movements such as switching between tracks. </td>
+				</tr>
+				<tr>
+					<th>Length</th>
+					<td>7 bits</td>
+				</tr>
+				<tr>
+					<th>Range</th>
+					<td>±1–127</td>
+				</tr>
+				<tr>
+					<th>Special/Reserved values</th>
+					<td>±0: No new zone — leaving LTC (the sign indicates the direction)</td>
+				</tr>
+			</table>
+
+			<h5>Block identifier</h5>
+
+			<table class="keyval">
+				<tr>
+					<th>Variable</th>
+					<td class="code">N_BLOCK</td>
+				</tr>
+				<tr>
+					<th>Description</th>
+					<td>The LTC block indicated by this loop. </td>
+				</tr>
+				<tr>
+					<th>Length</th>
+					<td>4 bits</td>
+				</tr>
+				<tr>
+					<th>Range</th>
+					<td>0–15</td>
+				</tr>
+				<tr>
+					<th>Special/Reserved values</th>
+					<td>0: Block is special loop, not used for train location. </td>
+				</tr>
+			</table>
+
+			<h5>Zone identifier</h5>
+
+			<table class="keyval">
+				<tr>
+					<th>Variable</th>
+					<td class="code">N_ZONE</td>
+				</tr>
+				<tr>
+					<th>Description</th>
+					<td>Qualifier to indicate the virtual block for which the packet is valid. Trains are addressed by their location within an LTC block. </td>
+				</tr>
+				<tr>
+					<th>Length</th>
+					<td>7 bits</td>
+				</tr>
+				<tr>
+					<th>Range</th>
+					<td>±1–127</td>
+				</tr>
+				<tr>
+					<th>Special/Reserved values</th>
+					<td>±0: All trains (sign indicates direction)</td>
+				</tr>
+			</table>
+
+			<h5>Number of Zones Advanced</h5>
+
+			<table class="keyval">
+				<tr>
+					<th>Variable</th>
+					<td class="code">N_ZONESADV</td>
+				</tr>
+				<tr>
+					<th>Description</th>
+					<td>Number of zones the train has travelled through since receiving last telegram. </td>
+				</tr>
+				<tr>
+					<th>Length</th>
+					<td>3 bits</td>
+				</tr>
+				<tr>
+					<th>Range</th>
+					<td>±0, ±1, ±2, ±3</td>
+				</tr>
+				<tr>
+					<th>Special/Reserved values</th>
+					<td><code>000</code>: +0<br />
+						<code>001</code>: +1<br />
+						<code>010</code>: +2<br />
+						<code>011</code>: +3<br />
+						<code>111</code>: -0<br />
+						<code>110</code>: -1<br />
+						<code>101</code>: -2<br />
+						<code>100</code>: -3
+					</td>
+				</tr>
+			</table>
+
+			<h5>Packet identifier</h5>
+
+			<table class="keyval">
+				<tr>
+					<th>Variable</th>
+					<td class="code">NID_PACKET</td>
+				</tr>
+				<tr>
+					<th>Description</th>
+					<td>The header for each packet, which allows the receiving equipment to identify the data which follows. </td>
+				</tr>
+				<tr>
+					<th>Length</th>
+					<td>3 bits</td>
+				</tr>
+				<tr>
+					<th>Range</th>
+					<td>0–7</td>
+				</tr>
+				<tr>
+					<th>Resolution/Formula</th>
+					<td>Numbers</td>
+				</tr>
+				<tr>
+					<th>Special/Reserved values</th>
+					<td>0: Default call telegram<br />
+						1: Location update<br />
+						<!--Not really necessary, I think-->
+						<!--2: Gradient update<br />-->
+						2: ??<br />
+						3: ??<br />
+						4: Default response telegram<br />
+						5: ??<br />
+						6: ??<br />
+						7: ??<br />
+					</td>
+				</tr>
+			</table>
+
+			<h5>Brake Type Qualifier</h5>
+
+			<table class="keyval">
+				<tr>
+					<th>Variable</th>
+					<td class="code">Q_BRAKINGTYPE</td>
+				</tr>
+				<tr>
+					<th>Description</th>
+					<td>Qualifier to indicate the braking type of train. </td>
+				</tr>
+				<tr>
+					<th>Length</th>
+					<td>2 bits</td>
+				</tr>
+				<tr>
+					<th>Special/Reserved values</th>
+					<td><code>01</code>: Passenger<br />
+						<code>10</code>: Freight
+					</td>
+				</tr>
+			</table>
+
+			<h5>Direction identifier</h5>
+
+			<table class="keyval">
+				<tr>
+					<th>Variable</th>
+					<td class="code">Q_DIR</td>
+				</tr>
+				<tr>
+					<th>Description</th>
+					<td>Qualifier to indicate the direction the train is travelling in. </td>
+				</tr>
+				<tr>
+					<th>Length</th>
+					<td>1 bit</td>
+				</tr>
+				<tr>
+					<th>Special/Reserved values</th>
+					<td>0: Up<br />
+						1: Down
+					</td>
+				</tr>
+			</table>
+
+			<h5>Next Telegram Qualifier</h5>
+
+			<table class="keyval">
+				<tr>
+					<th>Variable</th>
+					<td class="code">Q_NEXTID</td>
+				</tr>
+				<tr>
+					<th>Description</th>
+					<td>Indicates the ID of the next call telegram to be transmitted. </td>
+				</tr>
+				<tr>
+					<th>Length</th>
+					<td>3 bits</td>
+				</tr>
+			</table>
+
+			<h5>Response Type Qualifier</h5>
+
+			<table class="keyval">
+				<tr>
+					<th>Variable</th>
+					<td class="code">Q_RTYPE</td>
+				</tr>
+				<tr>
+					<th>Description</th>
+					<td>Qualifier for response type required. </td>
+				</tr>
+				<tr>
+					<th>Length</th>
+					<td>3 bits</td>
+				</tr>
+				<tr>
+					<th>Special/Reserved values</th>
+					<td>0: Null<br />
+						1: Default response telegram<br />
+						2: ??<br />
+						3: ??<br />
+						4: ??<br />
+						5: ??<br />
+						6: ??<br />
+						7: ??<br />
+					</td>
+				</tr>
+			</table>
+
+			<h5>Maximum Train Speed</h5>
+
+			<table class="keyval">
+				<tr>
+					<th>Variable</th>
+					<td class="code">V_MAXTRAIN</td>
+				</tr>
+				<tr>
+					<th>Description</th>
+					<td>The maximum speed limit of the train. </td>
+				</tr>
+				<tr>
+					<th>Length</th>
+					<td>6 bits</td>
+				</tr>
+				<tr>
+					<th>Range</th>
+					<td>0 km/h – 378 km/h</td>
+				</tr>
+				<tr>
+					<th>Resolution/Formula</th>
+					<td>6 km/h</td>
+				</tr>
+			</table>
+
+			<h5>Target Speed Limit</h5>
+
+			<table class="keyval">
+				<tr>
+					<th>Variable</th>
+					<td class="code">V_TARGET</td>
+				</tr>
+				<tr>
+					<th>Description</th>
+					<td>The target speed limit of the next section. </td>
+				</tr>
+				<tr>
+					<th>Length</th>
+					<td>6 bits</td>
+				</tr>
+				<tr>
+					<th>Range</th>
+					<td>0 km/h – 378 km/h</td>
+				</tr>
+				<tr>
+					<th>Resolution/Formula</th>
+					<td>6 km/h</td>
+				</tr>
+			</table>
+
+			<h5>Train Speed</h5>
+
+			<table class="keyval">
+				<tr>
+					<th>Variable</th>
+					<td class="code">V_TRAIN</td>
+				</tr>
+				<tr>
+					<th>Description</th>
+					<td>The actual speed of the train. </td>
+				</tr>
+				<tr>
+					<th>Length</th>
+					<td>6 bits</td>
+				</tr>
+				<tr>
+					<th>Range</th>
+					<td>0 km/h – 378 km/h</td>
+				</tr>
+				<tr>
+					<th>Resolution/Formula</th>
+					<td>6 km/h</td>
+				</tr>
+			</table>
+
+			<h4>List of Variables (not in use)</h4>
+
+			<p>The following variables have been allocated but are not presently in use for one or more reasons. </p>
+
+			<h5>Gradient Value</h5>
+
+			<table class="keyval">
+				<tr>
+					<th>Variable</th>
+					<td class="code">G_VAL</td>
+				</tr>
+				<tr>
+					<th>Description</th>
+					<td>The value of a given gradient. </td>
+				</tr>
+				<tr>
+					<th>Length</th>
+					<td>9 bits</td>
+				</tr>
+				<tr>
+					<th>Range</th>
+					<td>0–510 </td>
+				</tr>
+				<tr>
+					<th>Special/Reserved values</th>
+					<td>511: Used to indicate that the gradient profile ends at <code>D_GRADIENT(n)</code></td>
+				</tr>
+			</table>
+
+			<h5>Length of Gradient</h5>
+
+			<table class="keyval">
+				<tr>
+					<th>Variable</th>
+					<td class="code">L_GRADIENT</td>
+				</tr>
+				<tr>
+					<th>Description</th>
+					<td>The length of the next gradient. </td>
+				</tr>
+				<tr>
+					<th>Length</th>
+					<td>10 bits</td>
+				</tr>
+				<tr>
+					<th>Range</th>
+					<td>0 m – 26247.168 m </td>
+				</tr>
+				<tr>
+					<th>Resolution/Formula</th>
+					<td>25.632 m</td>
+				</tr>
+			</table>
+
+			<h5>Packet length</h5>
+
+			<table class="keyval">
+				<tr>
+					<th>Variable</th>
+					<td class="code">L_PACKET</td>
+				</tr>
+				<tr>
+					<th>Description</th>
+					<td>Qualifier to indicate the length of the packet in bits, including all bits of the packet header. </td>
+				</tr>
+				<tr>
+					<th>Length</th>
+					<td>10 bits</td>
+				</tr>
+				<tr>
+					<th>Range</th>
+					<td>0–1023</td>
+				</tr>
+			</table>
+
+			<h5>Axleload</h5>
+
+			<table class="keyval">
+				<tr>
+					<th>Variable</th>
+					<td class="code">M_AXLELOAD</td>
+				</tr>
+				<tr>
+					<th>Description</th>
+					<td>Indicates the axleload. </td>
+				</tr>
+				<tr>
+					<th>Length</th>
+					<td>7 bits</td>
+				</tr>
+				<tr>
+					<th>Range</th>
+					<td>0–43.855 t</td>
+				</tr>
+				<tr>
+					<th>Resolution/Formula</th>
+					<td>456.819912 kg</td>
+				</tr>
+				<tr>
+					<th>Special/Reserved values</th>
+					<td><code>1100001</code>–<code>1111101</code>: Spare<br />
+						<code>1111110</code>: Axleload greater than 43.855 t<br />
+						<code>1111111</code>: Axleload unknown
+					</td>
+				</tr>
+			</table>
+
+			<h5>Operating Mode</h5>
+
+			<table class="keyval">
+				<tr>
+					<th>Variable</th>
+					<td class="code">M_MODE</td>
+				</tr>
+				<tr>
+					<th>Description</th>
+					<td>Current operating mode that the system is in. </td>
+				</tr>
+				<tr>
+					<th>Length</th>
+					<td>4 bits</td>
+				</tr>
+				<tr>
+					<th>Special/Reserved values</th>
+					<td>0: Full Supervision<br />
+						1: Partial Supervision<br />
+						2: On Sight<br />
+						3: Staff Responsible<br />
+						4: Stand-by<br />
+						5: Sleeping<br />
+						6: System Failure<br />
+						7: Isolating<br />
+						8: Trip<br />
+						9: Post-Trip<br />
+						10: Reversing<br />
+						11: Non-leading<br />
+						12–15: Spare
+					</td>
+				</tr>
+			</table>
+
+			<h5>Number of Iterations</h5>
+
+			<table class="keyval">
+				<tr>
+					<th>Variable</th>
+					<td class="code">N_ITER</td>
+				</tr>
+				<tr>
+					<th>Description</th>
+					<td>Number of iterations of the data set following this variable in a packet. </td>
+				</tr>
+				<tr>
+					<th>Length</th>
+					<td>5 bits</td>
+				</tr>
+				<tr>
+					<th>Range</th>
+					<td>0–31</td>
+				</tr>
+				<tr>
+					<th>Special/Reserved values</th>
+					<td>0: No data set is following </td>
+				</tr>
+			</table>
+
+			<h5>Gradient Qualifier</h5>
+
+			<table class="keyval">
+				<tr>
+					<th>Variable</th>
+					<td class="code">Q_GDIR</td>
+				</tr>
+				<tr>
+					<th>Description</th>
+					<td>Qualifier for gradient slope. </td>
+				</tr>
+				<tr>
+					<th>Length</th>
+					<td>1 bit</td>
+				</tr>
+				<tr>
+					<th>Special/Reserved values</th>
+					<td><code>0</code>: Uphill grade<br />
+						<code>1</code>: Downhill grade
+					</td>
+				</tr>
+			</table>
+
+
+			<h5>Current Speed Limit</h5>
+
+			<table class="keyval">
+				<tr>
+					<th>Variable</th>
+					<td class="code">V_CSL</td>
+				</tr>
+				<tr>
+					<th>Description</th>
+					<td>The current speed limit for the train. This is calculated continuously as part of the train’s speed curve, but will be updated at each signal or block boundary. </td>
+				</tr>
+				<tr>
+					<th>Length</th>
+					<td>6 bits</td>
+				</tr>
+				<tr>
+					<th>Range</th>
+					<td>0 km/h – 378 km/h</td>
+				</tr>
+				<tr>
+					<th>Resolution/Formula</th>
+					<td>6 km/h</td>
+				</tr>
+			</table>
+
+
+		</div>
+
+	</body>
+
+</html>

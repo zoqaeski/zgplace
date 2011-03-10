@@ -1,0 +1,160 @@
+/*
+ * formatting.css
+ * ----------
+ * Library of commonly used settings required by all other pages in my site. This particular file includes formatting styles.
+ * 
+ */
+
+/* Formatting Styles */
+em, .em {
+	font-style: italic !important;
+}
+
+strong, .strong {
+	font-weight: bold !important;
+}
+
+.ul {
+	text-decoration: underline !important;
+}
+
+.strike {
+	text-decoration: line-through !important;
+}
+
+.no-em, .ne, .nf { font-style: normal !important; }
+.no-strong, .ns, .nf { font-weight: normal !important; }
+.no-text-decoration, .ntd, .nf { text-decoration: none !important; }
+
+/* Subscript and superscript */
+sub, sup {
+	font-size: 70%;
+	position: relative;
+	font-weight: inherit !important;
+}
+
+sub {
+	margin-top: 33.3%;
+}
+
+sup {
+	margin-bottom: 33.3%;
+}
+
+/* Cases */
+.sc {
+	font-variant: small-caps;
+	/*font-size: 110%;*/
+	/*font-weight: inherit !important;*/
+}
+.ac {
+	text-transform: uppercase;
+	/*font-weight: inherit !important;*/
+}
+.lc {
+	text-transform: lowercase;
+	/*font-weight: inherit !important;*/
+}
+
+.nc {
+	text-transform: none;
+	font-variant: normal;
+}
+
+
+/* Alignment */
+.tl, .tl * {
+	text-align: left;
+}
+.tr, .tr * {
+	text-align: right;
+}
+.tc, .tr * {
+	text-align: center;
+}
+.tj, .tj * {
+	text-align: justify;
+}
+
+.vt {
+	vertical-align: top;
+}
+.vm {
+	vertical-align: middle;
+}
+.vb {
+	vertical-align: bottom;
+}
+
+.cl td {
+	text-align: left;
+}
+
+.ct {
+	margin: inherit auto;
+}
+
+/* Miscellaneous */
+.hidden {
+	display: none;
+}
+
+br.nobr {
+	height: 0px; width: 0px; margin: 0; padding: 0;
+}
+
+.clear {
+	position: relative; clear: both;
+}
+
+/* This is a special style: it's a tag used to tell the php parser to ignore this line in print mode. */
+.no-print {
+	display: none !important;
+	height: 0;
+	margin: 0;
+	padding: 0;
+	width: 0;
+}
+
+.subtitle {
+	font-size: 50%;
+}
+
+/* Floaty bits */
+.fl, .fr {
+	display: block;
+	margin: inherit;
+}
+
+.fl {
+	float: left;
+	margin-right: 0.5em;
+}
+
+.fr {
+	float: right;
+	margin-left: 0.5em;
+}
+
+.clear {
+	clear: both;
+}
+
+/* Borders */
+.no-border {
+	border: none !important;
+}
+
+/* Lists */
+.nb {
+	list-style: none;
+}
+
+ol.la {
+	list-style-type: lower-alpha;
+}
+
+/* Code */
+.pre, .code {
+	font-family: monospace, sans-serif;
+}

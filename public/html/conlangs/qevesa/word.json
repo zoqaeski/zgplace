@@ -1,0 +1,91 @@
+{
+    "root" : ["C", "C", "C"],
+        "eng_base_meaning" : "",
+        "date_entered" : "2010-08-01",
+        "derivations" : [
+        { 
+            "pattern" : "CeCeC", 
+            "pronunciation" : "ˈCe.CeC", 
+            "word_type" : "noun", 
+            "word_usage" : "concept", 
+            "eng_meaning" : "" 
+        },
+        { 
+            "pattern" : "CaCoiC", 
+            "pronunciation" : "ˈCa.CoiC", 
+            "word_type" : "noun", 
+            "word_usage" : "actor", 
+            "eng_meaning" : "" 
+        },
+        { 
+            "pattern" : "CoCCit", 
+            "pronunciation" : "ˈCeC.Cit", 
+            "word_type" : "noun", 
+            "word_usage" : "patient", 
+            "eng_meaning" : "" 
+        },
+        { 
+            "pattern" : "CiCaC", 
+            "pronunciation" : "ˈCi.CaC", 
+            "word_type" : "noun", 
+            "word_usage" : "resulting object", 
+            "eng_meaning" : "" 
+        },
+        {
+            "pattern" : "CiuCiC",
+            "pronunciation" : "ˈCʲu.CiC", 
+            "word_type" : "noun",
+            "word_usage" : "tool", 
+            "eng_meaning" : "" 
+        },
+        { 
+            "pattern" : "CeC~aC", 
+            "pronunciation" : "ˈCe.CːaC", 
+            "word_type" : "noun", 
+            "word_usage" : "device", 
+            "eng_meaning" : "" 
+        },
+        { 
+            "pattern" : "CeCöC", 
+            "pronunciation" : "ˈCe.CøC", 
+            "word_type" : "noun", 
+            "word_usage" : "art", 
+            "eng_meaning" : "" 
+        },
+        {
+            "pattern" : "aCCeC", 
+            "pronunciation" : "ˈaC.CeC", 
+            "word_type" : "noun", 
+            "word_usage" : "location", 
+            "eng_meaning" : "" 
+        },
+        {
+            "pattern" : "iCaCCa", 
+            "pronunciation" : "i.ˈCaC.Ca", 
+            "word_type" : "noun", 
+            "word_usage" : "ergative participle", 
+            "eng_meaning" : "" 
+        },
+        {
+            "pattern" : "öCüCeC", 
+            "pronunciation" : "ø.ˈCy.CeC", 
+            "word_type" : "noun", 
+            "word_usage" : "accusative participle", 
+            "eng_meaning" : "" 
+        },
+        {
+            "pattern" : "CeCCai", 
+            "pronunciation" : "ˈCeC.Cai", 
+            "word_type" : "adjective",
+            "word_usage" : "attributive adjective",
+            "eng_meaning" : "" 
+        },
+        {
+            "pattern" : "CeCCayet",
+            "pronunciation" : "CeC.ˈCa.jet", 
+            "word_type" : "adverb",
+            "word_usage" : "adverb",
+            "eng_meaning" : "" 
+        }
+    ]
+}

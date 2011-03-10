@@ -1,0 +1,264 @@
+/*
+ * common.css
+ * ----------
+ * Common elements, such as div boxes and the like.
+ *
+ */
+
+/* The information boxes */
+.infobar {
+	border: 1px solid;
+	font-size: 90%;
+	margin: 2em 1em 2em 1em;
+	padding: 0.5em;
+	width: 240px;
+}
+
+/* The Table of Contents */
+.toc {
+	/*border: 1px solid;*/
+	/*display:none;*/
+	font-size: 90%;
+	margin: 0 0 0 0;
+	padding: 0.5em;
+	/*	height: 300px;
+	overflow: auto;*/
+}
+
+.toc > span {
+	font-size: 110%;
+	display: block;
+	margin: 0;
+	padding: 0;
+	text-align: left;
+}
+
+.toc ol {
+	margin: 0 0 0 1em;
+	padding: 0.25em;
+}
+
+.toc > ol {
+	/*display: none;*/
+}
+
+.toc ol li {
+	margin: 0 0 0 0.5em;
+	list-style: decimal;
+}
+
+.hbox, .nbox, .ibox {
+	display: table;
+	margin: 0.5em auto 1em;
+	padding: 1em;
+	text-align: center;
+	width: auto;
+}
+
+.hbox, .ibox, .nbox {
+	border: 1px solid;
+	border-collapse: collapse;
+}
+
+.nbox {
+	border: 1px solid transparent;
+	/* No specific styles here */
+}
+
+.hbox .caption, .ibox .caption, .nbox .caption {
+	font-size: 90%;
+	font-style: italic;
+	margin: 0.25em auto;
+	padding: 0 0.5em;
+}
+
+.hbox .heading {
+	border-bottom: 1px solid;
+	font-size: 90%;
+	font-weight: bold;
+	line-height: 1.2em;
+	padding: 0.25em 0.5em;
+}
+
+/* Thumbnails */
+.thumb {
+	width: auto;
+	border: 1px solid;
+	font-size: 90%;
+	line-height: 1.4em;
+	page-break-after: auto !important;
+	page-break-before: auto !important;
+	page-break-inside: avoid !important;
+}
+
+.thumb > img, .thumb > a {
+	border: 1px solid;
+	margin: 0.4em;
+}
+
+.transbg {
+	padding: 0.5em;
+}
+
+.thumb > p {
+	border: none;
+	margin: 0 0.4em 0.4em 0.4em;
+	padding: 0;
+	text-align: left;
+}
+
+/* Permalinks */
+a.permalink {
+	color: inherit !important;
+	display: none;
+	font-size: 0.75em;
+	vertical-align: top;
+	padding: 0 0.25em;
+	text-decoration: none !important;
+	visibility: hidden;
+}
+
+h1:hover a.permalink, h2:hover a.permalink, h3:hover a.permalink, h4:hover a.permalink, h5:hover a.permalink, h6:hover a.permalink {
+	display: inline-block;
+	visibility: visible;
+}
+
+/* The signal graphics; vertical image compositions */
+.signal img, .signal span {
+	display: inline;
+	float: right;
+	clear: right;
+	margin: 0;
+	padding: 0;
+}
+
+.signal img {
+	margin-top: -1px;
+}
+
+div.signal {
+	display: inline-block;
+	margin: 0.5em 0.25em;
+	padding: 0;
+	width: auto;
+}
+
+/*Special rule for narrow images*/
+div.signal.narrow {
+	margin-left: -30px !important;
+}
+
+/* * * * * * * * * 
+ * LINGUISTICS
+ * ===========
+ * This is a special section devoted to the styles relevant only to linguistics
+ *
+ */
+
+/* The Dictionary */
+dl.dictionary, dl.onomasticon {
+	/*-moz-column-count: 2;
+	-moz-column-width: 50%;*/
+}
+
+dl.dictionary dd, dl.onomasticon dd {
+	line-height: 1.25em;
+	margin: 0 0 0 2.5em;
+	padding: 0;
+	text-indent: -1.5em;
+}
+
+dl.dictionary dd a, dl.onomasticon dd a {
+	font-style: italic;
+}
+
+dl.dictionary dt, dl.onomasticon dt {
+	font-size: 1.15em;
+	line-height: 1.2em;
+	margin: 1em 0 0 0;
+	padding: 0.5em 0 0.25em 0;
+}
+
+dl.dictionary dt.h, dl.onomasticon dt.h  {
+	font-size: 2em; 
+	line-height: 1.2em;
+	font-weight: normal !important;
+	line-height: 1em;
+	margin: 1em 0 0 0; 
+	padding: 0.5em;
+}
+
+.quickref {
+	font-size: 150%;
+	line-height: 2em;
+	margin: 0.5em;
+	padding: 0;
+}
+
+.letter-table {
+	display: table !important;
+	margin: 0.5em auto 1em;
+	padding: 0;
+}
+
+.letter {
+	border: 1px solid;
+	border-collapse: collapse;
+	display: block;
+	float: left;
+	margin: 0.25em -1px 0.25em 0;
+	text-align: center;
+	width: 2.5em;
+}
+
+.letter strong {
+	display: block;
+	font-size: 125%;
+	padding: 0.25em;
+}
+
+.letter div {
+	padding: 0.25em;
+}
+
+/* Linguistic Glosses */
+div.lexg {
+	clear: both;
+	font-size: 90%;
+	margin: 0.5em 2em;
+	max-width: 48em;
+	padding: 0;
+}
+
+.lexg p {
+	font-style: italic;
+	line-height: 1.5em;
+	margin: 0 !important;
+	padding: 0 !important;
+	text-align: left;
+	text-indent: 0 !important;
+}
+
+.lexg div.int {
+	float: left;
+	text-align: left;
+	margin: 0 0.5em 0 0;
+}
+
+.lexg div.lng, .lexg div.brk, .lexg div.str, .lexg div.lit, .lexg div.trn {
+	display: block !important;
+	height: 1.5em !important;
+	text-align: left !important;
+}
+
+.lexg div.lng {
+	font-style: italic;
+	/*color: blue;*/
+	margin-top: 0.5em;
+	/*margin: 0.75em inherit inherit inherit;*/
+}
+
+.lexg div.trn {
+	clear: both;
+}
+

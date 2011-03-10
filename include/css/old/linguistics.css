@@ -1,0 +1,44 @@
+/* This is the CSS file used to define glosses used in my conlang grammars */
+
+/* Blocks of text */
+div.gl {
+	clear: both;
+	text-align: left;
+	text-indent: 0 !important;
+	margin: 1em 1.5em;
+}
+	.gl p {
+		margin: 0 0 -0.5em 0;
+		text-indent: 0 !important;
+		font-style: italic;
+	}
+		.gl p.ipa {
+			font-style: normal; margin: 0.5em 0 0 0;
+		}
+			.gl p.ipa:before, .gl p.ipa:after {
+				content: "/"
+			}
+		p.def {
+			font-style: italic;
+			font-size: .9em;
+			margin: 0 0 1.5em 0; padding: .25em 0 0 0;
+			clear: both;
+		}
+
+/* Inline bits */
+.gl > div {
+	float: left;
+	margin: 0 1em 0 0;
+}
+	.gm {
+		font-size: 1.1em;
+		font-weight: normal;
+		display: block;
+		line-height: 2em;
+		margin: 0.5em 0 0 0;
+
+	}
+	.gx {
+		display: block;
+		line-height: 1em;
+	}

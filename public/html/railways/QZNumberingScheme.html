@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Train Drawings</title>
+
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+		<style type="text/css">
+				@import "../../include/css/common.css";
+		</style>
+		<link type="text/css" rel="stylesheet" href="../../include/css/default.css" title="default" media="screen" />
+		<link type="text/css" rel="alternate stylesheet" href="../../include/css/none.css" title="none" media="all" />
+	</head>
+	<body>
+		<div id="body">
+			<h1>Railways of Qevelia numbering scheme</h1>
+			<h2>Locomotives</h2>
+			<p>The railways of Qevelia have a numbering scheme for their trains that looks like this: CCCC NNNNK</p>
+			<p>The class number consists of a four digit number:</p>
+			<h3>First Digit </h3>
+			<p>The first digit indicates the type of locomotive.</p>
+			<ul>
+				<li>0: Steam locomotive tenders</li>
+				<li>1: Steam locomotives</li>
+				<li>2: Electric locomotives</li>
+				<li>3: Non-electric locomotives</li>
+				<li>4: Electric Railcars</li>
+				<li>5: Non-electric railcars</li>
+				<li>6: Intermediate cars of MUs</li>
+				<li>7: (Passenger Rollingstock)</li>
+				<li>8: (Freight rollingstock)</li>
+				<li>9: Non-revenue equipment</li>
+			</ul>
+			<h2>Second Digit</h2>
+			<p>The second digit indicates some broad technical aspects.</p>
+			<table cellspacing="0" class="cl">
+				<caption>Locomotive numbering: Second Digit</caption>
+				<tr>
+					<th>First Digit</th>
+					<th>Second</th>
+					<th>Meaning</th>
+				</tr>
+				<tr>
+					<th rowspan="6">0</th>
+					<th>1</th>
+					<td>Solid fuel tender without water pickup</td>
+				</tr>
+				<tr>
+					<th>2</th>
+					<td>Solid fuel tender with water pickup</td>
+				</tr>
+				<tr>
+					<th>3</th>
+					<td>Solid fuel tender with condensing apparatus</td>
+				</tr>
+				<tr>
+					<th>4</th>
+					<td>Liquid fuel tender without water pickup</td>
+				</tr>
+				<tr>
+					<th>5</th>
+					<td>Liquid fuel tender with water pickup</td>
+				</tr>
+				<tr>
+					<th>6</th>
+					<td>Liquid fuel tender with condensing apparatus</td>
+				</tr>
+				<tr>
+					<th rowspan="4">1</th>
+					<th>0–3</th>
+					<td>Solid fuel fired</td>
+				</tr>
+				<tr>
+					<th>4–6</th>
+					<td>Liquid fuel fired</td>
+				</tr>
+				<tr>
+					<th>7, 8</th>
+					<td>Solid or liquid fired</td>
+				</tr>
+				<tr>
+					<th>9</th>
+					<td>Fireless steam</td>
+				</tr>
+				<tr>
+					<th rowspan="5">2,4</th>
+					<th>0</th>
+					<td>3<sup>rd</sup> rail DC, 800V=</td>
+				</tr>
+				<tr>
+					<th>1</th>
+					<td>Overhead AC, 16kV 20Hz</td>
+				</tr>
+				<tr>
+					<th>2</th>
+					<td>Dual voltage, 800V= and 16kV 20Hz</td>
+				</tr>
+				<tr>
+					<th>3</th>
+					<td>800V=, 16kV 20Hz and <strong>one</strong> other voltage</td>
+				</tr>
+				<tr>
+					<th>4</th>
+					<td>800V=, 16kV 20Hz and <strong>two</strong> other voltages</td>
+				</tr>
+				<tr>
+					<th rowspan="6">3, 5</th>
+					<th>0</th>
+					<td>Internal combustion engine, mechanical transmission</td>
+				</tr>
+				<tr>
+					<th>1</th>
+					<td>Internal combustion engine, hydraulic transmission</td>
+				</tr>
+				<tr>
+					<th>2</th>
+					<td>Internal combustion engine, electric transmission</td>
+				</tr>
+				<tr>
+					<th>3</th>
+					<td>Turbine engine, mechanical transmission</td>
+				</tr>
+				<tr>
+					<th>4</th>
+					<td>Turbine engine, hydraulic transmission</td>
+				</tr>
+				<tr>
+					<th>5</th>
+					<td>Turbine engine, electric transmission</td>
+				</tr>
+				<tr>
+					<th rowspan="4">6</th>
+					<th>1, 2</th>
+					<td>Driving motor</td>
+				</tr>
+				<tr>
+					<th>3, 4</th>
+					<td>Driving trailer</td>
+				</tr>
+				<tr>
+					<th>5, 6</th>
+					<td>Non-driving motor</td>
+				</tr>
+				<tr>
+					<th>7, 8</th>
+					<td>Non-driving trailer</td>
+				</tr>
+			</table>
+			<p>For multiple unit intermediate cars (6xxx), odd digits indicate electric stock and even digits indicate non-electric stock.</p>
+			<h3>Third and Fourth Digits</h3>
+			<p>The third and fourth digits indicate more technical information.</p>
+			<table cellspacing="0" class="cl">
+				<caption>Locomotive numbering: Third and Fourth Digits</caption>
+				<tr>
+					<th>First Digit</th>
+					<th>Third and Fourth Digits</th>
+					<th>Meaning</th>
+				</tr>
+				<tr>
+					<th rowspan="5">0</th>
+					<th>01–09</th>
+					<td>Locomotive tender with fixed wheelbase</td>
+				</tr>
+				<tr>
+					<th>10–29</th>
+					<td>Locomotive tender with two 2-axle bogies</td>
+				</tr>
+				<tr>
+					<th>30–39</th>
+					<td>Locomotive tender with two 3-axle bogies</td>
+				</tr>
+				<tr>
+					<th>40–49</th>
+					<td>Locomotive tender with "centipede" 2-8-2 wheel arrangement</td>
+				</tr>
+				<tr>
+					<th>50–59</th>
+					<td>Locomotive tender with "centipede" 4-10-0 wheel arrangement</td>
+				</tr>
+				<tr>
+					<th rowspan="6">1</th>
+					<th>01–19</th>
+					<td>Small, industrial shunting locomotives</td>
+				</tr>
+				<tr>
+					<th>20–29</th>
+					<td>Main line tank locomotives</td>
+				</tr>
+				<tr>
+					<th>30–39</th>
+					<td>Tender locomotive with 3 driving axles</td>
+				</tr>
+				<tr>
+					<th>40–49</th>
+					<td>Tender locomotive with 4 driving axles</td>
+				</tr>
+				<tr>
+					<th>50–59</th>
+					<td>Tender locomotive with 5 driving axles</td>
+				</tr>
+				<tr>
+					<th>80–89</th>
+					<td>Articulated locomotive with 8 driving axles</td>
+				</tr>
+				<tr>
+					<th rowspan="5">2, 3</th>
+					<th>10–19</th>
+					<td>Small rail tractors and shunting vehicles</td>
+				</tr>
+				<tr>
+					<th>20–29</th>
+					<td>Heavy shunting locomotives</td>
+				</tr>
+				<tr>
+					<th>30–49</th>
+					<td>Single unit locomotives</td>
+				</tr>
+				<tr>
+					<th>50–69</th>
+					<td>Multiple unit locomotives</td>
+				</tr>
+				<tr>
+					<th>70–79</th>
+					<td>Cabless/Booster units</td>
+				</tr>
+				<tr>
+					<th rowspan="4">4, 5, 6</th>
+					<th>01–29</th>
+					<td>Metro rollingstock</td>
+				</tr>
+				<tr>
+					<th>30–69</th>
+					<td>Suburban/Commuter (includes interurban cars)</td>
+				</tr>
+				<tr>
+					<th>70–89</th>
+					<td>Long distance</td>
+				</tr>
+					<th>90–99</th>
+					<td>Specialised types</td>
+				</tr>
+			</table>
+
+			<h3>Fifth–Eighth Digits</h3>
+			<p>These digits are the locomotive's serial number, usually starting with 0001. The thousand's digit (or fifth digit) may be used to represent other information; experimental variants of locomotives are often numbered in the 5xxx series. For multiple unit intermediate cars (6xxx), the fifth digit is identical to the second digit for the whole set classification, so a typical EMU set may have numbers such as: <br />4250 00118 = 6150 20210 + 6550 20215 + 6550 20227 + 6150 20222.</p>
+			<h3>Ninth Digit</h3>
+			<p>The final digit, K, is a check digit used to record the locomotive's id in computer entries. The check digit is calculated by multiplying each digit by its position from right to left, adding all but the rightmost together. The result is then divided by the length of the number, and the remainder becomes the rightmost, or check, digit.</p>
+			<h2>Passenger Cars</h2>
+			<p>Passenger cars have a similar numbering system that is designed to blend in with the locomotive one. The scheme is as follows:</p>
+			<h3>First Digit</h3>
+			<p>The first digit is <strong>always</strong> 7.</p>
+			<h3>Second Digit</h3>
+			<p>The second digit indicates the wheel arrangement.</p>
+			<ul>
+				<li>1: Fixed wheelbase</li>
+				<li>2: Two 2-axle bogies</li>
+				<li>3: Two 3-axle bogies</li>
+				<li>4: Articulated, single wheels</li>
+				<li>5: Articulated, 2-axle bogies</li>
+				<li>6: Articulated, 3-axle bogies</li>
+				<li>7: Articulated, 2-axle bogies at ends, 3-axle intermediate bogies</li>
+			</ul>
+			<h3>Third and Fourth Digits</h3>
+			<p>The third and fourth digits indicate information about the type of car:</p>
+			<ul>
+				<li>01–09: Private car</li>
+				<li>10–19: Premium class intercity car</li>
+				<li>20–29: Standard class intercity car</li>
+				<li>30–39: Premium class sleeping car</li>
+				<li>40–49: Standard class sleeping car</li>
+				<li>50–59: Premium class with luggage and/or guard's compartment (includes driving trailers)</li>
+				<li>60–69: Standard class with luggage and/or guard's compartment (includes driving trailers)</li>
+				<li>70–74: Buffet car</li>
+				<li>75–79: Dining car</li>
+				<li>80–84: Mail sorting van</li>
+				<li>85–89: Luggage van</li>
+				<li>90–93: Power van</li>
+				<li>94: Heating van</li>
+				<li>95–98: Specialised/miscellaneous passenger cars</li>
+				<li>99: Crew car</li>
+			</ul>
+			<h3>Fifth–Ninth digits</h3>
+			<p>These are the serial number and check digit of the individual item of rollingstock, identical in form and function to the locomotive serial number, described above.</p>
+
+			<h2>Freight Rollingstock</h2>
+			<p>QJ freight rollingstock has a similar type of numbering code to the locomotives and passenger rollingstock, with the exception that the code has up to four digits to indicate class. The first digit is always 8, the second describes the type, the third gives further information, and the fourth is to differentiate individual series with otherwise identical characteristics.</p>
+			<h3>Second Digit</h3>
+			<ul>
+				<li>0: Enclosed wagons, standard types</li>
+				<li>1: Enclosed wagons, non-standard types</li>
+				<li>2: Open wagons, standard types</li>
+				<li>3: Open wagons, hoppers</li>
+				<li>4: Refrigerated wagons</li>
+				<li>5: Tank wagons</li>
+				<li>6: Flat wagons</li>
+				<li>7: Container wagons</li>
+				<li>8: Miscellaneous wagons</li>
+				<li>9: Non-revenue equipment</li>
+			</ul>
+			<h3>Third Digit</h3>
+			<table cellspacing="0" class="cl">
+				<caption>Third digit of freight rollingstock numbering</caption>
+				<tr>
+					<th>Third digit</th>
+					<th>Second digit</th>
+					<th>Meaning</th>
+				</tr>
+				<tr>
+					<th rowspan="9">1</th>
+					<th>0</th>
+					<td>Non-ventilated boxcar, sliding doors</td>
+				</tr>
+					<tr>
+						<th>1</th>
+						<td>Non ventilated boxcar, plug doors</td>
+					</tr>
+					<tr>
+						<th>2</th>
+						<td>Open wagon, two doors near ends</td>
+					</tr>
+					<tr>
+						<th>3</th>
+						<td>Non covered hopper, gravity discharge</td>
+					</tr>
+					<tr>
+						<th>4</th>
+						<td>Refrigerated wagon, mechanical cooling</td>
+					</tr>
+					<tr>
+						<th>5</th>
+						<td>Tank wagon, non-pressurised</td>
+					</tr>
+					<tr>
+						<th>6</th>
+						<td>Flat wagon, no end beams</td>
+					</tr>
+					<tr>
+						<th>7</th>
+						<td>2 container flat wagon</td>
+					</tr>
+					<tr>
+						<th>8</th>
+						<td>Single level open-air automobile carrier</td>
+					</tr>
+				<tr>
+					<th rowspan="9">2</th>
+					<th>0</th>
+					<td>Force-ventilated boxcar, sliding doors</td>
+				</tr>
+					<tr>
+						<th>1</th>
+						<td>Force-ventilated boxcar, plug doors</td>
+					</tr>
+					<tr>
+						<th>2</th>
+						<td>Open wagon, drop-down sides</td>
+					</tr>
+					<tr>
+						<th>3</th>
+						<td>Covered hopper, gravity discharge</td>
+					</tr>
+					<tr>
+						<th>4</th>
+						<td>Refrigerated wagon, electrical air circulation cooling</td>
+					</tr>
+					<tr>
+						<th>5</th>
+						<td>Tank wagon, pressurised</td>
+					</tr>
+					<tr>
+						<th>6</th>
+						<td>Flat wagon, end beams</td>
+					</tr>
+					<tr>
+						<th>7</th>
+						<td>3 container flat wagon</td>
+					</tr>
+					<tr>
+						<th>8</th>
+						<td>Single level enclosed automobile carrier</td>
+					</tr>
+				<tr>
+					<th rowspan="10">3</th>
+					<th>0</th>
+					<td>High volume boxcar, sliding doors</td>
+				</tr>
+					<tr>
+						<th>1</th>
+						<td>High volume boxcar, plug doors</td>
+					</tr>
+					<tr>
+						<th>2</th>
+						<td>Non-covered bulk open wagon</td>
+					</tr>
+					<tr>
+						<th>3</th>
+						<td>Covered hopper, pneumatic discharge</td>
+					</tr>
+					<tr>
+						<th>4</th>
+						<td>Insulated wagon, no cooling equipment</td>
+					</tr>
+					<tr>
+						<th>5</th>
+						<td>Tank wagon, pressurised</td>
+					</tr>
+					<tr>
+						<th>6</th>
+						<td>Flat wagon, with fittings for coil steel</td>
+					</tr>
+					<tr>
+						<th>7</th>
+						<td>4 container well wagon</td>
+					</tr>
+					<tr>
+						<th>8</th>
+						<td>Bilevel open-air automobile carrier</td>
+					</tr>
+					<tr>
+						<th>9</th>
+						<td>Ballast hoppers</td>
+					</tr>
+				<tr>
+					<th rowspan="7">4</th>
+					<th>0</th>
+					<td>Boxcar with opening roof</td>
+				</tr>
+					<tr>
+						<th>1</th>
+						<td>Boxcar with fittings for coil steel</td>
+					</tr>
+					<tr>
+						<th>2</th>
+						<td>Covered bulk open wagon</td>
+					</tr>
+					<tr>
+						<th>3</th>
+						<td>Cement wagon, pneumatic discharge</td>
+					</tr>
+					<tr>
+						<th>6</th>
+						<td>Sheet steel wagon, non-tipping</td>
+					</tr>
+					<tr>
+						<th>7</th>
+						<td>Three-piece articulated container flat wagon</td>
+					</tr>
+					<tr>
+						<th>8</th>
+						<td>Bilevel enclosed automobile carrier</td>
+					</tr>
+				<tr>
+					<th rowspan="7">5</th>
+					<th>0,1</th>
+					<td>Boxcar with fittings for refrigeration equipment</td>
+				</tr>
+					<tr>
+						<th>2</th>
+						<td>Tipping open wagon</td>
+					</tr>
+					<tr>
+						<th>3</th>
+						<td>Refrigerated hopper wagon</td>
+					</tr>
+					<tr>
+						<th>6</th>
+						<td>Sheet steel wagon, tipping</td>
+					</tr>
+					<tr>
+						<th>7</th>
+						<td>Five-piece articulated container flat wagon</td>
+					</tr>
+					<tr>
+						<th>8</th>
+						<td>Swap body containers</td>
+					</tr>
+					<tr>
+						<th>9</th>
+						<td>Fuel tankers</td>
+					</tr>
+				<tr>
+					<th rowspan="3">6</th>
+					<th>6</th>
+					<td>Centerbeam flat wagon</td>
+				</tr>
+					<tr>
+						<th>7</th>
+						<td>Three-piece articulated container well wagon</td>
+					</tr>
+					<tr>
+						<th>9</th>
+						<td>Welded rail flat wagons</td>
+					</tr>
+				<tr>
+					<th rowspan="2">7</th>
+					<th>7</th>
+					<td>Five-piece articulated container well wagon</td>
+				</tr>
+					<tr>
+						<th>8</th>
+						<td>Extreme heavy load wagons</td>
+					</tr>
+				<tr>
+					<th colspan="2">98,99</th>
+					<td>Guard's vans</td>
+				</tr>
+			</table>
+			<h3>Fourth Digit</h3>
+			<p>The fourth digit represents individual types within above classifications.</p>
+			<h3>Fifth–Ninth digits</h3>
+			<p>These are the serial number and check digit of the individual item of rollingstock, identical in form and function to the locomotive serial number, described above.</p>
+
+			<h2>Examples</h2>
+			<dl>
+				<dt>2242 00238</dt>
+				<dd>Electric locomotive, Dual voltage (800V= + 16kV 20Hz), Single unit modern series, 23<sup>rd</sup> in class, check digit is 8.<br />2×9 + 2×8 + 4×7 + 2×6 + 0×5 + 0×4 + 2×3 + 3×2 = 80<br />80 mod 9 = 8<br />Therefore check digit is 8.</dd>
+				<dt>7254 00615</dt>
+				<dd>Passenger car with two 2-axle bogies, premium class with luggage and/or guard's compartment, 61<sup>st</sup> in class, check digit is 5.<br />7×9 + 2×8 + 5×7 + 4×6 + 0×5 + 0×4 + 6×3 + 1×2 = 140<br />140 mod 9 = 5<br />Therefore check digit is 5.</dd>
+				<dt>8213 15766</dt>
+				<dd>Freight wagon, 3rd class of non-standard boxcar, force-ventilated with plug doors, 1576<sup>th</sup> in class, check digit is 6.<br />8×9 + 2×8 + 1×7 + 3×6 + 1×5 + 5×4 + 7×3 + 6×2 = 150<br />150 mod 9 = 6<br />Therefore check digit is 6.</dd>
+			</dl>
+			<!--
+			<h2>Limits</h2>
+			<p>The following limits apply:</p>
+			<dl>
+				<dt>Locomotives</dt>
+				<dd>Up to 9999 members in each class.</dd>
+				<dt>Multiple Units (DM+NDT+NDM+DT)</dt>
+				<dd>Up to 999 members in each class.</dd>
+				<dt>Multiple Units (DM+NDM+NDM+DM)</dt>
+				<dd>Up to 988 members in each class.</dd>
+			</dl>
+			-->
+		</div>
+	</body>
+</html>

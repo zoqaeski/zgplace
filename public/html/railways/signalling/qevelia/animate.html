@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Image animation test</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<base href="../../../../" />
+		<link type="text/css" rel="stylesheet" href="include/css/default.css" title="default" media="all" />
+		<script type="text/javascript" src="/include/js/jquery.dataset.js"></script>
+		<script type="text/javascript" src="/include/js/jquery.metadata.js"></script>
+		<script type="text/javascript" src="/include/js/jquery.animateimg.js"></script>
+		<script type="text/javascript">
+			;(function($){
+				$(function() {
+					var base_path = "/public/img/railways/signalling/qevelia/";
+					$('.m3c_yf').attr({class: 'animate'}).dataset({intervals: '600,200', frames: 'cl/m3c_off,cl/m3c_y'});
+					$('.animate').each(function(index, value) {
+						$(this).animateImg({base_path: base_path});
+					});
+				});
+			})(jQuery);
+		</script>
+	</head>
+	<body>
+		<div id="body">
+
+			<h1 class="title">Qevelian Railway Signalling</h1>
+
+			<h1>Image animation test</h1>
+
+			<div class="ibox vb">
+				<div class="signal">
+					<img src="cl/d4a_gfy.png" 
+						class="animate"
+						data-intervals="100,100,100,50" 
+						data-frames="cl/d4a_y,cl/d4a_gy,cl/d4a_g,cl/d4a_off" 
+						alt="" />
+					<img src="post/p2-unit.png" alt="" />
+					<img src="sign/pp-distant.png" alt="" />
+					<img src="post/p2-base.png" alt="" />
+				</div>
+				<div class="signal">
+					<img src="cl/m3c_gry.png" 
+						class="animate"
+						data-intervals="1000,1000,1000,500" 
+						data-frames="cl/m3c_g,cl/m3c_y,cl/m3c_r,cl/m3c_off" 
+						alt="" />
+					<img src="post/p2-unit.png" alt="" />
+					<img src="sign/pp-main.png" alt="" />
+					<img src="post/p2-base.png" alt="" />
+				</div>
+			</div>
+
+			<ul id="echo">
+			</ul>
+
+		</div>
+	</body>
+</html>

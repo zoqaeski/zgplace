@@ -1,0 +1,413 @@
+@import "reset.css";
+
+@import "linguistics.css";
+
+/* common.css */
+/* My own modifications and additions */
+sup, .sup {
+	vertical-align: super; font-size: 50%;
+}
+sub, .sub {
+	vertical-align: sub; font-size: 50%;
+}
+
+/* Get rid of that ugly border! */
+a:active, a:focus, a.active {
+	outline: 0;
+}
+
+a {
+	text-decoration: none !important;
+}
+
+/* Paragraph default styles */
+p {
+	margin: 0.5em 0 0.75em 0; padding: 0;
+	font-size: 1em; text-align: justify; text-indent: 1em; line-height: 1.4em;
+}
+
+/* This restores defaults to <em>s and <strong> */
+strong, .strong {
+	font-weight: 600;
+}
+em, .em {
+	font-style: italic;
+}
+
+
+/* Other miscellaneous text styles and classes */
+.strike {
+	text-decoration: line-through;
+}
+
+.ul {
+	text-decoration: underline;
+}
+
+.nstrong, .nf {
+	font-weight: normal !important;
+}
+.nem, .nf {
+	font-style: normal !important;
+}
+
+.ntd, .nf {
+	text-decoration: none !important;
+}
+
+
+/* Case */
+.sc {
+	font-variant: small-caps;
+}
+.ac {
+	text-transform: uppercase;
+}
+.nc {
+	text-transform: lowercase
+}
+
+/* Alignment */
+.tl {
+	text-align: left;
+}
+.tr {
+	text-align: right;
+}
+.tc {
+	text-align: center;
+}
+.tj {
+	text-align: justify;
+}
+
+.vt {
+	vertical-align: top;
+}
+.vm {
+	vertical-align: middle;
+}
+.vb {
+	vertical-align: bottom;
+}
+
+/* External spacing */
+.mpt0 {
+	margin-bottom: 0 !important; padding-bottom: 0 !important;
+}
+.mpr0 {
+	margin-right: 0 !important; padding-right: 0 !important;
+}
+.mpb0 {
+	margin-bottom: 0 !important; padding-bottom: 0 !important;
+}
+.mpl0 {
+	margin-left: 0 !important; padding-left: 0 !important;
+}
+
+.ll {
+	margin: 0 0 2em 0;
+}
+
+/* Size */
+.small {
+	font-size: 80%;
+}
+
+/* Special */
+.nickname {
+	font-style: italic; font-size: 90%;
+}
+	.nickname:before, .nickname:after {
+		content: "'";
+	}
+.subtitle {
+	font-size: 50%; font-variant: normal;
+}
+.hidden {
+	display: none;
+}
+.quickref {
+	font-size: 1.5em; margin: 1em 0.5em; line-height: 2em;
+}
+.declin {
+	font-size: 200%;
+}
+.colour {
+	float: left; margin: 0 0 1em 1em; height: 2em; width: 2em; border: 1px inset #fff;
+}
+.illustration, .noFloatImg {
+	margin: 0 0.5em; padding: 5px;
+}
+.alphabox {
+	font-size: 120%; font-weight: normal !important;
+	margin: 0; padding: 0.25em;
+	text-align: center;
+}
+
+br .nobr {
+	height: 0px; width: 0px; margin: 0; padding: 0;
+}
+
+.clear {
+	position: relative; clear: both;
+}
+
+.code {
+	font-family: "DejaVu Sans Mono", "Courier New", Monospace; padding: 0.1em;
+}
+
+/* Signal Graphics */
+.signal, .signal tr {
+	page-break-before: auto !important;
+	page-break-after: auto !important;
+	page-break-inside: avoid !important;
+}
+.signal img{
+	margin: -1px 0 !important; padding: 0px;
+	border: none;
+	line-height: 0px;
+	vertical-align: text-bottom !important;
+	line-height: 0px;
+}
+.signal br.nobr {
+	display: block; margin: 0px; padding: 0px;
+	vertical-align: middle !important;
+}
+
+/* Margin Modifiers */
+.ml0 {
+	margin-left: 0 !important;
+}
+.mr0 {
+	margin-right: 0 !important;
+}
+.mt0 {
+	margin-top: 0 !important;
+}
+.mb0 {
+	margin-bottom: 0 !important;
+}
+
+/* Floaty bits */
+.fleft {
+	float: left; margin: 0.5em 1em 0.5em 0;
+}
+.fright {
+	float: right; margin: 0.5em 0 0.5em 1em;
+}
+
+/* Thumbnails */
+.thumb {
+	/*width: auto;*/
+	border: 1px solid;
+	font-size: 90%;
+	line-height: 1.4em;
+	padding: 2px;
+	page-break-before: auto !important;
+	page-break-after: auto !important;
+	page-break-inside: avoid !important;
+}
+.thumbinner {
+	padding: 0.2em;
+}
+	.thumbinner > img, .thumbinner > .signal {
+		border: 1px solid;
+	}
+		.thumbinner > .signal > img {
+			margin: -1px 0 0 0 !important; padding: 0 !important; border: none !important;
+		}
+	.transbg {
+		padding: 0.5em;
+	}
+	.thumbcaption {
+		border: none;
+		margin: 0.1em 0 0 0; padding: 0;
+		text-align: left;
+		clear: both;
+	}
+
+/* Table Default Styles */
+table {
+	margin: 0.5em auto 1em; padding: 0; border-collapse: collapse;
+	font-size: 1em;
+	page-break-before: auto !important;
+	/*clear: right;*/
+}
+
+td, th {
+	margin: 0 !important; padding: 0.25em 1em;
+	vertical-align: middle; text-align: center;
+
+	page-break-before: auto !important;
+	page-break-after: auto !important;
+	page-break-inside: avoid !important;
+}
+	td.empty , th.empty {
+		border-bottom: none; border-top: none; background: transparent;
+	}
+
+	table.none > tr > td {
+		border: none;
+	}
+
+
+	td.signal {
+		background: #e8e8e8;
+
+		page-break-before: auto !important;
+		page-break-after: auto !important;
+		page-break-inside: avoid !important;
+	}
+	.cl td {
+		text-align: left;
+	}
+
+	.train td, .train th {
+		border: none;
+	}
+	.train td {
+		padding: 8px 20px 0 20px; height: 80px; vertical-align: top; background: #000000 url("../../img/train_drawings/background1.png") repeat-x;
+	}
+	.train th {
+		background: #000000; color: #ff6000; font-size: 120%; font-weight: normal;
+	}
+	td.vb img {
+		margin: 0 0 0 0 !important;
+		padding: 0 0 0 0 !important; border: none; height: auto; width: auto;
+	}
+
+caption {
+	caption-side: bottom; margin: -0.5em 0 1em 0; padding: 0; line-height: 1em;
+	font-style: oblique; text-align: center;
+	font-size: 90%;
+}
+
+/* All Lists */
+ol, ul {
+	margin: 0.5em 2em 1em 2em; padding: 0; text-align: left;
+}
+ul {
+	list-style: square;
+}
+	ul.nb {
+		list-style: none; padding: 0; margin: 0 2.5em;
+	}
+
+	ol ul {
+		margin: 0; padding: 0 1em 0 0;
+	}
+		ol ul li {
+			list-style-type: none;
+		}
+li {
+	margin: 0; padding: 0; line-height: 1.25em;
+}
+	li.explanation {
+		margin: 0 0 0 0.5em; list-style: none;
+	}
+	.nobullet li:before {
+		/*content: "– ";*/
+	}
+
+/* Definition Lists */
+dl {
+	margin: 0 0.5em 1em 0; padding: 0;
+	text-align: left; line-height: 1.25em;
+}
+
+dt {
+	margin: 0.5em 0 0 0; padding: 0;
+	font-weight: bold;
+}
+	dt.subentry {
+		margin: 0.5em 0 0 1em;
+	}
+
+dd {
+	margin: 0 0 0 1em; padding: 0; font-weight: normal;
+}
+	.gloss dd {
+		margin: 0 0 0 2em;
+	}
+	dd.ptr {
+		display: none;
+	}
+		dd.ptr:before {
+			content: "[";
+		}
+		dd.ptr:after {
+			content: "]";
+		}
+
+	dl.dictionary, dl.onomasticon {
+		/*-moz-column-count: 2;
+		-moz-column-width: 50%;*/
+	}
+		dl.dictionary dd, dl.onomasticon dd {
+			margin: 0 0 0 2.5em; padding: 0;
+			line-height: 1.25em;
+			text-indent: -1.5em;
+		}
+			dl.dictionary dd a, dl.onomasticon dd a {
+				font-style: italic;
+			}
+			dl.onomasticon dd.em:before {
+				
+			}
+		dl.dictionary dt, dl.onomasticon dt {
+			font-size: 1.15em;
+			margin: 1em 0 0 0; padding: 0.5em 0 0.25 0;
+		}
+			dl.dictionary dt.h, dl.onomasticon dt.h  {
+				margin: 1em 0 0 0; padding: 0.5em;
+				font-size: 2em; line-height: 1em;
+				font-weight: normal !important;
+			}
+
+/* Da ToC */
+.toc {
+	float: right;
+	width: 240px; height: 300px; overflow: auto;
+	font-size: 90%;
+	border: 1px dotted;
+	margin: 2em 0.5em 2em 1em;
+	padding: 0.5em;
+}
+	.toc ol {
+		margin: 0 0 0 1em;
+		padding: 0.25em;
+	}
+		.toc ol li {
+			margin: 0 0 0 0.5em;
+		}
+	.toc h3 {
+		margin: 0;
+		font-size: 120%;
+		font-weight: normal;
+	}
+
+span.goTop{
+	float:right;
+	display: inline;
+	font-size:0.75em;
+}
+
+/* No Javascript Warning Thingy */
+#noJSerror {
+	margin: 1em; padding: 0.25em; display: block;
+	border: 1px solid #e00000; color: #d80000; background: #ffe0e0;
+	 text-align: center;
+}
+
+#noJSerror img {
+	margin: 0; padding: 0; border: none;
+}
+
+#noJSerror p, #widgets p {
+	text-align: left; text-indent: 0;
+}
+
+
+/* Somebody else did the next bit... until I removed it cos it's not gonna be needed. */
+/* ... */

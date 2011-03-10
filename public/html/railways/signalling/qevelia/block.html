@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Principles of Block Working</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<base href="../../../../" />
+		<link type="text/css" rel="stylesheet" href="include/css/default.css" title="default" media="all" />
+	</head>
+	<body>
+		<div id="body">
+
+			<h1 class="title">Qevelian Railway Signalling</h1>
+
+			<h1>Principles of Block Working</h1>
+			<p>Traditional Qevelian block working relies on absolute block; permissive working is only found on relatively modern automatic block systems when traffic is travelling in the same direction. On almost all lines, trains are governed by main signals, either lineside signals or (more recently) in-cab signal systems.</p>
+			<p>One notable feature of Qevelian block systems is that they always positively enforce that the block section is locked against following or opposing movements until the train has completely passed the block signal at the end of that section. Based on this philosophy of block-and-lock, there are a number of safeworking systems that have been developed over the years:</p>
+			<ul>
+				<li>Block working without line block instruments</li>
+				<li>Manual block</li>
+				<li>Automatic block</li>
+			</ul>
+
+			<h2>Block working without line block instruments</h2>
+			<p>The ancestor to nearly all modern safeworking procedures, block working was originally developed without line block instruments, initially using the telegraph, and later switching to telephone messages, although the bell code telegraph system remained in use due to its simplicity. This system requires all stations that limit block sections to be locally staffed.</p>
+			<p>Before a signal protecting the entrance to a block section can be cleared, the train director must offer the train to the train director of the next station. After the train has been accepted, it may be given the order to proceed; once it enters the block section, the train director gives a departure message to the receiving director and all intermediate block posts. As the train clears each block section, the train director or block operator checks that the train has cleared the overlap intact, before resetting the signal to stop and sending the release message to the previous block post. On double track lines, offering and accepting trains is not required. Here, trains are protected by just the departure and release messages. After a release message has been received, a following train may be permitted in the section.</p>
+			<!-- insert image of procedures -->
+			<p>All train messages are recorded in a log book, which the train director or block operator must check before clearing a signal. The later-generation telegraph machines used in this system automatically print to a reel of tape; telephone-based systems require each message to be written down by the operator. The main flaw with this system is that safety depends on the operating staff, so the potential for mishaps due to human error is high. As a result, this system of operations without the block instruments survives only on lines with very infrequent traffic, none of which have passenger service. It is no longer used on double track lines, having been completely superseded by systems with a higher margin of safety.</p>
+
+			<h3>Telegraph Bell Codes</h3>
+			<p>Communication between adjacent signalboxes is usually done by telegraph bell code.</p>
+
+			<table>
+				<colgroup>
+					<col width="25%" />
+					<col width="75%" />
+				</colgroup>
+				<tr>
+					<th>Bell Code</th>
+					<th>Meaning</th>
+				</tr>
+				<tr>
+					<td>1</td>
+					<td class="tl">Call Attention</td>
+				</tr>
+				<tr>
+					<td>2</td>
+					<td class="tl">Train Departure</td>
+				</tr>
+				<tr>
+					<td>2-1</td>
+					<td class="tl">Telephone Signal</td>
+				</tr>
+				<tr>
+					<td>2-2</td>
+					<td class="tl">Repeat Signal</td>
+				</tr>
+				<tr>
+					<td>3</td>
+					<td class="tl">Train Arrival</td>
+				</tr>
+				<tr>
+					<td>3-1</td>
+					<td class="tl">Block Released</td>
+				</tr>
+				<tr>
+					<td>3-2-4</td>
+					<td class="tl">Block Released but Station or Junction Occupied.</td>
+				</tr>
+				<tr>
+					<td>3-5</td>
+					<td class="tl">Cancelling ‘Is Line Clear?’ Signal</td>
+				</tr>
+				<tr>
+					<td>4</td>
+					<td class="tl">Is Line Clear?</td>
+				</tr>
+				<tr>
+					<td>4-2</td>
+					<td class="tl">End of Transmission</td>
+				</tr>
+				<tr>
+					<td>5-1</td>
+					<td class="tl">Stop and Examine Train</td>
+				</tr>
+				<tr>
+					<td>5-5</td>
+					<td class="tl">Train Divided</td>
+				</tr>
+				<tr>
+					<td>1-2-3</td>
+					<td class="tl">Signalbox Opening</td>
+				</tr>
+				<tr>
+					<td>3-4-3</td>
+					<td class="tl">Signalbox Closing</td>
+				</tr>
+			</table>
+
+			<p>All bell code signals must be acknowledged by repeating them back. Additionally, the ‘Call Attention’ signal must be the first signal sent in a series of bell codes, and the ‘End of Transmission’ signal must be sent at the end of a block of messages.</p>
+
+			<h2>Manual Block</h2>
+			<p>An improvement over the block telegraph came in 1583 with the invention of the <em>block locking instrument</em>. This device uses the same telegraph codes as had been previously established, but also increased safety by positively locking block signals in their most restrictive position.</p>
+			<div class="ibox thumb">
+				<img src="img/qz_signalling/ins/block_devices.png" alt="Block locking instruments" />
+				<p style="width: 495px;"><strong>Block locking instruments</strong><br />From left to right is the <em>Block entry device</em>, <em>Block exit device</em>, and <em>Three-position entry device</em>.</p>
+			</div>
+			<p>A block instrument looks like a rectangular box, usually painted green or grey, with one or two buttons on top, and one or two indicator windows on the front. Such an instrument is an electro-mechanical means by which the operator can produce a locking (e.g. lock a lever) that cannot be released by that same instrument. The locking produced by a block instrument can only be released by a corresponding instrument located in another signal box or by a train passing over some contact device. A block instrument has two positions, <em>blocked</em> and <em>unblocked</em>, and can only be operated if it is in the unblocked position; operating the instrument blocks it.</p>
+			<p>Block instruments may be powered by AC or DC, although battery-supplied DC power is more common. AC instruments receive their power from a hand-thrown crank located adjacent to the instrument. Both types of instruments minimise power consumption by utilising circuits that automatically cut out when a condition is satisfied, such as blocking or unblocking the instrument. These types of circuits readily aid to automation, as the mechanical components can be replaced with relays that perform the same function.</p>
+			<p>Manual Block instruments can be categorised into several different types, each of which performs a specific function.</p>
+
+			<dl>
+				<dt>Block Exit Instrument (X)</dt>
+				<dd>This instrument is used to release the block in rear of the signalbox. An extra degree of protection is provided in that the instrument is interlocked with a short overlapping track circuit which prevents operation of the device unless the circuit has been occupied and then cleared. This instrument will be blocked after the instrument in rear is successfully released.</dd>
+
+				<dt>Block Entrance Instrument (B)</dt>
+				<dd>This instrument protects the block in advance of the signalbox. A three-position variant exists for use in locations where the signalboxes are spaced close together such that the signal in rear acts as a distant signal for the one in advance.</dd>
+
+				<dt>Opposite Locking Instrument (R)</dt>
+				<dd>This instrument is only used on single track sections and ensures that traffic can only move in one direction at any particular time. Operation of this instrument passes control to the corresponding instrument at the other end of the section.</dd>
+			</dl>
+
+			<p>An important later development was the signal reverser, and power-operated signal. These were nearly always connected to the line block system, forcing a signal to automatically return to the normal position after the passing of a train. The signal reverser is a</p>
+
+			<h3>Block Working Procedure</h3>
+			<p>In the initial state, the block instruments proctecting the entrance to a block section are in the unblocked position, and the corresponding exit instruments are blocked. Additionally, all signals display Stop, and all applicable turnouts are locked in the normal position.</p>
+			<table>
+				<colgroup>
+					<col width="30%" />
+					<col width="30%" />
+					<col width="30%" />
+				</colgroup>
+				<caption>Normal position for all instruments</caption>
+				<tr>
+					<th>Station A</th>
+					<th>Block Post B</th>
+					<th>Station C</th>
+				</tr>
+				<tr>
+					<td>
+						<img src="img/qz_signalling/ins/Be01_unblocked.png" alt="Unblocked entry instrument at Station A" />
+					</td>
+					<td>
+						<img src="img/qz_signalling/ins/lX01_blocked.png" alt="Blocked exit instrument at Block Post B" />
+						<img src="img/qz_signalling/ins/Be01_unblocked.png" alt="Unblocked entry instrument at Block Post B" />
+					</td>
+					<td>
+						<img src="img/qz_signalling/ins/lX01_blocked.png" alt="Blocked exit instrument at Station C" />
+					</td>
+				</tr>
+			</table>
+			
+			<p>When a train is ready to depart from Station A, the train director sends the ‘Train Departure’ bell code, clears the home and starting signals, and gives the departure order. After the train has passed the home signal, the station exit instrument is operated and the signal lever is restored to the normal position. The block instrument locks the signal in place so it cannot be cleared until the corresponding instrument unblocks the section.</p>
+			<p>The operator at Block Post B, expecting the arrival of the train, clears the block signal for the following block. This signal can only be cleared when the block instrument in rear of the signal has been operated.</p>
+
+			<table>
+				<colgroup>
+					<col width="30%" />
+					<col width="30%" />
+					<col width="30%" />
+				</colgroup>
+				<caption>The train is now between the starting signal of Station A and the Home signal of Block Post B.</caption>
+				<tr>
+					<th>Station A</th>
+					<th>Block Post B</th>
+					<th>Station C</th>
+				</tr>
+				<tr>
+					<td>
+						<img src="img/qz_signalling/ins/Be01_blocked.png" alt="Unblocked entry instrument at Station A" />
+					</td>
+					<td>
+						<img src="img/qz_signalling/ins/lX01_half.png" alt="Blocked exit instrument at Block Post B" />
+						<img src="img/qz_signalling/ins/Be01_unblocked.png" alt="Unblocked entry instrument at Block Post B" />
+					</td>
+					<td>
+						<img src="img/qz_signalling/ins/lX01_blocked.png" alt="Blocked exit instrument at Station C" />
+					</td>
+				</tr>
+			</table>
+
+			<p>When the train passes the block signal at Block Post B, the operator sends the ‘Train Departure’ message to Station C, resets the signal to normal, operates the block entrance instrument for the section ahead, sends the ‘Block Released’ message to Station A and operates the block exit instrument for the section in rear. The block in rear of Block Post B is now released, and section in advance is blocked.</p>
+			
+			<table>
+				<colgroup>
+					<col />
+					<col width="30%" />
+					<col width="30%" />
+					<col width="30%" />
+				</colgroup>
+				<caption>The sequence of events as the train passes the block boundary. Initially the exit instrument is released by the track circuit, but operation of the instrument to release the section in rear blocks the device.</caption>
+				<tr>
+					<th />
+					<th>Station A</th>
+					<th>Block Post B</th>
+					<th>Station C</th>
+				</tr>
+				<tr>
+					<th>Before</th>
+					<td>
+						<img src="img/qz_signalling/ins/Be01_blocked.png" alt="Unblocked entry instrument at Station A" />
+					</td>
+					<td>
+						<img src="img/qz_signalling/ins/lX01_unblocked.png" alt="Blocked exit instrument at Block Post B" />
+						<img src="img/qz_signalling/ins/Be01_blocked.png" alt="Unblocked entry instrument at Block Post B" />
+					</td>
+					<td>
+						<img src="img/qz_signalling/ins/lX01_half.png" alt="Blocked exit instrument at Station C" />
+					</td>
+				</tr>
+				<tr>
+					<th>After</th>
+					<td>
+						<img src="img/qz_signalling/ins/Be01_unblocked.png" alt="Unblocked entry instrument at Station A" />
+					</td>
+					<td>
+						<img src="img/qz_signalling/ins/lX01_blocked.png" alt="Blocked exit instrument at Block Post B" />
+						<img src="img/qz_signalling/ins/Be01_blocked.png" alt="Unblocked entry instrument at Block Post B" />
+					</td>
+					<td>
+						<img src="img/qz_signalling/ins/lX01_half.png" alt="Blocked exit instrument at Station C" />
+					</td>
+				</tr>
+			</table>
+
+			<p>Single track lines are protected by the opposite locking instrument which ensures that traffic can only travel in one direction at a time. The corresponding instrument locks opposing signals, and shows a red field if it is blocked. In contrast to the other manual block instruments, the corresponding instruments do not show the same colour in the main indicator field.</p>
+			
+			<table>
+				<colgroup>
+					<col width="25%" />
+					<col width="25%" />
+					<col width="25%" />
+				</colgroup>
+				<caption>Manual block working on single track sections requires a pair of opposite locking instruments. Here, traffic is permitted to travel from left to right.</caption>
+				<tr>
+					<th>Station A</th>
+					<th>Block Post B</th>
+					<th>Station C</th>
+				</tr>
+				<tr>
+					<td>
+						<img src="img/qz_signalling/ins/Be01_unblocked.png" alt="Unblocked entry instrument at Station A" />
+						<img src="img/qz_signalling/ins/rX01_blocked.png" alt="Blocked exit instrument at Station A" />
+						<img src="img/qz_signalling/ins/Ra01_unblocked.png" alt="Unblocked Opposite Locking Instrument at Station A" />
+					</td>
+					<td>
+						<img src="img/qz_signalling/ins/lX01_blocked.png" alt="Blocked exit instrument at Block Post B" />
+						<img src="img/qz_signalling/ins/Be01_unblocked.png" alt="Unblocked entry instrument at Block Post B" />
+						<img src="img/qz_signalling/ins/Be01_blocked.png" alt="Blocked entry instrument at Block Post B" />
+						<img src="img/qz_signalling/ins/rX01_blocked.png" alt="Blocked exit instrument at Block Post B" />
+					</td>
+					<td>
+						<img src="img/qz_signalling/ins/Ra01_blocked.png" alt="Blocked Opposite Locking Instrument at Station C" />
+						<img src="img/qz_signalling/ins/lX01_blocked.png" alt="Blocked exit instrument at Station C" />
+						<img src="img/qz_signalling/ins/Be01_blocked.png" alt="Blocked entry instrument at Station C" />
+					</td>
+				</tr>
+			</table>
+
+			<p>To change the direction of traffic, the unblocked instrument must be operated. This will lock the starting signals at this station in the normal position and release the starting signals at the opposite station. As the direction of traffic must not change whilst there is a train on the single-track section, this instrument requires all intermediate entrance instruments be locally unblocked. Operation of this instrument also overrides the intermediate instruments, blocking traffic in the opposite direction.</p>
+
+			<p>Since this system provides a near-failsafe method of working a single track line, token-based safeworking systems were very rare on Qevelian railways.</p>
+
+			<h2>Automatic Block Systems</h2>
+			<p>The electromechanical nature of the manual block system allows it to be readily emulated with relay circuits. Using the same AC or DC circuits as are used for the manual block system, the most basic kind of automatic block can be used along the open line, allowing for shorter, more closely-spaced blocks without the expense of a manned block post. With development of reliable, lightweight electric motors to operate the three-position signals, many busy sections between stations were converted to an automatic system, whilst the stations remained under the control of their signalboxes. Block telegraph codes were still used to communicate between adjacent stations.</p>
+			<p>To unblock a signal so it can be cleared for the approach of a train, the block section and its associated overlap must be clear. Furthermore, the train must have completely passed the signal in advance and its associated overlap. Detection of trains is based on track circuits, often using two isolated circuits per block; one protects the block and the other is the overlap circuit.</p>
+			<p>In contrast to the manual block system, operation of the entrance instrument of an automatic section causes each signal to release the one in advance such that as many signals as possible are cleared ahead of a train. Closely spaced blocks which omit separate distant signals are based on the three-position block instruments, which prevent signals immediately in rear of one at stop from displaying clear.</p>
+
+		</div>
+
+	</body>
+</html>

@@ -1,0 +1,1966 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+	<head>
+		<title>Qevesa Grammar</title>
+
+		<meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8"/>
+		<link type="text/css" rel="stylesheet" href="../../../include/css/default.css" title="default" media="all" />
+		<link type="text/css" rel="stylesheet" href="../../../include/css/print.css" title="print" media="print" />
+	</head>
+	<body>
+		<div id="body">
+
+			<h1 class="title">Qevesa Grammar</h1>
+			<div class="infobar toc">
+				<h3>Table of Contents</h3>
+				<ol class="oltoc">
+					<li><a href="#intro">Introduction</a><ol>
+						<li><a href="#preface">Preface</a><ol>
+							<li><a href="#name">The name of the language</a></li>
+							<li><a href="#ethnology">Ethnology</a></li>
+							<li><a href="#demography">Demography</a></li>
+							<li><a href="#dialects">Dialects</a></li>
+						</ol></li>
+						<li><a href="#abbreviations">Abbreviations</a></li>
+					</ol></li>
+					<li><a href="#phonology">Phonology</a><ol>
+						<li><a href="#phonotactics">Phonotactics</a><ol>
+							<li><a href="#consonants">Consonants</a></li>
+							<li><a href="#vowels">Vowels</a></li>
+<!--							<li><a href="#allophony">Allophony</a></li> -->
+							<li><a href="#syllable">Syllable Structure</a></li>
+							<li><a href="#trans-latin">Transcription (Latin)</a></li>
+<!--							<li><a href="#trans-cyrillic">Transcription (Cyrillic)</a></li> -->
+						</ol></li>
+						<li><a href="#prosody">Prosody</a><ol>
+							<li><a href="#stress">Stress</a></li>
+							<li><a href="#intonation">Intonation</a></li>
+						</ol></li>
+					</ol></li>
+					<li><a href="#morphology">Morphology</a><ol>
+						<li><a href="#morph-processes">Morphological Processes</a><ol>
+							<li><a href="#non-concat">Nonconcatenative Morphology</a></li>
+							<li><a href="#suffix">Suffixation &amp; Enclitics</a></li>
+							<li><a href="#prefix">Prefixation &amp; Proclitics</a></li>
+							<li><a href="#discontinuous">Discontinuous Affixation</a></li>
+							<li><a href="#redup">Reduplication</a></li>
+						</ol></li>
+						<li><a href="#verbs">Verbs</a><ol>
+							<li><a href="#vconjugation">Conjugation</a><ol>
+								<li><a href="#trclasses">Triliteral Root Classes</a></li>
+								<li><a href="#vaspect">Aspect</a><ol>
+									<li><a href="#vimperfective">Imperfective</a></li>
+									<li><a href="#vperfective">Perfective</a></li>
+								</ol></li>
+								<li><a href="#vagreement">Personal / Topical Agreement</a></li>
+								<li><a href="#vmood">Mood</a></li>
+							</ol></li>
+							<li><a href="#vauxiliary">Auxiliary Constructions</a><ol>
+								<li><a href="#vcaus">Causative</a></li>
+								<li><a href="#vneg">Negative</a></li>
+							</ol></li>
+							<li><a href="#vderivation">Derivation</a><ol>
+								<li><a href="#vprefix">Verb Prefixes</a></li>
+								<li><a href="#vnom">Nominalisations</a></li>
+							</ol></li>
+						</ol></li>
+						<li><a href="#nouns">Nouns</a><ol>
+							<li><a href="#names">Names</a></li>
+							<li><a href="#case">Case</a></li>
+							<li><a href="#number">Number</a></li>
+							<li><a href="#posession">Posession</a></li>
+							<li><a href="#pronouns">Pronouns</a></li>
+							<li><a href="#articles">Articles</a></li>
+							<li><a href="#dimunitives">Dimunitives</a></li>
+						</ol></li>
+						<li><a href="#modifiers">Modifiers</a><ol>
+							<li><a href="#adjectives">Adjectives and Adverbs</a><ol>
+								<li><a href="#declension">Declension</a><ol>
+									<li><a href="#aimperfective">Imperfective</a></li>
+									<li><a href="#aperfective">Perfective</a></li>
+								</ol></li>
+								<li><a href="#comparison">Comparison</a><ol>
+									<li><a href="#acomparative">Comparative</a></li>
+									<li><a href="#asuperlative">Superlative</a></li>
+									<li><a href="#adimunitive">Dimunitive</a></li>
+								</ol></li>
+							</ol></li>
+							<li><a href="#determiners">Determiners</a></li>
+							<li><a href="#quantifiers">Quantifiers</a></li>
+							<li><a href="#numerals">Numerals</a></li>
+						</ol></li>
+					</ol></li>
+					<li><a href="#syntax">Syntax</a><ol>
+						<li><a href="#co-typo">Constituent Order Typology</a><ol>
+							<li><a href="#co-main">Constituent Order in Main Clauses</a></li>
+							<li><a href="#verb-phrase">Verb phrase</a></li>
+							<li><a href="#noun-phrase">Noun phrase</a></li>
+						</ol></li>
+					</ol></li>
+				</ol>
+			</div><span class="no-print"></span>
+
+			<h1 id="intro">Introduction</h1>
+
+			<h2 id="preface">Preface</h2>
+			
+			<p>This is a reference grammar of <em>Qevesa</em>, a Northwestern Teralo language. Specifically, this grammar deals with the standard dialect as spoken on the west coast.</p>
+			
+			<h3 id="name">The name of the language</h3>
+			<p>The language described here is known to native speakers as well as outsiders as <em>Qevesa</em>. In Qevesa the language may also be referred to as <em>Qeveli ke-sani</em>, ‘language of the Qeveli’, or <em>ëvaik sani</em>, ‘our language’. The word <em>qevesa</em> is itself an archaic term meaning ‘Qeveli speech’.</p>
+
+<!--			<h3 id="ethnology">Ethnology</h2>
+			<p>The Qevesa speaking world</p>-->
+			
+			<h3 id="demography">Demography</h3>
+			<p>Qevesa is spoken today by approximately 7.7 million speakers, of which there are about 6.5 million in the <em>Republic of Qevelia</em>, about 900 000 in the <em>United Kingdoms of Semati</em>, and a further 200 000 in spread across central and south-western Teranië. As travel abroad is accessible, approximately a quarter of the population are polyglots. Furthermore, there are many multilingual speakers of minority languages spoken in some of the mountainous provinces.</p>
+
+			<h3 id="dialects">Dialects</h3>
+			<p>Qevesa is a Northwestern Teralo language, along with Keřesai and Voðirza. The current period, Modern Qevesa, started around the year 1200KE, following Middle Qevesa, which reached from 750KE to 1200KE. Prior to 750KE, Classical Qevesa (Këvesa) was spoken across the Kovask Empire. The modern standard (literary) language is based on the dialects spoken on the west coast of Qevelia; however the spoken language has a number of dialects, which can be broadly divided into two groups, Western Qevesa and Eastern Qevesa.</p>
+
+<!--			<h3>History</h3>
+			<p>Modern Qevesa is the result of an effort to combine the regional dialects of Old Qevesa into a single standard language. It is a member of the Teralo family of languages, and is a direct descendent of Proto-Teralo, the language spoken by the original inhabitants of the continent. Its nearest relatives are spoken in the far south east of Teralia, and Qevesa is geographically isolated due to the mountainous terrain of Qevelia.</p>
+			<p>The geographical isolation is apparent in that Qevesa possesses some features that have disappeared in its neighbours, namely an active-stative morphosyntactic alignment and a fairly comprehensive set of cases.</p> -->
+			
+			<h2 id="abbreviations">Abbreviations</h2>
+			<p>For convenience in transcribing interlinear glosses, the following abbreviations have been used in this document:</p>
+
+			<h1 id="phonology">Phonology</h1>
+
+			<h2 id="phonotactics">Phonotactics</h2>
+			<p>The two tables below list phonemes present in Qevesa. Bold letters indicate the standard transcription.</p>
+
+			<h3 id="consonants">Consonants</h3>
+			<table>
+				<caption>Consonant phonemes in Qevesa.</caption>
+				<tr>
+					<th />
+					<th colspan="2">Bilabial</th>
+					<th colspan="2">Labiodental</th>
+					<th colspan="2">Dental</th>
+					<th colspan="2">Alveolar</th>
+					<th colspan="2">Postalveolar</th>
+					<th colspan="2">Palatal</th>
+					<th colspan="2">Velar</th>
+					<th colspan="2">Glottal</th>
+				</tr>
+				<tr>
+					<th>Nasal</th>
+					<td>&nbsp;</td>
+					<td><strong>m</strong><br />/m/</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+					<td><strong>n</strong><br />/n&#810;/</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+					<td><strong>g</strong><br />/ŋ/</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<th>Plosive</th>
+					<td><strong>p</strong><br />/p/</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+					<td><strong>t</strong><br />/t&#810;/</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+					<td><strong>k</strong><br />/k/</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<th>Affricate</th>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+					<td><strong>c</strong><br />/ts/</td>
+					<td>&nbsp;</td>
+					<td><strong>q</strong><br />/tʃ/</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<th>Fricative</th>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+					<td><strong>f</strong><br />/f/</td>
+					<td><strong>v</strong><br />/v/</td>
+					<td><strong>z</strong><br />/θ/</td>
+					<td rowspan="2"><strong>d</strong><br />/ð/</td>
+					<td><strong>s</strong><br />/s/</td>
+					<td>&nbsp;</td>
+					<td><strong>ş</strong><br />/ʃ/</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+					<td><strong>h</strong><br />∅, /h/</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<th>Approximant</th>
+					<td>&nbsp;</td>
+					<td><strong>w</strong><br />/w/</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+					<td><strong>j</strong><br />/j/</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<th>Lateral</th>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+					<td><strong>l</strong><br />/l/</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<th>Rhotic</th>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+					<td><strong>r</strong><br />/ɾ~r/</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+				</tr>
+			</table>
+			<p>Most consonants are realised as per the table above, with the exception that in many dialects, the unvoiced plosives may be aspirated. Furthermore, the following allophones exist:</p>
+			<ul>
+				<li>/h/ is normally not realised, except when following another consonant. It lengthens the previous vowel when preceding a consonant.</li>
+				<li>/ɾ/ is realised as [r] when word-initial or word-final.</li>
+				<li>/ð/ may be realised as a fricative or an approximant.</li>
+				<li>[j] drops out before /i iː/, and [w] drops out before /u uː/</li>
+				<li>[θ] drops out before /s ð/</li>
+				<li>Affricates are often realised as their fricative counterparts when before another consonant.</li>
+				<li>/s n ts/ before /j/ are realised as [ʃ ɲ tʃ]</li>
+				<li>When between a consonant and a vowel, /j/ is often realised as [ĭ].</li>
+			</ul>
+
+			<h3 id="vowels">Vowels</h3>
+						<table class="normal">
+							<caption>Vowels</caption>
+							<colgroup>
+								<col width="20%"/>
+								<col width="5%"/>
+								<col width="5%"/>
+								<col width="5%"/>
+								<col width="5%"/>
+								<col width="5%"/>
+								<col width="5%"/>
+								<col width="5%"/>
+								<col width="5%"/>
+							</colgroup>
+							<tr>
+								<th />
+								<th colspan="4">Front</th>
+								<th colspan="2">Central</th>
+								<th colspan="2">Back</th>
+							</tr>
+							<tr>
+								<th>Close</th>
+								<td><strong>i</strong><br />/i/</td>
+								<td><strong>ī</strong><br />/iː/</td>
+								<td><strong>ü</strong><br />/y/</td>
+								<td><strong>ũ</strong><br />/yː/</td>
+								<td>&nbsp;</td>
+								<td>&nbsp;</td>
+								<td rowspan="2"><strong>u</strong><br />/u/</td>
+								<td rowspan="2"><strong>ū</strong><br />/uː/</td>
+							</tr>
+							<tr>
+								<th>Near-Close</th>
+								<td><strong>ë</strong><br />/ie~je/</td>
+								<td><strong>jē</strong><br />/jeː/</td>
+								<td rowspan="2"><strong>ö</strong><br />/ø/</td>
+								<td rowspan="2"><strong>õ</strong><br />/øː/</td>
+								<td>&nbsp;</td>
+								<td>&nbsp;</td>
+							</tr>
+							<tr>
+								<th>Mid</th>
+								<td><strong>e</strong><br />/e/</td>
+								<td><strong>ē</strong><br />/eː/</td>
+								<td>&nbsp;</td>
+								<td>&nbsp;</td>
+								<td><strong>o</strong><br />/o/</td>
+								<td><strong>ō</strong><br />/oː/</td>
+							</tr>
+							<tr>
+								<th>Open-mid / Near-open</th>
+								<td><strong>ä</strong><br />/æ/</td>
+								<td><strong>ã</strong><br />/æː/</td>
+								<td>&nbsp;</td>
+								<td>&nbsp;</td>
+								<td>&nbsp;</td>
+								<td>&nbsp;</td>
+								<td>&nbsp;</td>
+								<td>&nbsp;</td>
+							</tr>
+							<tr>
+								<th>Open</th>
+								<td>&nbsp;</td>
+								<td>&nbsp;</td>
+								<td>&nbsp;</td>
+								<td>&nbsp;</td>
+								<td><strong>a</strong><br />/a/</td>
+								<td><strong>ā</strong><br />/aː/</td>
+								<td>&nbsp;</td>
+								<td>&nbsp;</td>
+							</tr>
+						</table>
+						<p>The diphthongs that arise from the vowels are /ai au ei oi/, as well as /i-/ and /u-/ glides, which are realised as [w-] and [j-] respectively. Length is distinguished only where two adjacent vowels are the same, or where the vowel precedes <em>h</em> and another consonant. In this case, the <em>h</em> is always omitted.</p>
+
+			<h2 id="syllable">Syllable Structure</h2>
+			<p>Syllables can begin and end with any phoneme in the consonant inventory, or optionally none at all. Clusters of consonants can only occur at the syllable boundaries, with the exception of affricates and consonant–glide combinations (<em>i.e.</em> those that consist of consonant + /j/ or consonant + /w/). Words are divided into syllables according to the rule that <em>non-word-final consonants are always the onset of syllables unless followed by another consonant.</em> This leads to the following basic scheme:</p>
+			<ul>
+				<li>(C)V(C) is the basic syllable.</li>
+				<li>CVCVC is realised as CV|CVC</li>
+				<li>VCVC is realised as V|CVC</li>
+				<li>VCCVC is realised as VC|CVC</li>
+			</ul>
+
+			<h1 id="morphology">Morphology</h1>
+
+			<h2 id="verbs">Verbs</h2>
+			<p>Qevesa is a language based on verbal triliteral roots, so the verb is the most complex and most important category. Verbs are marked for topical agreement, aspect and mood; other constructions are marked periphrastically.</p>
+			<!--<p>Finite verbs may seem to be incredibly complex, as they are marked for up to eight categories:</p>
+			<ol>
+				<li>Dechticaetiative agreement</li>
+				<li>Ergative agreement</li>
+				<li>Accusative agreement</li>
+				<li>Aspect</li>
+				<li>Mood</li>
+				<li>Polarity</li>
+				<li>Evidentiality</li>
+				<li>Telicity</li>
+			</ol>
+			<p>The first three categories consist of personal agreement with other arguments in the clause. Tense is not marked, but if required, will be indicated with adverbs for the specific time.</p>-->
+
+			<h3 id="vconjugation">Conjugation</h3>
+			<p>A Qevesa verb has eleven principal forms, corresponding to the <a href="#aspect">grammatical aspects</a> and the citation form, which is a non-finite form. Excluding verbal prefixes, a single verb can easily have over 11,000 forms — with a single prefix, over 40,000. These forms are comprised of the following affixes and clitics, in this order: <br /><span class="sc">stem.aspect-subject-mood</span></p>
+
+			<h4 id="trclasses">Triliteral Root Classes</h4>
+			<p>Qevesa is a language based on triliteral roots; a large percentage of the lexicon is derived from a considerably smaller base set of consonant groups. The system is highly regular, with the only irregularities occurring with certain consonants, especially /h/ and /j/, which are often lenited or otherwise omitted. This causes the triliteral roots to be divided into the following classes:</p>
+			<ul>
+				<li><strong>Class I</strong> roots do not contain <em>-h-</em> or <em>-j-</em>, in any position. This is the largest group of triliteral roots.</li>
+				<li><strong>Class II</strong> include all biliteral roots.</li>
+				<li><strong>Class III</strong> roots are those which have <em>-h-</em> or <em>-j-</em> as the second consonant.</li>
+				<li><strong>Class IV</strong> roots are those which have <em>-h-</em> or <em>-j-</em> as the third consonant.</li>
+				<li><strong>Class V</strong> verbs include all verbs whose roots have <em>h-</em> or <em>j-</em> as the initial consonant.</li>
+			</ul>
+
+			<p>The citation form of each of these classes is as follows:</p>
+			<dl>
+				<dt>Class I</dt>
+				<dd>C<sub>1</sub>uC<sub>2</sub>uC<sub>3</sub>u</dd>
+				<dt>Class II</dt>
+				<dd>C<sub>1</sub>uC<sub>2</sub>u</dd>
+				<dt>Class III</dt>
+				<dd>C<sub>1</sub>uC<sub>2</sub>C<sub>3</sub>u</dd>
+				<dt>Class IV</dt>
+				<dd>C<sub>1</sub>uC<sub>2</sub>uC<sub>3</sub>u</dd>
+				<dt>Class V</dt>
+				<dd>C<sub>1</sub>uC<sub>2</sub>uC<sub>3</sub>u</dd>
+			</dl>
+
+			<p>There are also irregular verbs which could be categorised into more than one class, but these are very rare. Examples include <em>jū</em> (to be, II &amp; V), <em>mū</em> (to not do, also II &amp; V), and <em>juzū</em> (to walk, IV &amp; V).</p>
+
+			<h4 id="vaspect">Aspect</h4>
+
+			<p>Aspect is possibly the most important grammatical category marked on the verb. Instead of tense, aspect is used to mark the temporal flow (or lack thereof) of verbs. Qevesa distinguishes between imperfective aspects (those that are ongoing, habitual, repeated or generally containing internal structure) and perfective aspects (those that are viewed as a single whole). There are two primary transfix patterns, corresponding to the imperfective and perfective aspects, and a number of secondary transfix patterns which indicate various subtle (mainly semantic) differences.</p>
+
+			<h5 id="vimperfective">The Imperfective Aspects</h5>
+			<p>The imperfective aspects are used to indicate the following:</p>
+			<ul>
+				<li>progressive or durative actions (the <em>dynamic imperfective</em>);</li>
+
+				<li>states and activities posing the background for other (perfective) activities (the <em>background imperfective</em>);</li>
+				<li>habitual activities (the <em>habitual imperfective</em>);</li>
+				<li>multiple (iterative) activities (the <em>iterative imperfective</em>);</li>
+				<li>non-resultative activities or states (the <em>irresultative imperfective</em>); and</li>
+
+				<li>continuous states (the <em>stative imperfective</em>).</li>
+			</ul>
+			<p>These are marked as follows:</p>
+			<table>
+				<colgroup>
+					<col width="30%"/>
+					<col width="10%"/>
+					<col width="12%"/>
+					<col width="12%"/>
+					<col width="12%"/>
+					<col width="12%"/>
+					<col width="12%"/>
+				</colgroup>
+				<tr>
+					<th colspan="2" rowspan="2"/>
+					<th colspan="5">Triliteral Root Class</th>
+
+				</tr>
+				<tr>
+					<th>I</th>
+					<th>II</th>
+					<th>III</th>
+					<th>IV</th>
+					<th>V</th>
+
+				</tr>
+				<tr>
+					<th>Dynamic Imperfective</th>
+					<th class="sc">dyn</th>
+					<td>C<sub>1</sub><strong>a</strong>C<sub>2</sub><strong>i</strong>C<sub>3</sub></td>
+					<td>C<sub>1</sub><strong>ai</strong>C<sub>2</sub></td>
+					<td>C<sub>1</sub><strong>a</strong>C<sub>2</sub>C<sub>3</sub><strong>i</strong></td>
+					<td>C<sub>1</sub><strong>a</strong>C<sub>2</sub><strong>i</strong>C<sub>3</sub></td>
+					<td>C<sub>1</sub><strong>a</strong>C<sub>2</sub><strong>i</strong>C<sub>3</sub></td>
+				</tr>
+				<tr>
+					<th>Background Imperfective</th>
+					<th class="sc">bg</th>
+					<td>C<sub>1</sub><strong>a</strong>C<sub>2</sub><strong>e</strong>C<sub>3</sub></td>
+					<td>C<sub>1</sub><strong>ä</strong>C<sub>2</sub></td>
+					<td>C<sub>1</sub><strong>a</strong>C<sub>2</sub>C<sub>3</sub><strong>e</strong></td>
+					<td>C<sub>1</sub><strong>a</strong>C<sub>2</sub><strong>e</strong>C<sub>3</sub></td>
+					<td>C<sub>1</sub><strong>a</strong>C<sub>2</sub><strong>e</strong>C<sub>3</sub></td>
+				</tr>
+				<tr>
+					<th>Habitual Imperfective</th>
+					<th class="sc">hab</th>
+					<td>C<sub>1</sub><strong>a</strong>C<sub>2</sub><strong>u</strong>C<sub>3</sub></td>
+					<td>C<sub>1</sub><strong>au</strong>C<sub>2</sub></td>
+					<td>C<sub>1</sub><strong>a</strong>C<sub>2</sub>C<sub>3</sub><strong>u</strong></td>
+					<td>C<sub>1</sub><strong>a</strong>C<sub>2</sub><strong>u</strong>C<sub>3</sub></td>
+					<td>C<sub>1</sub><strong>a</strong>C<sub>2</sub><strong>u</strong>C<sub>3</sub></td>
+				</tr>
+				<tr>
+					<th>Iterative Imperfective</th>
+					<th class="sc">itr</th>
+					<td>C<sub>1</sub><strong>a</strong>C<sub>2</sub><strong>o</strong>C<sub>3</sub></td>
+					<td>C<sub>1</sub><strong>ō</strong>C<sub>2</sub></td>
+					<td>C<sub>1</sub><strong>a</strong>C<sub>2</sub>C<sub>3</sub><strong>o</strong></td>
+					<td>C<sub>1</sub><strong>a</strong>C<sub>2</sub><strong>o</strong>C<sub>3</sub></td>
+					<td>C<sub>1</sub><strong>a</strong>C<sub>2</sub><strong>o</strong>C<sub>3</sub></td>
+				</tr>
+				<tr>
+					<th>Irresultative Imperfective</th>
+					<th class="sc">irr</th>
+					<td>C<sub>1</sub><strong>a</strong>C<sub>2</sub><strong>a</strong>C<sub>3</sub></td>
+					<td>C<sub>1</sub><strong>ā</strong>C<sub>2</sub></td>
+					<td>C<sub>1</sub><strong>a</strong>C<sub>2</sub>C<sub>3</sub><strong>a</strong></td>
+					<td>C<sub>1</sub><strong>a</strong>C<sub>2</sub><strong>a</strong>C<sub>3</sub></td>
+					<td>C<sub>1</sub><strong>a</strong>C<sub>2</sub><strong>a</strong>C<sub>3</sub></td>
+
+				</tr>
+				<tr>
+					<th>Stative Imperfective</th>
+					<th class="sc">stv</th>
+					<td>C<sub>1</sub><strong>u</strong>C<sub>2</sub><strong>a</strong>C<sub>3</sub></td>
+					<td>C<sub>1</sub><strong>ua</strong>C<sub>2</sub></td>
+					<td>C<sub>1</sub><strong>u</strong>C<sub>2</sub>C<sub>3</sub><strong>a</strong></td>
+					<td>C<sub>1</sub><strong>u</strong>C<sub>2</sub><strong>a</strong>C<sub>3</sub></td>
+					<td>C<sub>1</sub><strong>u</strong>C<sub>2</sub><strong>a</strong>C<sub>3</sub></td>
+				</tr>
+			</table>
+
+			<h5 id="vperfective">The Perfective Aspects</h5>
+			 <p>The perfective aspects generally indicate activities that have distinct beginnings and ends which are relevant to the speaker. This implies past or future activities, but not present activities – an activity which is happening now cannot be ended, so it cannot be perfective. The perfective indicates the following:</p>
+			 <ul>
+				<li>states and activities which were ended (even if a second ago) or which will be ended (the <em>simple perfective</em>);</li>
+				<li>actions whose goals have already been achieved, especially those viewed from the perspective of a later time (the <em>retrospective</em>);</li>
+				<li>the beginning of the activity or the state (the <em>inceptive</em>);</li>
+				<li>the end of the activity or the state (the <em>terminative</em>); and</li>
+			</ul>
+
+			<p>These are marked as follows:</p>
+			<table>
+				<colgroup>
+					<col width="30%"/>
+					<col width="10%"/>
+					<col width="12%"/>
+					<col width="12%"/>
+					<col width="12%"/>
+					<col width="12%"/>
+					<col width="12%"/>
+				</colgroup>
+				<tr>
+					<th colspan="2" rowspan="2"/>
+					<th colspan="5">Triliteral Root Class</th>
+				</tr>
+				<tr>
+					<th>I</th>
+					<th>II</th>
+					<th>III</th>
+					<th>IV</th>
+					<th>V</th>
+				</tr>
+				<tr>
+					<th>Simple Perfective</th>
+					<th class="sc">pftv</th>
+					<td><strong>o</strong>C<sub>1</sub>C<sub>2</sub><strong>i</strong>C<sub>3</sub><strong>a</strong></td>
+					<td><strong>o</strong>C<sub>1</sub><strong>i</strong>C<sub>2</sub><strong>a</strong></td>
+					<td><strong>o</strong>C<sub>1</sub>C<sub>2</sub><strong>i</strong>C<sub>3</sub><strong>a</strong></td>
+					<td><strong>o</strong>C<sub>1</sub>C<sub>2</sub><strong>i</strong>C<sub>3</sub><strong>a</strong></td>
+					<td><strong>o</strong>C<sub>1</sub>C<sub>2</sub><strong>i</strong>C<sub>3</sub><strong>a</strong></td>
+				</tr>
+				<tr>
+					<th>Retrospective</th>
+					<th class="sc">rspv</th>
+					<td><strong>e</strong>C<sub>1</sub>C<sub>2</sub><strong>u</strong>C<sub>3</sub></td>
+					<td><strong>e</strong>C<sub>1</sub>C<sub>2</sub><strong>u</strong></td>
+					<td><strong>e</strong>C<sub>1</sub>C<sub>2</sub><strong>u</strong>C<sub>3</sub></td>
+					<td><strong>e</strong>C<sub>1</sub>C<sub>2</sub><strong>u</strong>C<sub>3</sub></td>
+					<td><strong>e</strong>C<sub>1</sub>C<sub>2</sub><strong>u</strong>C<sub>3</sub></td>
+				</tr>
+				<tr>
+					<th>Inceptive</th>
+					<th class="sc">icpv</th>
+					<td><strong>i</strong>C<sub>1</sub>C<sub>2</sub><strong>ä</strong>C<sub>3</sub><strong>e</strong></td>
+					<td><strong>i</strong>C<sub>1</sub>C<sub>2</sub><strong>äë</strong></td>
+					<td><strong>i</strong>C<sub>1</sub>C<sub>2</sub><strong>ä</strong>C<sub>3</sub><strong>e</strong></td>
+					<td><strong>i</strong>C<sub>1</sub>C<sub>2</sub><strong>ä</strong>C<sub>3</sub><strong>e</strong></td>
+					<td><strong>i</strong>C<sub>1</sub>C<sub>2</sub><strong>ä</strong>C<sub>3</sub><strong>e</strong></td>
+				</tr>
+				<tr>
+					<th>Terminative</th>
+					<th class="sc">tmtv</th>
+					<td><strong>ü</strong>C<sub>1</sub>C<sub>2</sub><strong>i</strong>C<sub>3</sub><strong>ö</strong></td>
+					<td><strong>ü</strong>C<sub>1</sub>C<sub>2</sub><strong>jö</strong></td>
+					<td><strong>ü</strong>C<sub>1</sub>C<sub>2</sub><strong>i</strong>C<sub>3</sub><strong>ö</strong></td>
+					<td><strong>ü</strong>C<sub>1</sub>C<sub>2</sub><strong>i</strong>C<sub>3</sub><strong>ö</strong></td>
+					<td><strong>ü</strong>C<sub>1</sub>C<sub>2</sub><strong>i</strong>C<sub>3</sub><strong>ö</strong></td>
+				</tr>
+			</table>
+
+			<h4 id="vagreement">Personal/Topical Agreement</h4>
+
+			<p>Verbs are also marked for agreement with the noun phrase which is in the nominative case, as this marks the topic of the sentence. If the noun phrase in the nominative case is a pronoun, it may be omitted.</p>
+			<table cellpadding="0">
+				<caption>Verbal Subject Agreement</caption>
+				<colgroup>
+					<col width="12%"/>
+					<col width="12%"/>
+					<col width="12%"/>
+					<col width="12%"/>
+					<col width="50%"/>
+				</colgroup>
+				<tr>
+					<th colspan="2" />
+					<th>Prevocalic</th>
+					<th>Preconsonantal</th>
+
+					<th />
+				</tr>
+				<tr>
+					<th rowspan="8">Ergative Subject</th>
+					<th class="sc">1sg</th>
+					<td colspan="2">-ëm-</td>
+					<td rowspan="8" class="tl">Marks the noun phrase in the nominative case as the agent of the verb.</td>
+
+				</tr>
+				<tr>
+					<th class="sc">2sg</th>
+					<td colspan="2">-tam-</td>
+				</tr>
+				<tr>
+					<th class="sc">3sg</th>
+
+					<td>-m-</td>
+					<td>-mi-</td>
+				</tr>
+				<tr>
+					<th class="sc">1pl;inc</th>
+					<td>-ëzm-</td>
+					<td>-ëzmi-</td>
+
+				</tr>
+				<tr>
+					<th class="sc">1pl;exc</th>
+					<td>-ësm-</td>
+					<td>-ësmi-</td>
+				</tr>
+				<tr>
+
+					<th class="sc">2pl</th>
+					<td>-tazm-</td>
+					<td>-tazmi-</td>
+				</tr>
+				<tr>
+					<th class="sc">3pl</th>
+					<td colspan="2">-zam-</td>
+
+				</tr>
+				<tr>
+					<th class="sc">3;inanim</th>
+					<td colspan="2">-nom-</td>
+				</tr>
+				<tr>
+					<th rowspan="8">Accusative Subject</th>
+
+					<th class="sc">1sg</th>
+					<td colspan="2">-ëş-</td>
+					<td rowspan="8" class="tl">Marks the noun phrase in the nominative case as the patient or the recipient of the verb; roughly equivalent to the passive voice.</td>
+				</tr>
+				<tr>
+					<th class="sc">2sg</th>
+					<td colspan="2">-taş-</td>
+
+				</tr>
+				<tr>
+					<th class="sc">3sg</th>
+					<td>-ş-</td>
+					<td>-şi-</td>
+				</tr>
+				<tr>
+
+					<th class="sc">1pl;inc</th>
+					<td>-äz-</td>
+					<td>-äzi-</td>
+				</tr>
+				<tr>
+					<th class="sc">1pl;exc</th>
+					<td colspan="2">-ëq-</td>
+
+				</tr>
+				<tr>
+					<th class="sc">2pl</th>
+					<td>-taz-</td>
+					<td>-tazi-</td>
+				</tr>
+				<tr>
+
+					<th class="sc">3pl</th>
+					<td colspan="2">-zaş-</td>
+				</tr>
+				<tr>
+					<th class="sc">3;inanim</th>
+					<td colspan="2">-noş-</td>
+				</tr>
+
+				<tr>
+					<th rowspan="8">Dechticaetiative Subject</th>
+					<th class="sc">1sg</th>
+					<td colspan="2">-ët-</td>
+					<td rowspan="8" class="tl">Marks the noun phrase in the nominative case as the theme of the verb; can normally only be used with a ditransitive verb.</td>
+				</tr>
+				<tr>
+
+					<th class="sc">2sg</th>
+					<td colspan="2">-tot-</td>
+				</tr>
+				<tr>
+					<th class="sc">3sg</th>
+					<td>-t-</td>
+					<td>-ti-</td>
+
+				</tr>
+				<tr>
+					<th class="sc">1pl;inc</th>
+					<td>-ëzt-</td>
+					<td>-ëzti-</td>
+				</tr>
+				<tr>
+
+					<th class="sc">1pl;exc</th>
+					<td>-ëst-</td>
+					<td>-ësti-</td>
+				</tr>
+				<tr>
+					<th class="sc">2pl</th>
+					<td>-tazt-</td>
+
+					<td>-tazti-</td>
+				</tr>
+				<tr>
+					<th class="sc">3pl</th>
+					<td colspan="2">-zot-</td>
+				</tr>
+				<tr>
+
+					<th class="sc">3;inanim</th>
+					<td colspan="2">-not-</td>
+				</tr>
+			</table>
+
+			<h4 id="vmood">Mood</h4>
+			<p>Qevesa indicates mood through suffixes on the verb, some of which cause changes in its final vowel. At least one mood is mandatory.</p>
+			
+			<dl>
+				<dt>The Declarative Mood</dt>
+				<dd>The declarative mood is equivalent to the indicative mood, and indicates that the statement is true. It is formed by the addition of the suffix <em>-u</em>.</dd>
+
+				<dt>The Conditional Mood</dt>
+				<dd>The conditional mood is used to refer to an action or state that is dependent on a condition, and to refer to that condition. It is formed by the addition of the suffix <em>-ti</em>.</dd>
+
+				<dt>The Intentive Mood</dt>
+				<dd>The intentive mood is used to indicate that the speaker intends to perform the action. It is formed by the addition of the suffix <em>-di</em>.</dd>
+
+				<dt>The Optative Mood</dt>
+				<dd>The optative mood is used to indicate wishes and desires. It is formed by the suffix <em>-şi</em>.</dd>
+
+				<dt>The Prohibitive Mood</dt>
+				<dd>The prohibitive mood indicate that the action or state cannot occur. It is formed by the suffix <em>-me</em>.</dd>
+
+				<dt>The Imperative Mood</dt>
+				<dd>The imperative mood is used to indicate orders and commands. It is formed by the suffix <em>-ːl</em>; i.e. lengthening of the previous vowel and the addition of <em>-l</em>; long vowels are unmodified.</dd>
+			</dl>
+
+			<!--<h3>Other Auxiliary Constructions</h3>
+			<p>The auxiliary verb has a number of regular constructions that are used to convey additional information.</p>-->
+
+
+			<h3 id="vauxiliary">Auxiliary Constructions</h3>
+			<p>There is a wide range of prefixes and proclitics which alter the meaning of a verb. Most of them are derivatives of other verbs or nouns, usually phonetic simplifications, although there are some which are independent lexemes. These can be grouped into several classes.</p>
+
+			<h4 id="vcaus">The Causative</h4>
+			<p>The causative is a special construction which takes its own arguments. It consists of the proclitic <em>pek</em>.</p>
+
+			<h4 id="vneg">Negation</h4>
+			<p>The negative mood has almost disappeared from Qevesa, and no longer exists as a modal suffix. Negation is instead expressed through the small number of negative verbs that exist. These verbs agree in aspect and mood with the verb they modify.</p>
+
+			<table>
+				<caption>Conjugation of <strong>mū</strong> (to not do / to not exist)</caption>
+				<tr>
+					<th colspan="2">&nbsp;</th>
+					<th class="sc">decl</th>
+					<th class="sc">cond</th>
+					<th class="sc">int</th>
+					<th class="sc">opt</th>
+					<th class="sc">prhb</th>
+					<th class="sc">imp</th>
+				</tr>
+				<tr>
+					<th class="sc">dyn</th>
+					<td>mai</td>
+					<td>maiju</td>
+					<td>maiti</td>
+					<td>maidi</td>
+					<td>maişi</td>
+					<td>maime</td>
+					<td>mail</td>
+				</tr>
+				<tr>
+					<th class="sc">bg</th>
+					<td>mä</td>
+					<td>mähu</td>
+					<td>mäti</td>
+					<td>mädi</td>
+					<td>mäşi</td>
+					<td>mäme</td>
+					<td>mãl</td>
+				</tr>
+				<tr>
+					<th class="sc">hab</th>
+					<td>mau</td>
+					<td>mau</td>
+					<td>mauti</td>
+					<td>maudi</td>
+					<td>mauşi</td>
+					<td>maume</td>
+					<td>maul</td>
+				</tr>
+				<tr>
+					<th class="sc">itr</th>
+					<td>mō</td>
+					<td>mōhu</td>
+					<td>mōti</td>
+					<td>mōdi</td>
+					<td>mōşi</td>
+					<td>mōme</td>
+					<td>mōl</td>
+				</tr>
+				<tr>
+					<th class="sc">irr</th>
+					<td>mā</td>
+					<td>māhu</td>
+					<td>māti</td>
+					<td>mādi</td>
+					<td>māşi</td>
+					<td>māme</td>
+					<td>māl</td>
+				</tr>
+				<tr>
+					<th class="sc">stv</th>
+					<td>mua</td>
+					<td>muahu</td>
+					<td>muati</td>
+					<td>muadi</td>
+					<td>muaşi</td>
+					<td>muame</td>
+					<td>muāl</td>
+				</tr>
+				<tr>
+					<th class="sc">pftv</th>
+					<td>omiha</td>
+					<td>omihau</td>
+					<td>omihati</td>
+					<td>omihadi</td>
+					<td>omihaşi</td>
+					<td>omihame</td>
+					<td>omihāl</td>
+				</tr>
+				<tr>
+					<th class="sc">rspv</th>
+					<td>emu</td>
+					<td>emū</td>
+					<td>emuti</td>
+					<td>emudi</td>
+					<td>emuşi</td>
+					<td>emume</td>
+					<td>emūl</td>
+				</tr>
+				<tr>
+					<th class="sc">icpv</th>
+					<td>imäë</td>
+					<td>imäjö</td>
+					<td>imäëti</td>
+					<td>imäëdi</td>
+					<td>imäëşi</td>
+					<td>imäëme</td>
+					<td>imäjēl</td>
+				</tr>
+				<tr>
+					<th class="sc">tmtv</th>
+					<td>ümjö</td>
+					<td>ümjõ</td>
+					<td>ümjöti</td>
+					<td>ümjödi</td>
+					<td>ümjöşi</td>
+					<td>ümjöme</td>
+					<td>ümjõl</td>
+				</tr>
+			</table>
+		<!--
+			<h4>Other prefixes</h4>
+			<p>These describe the manner in which the verb is done, an associated action, or an associated object. The most common are listed below:</p>
+			<table>
+				<tr>
+					<th />
+					<th>Prevocalic</th>
+					<th>Preconsonantal</th>
+				</tr>
+				<tr>
+					<th>completely</th>
+					<td>kelt-</td>
+					<td>kelte-</td>
+				</tr>
+				<tr>
+					<th>knowledge</th>
+					<td colspan="2">len-</td>
+				</tr>
+				<tr>
+					<th>quickly</th>
+					<td colspan="2">peq-</td>
+				</tr>
+					<th>superiority</th>
+					<td colspan="2">poş-</td>
+				</tr>
+				<tr>
+					<th>distal (over there)</th>
+					<td colspan="2">şer-</td>
+				</tr>
+				<tr>
+					<th>attempt, try</th>
+					<td colspan="2">tem-</td>
+				</tr>
+				<tr>
+					<th>proximal (here)</th>
+					<td colspan="2">tor-</td>
+				</tr>
+				<tr>
+					<th>wrong, bad</th>
+					<td colspan="2">vel-</td>
+				</tr>
+				<tr>
+					<th>medial (there)</th>
+					<td colspan="2">vez-</td>
+				</tr>
+			</table>
+			-->
+
+			<h3 id="vderivation">Verbal Derivation</h3>
+			<p>Qevesa is based on triliteral roots, so a large proportion of the lexicon is produced from a much smaller set of roots. Most nouns and modifiers are in fact derived from verb forms.</p>
+
+			<h4 id="vnom">Nominalisations</h4>
+			<p>Although there are many more nominalisations, the following are the most commonly used.</p>
+			<dl>
+				<dt>Concept</dt>
+				<dd class="strong">C<sub>1</sub>eC<sub>2</sub>eC<sub>3</sub></dd>
+				<dd>This is a general nominalisation representing the concept, process, activity or ability.</dd>
+
+				<dt>Actor</dt>
+				<dd class="strong">C<sub>1</sub>aC<sub>2</sub>oiC<sub>3</sub></dd>
+				<dd>A person that performs the action.</dd>
+
+				<dt>Patient</dt>
+				<dd class="strong">C<sub>1</sub>oC<sub>2</sub>C<sub>3</sub>it</dd>
+				<dd>Something that undergoes the action.</dd>
+
+				<dt>Resulting Object</dt>
+				<dd class="strong">C<sub>1</sub>iC<sub>2</sub>aC<sub>3</sub></dd>
+				<dd>An object resulting from the action.</dd>
+
+				<dt>Art</dt>
+				<dd class="strong">C<sub>1</sub>eC<sub>2</sub>öC<sub>3</sub>a</dd>
+				<dd>Names an art, skill, or science.</dd>
+
+				<dt>Device</dt>
+				<dd class="strong">C<sub>1</sub>eC<sub>2</sub>C<sub>2</sub>aC<sub>3</sub></dd>
+				<dd>A non-human object that performs the action.</dd>
+
+				<dt>Instrument</dt>
+				<dd class="strong">C<sub>1</sub>iuC<sub>2</sub>iC<sub>3</sub></dd>
+				<dd>A tool or object used to perform the action.</dd>
+
+				<dt>Location</dt>
+				<dd class="strong">aC<sub>1</sub>C<sub>2</sub>eC<sub>3</sub></dd>
+				<dd>A place where the action is performed.</dd>
+
+				<dt>Ergative Participle</dt>
+				<dd class="strong">iC<sub>1</sub>aC<sub>2</sub>C<sub>3</sub>a</dd>
+				<dd>Something which acts.</dd>
+
+				<dt>Accusative Participle</dt>
+				<dd class="strong">öC<sub>1</sub>üC<sub>2</sub>eC<sub>3</sub></dd>
+				<dd>Something which is acted upon.</dd>
+			</dl>
+
+			<!--<p>Gender specific variants of the above nominalisations can be formed with the suffixes <em>-(i)ro</em> and <em>-(i)sse</em>.</p>-->
+
+			<!--<h2>Compound Verbs</h2>
+			<p>In addition to the basic verbs formed by the morphological processes described above, verbs can also be compounded to convey additional meaning. There are two primary methods of compounding: enclitics/suffixes that attach to the auxiliary verb; and proclitics/prefixes that attach to the primary verb. Enclitics on the auxiliary verb are normally used to indicate the manner in which the action is performed, and proclitics on the primary verb are normally used to indicate additional objects and the like. Both of these constructions are extremely productive, and in some (relatively rare) cases are used to create roots with four or more consonants.</p>-->
+
+			<h2 id="nouns">Nouns</h2>
+			<p>The declension of a Qevesa noun is generally quite regular; nouns are marked for case, number and possession. Other categories, such as gender, are seldom marked, although some nouns (such as pronouns and body parts) do possess so-called “natural gender”.</p>
+
+			<h3 id="names">Proper Names</h3>
+			<p>Names are treated differently from ordinary nouns in that they do not usually receive a suffixed case marker. Names are also not usually marked for number.</p>
+
+			<h3 id="case">Case</h3>
+			<p>Case markers in Qevesa are suffixes that attach to the head noun of a noun phrase.</p>
+			<table>
+				<caption>Case declension marking</caption>
+				<colgroup>
+					<col width="15%" />
+					<col width="5%" />
+					<col width="15%" />
+					<col width="15%" />
+					<col width="48%" />
+				</colgroup>
+				<tr>
+					<th colspan="2">Case</th>
+					<th>Postconsonantal</th>
+					<th>Postvocalic</th>
+					<th />
+				</tr>
+				<tr>
+					<th>Nominative</th>
+					<th class="strong sc">nom</th>
+					<td>-a</td>
+					<td>-Ø</td>
+					<td class="tl">Topic</td>
+				</tr>
+				<tr>
+					<th>Ergative</th>
+					<th class="sc">erg</th>
+					<td colspan="2">-am</td>
+					<td class="tl">Agent/Donor</td>
+				</tr>
+				<tr>
+					<th>Accusative</th>
+					<th class="sc">acc</th>
+					<td colspan="2">-aş</td>
+					<td class="tl">Patient/Recipient</td>
+				</tr>
+				<tr>
+					<th>Dechticaetiative</th>
+					<th class="sc">dct</th>
+					<td>-ot</td>
+					<td>-jot</td>
+					<td class="tl">Theme</td>
+				</tr>
+				<tr>
+					<th>Genetive</th>
+					<th class="sc">gen</th>
+					<td>-aik</td>
+					<td>-k</td>
+					<td class="tl">i.e. <em>of ...</em>, especially <em>of (a place)</em>; possession is usually indicated with possessive proclitic particle instead.</td>
+				</tr>
+				<tr>
+					<th>Essive</th>
+					<th class="sc">ess</th>
+					<td colspan="2">-ël</td>
+					<td class="tl">Duration/Time; also indicates a temporary state of being; i.e. <em>as ...</em>, <em>being ....</em></td>
+				</tr>
+				<tr>
+					<th>Instrumental (-Comitative)</th>
+					<th class="sc">ins</th>
+					<td colspan="2">-ëtti</td>
+					<td class="tl">Tool, manner; i.e. <em>using ...</em>, <em>with ...</em></td>
+				</tr>
+				<tr>
+					<th>Locative</th>
+					<th class="sc">loc</th>
+					<td colspan="2">-ëssi</td>
+					<td class="tl">Internal location; i.e. <em>in(side) ...</em></td>
+				</tr>
+				<tr>
+					<th>Adessive</th>
+					<th class="sc">ads</th>
+					<td colspan="2">-ëdi</td>
+					<td class="tl">External location; i.e. <em>near ...</em>, <em>by ...</em>, <em>on ...</em></td>
+				</tr>
+				<tr>
+					<th>Allative</th>
+					<th class="sc">all</th>
+					<td>-ovö</td>
+					<td>-jovö</td>
+					<td class="tl">Motion towards; i.e. <em>to(wards) ...</em></td>
+				</tr>
+				<tr>
+					<th>Illative</th>
+					<th class="sc">ill</th>
+					<td colspan="2">-ëşte</td>
+					<td class="tl">Motion from exterior to interior; i.e. <em>in(to) ...</em></td>
+				</tr>
+				<tr>
+					<th>Ablative</th>
+					<th class="sc">abl</th>
+					<td colspan="2">-ësko</td>
+					<td class="tl">Motion away from; i.e. <em>from ...</em></td>
+				</tr>
+				<tr>
+					<th>Comparative</th>
+					<th class="sc">cmp</th>
+					<td colspan="2">-ënöc</td>
+					<td class="tl">The standard by which something is compared.</td>
+				</tr>
+			</table>
+
+			<h3 id="number">Number</h3>
+			<p>Most nouns are countable and can be marked for number with a suffix that comes between the stem and the case marker. Qevesa possesses three numbers, singular, plural and quantitative. There are a small number of irregular nouns which are either uncountable or have number marked differently; these are noted where applicable in the <a href="index.php?page=conlangs/qevesa/lexicon">lexicon</a>.</p>
+			<table>
+				<caption>Marking of number</caption>
+				<tr>
+					<th>Singular</th>
+					<th class="sc">sg</th>
+					<td>-Ø</td>
+					<td class="tl">Unmarked</td>
+				</tr>
+				<tr>
+					<th>Plural</th>
+					<th class="sc">pl</th>
+					<td>-z</td>
+					<td class="tl">Generic; used when a more numerals or quantifiers are not marked.</td>
+				</tr>
+				<tr>
+					<th>Quantitative</th>
+					<th class="sc">qt</th>
+					<td>-s</td>
+					<td class="tl">Used with numerals and quantifiers.</td>
+				</tr>
+			</table>
+
+			<h3 id="possession">Possession</h3>
+			<p>Possession is normally marked by a proclitic particle, unless the possessor is a pronoun, in which case the pronoun is declined to the genetive case. The particle has two variants, one used with animate possessors and one used with inanimate possessors.</p>
+
+			<table>
+				<caption>Possessive particles</caption>
+				<tr>
+					<th>Animate</th>
+					<th class="sc">an-pos</th>
+					<td>zi</td>
+				</tr>
+				<tr>
+					<th>Inanimate</th>
+					<th class="sc">ia-pos</th>
+					<td>zes</td>
+				</tr>
+			</table>
+
+			<h3>Pronouns</h3>
+			<p>Pronouns are roughly equivalent to nouns in terms of syntax and morphology, although they tend to have some irregular declensions.</p>
+
+			<h4>Personal Pronouns</h4>
+			<p>Most pronouns refer only to animate referents; a separate inanimate pronoun is used for inanimate referents. Pronouns are entirely without gender, and make no disctinction between male/female/neuter. There are two first person plural pronouns, an inclusive, which includes the listener, and an exclusive, which does not.</p>
+			<table cellpadding="0">
+				<caption>Personal Pronouns</caption>
+				<tr>
+					<th />
+					<th class="sc">1sg</th>
+					<th class="sc">2sg</th>
+					<th class="sc">3sg</th>
+					<th class="sc">1pl;inc</th>
+					<th class="sc">1pl;exc</th>
+					<th class="sc">2pl</th>
+					<th class="sc">3pl</th>
+					<th class="sc">3;inanim</th>
+				</tr>
+				<tr>
+					<th class="sc">stem</th>
+					<td>ë</td>
+					<td>ta</td>
+					<td>mi</td>
+					<td>ëv</td>
+					<td>estev</td>
+					<td>tav</td>
+					<td>miv</td>
+					<td>net</td>
+				</tr>
+				<tr>
+					<th class="strong sc">nom</th>
+					<td>ë</td>
+					<td>ta</td>
+					<td>mi</td>
+					<td>ëva</td>
+					<td>esteva</td>
+					<td>tava</td>
+					<td>miva</td>
+					<td>neta</td>
+				</tr>
+				<tr>
+					<th class="sc">erg</th>
+					<td>ëm</td>
+					<td>tam</td>
+					<td>mim</td>
+					<td>ëvam</td>
+					<td>estevam</td>
+					<td>tavam</td>
+					<td>mivam</td>
+					<td>netam</td>
+				</tr>
+				<tr>
+					<th class="sc">acc</th>
+					<td>ëş</td>
+					<td>taş</td>
+					<td>miş</td>
+					<td>ëvaş</td>
+					<td>estevaş</td>
+					<td>tavaş</td>
+					<td>mivaş</td>
+					<td>netaş</td>
+				</tr>
+				<tr>
+					<th class="sc">dct</th>
+					<td>ëjot</td>
+					<td>tajot</td>
+					<td>mijot</td>
+					<td>ëvot</td>
+					<td>estevot</td>
+					<td>tavot</td>
+					<td>mivot</td>
+					<td>netot</td>
+				</tr>
+				<tr>
+					<th class="sc">gen</th>
+					<td>ëk</td>
+					<td>tak</td>
+					<td>mik</td>
+					<td>ëvaik</td>
+					<td>estevaik</td>
+					<td>tavaik</td>
+					<td>mivaik</td>
+					<td>netaik</td>
+				</tr>
+				<tr>
+					<th class="sc">ess</th>
+					<td>ël</td>
+					<td>tal</td>
+					<td>mil</td>
+					<td>ëvel</td>
+					<td>estevel</td>
+					<td>tavel</td>
+					<td>mivel</td>
+					<td>netel</td>
+				</tr>
+				<tr>
+					<th class="sc">ins</th>
+					<td>ëtti</td>
+					<td>tatti</td>
+					<td>mitti</td>
+					<td>ëvetti</td>
+					<td>estevetti</td>
+					<td>tavetti</td>
+					<td>mivetti</td>
+					<td>netetti</td>
+				</tr>
+				<tr>
+					<th class="sc">loc</th>
+					<td>ëssi</td>
+					<td>tassi</td>
+					<td>missi</td>
+					<td>ëvessi</td>
+					<td>estevessi</td>
+					<td>tavessi</td>
+					<td>mivessi</td>
+					<td>netessi</td>
+				</tr>
+				<tr>
+					<th class="sc">ads</th>
+					<td>ëdi</td>
+					<td>tadi</td>
+					<td>midi</td>
+					<td>ëvedi</td>
+					<td>estevedi</td>
+					<td>tavedi</td>
+					<td>mivedi</td>
+					<td>netedi</td>
+				</tr>
+				<tr>
+					<th class="sc">all</th>
+					<td>ëvi</td>
+					<td>tavi</td>
+					<td>mivi</td>
+					<td>ëvövi</td>
+					<td>estevövi</td>
+					<td>tavövi</td>
+					<td>mivövi</td>
+					<td>netövi</td>
+				</tr>
+				<tr>
+					<th class="sc">ill</th>
+					<td>ëşqi</td>
+					<td>taşqi</td>
+					<td>mişqi</td>
+					<td>ëveşqi</td>
+					<td>esteveşqi</td>
+					<td>taveşqi</td>
+					<td>miveşqi</td>
+					<td>neteşqi</td>
+				</tr>
+				<tr>
+					<th class="sc">abl</th>
+					<td>ëski</td>
+					<td>taski</td>
+					<td>miski</td>
+					<td>ëveski</td>
+					<td>esteveski</td>
+					<td>taveski</td>
+					<td>miveski</td>
+					<td>neteski</td>
+				</tr>
+				<tr>
+					<th class="sc">cmp</th>
+					<td>ënöc</td>
+					<td>tanöc</td>
+					<td>minöc</td>
+					<td>ëvenöc</td>
+					<td>estevenöc</td>
+					<td>tavenöc</td>
+					<td>mivenöc</td>
+					<td>netenöc</td>
+				</tr>
+			</table>
+<!--
+			<h3>Determiners</h3>
+			<p>Determiners are unusual in that they decline as nouns, but are treated as adjectives. Unlike adjectives, determiners agree in case with the noun they modify.</p>
+			<p>There are three degrees of distance: near to the speaker; near to the addressee; and distant from both. The following table shows the determiners declined to each case, as there are a number of slightly irregular forms:</p>
+			<table>
+				<tr>
+					<th colspan="2" />
+					<th class="sc">Proximal</th>
+					<th class="sc">Medial</th>
+					<th class="sc">Distal</th>
+				</tr>
+				<tr>
+					<th rowspan="3" class="sc">stem</th>
+					<th class="sc">sg</th>
+					<td>tor</td>
+					<td>vez</td>
+					<td>şer</td>
+				</tr>
+				<tr>
+					<th class="sc">pl</th>
+					<td>torva</td>
+					<td>vezva</td>
+					<td>şerva</td>
+				</tr>
+				<tr>
+					<th class="sc">qt</th>
+					<td>torec</td>
+					<td>vezec</td>
+					<td>şerec</td>
+				</tr>
+				<tr>
+					<th rowspan="3" class="sc">nom</th>
+					<th class="sc">sg</th>
+					<td>tora</td>
+					<td>veza</td>
+					<td>şera</td>
+				</tr>
+				<tr>
+					<th class="sc">pl</th>
+					<td>torva</td>
+					<td>vezva</td>
+					<td>şerva</td>
+				</tr>
+				<tr>
+					<th class="sc">qt</th>
+					<td>toreca</td>
+					<td>vezeca</td>
+					<td>şereca</td>
+				</tr>
+				<tr>
+					<th rowspan="3" class="sc">erg</th>
+					<th class="sc">sg</th>
+					<td>toram</td>
+					<td>vezam</td>
+					<td>şeram</td>
+				</tr>
+				<tr>
+					<th class="sc">pl</th>
+					<td>torvam</td>
+					<td>vezvam</td>
+					<td>şervam</td>
+				</tr>
+				<tr>
+					<th class="sc">qt</th>
+					<td>torecam</td>
+					<td>vezecam</td>
+					<td>şerecam</td>
+				</tr>
+				<tr>
+					<th rowspan="3" class="sc">acc</th>
+					<th class="sc">sg</th>
+					<td>toraş</td>
+					<td>vezaş</td>
+					<td>şeraş</td>
+				</tr>
+				<tr>
+					<th class="sc">pl</th>
+					<td>torvaş</td>
+					<td>vezvaş</td>
+					<td>şervaş</td>
+				</tr>
+				<tr>
+					<th class="sc">qt</th>
+					<td>torecaş</td>
+					<td>vezecaş</td>
+					<td>şerecaş</td>
+				</tr>
+				<tr>
+					<th rowspan="3" class="sc">dct</th>
+					<th class="sc">sg</th>
+					<td>toran</td>
+					<td>vezan</td>
+					<td>şeran</td>
+				</tr>
+				<tr>
+					<th class="sc">pl</th>
+					<td>torvan</td>
+					<td>vezvan</td>
+					<td>şervan</td>
+				</tr>
+				<tr>
+					<th class="sc">qt</th>
+					<td>torecan</td>
+					<td>vezecan</td>
+					<td>şerecan</td>
+				</tr>
+				<tr>
+					<th rowspan="3" class="sc">gen</th>
+					<th class="sc">sg</th>
+					<td>toraik</td>
+					<td>vezaik</td>
+					<td>şeraik</td>
+				</tr>
+				<tr>
+					<th class="sc">pl</th>
+					<td>torvak</td>
+					<td>vezvak</td>
+					<td>şervak</td>
+				</tr>
+				<tr>
+					<th class="sc">qt</th>
+					<td>torecaik</td>
+					<td>vezecaik</td>
+					<td>şerecaik</td>
+				</tr>
+				<tr>
+					<th rowspan="3" class="sc">ess</th>
+					<th class="sc">sg</th>
+					<td>torel</td>
+					<td>vezel</td>
+					<td>şerel</td>
+				</tr>
+				<tr>
+					<th class="sc">pl</th>
+					<td>torval</td>
+					<td>vezval</td>
+					<td>şerval</td>
+				</tr>
+				<tr>
+					<th class="sc">qt</th>
+					<td>torecel</td>
+					<td>vezecel</td>
+					<td>şerecel</td>
+				</tr>
+				<tr>
+					<th rowspan="3" class="sc">ins</th>
+					<th class="sc">sg</th>
+					<td>toretti</td>
+					<td>vezetti</td>
+					<td>şeretti</td>
+				</tr>
+				<tr>
+					<th class="sc">pl</th>
+					<td>torvatti</td>
+					<td>vezvatti</td>
+					<td>şervatti</td>
+				</tr>
+				<tr>
+					<th class="sc">qt</th>
+					<td>torecetti</td>
+					<td>vezecetti</td>
+					<td>şerecetti</td>
+				</tr>
+				<tr>
+					<th rowspan="3" class="sc">loc</th>
+					<th class="sc">sg</th>
+					<td>toressi</td>
+					<td>vezessi</td>
+					<td>şeressi</td>
+				</tr>
+				<tr>
+					<th class="sc">pl</th>
+					<td>torvassi</td>
+					<td>vezvassi</td>
+					<td>şervassi</td>
+				</tr>
+				<tr>
+					<th class="sc">qt</th>
+					<td>torecessi</td>
+					<td>vezecessi</td>
+					<td>şerecessi</td>
+				</tr>
+				<tr>
+					<th rowspan="3" class="sc">ads</th>
+					<th class="sc">sg</th>
+					<td>toredi</td>
+					<td>vezedi</td>
+					<td>şeredi</td>
+				</tr>
+				<tr>
+					<th class="sc">pl</th>
+					<td>torvadi</td>
+					<td>vezvadi</td>
+					<td>şervadi</td>
+				</tr>
+				<tr>
+					<th class="sc">qt</th>
+					<td>torecedi</td>
+					<td>vezecedi</td>
+					<td>şerecedi</td>
+				</tr>
+				<tr>
+					<th rowspan="3" class="sc">all</th>
+					<th class="sc">sg</th>
+					<td>torövi</td>
+					<td>vezövi</td>
+					<td>şerövi</td>
+				</tr>
+				<tr>
+					<th class="sc">pl</th>
+					<td>torvövi</td>
+					<td>vezvövi</td>
+					<td>şervövi</td>
+				</tr>
+				<tr>
+					<th class="sc">qt</th>
+					<td>torecövi</td>
+					<td>vezecövi</td>
+					<td>şerecövi</td>
+				</tr>
+				<tr>
+					<th rowspan="3" class="sc">ill</th>
+					<th class="sc">sg</th>
+					<td>toreşqi</td>
+					<td>vezeşqi</td>
+					<td>şereşqi</td>
+				</tr>
+				<tr>
+					<th class="sc">pl</th>
+					<td>torvaşqi</td>
+					<td>vezvaşqi</td>
+					<td>şervaşqi</td>
+				</tr>
+				<tr>
+					<th class="sc">qt</th>
+					<td>toreceşqi</td>
+					<td>vezecşqi</td>
+					<td>şerecşqi</td>
+				</tr>
+				<tr>
+					<th rowspan="3" class="sc">abl</th>
+					<th class="sc">sg</th>
+					<td>toreski</td>
+					<td>vezeski</td>
+					<td>şereski</td>
+				</tr>
+				<tr>
+					<th class="sc">pl</th>
+					<td>torvaski</td>
+					<td>vezvaski</td>
+					<td>şervaski</td>
+				</tr>
+				<tr>
+					<th class="sc">qt</th>
+					<td>toreceski</td>
+					<td>vezeceski</td>
+					<td>şereceski</td>
+				</tr>
+				<tr>
+					<th rowspan="3" class="sc">cmp</th>
+					<th class="sc">sg</th>
+					<td>torenöc</td>
+					<td>vezenöc</td>
+					<td>şerenöc</td>
+				</tr>
+				<tr>
+					<th class="sc">pl</th>
+					<td>torvanöc</td>
+					<td>vezvanöc</td>
+					<td>şervanöc</td>
+				</tr>
+				<tr>
+					<th class="sc">qt</th>
+					<td>torecenöc</td>
+					<td>vezecenöc</td>
+					<td>şerecenöc</td>
+				</tr>
+			</table>
+
+			<h3>Quantifiers</h3>
+			<p>Quantifiers are similar to determiners. They do not agree in case with the noun they modify; as a rule, quantifiers are <em>always</em> marked in the genetive case.</p>
+			<table>
+				<tr>
+					<th>Type</th>
+					<th>Quantifier</th>
+					<th>Prefix</th>
+					<th />
+				</tr>
+				<tr>
+					<th>Paucal</th>
+					<td>laifik</td>
+					<td>laif-</td>
+					<td class="em">a few of ...</td>
+				</tr>
+				<tr>
+					<th>Plural</th>
+					<td>vejik</td>
+					<td>vej-</td>
+					<td class="em">many of ...</td>
+				</tr>
+				<tr>
+					<th>Partitive</th>
+					<td>nilak</td>
+					<td>nil-</td>
+					<td class="em">some ...</td>
+				</tr>
+				<tr>
+					<th>Selective</th>
+					<td>përek</td>
+					<td>për-</td>
+					<td class="em">some ... / each ...</td>
+				</tr>
+				<tr>
+					<th>Exhaustive</th>
+					<td>veqek</td>
+					<td>veq-</td>
+					<td class="em">all of ...</td>
+				</tr>
+			</table>
+
+			<h3>Interrogative Pronouns</h3>
+			<p>The interrogative pronouns are listed in the following table; they decline as regular nouns to case and number.</p>
+			<table>
+				<tr>
+					<th>Animate</th>
+					<td>viz</td>
+					<td class="em">who</td>
+				</tr>
+				<tr>
+					<th>Inanimate</th>
+					<td>naliz</td>
+					<td class="em">what</td>
+				</tr>
+				<tr>
+					<th>Quantity</th>
+					<td>ramir</td>
+					<td class="em">how much</td>
+				</tr>
+				 <tr>
+					<th>Type</th>
+					<td>naniri</td>
+					<td class="em">what kind</td>
+				</tr>
+				<tr>
+					<th>Specific</th>
+					<td>loki</td>
+					<td class="em">which</td>
+				</tr>
+				<tr>
+					<th>Time</th>
+					<td>mazal</td>
+					<td class="em">when</td>
+				</tr>
+				<tr>
+					<th>Specific</th>
+					<td>şari</td>
+					<td class="em">where</td>
+				</tr>
+			</table>
+-->
+
+			<!--<h2>Polarity Markers</h2>
+			<p>Related to the identical particles that follow the auxiliary verb are a pair of particles used to negate or affirm the noun, <em>to</em> (<span class="sc">aff</span>) and <em>me</em> (<span class="sc">neg</span>).</p>-->
+
+			<h3>Articles</h3>
+			<p>Qevesa lacks true articles. has only the indefinite article, however it is used fairly infrequently.</p>
+
+		<!--			<h3>The Definite Article</h3>
+			<p>The definite article is the more commonly used of the two, and has a number of forms dependent on the words surrounding it:</p>
+			<ul class="nb">
+				<li><em class="strong">ar</em> is used when the following word begins with a vowel;</li>
+				<li><em class="strong">a</em> is used when the following word begins with a consonant;</li>
+				<li><em class="strong">’r</em> is used when the preceding word ends with a vowel, irrespective of what the following word begins with.</li>
+			</ul>-->
+
+			<h4>The Indefinite Article</h4>
+			<p>The indefinite article, <em class="strong">söl</em>, is a variant of the word for the numeral “one”, and as such is only used when referring to a single example of the head noun. A consequence of this is that the indefinite article is used with the quantitative plural form of the noun.</p>
+
+
+			<!--<h2>Numerals</h2>
+			<p>Qevesa uses a duodecimal numeral system.</p>
+			<p class="alphabox">0 1 2 3 4 5 6 7 8 9 <abbr title="ten [10]">A</abbr> <abbr title="eleven [11]">B</abbr></p>
+			<p>Ordinal numbers are formed by prefixing <em>vo-</em> to the number or first element of the number phrase. Multi-digit numbers are formed by stringing together lexemes with the enclitic conjunction <em>-et</em> (or its contracted form <em>-’t</em>, used when the preceding lexeme ends with a vowel).</p>
+			<table>
+				<tr>
+					<th />
+					<th>Cardinal</th>
+					<th>Ordinal</th>
+					<th>+A (+10)</th>
+					<th>×A (×10)</th>
+					<th>×9A (×100)</th>
+					<th>×99A (×1000)</th>
+				</tr>
+				<tr>
+					<th>0 / ɛ</th>
+					<td>nǫve</td>
+					<td>vonǫve</td>
+					<td colspan="4" />
+				</tr>
+				<tr>
+					<th>1</th>
+					<td>se</td>
+					<td>vose</td>
+					<td>kety’t se</td>
+					<td>kety</td>
+					<td>rato</td>
+					<td>dolu</td>
+				</tr>
+				<tr>
+					<th>2</th>
+					<td>ëti</td>
+					<td>voëti</td>
+					<td>kety’t ëti</td>
+					<td>ëtik kety</td>
+					<td>ëtik rato</td>
+					<td>ëtik dolu</td>
+				</tr>
+				<tr>
+					<th>3</th>
+					<td>kǫli</td>
+					<td>vokǫli</td>
+					<td>kety’t kǫli</td>
+					<td>kǫlik kety</td>
+					<td>kǫlik rato</td>
+					<td>kǫlik dolu</td>
+				</tr>
+				<tr>
+					<th>4</th>
+					<td>qyse</td>
+					<td>voqyse</td>
+					<td>kety’t qyse</td>
+					<td>qysek kety</td>
+					<td>qysek rato</td>
+					<td>qysek dolu</td>
+				</tr>
+				<tr>
+					<th>5</th>
+					<td>nyşti</td>
+					<td>vonyşti</td>
+					<td>kety’t nyşti</td>
+					<td>nyştik kety</td>
+					<td>nyştik rato</td>
+					<td>nyştik dolu</td>
+				</tr>
+				<tr>
+					<th>6</th>
+					<td>kusti</td>
+					<td>vokusti</td>
+					<td>kety’t kusti</td>
+					<td>kustik kety</td>
+					<td>kustik rato</td>
+					<td>kustik dolu</td>
+				</tr>
+				<tr>
+					<th>7</th>
+					<td>uşet</td>
+					<td>voşet</td>
+					<td>kety’t uşet</td>
+					<td>uşetek kety</td>
+					<td>uşetek rato</td>
+					<td>uşetek dolu</td>
+				</tr>
+				<tr>
+					<th>8</th>
+					<td>joko</td>
+					<td>vojoko</td>
+					<td>kety’t joko</td>
+					<td>jokǫk kety</td>
+					<td>jokǫk rato</td>
+					<td>jokǫk dolu</td>
+				</tr>
+				<tr>
+					<th>9</th>
+					<td>lire</td>
+					<td>volire</td>
+					<td>kety’t lire</td>
+					<td>lirek kety</td>
+					<td>lirek rato</td>
+					<td>lirek dolu</td>
+				</tr>
+				<tr>
+					<th>A (10)</th>
+					<td>kety</td>
+					<td>vokety</td>
+					<td>kety’t kety</td>
+					<td>rato</td>
+					<td>dolu</td>
+					<td>mëvu</td>
+				</tr>
+				<tr>
+					<th>9A (100)</th>
+					<td>rato</td>
+					<td>vorato</td>
+					<td>rato’t kety</td>
+					<td>dolu</td>
+					<td>mëvu</td>
+					<td>ratok mëvu</td>
+				</tr>
+				<tr>
+					<th>9AA (1000)</th>
+					<td>dolu</td>
+					<td>vodolu</td>
+					<td>dolu’t kety</td>
+					<td>mëvu</td>
+					<td>ratok mëvu</td>
+					<td>doluk mëvu</td>
+				</tr>
+			</table>
+			<p>Note that because Qevesa uses a bijective numeral system, the actual numbers are <span class="code">10×(n-1)+10</span> rather than <span class="code">10×n</span> when they would otherwise contain a zero; for example:</p>
+			<ul class="nb">
+				<li><em>ëtik mëvu’t ketük dolu’t sek rato’t ketük kety’t joko</em>, <strong>not</strong> <em>kǫlik mëvu’t ëtik rato’t joko</em>. (30208 = 2A1A8)</li>
+				<li><em>kǫlik mëvu’t qysek dolu’t ëtik rato’t uşetek kety’t joko</em>. (34278)</li>
+			</ul>
+		-->
+			<h1 id="modifiers">Modifiers</h1>
+
+			<h2 id="adjectives">Adjectives and Adverbs</h2>
+			<p>Qevesa distinguishes between attributive and predicative adjectives. The former follow the pattern <em>CeCaCi</em> and do not decline to case or agree with the noun, although they can be modified with the polarity proclitics. Predicative adjectives are essentially modified forms of the verb.</p>
+			<p>The attributive adjectives can be turned into adverbs by replacing the word final <em>-i</em> with <em>-a</em> and then casting it in the instrumental case. Like the attributive adjectives, adverbs can also be modified with the polarity proclitics.</p>
+
+			<ul>
+				<li><strong>Adjective</strong>: <em>pelati</em> beautiful</li>
+				<li><strong>Adverb</strong>: <em>pelatatti</em> beauty, with beauty</li>
+				<li><strong>Negative adverb</strong>: <em>pelatatti</em> without beauty</li>
+			</ul>
+
+			<h3 id="declension">Adjectival Declension</h3>
+			<p>Predicative adjectives decline in a similar manner to verbs, although most conjugation involves the use of suffixes rather than transfixes. Although only aspectual marking is shown here, a predicative adjective can be marked with all of the categories that are applicable to a verb.</p>
+			<h4 id="aimperfective">Imperfective Aspects</h4>
+			<table>
+				<tr>
+					<th>Dynamic Imperfective</th>
+					<th class="sc">dyn;ipfv</th>
+					<td>C<sub>1</sub><strong>e</strong>C<sub>2</sub><strong>i</strong>C<sub>3</sub></td>
+				</tr>
+				<tr>
+					<th>Background Imperfective</th>
+					<th class="sc">bg;ipfv</th>
+					<td>C<sub>1</sub><strong>e</strong>C<sub>2</sub>C<sub>3</sub><strong>e</strong></td>
+				</tr>
+				<tr>
+					<th>Habitual Imperfective</th>
+					<th class="sc">hab;ipfv</th>
+					<td>C<sub>1</sub><strong>e</strong>C<sub>2</sub><strong>ü</strong>C<sub>3</sub><strong>i</strong></td>
+				</tr>
+				<tr>
+					<th>Iterative Imperfective</th>
+					<th class="sc">itr;ipfv</th>
+					<td>C<sub>1</sub><strong>e</strong>C<sub>2</sub><strong>o</strong>C<sub>3</sub><strong>i</strong></td>
+				</tr>
+				<tr>
+					<th>Irresultative Imperfective</th>
+					<th class="sc">irr;ipfv</th>
+					<td>C<sub>1</sub><strong>e</strong>C<sub>2</sub>C<sub>3</sub><strong>ai</strong></td>
+				</tr>
+				<tr>
+					<th>Stative Imperfective</th>
+					<th class="sc">stv;ipfv</th>
+					<td>C<sub>1</sub><strong>ü</strong>C<sub>2</sub>C<sub>3</sub><strong>e</strong></td>
+				</tr>
+			</table>
+
+			<h4 id="aperfective">Perfective Aspects</h4>
+			<table>
+				<tr>
+					<th>Simple Perfective</th>
+					<th class="sc">pftv</th>
+					<td><strong>o</strong>C<sub>1</sub>C<sub>2</sub><strong>i</strong>C<sub>3</sub><strong>ai</strong></td>
+				</tr>
+				<tr>
+					<th>Retrospective</th>
+					<th class="sc">rspv</th>
+					<td><strong>e</strong>C<sub>1</sub>C<sub>2</sub><strong>u</strong>C<sub>3</sub><strong>i</strong></td>
+				</tr>
+				<tr>
+					<th>Inceptive</th>
+					<th class="sc">icpv</th>
+					<td><strong>i</strong>C<sub>1</sub>C<sub>2</sub><strong>o</strong>C<sub>3</sub><strong>oi</strong></td>
+				</tr>
+				<tr>
+					<th>Terminative</th>
+					<th class="sc">tmtv</th>
+					<td><strong>i</strong>C<sub>1</sub>C<sub>2</sub><strong>e</strong>C<sub>3</sub><strong>ü</strong></td>
+				</tr>
+			</table>
+
+
+			<h3 id="comparison">Comparison</h3>
+
+			<h4 id="acomparative">The Comparative Degree</h4>
+			<p>The comparative degree is formed by placing the proclitic <em>opoş</em> before the adjective or adverb. The standard of comparison is formed by placing it in the comparative case.</p>
+
+			<div class="gl">
+				<p><strong>A</strong>-a <strong>B</strong>-enöc opoş-dülvenotuvo.</p>
+				<div>
+					<span class="gm"><strong>A</strong>-a</span>
+					<span class="gx sc"><strong>A</strong>-nom</span>
+				</div>
+				<div>
+					<span class="gm"><strong>B</strong>-enöc.</span>
+					<span class="gx sc"><strong>B</strong>-cmp</span>
+				</div>
+				<div>
+					<span class="gm">opoş=dülve-not-u-vo</span>
+					<span class="gx">more=big<span class="sc">.stv;ipfv-3;inanim.dct.top-decl-ewts</span></span>
+				</div>
+
+				<p class="def">“A” is bigger than “B”.</p>
+			</div>
+
+			<h4 id="asuperlative">The Superlative Degree</h4>
+			<p>The superlative degree is formed by the circumfix <em>o—eş</em>, which is placed around the adjective or adverb.</p>
+
+			<div class="gl">
+				<p><strong>A</strong>-a odülvenoteşuvo.</p>
+				<div>
+					<span class="gm"><strong>A</strong>-a</span>
+					<span class="gx"><strong>A</strong><span class="sc">-nom</span></span>
+				</div>
+				<div>
+					<span class="gm">o&gt;dülve-not&lt;eş-u-vo.</span>
+					<span class="gx">&lt;most&gt;big<span class="sc">.stv;ipfv-3;inanim.dct.top-decl-ewts</span></span>
+				</div>
+				<p class="def">“A” is the biggest.</p>
+			</div>
+
+			<h4 id="adimunitive">The Dimunitive Degree</h4>
+			<p>A dimunitive degree also exists, although is used far less often. It consists of  the proclitic <em>mëş</em> or as the circumfix <em>mi—eş</em>. The proclitic is used for the dimunitive comparative, and the circumfix for the dimunitive superlative.</p>
+
+			<div class="gl">
+				<p><strong>A</strong>-a <strong>B</strong>-enöc mëş-dülvenotuvo.</p>
+				<div>
+					<span class="gm"><strong>A</strong>-a</span>
+					<span class="gx sc"><strong>A</strong>-nom</span>
+				</div>
+				<div>
+					<span class="gm"><strong>B</strong>-enöc.</span>
+					<span class="gx sc"><strong>B</strong>-cmp</span>
+				</div>
+				<div>
+					<span class="gm">mëş=dülve-not-u-vo</span>
+					<span class="gx">less=big<span class="sc">.stv;ipfv-3;inanim.dct.top-decl-ewts</span></span>
+				</div>
+				<p class="def">“A” is not as big as “B”.</p>
+
+				<p><strong>A</strong>-a midülvenoteşuvo.</p>
+				<div>
+					<span class="gm"><strong>A</strong>-a</span>
+					<span class="gx"><strong>A</strong><span class="sc">-nom</span></span>
+				</div>
+				<div>
+					<span class="gm">mi&gt;dülve-not&lt;eş-u-vo</span>
+					<span class="gx">&lt;least&gt;big<span class="sc">.stv;ipfv-3;inanim.dct.top-decl-ewts</span></span>
+				</div>
+				<p class="def">“A” is the least biggest.</p>
+			</div>
+		
+		</div>
+	</body>
+</html>

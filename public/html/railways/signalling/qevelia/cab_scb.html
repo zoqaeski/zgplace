@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Cab Signalling: Speed Control by Beacon</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<base href="../../../../" />
+		<link type="text/css" rel="stylesheet" href="include/css/default.css" title="default" media="all" />
+		<script type="text/javascript" src="/include/js/jquery.dataset.js"></script>
+		<script type="text/javascript" src="/include/js/jquery.animateimg.js"></script>
+		<script type="text/javascript">
+			;(function($){
+				$(function() {
+					var base_path = "/public/img/railways/signalling/qevelia/";
+					var flash = '250';
+
+					$('.SCB_160f').addClass('animate').dataset({intervals: flash, frames: 'ins/SCB_160_active,ins/SCB_off'});
+					$('.SCB_160_1728f').addClass('animate').dataset({intervals: flash, frames: 'ins/SCB_160_active,ins/SCB_160_active_1728'});
+					$('.SCB_160_1152f').addClass('animate').dataset({intervals: flash, frames: 'ins/SCB_160_active,ins/SCB_160_active_1152'});
+					$('.SCB_160_864f').addClass('animate').dataset({intervals: flash, frames: 'ins/SCB_160_active,ins/SCB_160_active_864'});
+					$('.SCB_160_576f').addClass('animate').dataset({intervals: flash, frames: 'ins/SCB_160_active,ins/SCB_160_active_576'});
+					$('.SCB_160_576ff').addClass('animate').dataset({intervals: flash, frames: 'ins/SCB_off,ins/SCB_160_active_576'});
+					$('.SCB_160_576fa').addClass('animate').dataset({intervals: flash, frames: 'ins/SCB_160_active,ins/SCB_active_576'});
+					$('.SCB_160_X40_0f').addClass('animate').dataset({intervals: flash, frames: 'ins/SCB_160_active_X40,ins/SCB_160_active_X40_stop'});
+
+					// Animation defined here
+					$('.animate').each(function(index, value) {
+						$(this).animateImg({base_path: base_path});
+					});
+				});
+			})(jQuery);
+		</script>
+	</head>
+	<body>
+		<div id="body">
+
+			<h1 class="title">Qevelian Railway Signalling</h1>
+
+			<h1>Cab Signalling: Speed Control by Beacon</h1>
+
+<p>Following electrification of the main lines, a cab signalling system was developed that transmits the speed indication of the next main signal to the train, and where multiple-aspect automatic block signalling is in use, the indication of the current main signal as well. As it directly influences the train's speed, the system is referred to as <em>Speed Control by Beacon</em> (SCB). </p>
+
+			<h2>History</h2>
+
+			<p class="em">(To be written...)</p>
+
+			<h2>Basic Operation</h2>
+
+			 <p>Inductive beacons located inside the left-hand rail are connected to passive resonance circuits that are tuned to a set number of frequencies which correspond to the number of speed indications the signal can display. An antenna mounted on the locomotive continuously emits magnetic fields with those frequencies. </p>
+
+			<p>When the system is inactive, the trackside relay is shorted and cannot resonate. If the circuit is active, and the magnet is passed by the locomotive's antenna, it will begin resonating at its proper frequency, extracting energy from the locomotive's magnet and reducing the voltage by 80–90%. This voltage drop is detected by the onboard subsystems, which then perform the appropriate action. </p>
+
+			<p>There are normally three trackside resonators located along the track at specific points. At the distant signal is the arming magnet, which is active if the main signal is at Stop or displays a speed restriction. Approximately 300 metres before the main signal is a second magnet, used to transmit the speed restriction. At the main signal is a third magnet, which enforces the speed restrictions imposed by the arming magnet. If the main signal is at Stop, this magnet activates an unconditional braking application that will bring the train to a standstill. </p>
+
+			<h3>Magnets and Frequencies</h3>
+
+			<p>The magnets resonate at the following frequencies: </p>
+
+			<table>
+				<tr>
+					<th colspan="2">Signal Aspect</th>
+					<th rowspan="2">Distant signal magnet</th>
+					<th rowspan="2">Approach magnet</th>
+					<th rowspan="2">Main signal magnet</th>
+				</tr>
+				<tr>
+					<th>Distant Signal</th>
+					<th>Main Signal</th>
+				</tr>
+				<tr>
+					<td class="strong">Expect Clear</td>
+					<td class="strong">Clear</td>
+					<td colspan="3">All magnets are deactivated</td>
+				</tr>
+				<tr>
+					<td class="strong">Expect Reduced Stop*</td>
+					<td class="strong">Expect Stop*</td>
+					<td>1728 Hz</td>
+					<td>—</td>
+					<td>—</td>
+				</tr>
+				<tr>
+					<td class="strong">Expect Medium</td>
+					<td class="strong">84 km/h</td>
+					<td>1728 Hz</td>
+					<td>—</td>
+					<td>—</td>
+				</tr>
+				<tr>
+					<td class="strong">Expect Medium</td>
+					<td class="strong">60 km/h</td>
+					<td>1728 Hz</td>
+					<td>864 Hz</td>
+					<td>—</td>
+				</tr>
+				<tr>
+					<td class="strong">Expect Medium</td>
+					<td class="strong">36 km/h</td>
+					<td>1152 Hz</td>
+					<td>576 Hz</td>
+					<td>—</td>
+				</tr>
+				<tr>
+					<td class="strong">Expect Stop</td>
+					<td class="strong">Stop</td>
+					<td>1152 Hz</td>
+					<td>576 Hz</td>
+					<td>2592 Hz</td>
+				</tr>
+			</table>
+			<p>The <em>Reduced Stop</em> aspect is only available on four-aspect automatic block lines and is a recent addition. The next magnet encountered will normally be warning of an <em>Expect Stop</em> indication; consequently, the following signal must also be capable of displaying distant aspects. </p>
+
+			<p>In order to transmit each of the set frequencies at the control points, a series of magnets is provided, each of which can resonate at the appropriate frequency. They are normally arranged such that the most restrictive magnet is encountered last. In some newer installations, switchable resonance circuits coupled to a single magnet are provided. </p>
+
+			<h4>Distant magnet</h4>
+
+			<p>The distant magnet can resonate at 1152 Hz or 1728 Hz. As distant signals are located approximately 1200 metres from main signals, and main signals have a 200 metre overlap, this gives 1400 metres of protection from the potential obstruction. </p>
+
+			<p>If the distant magnet is detected, the driver must acknowledge it within four seconds; failure to do so results in a full service brake application. It announces that the next main signal requires a speed restriction, for either a turnout route or a signal at Stop. After the driver has acknowledged the signal, a set speed limit is applied that is specific to the train type. This limit is gradually reduced to a lower limit over the next 24 seconds, and that restriction is then enforced for the next 1200 metres. After 800 metres the driver can release themselves from the restriction, but if another active magnet is detected within the next 1200 metres an emergency braking is enforced. </p>
+
+			<p>The limits imposed by the distant magnet are defined in the following table. As they are soft-coded in the system software (in the most recent update of the specification), additional train types and limits can be defined for specialised situations. </p>
+
+			<table>
+				<caption>Speed restrictions at distant magnet</caption>
+				<tr>
+					<th>Train Type</th>
+					<th>Typical Composition</th>
+					<th>Initial Speed</th>
+					<th>Target Speed (1728 Hz)</th>
+					<th>Target Speed (1152 Hz)</th>
+				</tr>
+				<tr>
+					<td>160</td>
+					<td>Passenger</td>
+					<td>160 km/h</td>
+					<td>100 km/h</td>
+					<td>88 km/h</td>
+				</tr>
+				<tr>
+					<td>124</td>
+					<td>Passenger, Express Freight</td>
+					<td>124 km/h</td>
+					<td>88 km/h</td>
+					<td>76 km/h</td>
+				</tr>
+				<tr>
+					<td>100</td>
+					<td>Fast Freight</td>
+					<td>100 km/h</td>
+					<td>88 km/h</td>
+					<td>64 km/h</td>
+				</tr>
+				<tr>
+					<td>76</td>
+					<td>Slow Freight</td>
+					<td>76 km/h</td>
+					<td>76 km/h</td>
+					<td>52 km/h</td>
+				</tr>
+				<tr>
+					<td>Z40</td>
+					<td>Shunting movement</td>
+					<td>52 km/h</td>
+					<td>52 km/h</td>
+					<td>48 km/h</td>
+				</tr>
+			</table>
+
+			<h4>Approach magnet</h4>
+
+			<p>This magnet is active if the main signal shows a speed restriction to 60 km/h or less. A frequency of 864 Hz enforces a speed limit of 64 km/h. </p>
+			<p>If a frequency of 576 Hz is detected, a limit of 64 km/h is also enforced, but this is reduced to 40 km/h within the next 200 metres. </p>
+			<p>All of these speed limits stay active for 600 metres past the magnet, and release from these limits is not possible. </p>
+
+			<h4>Main signal magnet</h4>
+
+			<p>The main signal magnet is only active if the signal is at Stop, and resonates at 2592 Hz which immediately triggers an emergency brake application. </p>
+
+
+			<h4>Sequence of Operation</h4>
+
+			<p>The following graph shows how the magnets influence the train speed: </p>
+
+			<div class="nbox">
+				<img src="dia/SCB_type_160_curve.png" />
+				<p class="caption">Braking curve chart for Train Type 160. The red lines indicate the restrictions for a train approaching a signal at Stop or a 36 km/h speed restriction; the green lines indicate the restrictions for a train approaching some other speed restriction. </p>
+				<p class="caption">The green dashed line is the ideal braking curve for a train approaching a signal at Stop from 100 km/h, such as would occur on lines with two blocks warning (assuming 1200 metre blocks). </p>
+				<!--<p class="caption">Note that for the higher speed limits, the restrictions imposed by the system are greater than the “perfect” braking rate required to slow a train down to the prescribed limit. This is because the system requires that the driver prove they are in control of the train, hence the stepped-speed control; historically it was due to limitations in the hardware. </p>-->
+			</div>
+
+			<p>In the above diagram, the distance between the distant signal and the main signal is approximately 1200 metres. Lines with half-size blocks, as is common in sections with higher-density traffic, will use the same braking curve but place the 1152 Hz magnet at the second signal from the main signal at Stop. The intermediate signal will also have a 1152 Hz magnet, although it will not enforce any restrictions (provided the driver is taking the appropriate actions).   </p>
+
+			<h3>In-Cab Display</h3>
+
+			<p>The status of SCB is indicated to the driver by an array of lights. A number of switches and buttons are provided to allow the driver to interact with the system; these have not been illustrated here. </p>
+
+			<div class="ibox">
+				<img src="ins/SCB_off.png" />
+				<img src="ins/SCB_on.png" />
+				<p class="caption"><span class="nf">SCB</span> cab display. The train type is indicated from right-to-left on the top row, arranged by maximum speed. The yellow and orange lights on the bottom row indicate the current active magnet; the chequerboard indicates an emergency brake application. </p>
+			</div>
+
+			<h4>Sequence of Operation</h4>
+
+			<p>For the following example, the train type has been set to <em>Type 160</em> (fast passenger). For other train types the speeds and timers differ, although the principle remains the same. </p>
+
+			<div class="ibox">
+				<img src="ins/SCB_160_active.png" />
+			</div>
+
+				<p>In the default state the “160” light is lit. As no magnet light is lit, SCB is not monitoring train speed. Before departure the driver had to enter the train details into the onboard computer, including its length, mass, brake type, and maximum permitted speed, as well as the train type. Using this initial data the onboard computer is able to calculate braking and acceleration curves. </p>
+
+			<div class="ibox">
+				<img src="ins/SCB_160_active_1152.png" class="SCB_160_1152f" />
+			</div>
+
+			<div class="ibox">
+				<img src="ins/SCB_160_active_1152.png" />
+			</div>
+
+			<p>Upon passing the 1152 Hz magnet, the “1152” flashes until the driver acknowledges it within four seconds. The steady light comes on after the acknowledgement button has been released, and serves as a reminder that a speed limit is active. They then have 18 seconds to reduce to 88 km/h. </p>
+
+			<div class="ibox">
+				<img src="ins/SCB_160_active.png" class="SCB_160f" />
+			</div>
+
+			<p>After 800 metres the “1152” light turns off, so the driver could release themselves from the speed limit, for example if they saw the main signal clear. Unless they do so, the limit remains active, and this is indicated by the “160” light, which now flashes. </p>
+
+			<p>Assuming the main signal remains at Stop, the driver continues to reduce speed, and at 300 metres before the main signal the 576 Hz magnet is detected. Again, the light flashes for a maximum of four seconds until the driver acknowledges it. </p>
+
+			<div class="ibox">
+				<img src="ins/SCB_160_active_576.png" class="SCB_160_576f" />
+			</div>
+
+			<div class="ibox">
+				<img src="ins/SCB_160_active_576.png" />
+			</div>
+
+			<p>The speed must not exceed 64 km/h at this point, and the driver must further reduce speed to 40 km/h over the next 200 metres. They must not exceed that speed until they reach the main signal, at which point they will come to a halt. </p>
+
+			<div class="ibox">
+				<img src="ins/SCB_160_active_576.png" class="SCB_160_576fa" />
+			</div>
+
+			<p>As soon as the train halts, or travels at 12 km/h or less for at least 15 seconds, the speed is further restricted to 24 km/h. This is indicated by alternately flashing the “160” and “576” lights. </p>
+
+			<p>The driver stops at the main signal. </p>
+
+			<p>When the signal clears, the 576 Hz speed limit remains active, so the driver may accelerate to no faster than this speed. After 200 m, the speed limit is raised to 40 km/h for a further 100 metres, before being released completely. The driver can then reset the speed limit. </p>
+
+			<h5>Main signal releases to Calling-On or Shunt Ahead</h5>
+
+			<p>There are a number of situations in which it is permissable to pass a main signal at Stop, such as entry into an occupied block for coupling moves, or verbal permission from the signalman to pass a failed signal. If the driver receives permission to pass a signal at Stop, they can temporarily disable SCB to prevent the emergency brake application. From then on, all magnets will be ignored (except for Stop magnets, which will sound an alert that the driver has passed a signal at Stop), but a maximum speed of 40 km/h will be enforced, until the driver re-enables SCB monitoring. They must not re-enable SCB until passing a clear signal. </p>
+
+			<p>As with normal acceleration after a halt, the speed is restricted to 24 km/h for the first 200 m, before being raised to 40 km/h. </p>
+
+			<div class="ibox">
+				<img src="ins/SCB_160_active_X40.png" />
+			</div>
+
+			<p>Upon passing a signal at Stop, the “Stop” light will flash and the driver must acknowledge it within four seconds. The light will go out after the train has travelled 200 m. </p>
+
+			<div class="ibox">
+				<img src="ins/SCB_160_active_X40_stop.png" class="SCB_160_X40_0f" />
+			</div>
+
+			<h5>Main signal clears</h5>
+
+			<p>If the main signal clears before the train passes the 576 Hz magnet, the driver can release themselves from the speed limit and accelerate to the speed specified by the signal. A speed restriction of between 40–60 km/h will activate the 864 Hz magnet. </p>
+
+			<p>If the train has already passed the 576 Hz magnet, the restrictions enforced by that magnet are enforced for 600 metres past that point. </p>
+
+			<h4>Reduced Speed Approach Release</h4>
+
+			<p>If the main signal displays a reduced speed aspect, the sequence is similar to the approach to Stop. A speed limit between 60 and 100 km/h will cause the distant signal's 1728 Hz magnet to resonate instead of the 1152 Hz magnet, and this enforces a speed restriction of 100 km/h. </p>
+
+			<div class="ibox">
+				<img src="ins/SCB_160_active_1728.png" class="SCB_160_1728f" />
+			</div>
+
+			<div class="ibox">
+				<img src="ins/SCB_160_active_1728.png" />
+			</div>
+
+			<p>If the main signal displays a restriction of 60 km/h, the approach magnet will resonate at 864 Hz: </p>
+
+
+			<div class="ibox">
+				<img src="ins/SCB_160_active_864.png" class="SCB_160_864f" />
+			</div>
+
+			<div class="ibox">
+				<img src="ins/SCB_160_active_864.png" />
+			</div>
+
+			<p>Upon passing the approach magnet, the driver must immediately reduce to the specified limit, which is enforced for the following 600 metres. </p>
+
+			<h2>Speed Supervision</h2>
+
+			<p>The inductive track magnets can also be used to enforce other speed restrictions, although they were not originally designed for this purpose. This can be done by either of two methods. </p>
+
+			<h3>Permanent Warning Magnet</h3>
+
+			<p>At the announcement board a permanent 1152 Hz magnet is provided. This will enforce a speed restriction of between 84 and 60 km/h, depending on the train type. In most cases this is only used to announce a speed restriction, as release from this limit is possible after 800 metres. </p>
+
+			<h3>Timing Loops</h3>
+
+			<p>A more flexible method of speed supervision uses timing loops. A device detects the approach of the train and activates a track magnet resonating at 864 Hz, 1008 Hz or 2592 Hz. A timer is set, and after a preset time the magnet is deactivated. If the train runs at or below the permitted speed, it will reach the magnet after it has been deactivated, so no action is induced. If the train is travelling too fast, it will reach the magnet while it is still active and be tripped by an emergency brake application. </p>
+
+			<p>The speed restriction to be enforced determines the measurement length. At the start of this length the activation magnet is located; this magnet detects the passing of the train and activates the overspeed trip magnet. A deactivation magnet is located approximately 12 metres before the activation magnet; this ensures the system is always in a defined state before the train reaches the timing loop. The distance between the activation and penalty magnets is slightly longer than 150 metres. </p>
+
+			<table>
+				<tr>
+					<th>Limit</th>
+					<th>Overspeed tolerance</th>
+					<th>Magnet resonance frequency</th>
+					<th>Timer duration</th>
+				</tr>
+				<tr>
+					<td>36 km/h</td>
+					<td>48 km/h</td>
+					<td>576 Hz</td>
+					<td>11.4750 s</td>
+				</tr>
+				<tr>
+					<td>48 km/h</td>
+					<td>60 km/h</td>
+					<td>864 Hz</td>
+					<td>9.1800 s</td>
+				</tr>
+				<tr>
+					<td>60 km/h</td>
+					<td>72 km/h</td>
+					<td>864 Hz</td>
+					<td>7.6500 s</td>
+				</tr>
+				<tr>
+					<td>72 km/h</td>
+					<td>84 km/h</td>
+					<td>1008 Hz</td>
+					<td>6.5571 s</td>
+				</tr>
+				<tr>
+					<td>84 km/h</td>
+					<td>96 km/h</td>
+					<td>1008 Hz</td>
+					<td>5.7375 s</td>
+				</tr>
+				<tr>
+					<td>96 km/h</td>
+					<td>108 km/h</td>
+					<td>2592 Hz</td>
+					<td>5.1000 s</td>
+				</tr>
+				<tr>
+					<td>108 km/h</td>
+					<td>120 km/h</td>
+					<td>2592 Hz</td>
+					<td>4.5900 s</td>
+				</tr>
+				<tr>
+					<td>120 km/h</td>
+					<td>132 km/h</td>
+					<td>2592 Hz</td>
+					<td>4.1727 s</td>
+				</tr>
+				<tr>
+					<td>132 km/h</td>
+					<td>144 km/h</td>
+					<td>2592 Hz</td>
+					<td>3.8250 s</td>
+				</tr>
+				<tr>
+					<td>144 km/h</td>
+					<td>156 km/h</td>
+					<td>2592 Hz</td>
+					<td>3.5308 s</td>
+				</tr>
+				<tr>
+					<td>156 km/h</td>
+					<td>168 km/h</td>
+					<td>2592 Hz</td>
+					<td>3.2786 s</td>
+				</tr>
+				<tr>
+					<td>168 km/h</td>
+					<td>180 km/h</td>
+					<td>2592 Hz</td>
+					<td>3.0600 s</td>
+				</tr>
+				<tr>
+					<td>180 km/h</td>
+					<td>192 km/h</td>
+					<td>2592 Hz</td>
+					<td>2.8688 s</td>
+				</tr>
+				<tr>
+					<td>192 km/h</td>
+					<td>204 km/h</td>
+					<td>2592 Hz</td>
+					<td>2.7000 s</td>
+				</tr>
+				<tr>
+					<td>204 km/h</td>
+					<td>216 km/h</td>
+					<td>2592 Hz</td>
+					<td>2.5500 s</td>
+				</tr>
+				<tr>
+					<td>216 km/h</td>
+					<td>228 km/h</td>
+					<td>2592 Hz</td>
+					<td>2.4158 s</td>
+				</tr>
+				<tr>
+					<td>228 km/h</td>
+					<td>240 km/h</td>
+					<td>2592 Hz</td>
+					<td>2.2950 s</td>
+				</tr>
+				<tr>
+					<td>240 km/h</td>
+					<td>252 km/h</td>
+					<td>2592 Hz</td>
+					<td>2.1857 s</td>
+				</tr>
+			</table>
+
+			<p>Although the specification permits inductive timing loops to be used at speeds of up to 240 km/h, in practice they are only installed for speeds up to 156 km/h. Higher speeds are monitored using <a href="/railways/signalling/qevelia/cab_ltc" class="em">Linear Train Control</a>. </p>
+
+		</div>
+	</body>
+</html>
