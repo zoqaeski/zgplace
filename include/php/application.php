@@ -7,6 +7,9 @@
  * - Separate HTMLFilter into Filter module and add test support for other inputs
  */
 
+require_once("modules/simple_html_dom.php");
+require_once("filters/html.php");
+
 class Application {
 
 	// The _GET variables
@@ -19,15 +22,17 @@ class Application {
 
 	// The site name/toplevel index directory.
 	private $toplevel = '/';
-	// private $toplevel = '/zgplace/';
 
 	// The directories where all pages are stored.
-	private $public_dir = '../public/html/';
-	// private $public_dir = $this->toplevel.'public/html/';
+	private $public_dir = '../public/';
+	private $public_html_dir = '../public/html/';
+
+	// Errors are here.
 	private $errors_dir = '../include/html/errors/';
 
 	// Whether we have a 404 error.
 	public $is_error_404 = false;
+	//public $error_type = false;
 
 	/*
 	 * Creates a new Application.
@@ -52,16 +57,16 @@ class Application {
 		}
 
 		// First, we check to see if the file exists and we can read it
-		if(file_exists($this->public_dir . $page . '.html')) {
-			$path = $this->public_dir . $page. '.html';
-		} elseif(file_exists($this->public_dir . $page . '/index.html')) {
-			$path = $this->public_dir . $page . '/index.html';
+		if(file_exists($this->public_html_dir . $page . '.html')) {
+			$path = $this->public_html_dir . $page. '.html';
+		} elseif(file_exists($this->public_html_dir . $page . '/index.html')) {
+			$path = $this->public_html_dir . $page . '/index.html';
 			$is_index = true;
 		} else {
-			// Otherwise we load my customised 404 page.
-			$path = $this->errors_dir . '404.html';
 			$this->is_error_404 = true;
 			header('HTTP/1.1 404 Not Found');
+			// Otherwise we load my customised 404 page.
+			$path = $this->errors_dir . '404.html';
 		}
 
 		if($is_index) {
@@ -100,9 +105,9 @@ class Application {
 		} else {
 			// Generate menu
 			if($is_index) {
-				$page_menu_path = dirname($this->public_dir . $page . "/index.html") . "/menu.html";
+				$page_menu_path = dirname($this->public_html_dir . $page . "/index.html") . "/menu.html";
 			} else {
-				$page_menu_path = dirname($this->public_dir . $page) . "/menu.html";
+				$page_menu_path = dirname($this->public_html_dir . $page) . "/menu.html";
 			}
 
 			$menu = $this->menugen($page_menu_path, $page_topic);
@@ -122,13 +127,13 @@ class Application {
 
 	/*
 	 * Generates the main menu by loading the page menu into the appropriate section.
-	 * FIXED: We simplified the parsing of the menu by eliminating one massive DOM traversal object, as I know exactly what the main menu file looks like (hell I could strip it of the extra HTML but I won't). Parsing the sub-menus however requires a DOM as I don't know whether sub-menus will have more than one level of <ul>
+	 * FIXED: We simplified the parsing of the menu by eliminating one massive DOM traversal object, as I know exactly what the main menu file looks like (I could strip it of the extra HTML but I won't: WHY?). Parsing the sub-menus however requires a DOM as I don't know whether sub-menus will have more than one level of <ul>
 	 * @param $vm_path path to page menu
 	 * @param $v_topic page topic
 	 */
 	private function menugen($vm_path, $v_topic) {
 		// Main menu
-		$mm_file = file_get_contents($this->public_dir . 'menu.html');
+		$mm_file = file_get_contents($this->public_html_dir . 'menu.html');
 		preg_match('#<ul>(.*?)</ul>#s', $mm_file, $matches);
 		$main_menu = str_get_html($matches[0]);
 		
@@ -231,61 +236,5 @@ class Application {
 
 		return $page_file;
 	}
-	// This is the old script. I got rid of a DOM parser by replacing regex with simple string replaces using tags I know won't ever appear in my template page.
-	/*private function makepage($title, $menu, $breadcrumbs, $content, $scripts, $is_print) {
-		// The skeleton page is loaded
-		if($is_print == false) {
-			$page_dom = new simple_html_dom("include/html/layout.html");
-		}
-		else {
-			$page_dom = new simple_html_dom("include/html/print.html");
-		}
-
-		// Insert the new title
-		if($title != null) {
-			$page_title = $page_dom->find('title', 0);
-			$page_title->innertext = $title . ' @ ' . $page_title->innertext;
-		}
-
-		if($scripts != null) {
-			$page_head = $page_dom->find('head', 0);
-			$page_head->innertext = $page_head->innertext . $scripts;
-		}
-
-		// Insert the menu
-		if($is_print == false || $menu != null) {
-			$page_sidebar = $page_dom->getElementById("sidebar");
-			$page_sidebar->innertext = $menu;
-		}
-
-		// Insert the breadcrumb trail
-		if($is_print == false || $breadcrumbs != null) {
-			$page_breadcrumbs = $page_dom->getElementById("breadcrumbs");
-			$page_breadcrumbs->innertext = $breadcrumbs;
-		}
-
-		// Set up the print-view links
-		$print_box_href = "$this->toplevel";
-		if($is_print) {
-			$print_box_href = $print_box_href . $this->getvars['page'];
-		}
-		else {
-			$print_box_href = $print_box_href . "print/" . $this->getvars['page'];
-		}
-		$page_dom->find("#printContainer a", 0)->setAttribute("href", $print_box_href);
-
-		// Load the content
-		if($content != null) {
-			if($is_print) {
-				$page_content = $page_dom->getElementById("print-content");
-			}
-			else {
-				$page_content = $page_dom->getElementById("content");
-			}
-			$page_content->innertext = $page_content->innertext . $content;
-		}
-
-		//return $page_dom->save();
-	}*/
 }
 ?>
