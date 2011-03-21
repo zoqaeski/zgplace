@@ -10,7 +10,7 @@
 
 /* THE BODY!!! */
 body {
-	color: #505050;
+	color: #404040;
 	background: #282828;
 	/*font-family:  "DejaVu Serif", "Georgia", "Droid Serif", "Times", "Times New Roman", serif;*/
 	font-family: "DejaVu Sans", "Lucida Grande", "Verdana", "Helvetica", "Arial", sans-serif;
@@ -37,7 +37,7 @@ body {
 
 #tools {
 	background: #242424;
-	color: #909090;
+	color: #a0a0a0;
 	float: right;
 	font-family: "DejaVu Sans", "Droid Sans", "Verdana", "Helvetica", "Arial", sans-serif;
 	font-size: 90%;
@@ -55,7 +55,7 @@ body {
 }
 
 #tools a, #tools a:link, #tools a:visited {
-	color: #909090;
+	color: #a0a0a0;
 	text-decoration: none;
 }
 
@@ -89,6 +89,7 @@ body {
 
 #breadcrumbs {
 	background: #404040;
+	color: #a0a0a0;
 	display: block;
 	float: right;
 	font-family: "DejaVu Sans", "Droid Sans", "Verdana", "Helvetica", "Arial", sans-serif;
@@ -101,14 +102,13 @@ body {
 }
 
 #breadcrumbs p {
-	color: #909090;
 	margin: 0;
 	padding: 1em;
 	text-align: right;
 }
 
 #breadcrumbs a, #breadcrumbs a:link, #breadcrumbs a:visited {
-	color: #909090;
+	color: #a0a0a0;
 	text-decoration: none;
 }
 
@@ -203,11 +203,11 @@ border-top: 1px solid #d8d8d8;
 #sidebar a:hover, #sidebar a:active, #sidebar a:focus {
 	outline: medium none 0px;
 	font-weight: inherit;
-	/*color: #c00000;*/
+	color: #fa6000;
 }
 
 #sidebar a:active, #sidebar a:focus {
-	/*color: #ff6000;*/
+	color: #fc8000;
 }
 
 #breadcrumb {
@@ -245,7 +245,7 @@ border-top: 1px solid #d8d8d8;
 
 /* Links */
 a, a:link, a:visited {
-	color: #505050;
+	color: #404040;
 	text-decoration: none;
 }
 
@@ -269,7 +269,6 @@ a.permalink {
 	text-decoration: none !important;
 }
 a.permalink:hover, a.permalink:active {
-	/*color: #fcfcfc !important;*/
 	text-decoration: none !important;
 }
 
@@ -345,7 +344,7 @@ dl.dictionary dt.h {
 
 /* Boxes */
 .infobox {
-	/*border-color: #d0d0d0;*/
+	border-color: #909090;
 	clear: right;
 	float: right;
 }
@@ -361,7 +360,7 @@ dl.dictionary dt.h {
 }
 
 .thumb {
-	/*background: #e8e8e8;*/
+	/*background: #d0d0d0;*/
 }
 
 .thumb > img, .thumb > a, .thumb > .signal {
@@ -373,16 +372,16 @@ dl.dictionary dt.h {
 }
 
 .letter strong {
-	/*background: #e8e8e8;*/
+	/*background: #d0d0d0;*/
 }
 
 .noFloatImg {
-	/*background: #e8e8e8;*/
+	/*background: #d0d0d0;*/
 	/*border: 1px solid #d0d0d0;*/
 }
 
 .hbox, .ibox {
-	/*border-color: #d0d0d0;*/
+	border-color: #b0b0b0;
 }
 
 .nbox {
@@ -394,17 +393,17 @@ dl.dictionary dt.h {
 }
 
 .hbox .heading {
-	/*background: #e8e8e8;*/
-	/*border-color: #d0d0d0;*/
+	background: #d0d0d0;
+	border-color: #b0b0b0;
 }
 
 td, th {
-	/*border: 1px solid #d0d0d0;*/
+	border-color: #b0b0b0;
 	line-height: 1.2em;
 }
 
 .normal tr td, .normal tr th {
-	/*border: 1px solid #d0d0d0 !important;*/
+	border-color: #b0b0b0;
 }
 
 /*tbody > tr > th {*/
@@ -412,7 +411,7 @@ td, th {
 /*}*/
 
 th, .normal tr th, thead th {
-	/*background: #e8e8e8;*/
+	background: #d0d0d0;
 	font-weight: bold;
 }
 

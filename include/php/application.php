@@ -51,9 +51,11 @@ class Application {
 		$is_printview = (boolean) $this->getvars['print'];
 		$is_index = false;
 		$is_menu = false;
+		$is_home = false;
 
 		if(($page == '') || ($page == 'index') || ($page == 'home')) {
 			$page = 'index';
+			$is_home = true;
 		}
 
 		// First, we check to see if the file exists and we can read it
@@ -113,12 +115,7 @@ class Application {
 			$menu = $this->menugen($page_menu_path, $page_topic);
 
 			// Make breadcrumb trail
-			if($page == 'index') {
-				$breadcrumbs = null;
-			}
-			else {
-				$breadcrumbs = $this->makebreadcrumbs($page_title);
-			}
+			$breadcrumbs = $this->makebreadcrumbs($page_title, $is_home);
 
 			// Make normal page
 			return $this->makepage($page_title, $menu, $breadcrumbs, $page_content, $page_scripts, false);
@@ -157,26 +154,30 @@ class Application {
 	 * Generates a breadcrumb-style trail.
 	 * @param &$title The title of the page.
 	 */
-	private function makebreadcrumbs(&$title) {
-		$path = $this->getvars['page'];
-		$path_array = explode('/', $path);
-		$path_hrefs = array();
-		$ltsearch = array('/_/', '/\buk\b/');
-		$ltreplace = array(' ', 'United Kingdom');
+	private function makebreadcrumbs(&$title, $is_home) {
+		if($is_home == false) {
+			$path = $this->getvars['page'];
+			$path_array = explode('/', $path);
+			$path_hrefs = array();
+			$ltsearch = array('/_/', '/\buk\b/');
+			$ltreplace = array(' ', 'United Kingdom');
 
-		for($p = sizeof($path_array) - 2; $p >= 0; $p--) {
-			$link_text = ucwords(preg_replace($ltsearch, $ltreplace, $path_array[$p]));
-			$path = substr($path, 0, strlen($path) - strlen(strrchr($path, '/')));
-			$path_hrefs[$p] = '<a href="' .$this->toplevel . $path . '">' . $link_text . '</a>';
+			for($p = sizeof($path_array) - 2; $p >= 0; $p--) {
+				$link_text = ucwords(preg_replace($ltsearch, $ltreplace, $path_array[$p]));
+				$path = substr($path, 0, strlen($path) - strlen(strrchr($path, '/')));
+				$path_hrefs[$p] = '<a href="' .$this->toplevel . $path . '">' . $link_text . '</a>';
+			}
+
+			$trail = '';
+
+			foreach($path_hrefs as $ph) {
+				$trail = $ph . ' » ' . $trail;
+			}
+
+			$trail = '<p><a href="' . $this->toplevel .'">Home</a> » ' . $trail . $title . '</p>';
+		} else {
+			$trail = '<p>You are at the Home Page</p>';
 		}
-
-		$trail = '';
-
-		foreach($path_hrefs as $ph) {
-			$trail = $ph . ' » ' . $trail;
-		}
-
-		$trail = '<p><a href="' . $this->toplevel .'">Home</a> » ' . $trail . $title . '</p>';
 		//$trail .= $path_array[sizeof($path_array) - 1];
 
 		return $trail;	
