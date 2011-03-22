@@ -73,71 +73,80 @@ class Application {
 
 		if($is_index) {
 			$srcdir = $page;
+			$page_menu_path = dirname($this->public_html_dir . $page . "/index.html") . "/menu.html";
 		} else {
 			$srcdir = dirname($page);
+			$page_menu_path = dirname($this->public_html_dir . $page) . "/menu.html";
 		}
 
 		// The page topic is the toplevel directory.
 		$path_dirs = explode('/', $page);
-		$page_topic = $path_dirs[0];
 
+		// Initialise menu
+		$menu_meta = $this->getLocalMenu($page_menu_path, $page);
+
+		// Create page DOM and initialise its metadata.
 		$pageDOM = new simple_html_dom($path);
-
 		$page_htmlfilter = new HTMLFilter($pageDOM);
-
-		// Get metadata
 		$page_meta = $page_htmlfilter->parseMetaComment();
-		
+
 		// Get title
-		$page_title = $page_htmlfilter->getTitle();
+		$page_meta['title'] = $page_htmlfilter->getTitle();
+		$page_meta['topic'] = $path_dirs[0];
 
 		// Generate content
 		if( ! $this->is_error_404) {
-			$page_content = $page_htmlfilter->applyFilter($srcdir);
+			$page_meta['content'] = $page_htmlfilter->applyFilter($srcdir);
 		}
 
 		// Load scripts
-		$page_scripts = $page_htmlfilter->findScriptElements();
+		$page_meta['scripts'] = $page_htmlfilter->findScriptElements();
 
-		$page_content = $pageDOM->find('body', 0)->innertext;
+		$page_meta['content'] = $pageDOM->find('body', 0)->innertext;
 
 		if($is_printview) {
 			// Make print page
-			return $this->makepage($page_title, null, null, $page_content, null, true);
+			return $this->makepage($page_meta['title'], null, null, $page_meta['content'], null, true);
 		} else {
-			// Generate menu
-			if($is_index) {
-				$page_menu_path = dirname($this->public_html_dir . $page . "/index.html") . "/menu.html";
-			} else {
-				$page_menu_path = dirname($this->public_html_dir . $page) . "/menu.html";
-			}
-
-			$menu = $this->menugen($page_menu_path, $page_topic);
+			// Generate Menu
+			$menu = $this->menugen($menu_meta['content'], $page_meta['topic']);
 
 			// Make breadcrumb trail
-			$breadcrumbs = $this->makebreadcrumbs($page_title, $is_home);
+			$breadcrumbs = $this->makebreadcrumbs($page_meta['title'], $is_home);
 
 			// Make normal page
-			return $this->makepage($page_title, $menu, $breadcrumbs, $page_content, $page_scripts, false);
+			return $this->makepage($page_meta['title'], $menu, $breadcrumbs, $page_meta['content'], $page_meta['scripts'], false);
 		}
 	}
 
 	/*
-	 * Generates the main menu by loading the page menu into the appropriate section.
-	 * FIXED: We simplified the parsing of the menu by eliminating one massive DOM traversal object, as I know exactly what the main menu file looks like (I could strip it of the extra HTML but I won't: WHY?). Parsing the sub-menus however requires a DOM as I don't know whether sub-menus will have more than one level of <ul>
-	 * @param $vm_path path to page menu
-	 * @param $v_topic page topic
+	 * Generates the local menu and stores it in a key-value array.
+	 * @param $vm_path path to the local menu
+	 * @param $ref_page referring page
 	 */
-	private function menugen($vm_path, $v_topic) {
+	private function getLocalMenu($vm_path, $ref_page) {
+		$vm_DOM = new simple_html_dom($vm_path);
+		$vm_filter = new HTMLFilter($vm_DOM);
+		$vm_meta = $vm_filter->parseMetaComment();
+
+		// TODO generate Next/Previous links
+		
+		$vm_meta['content'] = $vm_DOM->find('.levelTwo', 0)->outertext;
+		return $vm_meta;
+	}
+
+	/*
+	 * Generates the main menu by loading the page menu into the appropriate section.
+	 * The main menu file is a HTML skeleton, which we import and extract just the menu list <ul>. This is then turned into a HTML DOM object that is browsed to find the appropriate section into which the local menu is inserted. It's a somewhat wasteful way of importing the data but I'm not entirely sure how to improve this.
+	 * @param $vm_path path to page menu
+	 * @param $v_topic page topic, or section to put generate menu data.
+	 */
+	private function menugen($vm_data, $v_topic) {
 		// Main menu
 		$mm_file = file_get_contents($this->public_html_dir . 'menu.html');
 		preg_match('#<ul>(.*?)</ul>#s', $mm_file, $matches);
 		$main_menu = str_get_html($matches[0]);
 		
-		// Local menu
-		$vm_DOM = new simple_html_dom($vm_path);
-		$vm_data = $vm_DOM->find('ul.levelTwo', 0)->outertext;
-
 		// Determine if the page's topic is an entry in the main menu.
 		if($v_topic != null) {
 			$mm_topic = $main_menu->getElementById($v_topic);
@@ -149,6 +158,30 @@ class Application {
 
 		return $main_menu->save();
 	}
+
+	/*private function menugen($vm_path, $v_topic, $ref_page) {
+		// Main menu
+		$mm_file = file_get_contents($this->public_html_dir . 'menu.html');
+		preg_match('#<ul>(.*?)</ul>#s', $mm_file, $matches);
+		$main_menu = str_get_html($matches[0]);
+		
+		// Read menu data
+		$vm_DOM = new simple_html_dom($vm_path);
+		$vm_filter = new HTMLFilter($vm_DOM);
+		// Extract menu data
+		$vm_data = $vm_DOM->find('.levelTwo', 0)->outertext;
+
+		// Determine if the page's topic is an entry in the main menu.
+		if($v_topic != null) {
+			$mm_topic = $main_menu->getElementById($v_topic);
+
+			if($mm_topic != null) {
+				$mm_topic->innertext = $mm_topic->innertext . $vm_data;
+			}
+		}
+
+		return $main_menu->save();
+	}*/
 
 	/*
 	 * Generates a breadcrumb-style trail.
