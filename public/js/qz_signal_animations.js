@@ -81,7 +81,7 @@
 
 		$('.lr3_yf').addClass('animate').dataset({intervals: fast, frames: 'cl/lr3_off,cl/lr3_y'});
 		$('.lx3_wf').addClass('animate').dataset({intervals: slow, frames: 'roads/lx3_off,roads/lx3_w'});
-		$('.lx3_rf').addClass('animate').dataset({intervals: '50', frames: 'roads/lx3_off,roads/lx3_r_left,roads/lx3_r,roads/lx3_r_right'});
+		$('.lx3_rf').addClass('animate').dataset({intervals: '300', frames: 'roads/lx3_r_left,roads/lx3_r_right'});
 
 		$('.af_lf').addClass('animate').dataset({intervals: fast, frames: 'cl/af_off,cl/af_l'});
 
