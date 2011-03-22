@@ -8,9 +8,15 @@ class HTMLFilter {
 
 	var $metadata;
 
-	function HTMLFilter(&$pageDOM) {
+	// New-style constructor.
+	function __construct(&$pageDOM) {
 		$this->pageDOM =& $pageDOM;
 	}
+
+	// New-style destructor.
+	/*function __destruct() {
+		echo "Destroyed filter!";
+	}*/
 
 	function getTitle() {
 		return $this->pageDOM->find('title', 0)->plaintext;
@@ -33,7 +39,7 @@ class HTMLFilter {
 		}
 
 		// Modify links and the like
-		$this->modifyLinks($pageDOM);
+		//$this->modifyLinks($pageDOM);
 		$this->modifyImgs($srcdir);
 
 		return $pageData;
