@@ -60,10 +60,11 @@ class HTMLFilter {
 
 		$tn_top = '<span class="ttop"><a href="#content">Return to Top</a></span>';
 
-		$tn_links = '<div class="tnav">'. $tn_prev . $tn_top . $tn_next . '</div>';
+		$tn_links_top = '<div class="tnavt">'. $tn_prev . $tn_next . '</div>';
+		$tn_links_bottom = '<div class="tnavb">'. $tn_prev . $tn_top . $tn_next . '</div>';
 
 		$tn_place = $this->pageDOM->find("#body", 0);
-		$tn_place->innertext = $tn_place->innertext . $tn_links;
+		$tn_place->innertext = $tn_place->innertext . $tn_links_bottom;
 		//echo $next;
 	}
 
