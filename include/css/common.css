@@ -47,6 +47,7 @@
 	list-style: decimal;
 }
 
+/* Boxes */
 .hbox, .nbox, .ibox {
 	display: table;
 	margin: 0.5em auto 1em;
@@ -78,6 +79,22 @@
 	font-weight: bold;
 	line-height: 1.2em;
 	padding: 0.25em 0.5em;
+}
+
+/* Topic navigation links */
+.tnav {
+	/*border-top: 1px solid;*/
+	font-size: 90%;
+	margin-top: 1em;
+	padding: 0.5em;
+}
+
+.tnext {
+	float: right;
+}
+
+.tprev {
+	float: left;
 }
 
 /* Thumbnails */
