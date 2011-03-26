@@ -45,7 +45,7 @@
 
 			<h2>Operation</h2>
 
-			<p>Linear Train Control operates by sending data packets, or telegrams, between the control centre and the trains. The <em>call telegrams</em> are transmitted at 2592 bits per second using frequency-shift keying on a 36 kHz ± 0.4 kHz carrier, and the train replies with a <em>response telegram</em> transmitted at 1728 bits per second on a 60 kHz ± 0.2 kHz carrier. </p>
+			<p>Linear Train Control operates by sending data packets, or telegrams, between the control centre and the trains. The <em>call telegrams</em> are transmitted at <abbr title="2592 bits per viukit">2215 bits per second</abbr> using frequency-shift keying on a 36 kHz ± 0.4 kHz carrier, and the train replies with a <em>response telegram</em> transmitted at <abbr="1728 bits per viukit">1107 bits per second</abbr> on a 60 kHz ± 0.2 kHz carrier. </p>
 
 			<p>As with lineside signal systems, LTC-equipped track is still divided into blocks of approximately 1200 to 2400 metres long (and sometimes as short as 300 m), but instead of placing signals at each block boundary, only turnouts and stations have fixed signals. Normally only the accepting and starting signals are provided at stations, and turnouts have main signals to indicate the route. Distant signals are not provided, as a continuous in-cab system has no need for these, so <a href="/railways/signalling/qevelia/lineside_signs#Landmark_signs">landmark signs</a> are provided instead. </p>
 
@@ -73,6 +73,7 @@
 					<th>Variable</th>
 					<th>Length</th>
 					<th>Range</th>
+					<th>Resolution</th>
 					<th>Comments</th>
 				</tr>
 				<tr>
@@ -82,20 +83,23 @@
 					<td class="code">M_SYNC</td>
 					<td>10</td>
 					<td>—</td>
+					<td>—</td>
 					<td>Synchronisation data to ensure transmission integrity. </td>
 				</tr>
 				<tr>
 					<td class="code">NID_PACKET</td>
 					<td>3</td>
 					<td></td>
+					<td></td>
 					<td>The default call telegram has an <code>NID_PACKET</code> of 0.</td>
 				</tr>
-				<tr>
+				<!--<tr>
 					<td class="code">L_PACKET</td>
 					<td>8</td>
 					<td>0–255</td>
+					<td></td>
 					<td>Qualifier to indicate the length of the packet, including all header bits. </td>
-				</tr>
+				</tr>-->
 				<tr>
 					<td colspan="4" class="strong">Addressing information</td>
 				</tr>
@@ -107,6 +111,7 @@
 						-1 to -127<br />
 						(254 to 128)
 					</td>
+					<td></td>
 					<td>The zone ID used to address the train. </td>
 				</tr>
 				<tr>
@@ -115,6 +120,7 @@
 					<td>1 to 63<br />
 						-1 to -63
 					</td>
+					<td></td>
 					<td>The ID for the current block. Blocks must be an integer multiple of zones, and there can be up to 63 blocks in a given section. Generally, many shorter blocks are preferable to fewer longer ones, and they can be shorter than the signalled blocks. </td>
 				</tr>
 				<tr>
@@ -124,17 +130,20 @@
 					<td class="code">Q_DIR</td>
 					<td>1</td>
 					<td></td>
+					<td></td>
 					<td>Up/Down</td>
 				</tr>
 				<tr>
 					<td class="code">Q_BRAKETYPE</td>
 					<td>2</td>
 					<td></td>
+					<td></td>
 					<td>Passenger/Freight</td>
 				</tr>
 				<tr>
 					<td class="code">M_BRAKECURVE</td>
 					<td>4</td>
+					<td></td>
 					<td></td>
 					<td>The brake curve number that indicates the train’s rate of deceleration. </td>
 				</tr>
@@ -145,12 +154,14 @@
 					<td class="code">D_BRAKE</td>
 					<td>5</td>
 					<td>0–1589.184 m</td>
+					<td>51.264 m</td>
 					<td class="tj">Distance until brake application must be made. </td>
 				</tr>
 				<tr>
 					<td class="code">D_NOMINAL</td>
-					<td>9</td>
-					<td>0–13097.952 m</td>
+					<td>10</td>
+					<td>0–13110.768 m</td>
+					<td>12.816 m</td>
 					<td class="tj">Nominal braking distance in which a train, travelling at its currently permitted speed, will come to a complete stop. </td>
 				</tr>
 				<tr>
@@ -159,17 +170,16 @@
 				<tr>
 					<td class="code">D_TARGET</td>
 					<td>7</td>
-					<td>0–12918.528 m</td>
-					<td>The distance until the target speed restriction applies, for display to the driver. <br />
-						0–126: Distance in multiples of 102.528 m<br />
-						127: Distance greater than 12918.528 m
-					</td>
+					<td>0–13021.056 m</td>
+					<td>102.528 m</td>
+					<td>The distance until the target speed restriction applies, for display to the driver. </td>
 				</tr>
 				<tr>
 					<td class="code">V_TARGET</td>
 					<td>6</td>
 					<td>0–378 km/h</td>
-					<td>The target speed that the train should accelerate or decelerate to within the target distance. Normally used only for display to the driver. </td>
+					<td>6 km/h</td>
+					<td>The target speed that the train should accelerate or decelerate to within the target distance. This value is displayed to the driver and used as a reference value to check the speed against. </td>
 				</tr>
 				<!--Unnecessary: the gradient information is static -->
 				<!--<tr>
@@ -195,17 +205,20 @@
 					<td class="code">Q_NETWORK</td>
 					<td>2</td>
 					<td>0–3</td>
+					<td></td>
 					<td>Network code for distinguishing between high speed and ordinary main lines. </td>
 				</tr>
 				<tr>
 					<td class="code">Q_RTYPE</td>
 					<td>2</td>
 					<td>0–3</td>
+					<td></td>
 					<td>Response type required. </td>
 				</tr>
 				<tr>
 					<td class="code">Q_VERSION</td>
 					<td>2</td>
+					<td></td>
 					<td></td>
 					<td>Software version used by central computer. </td>
 				</tr>
@@ -213,11 +226,12 @@
 					<td class="code">M_CRC</td>
 					<td>8</td>
 					<td></td>
+					<td></td>
 					<td>A cyclic redundancy check to determine the validity of the telegram. </td>
 				</tr>
 			</table>
 
-			<h5>Change of Section</h5>
+			<!--<h5>Change of Section</h5>
 
 			<p>This telegram is transmitted when the train is about to change section, either at the entry of an LTC controlled line, at the boundary between sections, or when changing tracks. After receiving this telegram, the train will ignore all telegrams not specifically addressed to it, so this telegram is the last sent before one of these operations takes place. </p>
 
@@ -353,7 +367,7 @@
 					<td></td>
 					<td>A cyclic redundancy check to determine the validity of the telegram. </td>
 				</tr>
-			</table>
+			</table>-->
 
 			<h4>Response Telegrams</h4>
 
