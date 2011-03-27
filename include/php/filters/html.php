@@ -25,8 +25,9 @@ class HTMLFilter {
 	/*
 	 * Parses an HTML page DOM
 	 * @param $srcdir The directory to files that are sourced, such as images
+	 * @param $menu_meta Metadata read from the menu files.
 	 */
-	function applyFilter($srcdir) {
+	function applyFilter($srcdir, $menu_meta) {
 
 		// Generate a TOC based on heading hierarchy
 		if($this->metadata['type'] != 'index' && $this->metadata['type'] != 'menu') {
@@ -42,7 +43,29 @@ class HTMLFilter {
 		//$this->modifyLinks($pageDOM);
 		$this->modifyImgs($srcdir);
 
-		return $pageData;
+		if($menu_meta['ordered'] == true) {
+			$this->buildTopicNavLinks($menu_meta['prev'], $menu_meta['next']);
+		}
+
+	}
+
+	function buildTopicNavLinks($prev, $next) {
+		if($prev != null) {
+			$tn_prev = '<span class="tprev">« '. $prev .'</span>';
+		}
+
+		if($next != null) {
+			$tn_next = '<span class="tnext">'. $next .' »</span>';
+		}
+
+		$tn_top = '<span class="ttop"><a href="#content">Return to Top</a></span>';
+
+		$tn_links_top = '<div class="tnavt">'. $tn_prev . $tn_next . '</div>';
+		$tn_links_bottom = '<div class="tnavb">'. $tn_prev . $tn_top . $tn_next . '</div>';
+
+		$tn_place = $this->pageDOM->find("#body", 0);
+		$tn_place->innertext = $tn_place->innertext . $tn_links_bottom;
+		//echo $next;
 	}
 
 	/*

@@ -40,13 +40,22 @@
 		$('.m2rs_rlf').addClass('animate').dataset({intervals: slow, frames: 'cl/m2rs_r,cl/m2rs_rl'});
 		$('.md2rs_rlf').addClass('animate').dataset({intervals: slow, frames: 'cl/md2rs_r,cl/md2rs_rl'});
 		$('.m3cs_rlf').addClass('animate').dataset({intervals: slow, frames: 'cl/m3cs_r,cl/m3cs_rl'});
+		$('.m3rs_rlf').addClass('animate').dataset({intervals: slow, frames: 'cl/m3rs_r,cl/m3rs_rl'});
 		$('.m5ds_rlf').addClass('animate').dataset({intervals: slow, frames: 'cl/m5ds_r,cl/m5ds_rl'});
 		$('.rg3m_rlf').addClass('animate').dataset({intervals: slow, frames: 'cl/rg3m_r,cl/rg3m_rl'});
 
 		$('.m4ps_rlf').addClass('animate').dataset({intervals: slow, frames: 'cl/m4ps_r,cl/m4ps_rl'});
 
-		$('.m3rs_rlf').addClass('animate').dataset({intervals: slow, frames: 'cl/m3rs_r,cl/m3rs_rl'});
+		$('.m2as_lf').addClass('animate').dataset({intervals: slow, frames: 'cl/m2as_off,cl/m2as_l'});
+		$('.m2bs_lf').addClass('animate').dataset({intervals: slow, frames: 'cl/m2bs_off,cl/m2bs_l'});
+		$('.m2rs_lf').addClass('animate').dataset({intervals: slow, frames: 'cl/m2rs_off,cl/m2rs_l'});
+		$('.md2rs_lf').addClass('animate').dataset({intervals: slow, frames: 'cl/md2rs_off,cl/md2rs_l'});
+		$('.m3cs_lf').addClass('animate').dataset({intervals: slow, frames: 'cl/m3cs_off,cl/m3cs_l'});
 		$('.m3rs_lf').addClass('animate').dataset({intervals: slow, frames: 'cl/m3rs_off,cl/m3rs_l'});
+		$('.m5ds_lf').addClass('animate').dataset({intervals: slow, frames: 'cl/m5ds_off,cl/m5ds_l'});
+		$('.rg3m_lf').addClass('animate').dataset({intervals: slow, frames: 'cl/rg3m_off,cl/rg3m_l'});
+		$('.sd2m_lf').addClass('animate').dataset({intervals: slow, frames: 'cl/sd2m_off,cl/sd2m_l'});
+		$('.sd2_lf').addClass('animate').dataset({intervals: slow, frames: 'cl/sd2_off,cl/sd2_l'});
 
 		$('.b4a_gyf').addClass('animate').dataset({intervals: slow, frames: 'cl/b4a_g,cl/b4a_gy'});
 		$('.m5ds_gyf').addClass('animate').dataset({intervals: slow, frames: 'cl/m5ds_g,cl/m5ds_gy'});

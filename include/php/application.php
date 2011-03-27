@@ -18,7 +18,7 @@ class Application {
 	/*
 	// We store the final page in here. This should be a string.
 	public $final_page;
-	*/
+	 */
 
 	// The site name/toplevel index directory.
 	private $toplevel = '/';
@@ -96,7 +96,7 @@ class Application {
 
 		// Generate content
 		if( ! $this->is_error_404) {
-			$page_meta['content'] = $page_htmlfilter->applyFilter($srcdir);
+			$page_meta['content'] = $page_htmlfilter->applyFilter($srcdir, $menu_meta);
 		}
 
 		// Load scripts
@@ -129,8 +129,39 @@ class Application {
 		$vm_filter = new HTMLFilter($vm_DOM);
 		$vm_meta = $vm_filter->parseMetaComment();
 
-		// TODO generate Next/Previous links
-		
+		$vm_links = $vm_DOM->find('a');
+		$vm_size = sizeof($vm_links);
+
+		for($found = false, $c = 0; ! $found && $c < $vm_size;) {
+			$f = strpos($vm_links[$c], $ref_page);
+			if($f === false) {
+				$found = false;
+				++$c;
+			} else {
+				$found = true;
+			}
+		}
+
+		$vc = $vm_links[$c];
+		$vc->innertext = '→ ' . $vc->innertext;
+		$vm_meta['curr'] = $vc;
+		//$vm_meta['curr'] = $vm_links[$c];
+
+		if($vm_meta['ordered'] == true) {
+			if($c > 0) {
+				$vm_meta['prev'] = $vm_links[$c - 1]->outertext;
+			}
+
+			if($c < $vm_size - 1) {
+				$vm_meta['next'] = $vm_links[$c + 1]->outertext;
+			}
+
+			// Do I want these?
+			$vm_meta['first'] = $vm_links[0]->outertext;
+			$vm_meta['last'] = $vm_links[$vm_size - 1]->outertext;
+
+		}
+
 		$vm_meta['content'] = $vm_DOM->find('.levelTwo', 0)->outertext;
 		return $vm_meta;
 	}
@@ -146,7 +177,7 @@ class Application {
 		$mm_file = file_get_contents($this->public_html_dir . 'menu.html');
 		preg_match('#<ul>(.*?)</ul>#s', $mm_file, $matches);
 		$main_menu = str_get_html($matches[0]);
-		
+
 		// Determine if the page's topic is an entry in the main menu.
 		if($v_topic != null) {
 			$mm_topic = $main_menu->getElementById($v_topic);
@@ -164,7 +195,7 @@ class Application {
 		$mm_file = file_get_contents($this->public_html_dir . 'menu.html');
 		preg_match('#<ul>(.*?)</ul>#s', $mm_file, $matches);
 		$main_menu = str_get_html($matches[0]);
-		
+
 		// Read menu data
 		$vm_DOM = new simple_html_dom($vm_path);
 		$vm_filter = new HTMLFilter($vm_DOM);

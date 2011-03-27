@@ -115,7 +115,9 @@
 
 			<p>The distant magnet can resonate at 1152 Hz or 1728 Hz. As distant signals are located approximately 1200 metres from main signals, and main signals have a 200 metre overlap, this gives 1400 metres of protection from the potential obstruction. </p>
 
-			<p>If the distant magnet is detected, the driver must acknowledge it within four seconds; failure to do so results in a full service brake application. It announces that the next main signal requires a speed restriction, for either a turnout route or a signal at Stop. After the driver has acknowledged the signal, a set speed limit is applied that is specific to the train type. This limit is gradually reduced to a lower limit over the next 24 seconds, and that restriction is then enforced for the next 1200 metres. After 800 metres the driver can release themselves from the restriction, but if another active magnet is detected within the next 1200 metres an emergency braking is enforced. </p>
+			<p>If the distant magnet is detected, the driver must acknowledge it within four seconds; failure to do so results in a full service brake application. It announces that the next main signal requires a speed restriction, for either a turnout route or a signal at Stop. After the driver has acknowledged the signal, a set speed limit is applied that is specific to the train type. </p>
+			
+			<!--This limit is gradually reduced to a lower limit over the next 24 seconds, and that restriction is then enforced for the next 1200 metres. After 800 metres the driver can release themselves from the restriction, but if another active magnet is detected within the next 1200 metres an emergency braking is enforced. </p>-->
 
 			<p>The limits imposed by the distant magnet are defined in the following table. As they are soft-coded in the system software (in the most recent update of the specification), additional train types and limits can be defined for specialised situations. </p>
 
@@ -125,8 +127,9 @@
 					<th>Train Type</th>
 					<th>Typical Composition</th>
 					<th>Initial Speed</th>
-					<th>Target Speed (1728 Hz)</th>
-					<th>Target Speed (1152 Hz)</th>
+					<th>Target Speed<br />(1728 Hz)</th>
+					<th>Target Speed<br />(1152 Hz)</th>
+					<th>Timer<br />(1152 Hz)</th>
 				</tr>
 				<tr>
 					<td>160</td>
@@ -134,35 +137,40 @@
 					<td>160 km/h</td>
 					<td>100 km/h</td>
 					<td>88 km/h</td>
+					<td>23 s</td>
 				</tr>
 				<tr>
 					<td>124</td>
 					<td>Passenger, Express Freight</td>
 					<td>124 km/h</td>
 					<td>88 km/h</td>
-					<td>76 km/h</td>
+					<td>72 km/h</td>
+					<td>30 s</td>
 				</tr>
 				<tr>
 					<td>100</td>
 					<td>Fast Freight</td>
 					<td>100 km/h</td>
 					<td>88 km/h</td>
-					<td>64 km/h</td>
+					<td>56 km/h</td>
+					<td>37 s</td>
 				</tr>
 				<tr>
 					<td>76</td>
 					<td>Slow Freight</td>
 					<td>76 km/h</td>
 					<td>76 km/h</td>
-					<td>52 km/h</td>
+					<td>56 km/h</td>
+					<td>44 s</td>
 				</tr>
-				<tr>
+				<!--<tr>
 					<td>Z40</td>
 					<td>Shunting movement</td>
 					<td>52 km/h</td>
 					<td>52 km/h</td>
 					<td>48 km/h</td>
-				</tr>
+					<td>58 s</td>
+				</tr>-->
 			</table>
 
 			<h4>Approach magnet</h4>
@@ -217,7 +225,7 @@
 				<img src="ins/SCB_160_active_1152.png" />
 			</div>
 
-			<p>Upon passing the 1152 Hz magnet, the “1152” flashes until the driver acknowledges it within four seconds. The steady light comes on after the acknowledgement button has been released, and serves as a reminder that a speed limit is active. They then have 18 seconds to reduce to 88 km/h. </p>
+			<p>Upon passing the 1152 Hz magnet, the “1152” flashes until the driver acknowledges it within four seconds. The steady light comes on after the acknowledgement button has been released, and serves as a reminder that a speed limit is active. They then have 19 seconds to reduce to 88 km/h; the total time permitted for deceleration is 23 s. </p>
 
 			<div class="ibox">
 				<img src="ins/SCB_160_active.png" class="SCB_160f" />
@@ -381,51 +389,7 @@
 					<td>2592 Hz</td>
 					<td>3.2786 s</td>
 				</tr>
-				<tr>
-					<td>168 km/h</td>
-					<td>180 km/h</td>
-					<td>2592 Hz</td>
-					<td>3.0600 s</td>
-				</tr>
-				<tr>
-					<td>180 km/h</td>
-					<td>192 km/h</td>
-					<td>2592 Hz</td>
-					<td>2.8688 s</td>
-				</tr>
-				<tr>
-					<td>192 km/h</td>
-					<td>204 km/h</td>
-					<td>2592 Hz</td>
-					<td>2.7000 s</td>
-				</tr>
-				<tr>
-					<td>204 km/h</td>
-					<td>216 km/h</td>
-					<td>2592 Hz</td>
-					<td>2.5500 s</td>
-				</tr>
-				<tr>
-					<td>216 km/h</td>
-					<td>228 km/h</td>
-					<td>2592 Hz</td>
-					<td>2.4158 s</td>
-				</tr>
-				<tr>
-					<td>228 km/h</td>
-					<td>240 km/h</td>
-					<td>2592 Hz</td>
-					<td>2.2950 s</td>
-				</tr>
-				<tr>
-					<td>240 km/h</td>
-					<td>252 km/h</td>
-					<td>2592 Hz</td>
-					<td>2.1857 s</td>
-				</tr>
 			</table>
-
-			<p>Although the specification permits inductive timing loops to be used at speeds of up to 240 km/h, in practice they are only installed for speeds up to 156 km/h. Higher speeds are monitored using <a href="/railways/signalling/qevelia/cab_ltc" class="em">Linear Train Control</a>. </p>
 
 		</div>
 	</body>
