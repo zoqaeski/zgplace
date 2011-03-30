@@ -1,0 +1,2076 @@
+<html><head>
+<title>French Signals: Types and Location</title></head>
+<body bgcolor="#a0a0a0">
+
+©1997 James P.G. Sterbenz - All rights reserved
+<hr>
+
+<h4>Section Contents: French Signal Types and Location</h4>
+
+III. French Signalling
+<ol>
+<li><a href="french1.html">Introduction and History</a>
+</li><li><b>Signal Types and Location</b>
+   <ol>
+   <li><a href="french2.html#locid">Location and identification</a>
+      <ol>
+      <li><a href="french2.html#location">Signal location</a>
+      </li><li><a href="french2.html#id">Signal heads and identification</a>
+      </li><li><a href="french2.html#bmu">BMU - Block manuel de double voie</a>
+      </li><li><a href="french2.html#bmvu">BMVU - Block manuel de voie unique</a>
+      </li><li><a href="french2.html#ga"><b>GA</b> - Guidon d'Arret</a>
+      </li></ol>
+   </li><li><a href="french2.html#block">Block signals</a>
+      <ol>
+      <li><a href="french2.html#bal">BAL - Block automatique lumineux permissif</a>
+      </li><li><a href="french2.html#bapr">BAPR - Block automatique à 
+          permissivité restreinte</a>
+      </li><li><a href="french2.html#bmu">BMU - Block manuel de double voie</a>
+      </li><li><a href="french2.html#bmvu">BMVU - Block manuel de voie unique</a>
+      </li></ol>
+   </li><li><a href="french2.html#interlocking">Interlocking signals</a>
+      <ol>
+      <li><a href="french2.html#main">Mainline interlocking signals</a>
+      </li><li><a href="french2.html#shunt">Shunting signals</a>
+      </li><li><a href="french2.html#combi">Combination mainline and shunting signals</a>
+      </li></ol>
+   </li><li><a href="french2.html#early-light">Early light signals</a>
+   </li><li><a href="french2.html#speed">Signaux indicateurs de vitesse limite -
+       speed signals</a>
+   </li><li><a href="french2.html#direction">Signaux indicateurs de direction -
+       direction indicators</a>
+   </li><li><a href="french2.html#switching">Signaux de manoeuvre - switching signals</a>
+   </li><li><a href="french2.html#departure">Signaux de départ - departure signals</a>
+   </li></ol>
+</li><li><a href="french3.html">Signal Aspects and Indications</a>
+</li><li><a href="french4.html">Other Signals</a>
+</li><li><a href="french5.html">Links and References</a>
+</li></ol>
+
+<hr>
+
+<h2>2. Signal Types and Location</h2>
+
+Colorlight signals:
+
+Modern SNCF signals are of the colorlight type, with one lamp+lens
+housing for each light color+position.  Other indicators, such as for
+speed and direction are also increasingly being replaced with
+projection assemblies and light arrays.  The colorlight aspects are
+derived from the night indications of the 1941 code mechanical signals.
+
+<pre>
+Color light designations:
+
+R  = red           r = small red          S* = flashing (color S)
+Y  = yellow        y = small yellow       S+ = flashing alternately with Sx
+G  = green                                Sx = flashing alternately with S+
+B  = blue                                 S? = on or dark due to failure
+V  = violet
+U  = lunar white   u = small lunar
+W  = white
+
+N  = number     (projected or light grid)
+X  = letter(s)  (projected or light grid)
+
+</pre>
+
+Mechanical signals:
+
+Most mechanical signals have been replaced by colorlight signals, but
+a few remain in use.  A number of mechanical speed (TIV) and direction
+indicators are still in use, since the application of projected light
+indicators is fairly recent.
+
+<pre>
+Mechanical signal and fixed board designations:
+
+blk = black
+tan = tan (light brown)
+red = red
+yel = yellow
+grn = green
+blu = blue
+vio = violet
+wht = white
+ltb = light blue
+
+S   = any light of color S as above
+
+color1/color2/color3 shape "symbol"
+
+color1 is the color of the symbol or text
+       "*" is used for the case of no symbol or text
+color2 is the color of the background
+       for multiple colors, they are arranged as they are on the board
+color3 is the color of the border
+       multiple borders are represented by hyphens, outward to the edge
+       "opp" is used to indicate a border around checkerboards that is
+          the alternate color
+       this field is blank if there is no border
+
+shape is the shape of the board; for rectangles the longest dimension
+       is indicated by (--) or (|)
+
+symbol is the text on the board (possibly multi-line), or in some
+       cases a more detailed drawing of the symbol
+
+
+   Examples:
+
+      wht/blk/wht-red square "A"
+
+         white letter A on a square black board, with a white inner border
+         surrounded by a red outer border
+
+      */ wht red /opp square board
+         red wht
+
+         a square checkerboard of four colors, red border where the square
+         is white, white border where the square is red
+
+</pre>
+
+When mechanical signals are shown, it can be assumed that the clear
+form will be white when the spectacle is rotated away, unless
+otherwise stated.  Similarly, for 1941 code signals the entire light
+cluster is shown in the standard arrangement and it may be assumed
+that the clear form consists of the green or lunar light, unless
+otherwise stated.
+
+<h3><a name="locid">2.1 Signal Locations and Identification</a></h3>
+
+<h4><a name="loc">2.1.1 Signal Location</a></h4>
+
+SNCF mainline operations are typically left main for double track running,
+except for the ex-AL which is right main.  Signals are located immediately
+to the left of or above the track they govern.  For double track mainlines
+with both tracks bidirectionally signaled, the signals for the right track
+are located immediately to its right (unless on overhead gantries).  When
+a signal is located on the wrong side of the track, a special board
+indicates this. The signal mast contains an arrow pointing to the
+track governed (even if on the right side of double track).
+
+<pre>  normal location                   wrong side location
+
+    -                                                  -
+  |   |                                              |   |
+  |   |                                              |   |
+  |   |                                              |   |
+    -                                                  -
+    |                            +----+               /| (white arrow toward
+    |                            | ^ O|                |  track governed)
+    |                            | |  |                |
+    |    _I____I_                +----+    _I____I_    |
+                                blk/wht
+</pre>
+
+Signal out of order (annulation des signaux)
+
+<pre>    -
+  \  /|
+  |\/ |    white cross obstructing signal head
+  |/\ |
+  / -\     disregard signal head
+    |
+    |
+    |
+</pre>
+
+<h4><a name="id">2.1.2 Signal Heads and Identification</a></h4>
+
+Signal heads are black with very rounded edges on outer arcs (F, Nf, PR, BM)
+   or circular (A, D), with a wide white border around the edge.
+
+<pre>    -
+  |   |
+  |   |
+  |   |
+    -
+    |     identification plates on the mast are small fixed rectangular plates
+   +-+
+   +-+    type plate
+   +-+    id plate 
+   +-+    optional track number plate blk/wht rectangle (--) "V.n" (voie n)
+    |
+    |
+    |
+</pre>
+
+Signal types:
+<p>
+<table border="1">
+<tbody><tr><td align="center" colspan="2">name</td><td>system</td><td>type</td><td align="center">plate color</td></tr>
+<tr><td align="center">F </td><td>franchissable                 </td><td>BAL       </td><td>block home+distant (permissive)</td><td align="center">wht/blk</td></tr>
+<tr><td align="center">Nf</td><td>non franchissable             </td><td>(BAL)     </td><td>interlocking home+distant (absolute)</td><td align="center">wht/blk</td></tr>
+<tr><td align="center">PR</td><td>permissivité restreinte</td><td>BAPR      </td><td>home</td><td align="center">wht/blk</td></tr>
+<tr><td align="center">BM</td><td>block manuel                  </td><td>BM, BMVU  </td><td>home</td><td align="center">wht/blk</td></tr>
+<tr><td align="center">A </td><td>avertissement                 </td><td>BAPR, BM  </td><td>distant</td><td align="center">blk/wht</td></tr>
+<tr><td align="center">D </td><td>disque                        </td><td>BAPR, BMVU</td><td>deferred home</td><td align="center">blk/wht</td></tr>
+<tr><td align="center">GA</td><td>guidon d'arrêt          </td><td>          </td><td>short term stop</td><td align="center">blk/wht</td></tr>
+</tbody></table>
+</p><p>
+Signal identifier plates:
+
+</p><pre>   automatic block signal (BAL) identifier plates (F, A):
+
+     +-------------------+    blk/wht rectangle (--)
+     | |\ | |\ | |\ | km |
+     | | \| | \| | \| .N |    signal located at NNN.N km
+     +-------------------+
+
+   block signal (BAPR, BMU, BMVU) identifier plates (PR, A, BM):
+
+     +-------------------+    blk/wht rectangle (--)
+     | |\ | |\ | |\ |    |
+     | | \| | \| | \|    |    signal located at block NNN
+     +-------------------+
+
+   interlocking signal identifier plates (Nf):
+
+     +-------------------+    blk/wht rectangle (--)
+     |    |\ | |\ | |\ | |
+     | C. | \| | \| | \| |    carré signal NNN
+     +-------------------+
+
+     +-------------------+    blk/wht rectangle (--)
+     |  v |\ | |\ | |\ | |
+     | C. | \| | \| | \| |    carré violet signal NNN
+     +-------------------+
+</pre>
+
+<h3><a name="block">2.2 Block Signals</a></h3>
+
+<h4><a name="block-light">2.2.1 Light Signals</a></h4>
+
+<a name="bal"><b><i>SNCF</i></b> BAL - Block Automatique Lumineux Permissif</a>
+<p>
+Automatic block signals used on high density lines
+</p><pre>               -----
+             | Y   Y )
+             |   +--
+    -        |   |
+  | G |      | G |
+  | R |      | R |
+  | Y |      | Y |
+    -          -
+    |          |
+   [F]        [F]
+    |          |
+    |          |
+
+               -----
+             | y   y )   [old style]
+             |   +--
+    -        |   |
+  | G |      | G |
+  | R |      | R |
+  | Y |      | Y |
+    -          -
+    |          |
+   [F]        [F]
+    |          |
+    |          |
+
+               -----
+             | y   y )   [older style]
+             |   +--
+    -        |   |
+  | G |      | G |
+  | R |      | R |
+  | Y |      | Y |
+ u  -       u  -
+    |          |
+   [F]        [F]
+    |          |
+    |          |
+
+  block     approach
+          interlocking
+</pre>
+
+<b><i>RENFE</i></b>
+
+<pre>              \|/
+    -          -
+  | G |      | G |
+  | R |      | R |
+  | Y |      | Y |
+    -          -
+    |          |
+   [P]        [P]
+    |          |
+    |          |  
+
+              \|/
+    -          -
+  | G |      | G |
+  | R |      | R |
+    -          -
+    |          |
+   [P]        [P]
+    |          |
+    |          |  
+
+  block
+</pre>
+
+<b><i>CP</i></b>
+
+<pre>    -
+  | G |
+  | R |
+  | Y |
+    -
+    |
+  (b)
+    |
+    |
+
+
+    -
+  | G |
+  | R |
+  | Y |
+    -
+    |
+   [P]
+    |
+    |
+
+  block
+</pre>
+
+Block and signal locations:
+<p>
+<b><i>SNCF</i></b> BAL blocks are less than 2800m long, and at least 500m<br>
+<b><i>RENFE</i></b> blocks are 1500m long
+</p><p>
+Signals default to clear
+
+</p><pre>  type     F&gt;               F&gt;               F&gt;               F&gt;
+            |--O             |--O             |--O             |--O
+  ------------------------------------------------------------------&gt;
+  &lt;------------------------------------------------------------------
+         O--|             O--|             O--|             O--|
+            &lt;F               &lt;F               &lt;F               &lt;F
+
+            |      BAL       |     BAL        |      BAL       |
+</pre>
+
+2-block 3-aspect signalling
+
+<pre>  aspect         <b><font color="#00ff00">G</font>             <font color="#00ff80">G</font>             <font color="#ffc000">Y</font>             <font color="#ff0000">R</font></b>   
+
+  designation    <b>VL            VL            A             S</b>
+  ------------------------------------------------------------train-&gt;
+  indication                 clear       approach         stop
+                                                      (permissive)
+</pre>
+
+<b><i>SNCF</i></b> and <b><i>RENFE</i></b> 3-block 4-aspect high speed signalling
+<p>
+(VL) requires reduction to 160 km/h
+
+</p><pre>  aspect         <b><font color="#00ff00">G</font>             <font color="#00ff00"><blink>G</blink>*</font>            <font color="#ffc000">Y</font>             <font color="#ff0000">R</font></b>
+
+  designation    <b>VL           (VL)           A             S</b>
+  ------------------------------------------------------------train-&gt;
+  indication   clear         advance     approach         stop
+                             approach                 (permissive)
+</pre>
+
+<b><i>SNCF</i></b> 3-block 4-aspect high density signalling
+<p>
+minimum block length 500m, 2 blocks &gt; braking distance
+
+</p><pre>  aspect         <b><font color="#00ff00">G</font>      <font color="#00ff00">G</font>      <font color="#00ff00">G</font>      <font color="#00ff00">G</font>      <font color="#ffc000"><blink>Y</blink>*</font>     <font color="#ffc000">Y</font>      <font color="#ff0000">R</font></b>
+
+  designation    <b>VL     VL     VL     VL    (A)     A      S</b>
+  ------------------------------------------------------------train-&gt;
+  indication                         clear  adv    app    stop
+                                            app       (permissive)
+</pre>
+<b><i>SNCF</i></b> 2-block 3-aspect with 4th aspect for short or occupied block
+<pre>  aspect         <b>                                   <font color="#ffc000">=</font></b>
+                 <b><font color="#00ff00">G</font>             <font color="#00ff00">G</font>             <font color="#ffc000">Y</font>      <font color="#ffc000">Y</font>      <font color="#ff0000">R</font></b>
+
+  designation    <b>VL            VL            A     BJ+A    S</b>
+  ------------------------------------------------------------train-&gt;
+  indication                 clear          adv    app    stop
+                                            app       (permissive)
+</pre>
+
+<b><i>RENFE</i></b> 2-block 3-aspect with 4th aspect for short block
+<pre>  aspect         <b><font color="#00ff00">G</font>             <font color="#00ff00">G</font>             <font color="#ffc000">Y</font>     <font color="#ffc000"><blink>Y</blink>*</font>      <font color="#ff0000">R</font></b>
+
+  ------------------------------------------------------------train-&gt;
+  indication                 clear          adv    app    stop
+                                            app       (permissive)
+</pre>
+
+<b><i>SNCF</i></b> 4-block 5-aspect high density and high speed signalling
+
+<pre>  aspect         <b><font color="#00ff00">G</font>      <font color="#00ff00">G</font>      <font color="#00ff00">G</font>      <font color="#00ff00"><blink>G</blink>*</font>     <font color="#ffff00"><blink>Y</blink>*</font>     <font color="#ffff00">Y</font>      <font color="#ff0000">R</font></b>
+
+  designation    <b>VL     VL     VL    (VL)   (A)     A      S</b>
+  ------------------------------------------------------------train-&gt;
+  indication                  clear   adv   adv    app    stop
+                                      adv   app       (permissive)
+                                      app
+</pre>
+
+
+<b><i>SNCF</i></b> BAL block signal indications:
+<p>
+<table border="1">
+<tbody><tr><td align="center"><b>Aspect</b>
+    </td><td align="center" colspan="3"><b>Name</b>
+    </td><td align="center"><b>Indication</b>
+    </td><td align="center"><b>Note</b></td></tr>
+<tr><td align="center"><b><font color="#00ff00">G</font></b><br>
+    </td><td align="center"><b>VL</b> 
+    </td><td align="center">voie libre
+    </td><td align="center">free track
+    </td><td>clear</td></tr>
+<tr><td align="center"><b><font color="#00ff00">&nbsp;&nbsp;&nbsp;<blink>G</blink>*</font></b>
+    </td><td align="center"><b>(VL)</b>
+    </td><td align="center">feu vert clignotant  
+    </td><td align="center">flashing green
+    </td><td>advance advance approach</td></tr>
+<tr><td align="center"><b><font color="#ffc000">&nbsp;&nbsp;&nbsp;<blink>Y</blink>*</font></b>
+    </td><td align="center"><b>(A)</b>
+    </td><td align="center">feu jaune clignotant
+    </td><td align="center">flashing yellow
+    </td><td>advance approach</td></tr>
+<tr><td align="center"><b><font color="#00ff00">G</font><br>
+                        <font color="#ffc000">Y</font></b><br>
+    </td><td align="center"><b>PA</b>
+    </td><td align="center">préavertissement
+    </td><td align="center">pre-warning
+    </td><td>advance approach
+    </td><td>obsolete</td></tr>
+<tr><td align="center"><b><font color="#ffc000">Y</font></b><br>
+    </td><td align="center"><b>A</b>  
+    </td><td align="center">avertissement
+    </td><td align="center">warning
+    </td><td>approach</td></tr>
+<tr><td align="center"><b><font color="#ff0000">&nbsp;&nbsp;&nbsp;<blink>R</blink>*</font></b>
+    </td><td align="center"><b>(S)</b> 
+    </td><td align="center">feu rouge clignotant
+    </td><td align="center">flashing red
+    </td><td>restricting</td></tr>
+<tr><td align="center"><b><font color="#ff0000">R</font></b><br>
+    </td><td align="center"><b>S</b>
+    </td><td align="center">sémaphore
+    </td><td align="center">semaphore
+    </td><td>stop (permissive)</td></tr>
+<tr><td align="center"><b><font color="#ffc000">Y&nbsp;&nbsp;&nbsp; Y&nbsp;&nbsp;</font></b><br>
+    </td><td align="center"><b>R</b>  
+    </td><td align="center">ralentissement
+    </td><td align="center">slow
+    </td><td>approach slow</td></tr>
+<tr><td align="center"><b><font color="#ffc000"><blink>Y</blink>* <blink>Y</blink>*</font></b><br>
+    </td><td align="center"><b>(R)</b> 
+    </td><td align="center">ralentissement 60
+    </td><td align="center">slow 60
+    </td><td>approach medium</td></tr>
+</tbody></table>
+</p><p>
+Note: Circles around an indication designation denote flashing,
+represented by parenthesis in this paper.  PA is not an official
+designation, but is used herein for convenience.
+
+
+</p><p>
+<b><i>RENFE</i></b> block signal indications:
+</p><p>
+<table border="1">
+<tbody><tr><td align="center"><b>Aspect</b>
+    </td><td align="center" colspan="2"><b>Name</b>
+    </td><td align="center"><b>Indication</b>
+    </td><td align="center"><b>Note</b></td></tr>
+<tr><td align="center"><b><font color="#00ff00">G</font></b><br>
+    </td><td align="center">vía libre
+    </td><td align="center">free track
+    </td><td>clear</td></tr>
+<tr><td align="center"><b><font color="#00ff00">&nbsp;&nbsp;&nbsp;<blink>G</blink>*</font></b>
+    </td><td align="center">v&amp;iacutea libre condicional
+    </td><td align="center">conditional free track
+    </td><td>advance approach
+    </td><td>reduce to 160 km/h</td></tr>
+<tr><td align="center"><b><font color="#ffc000">Y</font></b><br>
+    </td><td align="center">anuncio de parada
+    </td><td align="center">announce stop
+    </td><td>approach</td></tr>
+<tr><td align="center"><b><font color="#ffc000">&nbsp;&nbsp;&nbsp;<blink>Y</blink>*</font></b>
+    </td><td align="center">anuncio de parada inmediata
+    </td><td align="center">announce immediate stop
+    </td><td>approach short</td></tr>
+<tr><td align="center"><b><font color="#ff0000">R</font></b><br>
+    </td><td align="center">parada
+    </td><td align="center">stop
+    </td><td>stop (permissive)</td></tr>
+<tr><td align="center"><b><font color="#00ff00">G</font><br>
+                        <font color="#ffc000">Y</font></b><br>
+    </td><td align="center">anuncio de precautión
+    </td><td align="center">announce precaution
+    </td><td>approach slow</td></tr>
+</tbody></table>
+</p><p>
+
+Block signal indications:
+</p><p>
+<table border="1">
+<tbody><tr><td align="center" colspan="3"><b>Aspect</b>
+    </td><td align="center" rowspan="2"><b>Indication</b>
+    </td><td align="center" rowspan="2"><b>Note</b></td></tr>
+<tr><td align="center"><b><i>SNCF</i></b>
+    </td><td align="center"><b><i>CP</i></b>
+    </td><td align="center"><b><i>RENFE</i></b></td></tr>
+<tr><td align="center"><b><font color="#00ff00">G</font></b><br>
+    </td><td align="center"><b><font color="#00ff00">G</font></b><br>
+    </td><td align="center"><b><font color="#00ff00">G</font></b><br>
+    </td><td>clear</td></tr>
+<tr><td align="center"><b><font color="#00ff00">&nbsp;&nbsp;&nbsp;<blink>G</blink>*</font></b>
+    </td><td align="center">---
+    </td><td align="center"><b><font color="#00ff00">&nbsp;&nbsp;&nbsp;<blink>G</blink>*</font></b>
+    </td><td align="center">advance (advance) approach
+    </td><td align="center">reduce to 160 km/h</td></tr>
+<tr><td align="center"><b><font color="#ffc000">&nbsp;&nbsp;&nbsp;<blink>Y</blink>*</font></b>
+    </td><td align="center" rowspan="2">---
+    </td><td align="center" rowspan="2">---
+    </td><td rowspan="2">advance approach</td></tr>
+<tr><td align="center"><b><font color="#00ff00">G</font><br>
+                        <font color="#ffc000">Y</font></b><br>
+    </td><td>obsolete</td></tr>
+<tr><td align="center"><b><font color="#ffc000">Y</font></b><br>
+    </td><td align="center"><b><font color="#ffc000">Y</font></b><br>
+    </td><td align="center"><b><font color="#ffc000">Y</font></b><br>
+    </td><td>approach</td></tr>
+<tr><td align="center"><b><font color="#ff0000">&nbsp;&nbsp;&nbsp;<blink>R</blink>*</font></b>
+    </td><td align="center">---
+    </td><td align="center">---
+    </td><td>restricting</td></tr>
+<tr><td align="center"><b><font color="#ff0000">R</font></b><br>
+    </td><td align="center"><b><font color="#ff0000">R</font></b><br>
+    </td><td align="center"><b><font color="#ff0000">R</font></b><br>
+    </td><td>stop (permissive)</td></tr>
+<tr><td align="center"><b><font color="#ffc000">Y&nbsp;&nbsp;&nbsp; Y&nbsp;&nbsp;</font></b><br>
+    </td><td align="center">&nbsp;
+    </td><td align="center"><b><font color="#00ff00">G</font><br>
+                        <font color="#ffc000">Y</font></b><br>
+    </td><td>approach slow</td></tr>
+<tr><td align="center"><b><font color="#ffc000"><blink>Y</blink>* <blink>Y</blink>*</font></b><br>
+    </td><td align="center">&nbsp;
+    </td><td align="center">&nbsp;
+    </td><td>approach medium</td></tr>
+</tbody></table>
+
+</p><p>
+</p><h4>Mechanical block signals</h4>
+
+<b><i>SNCF</i></b>
+<p>
+<b>S</b>émaphore - permissive stop
+
+</p><pre>           1941    +-----------------+
+                   |                 |        */red/blk-wht rectangle (--)
+                   +-----------------+                   board
+                            | G 
+                            | R    
+
+                     --  _____________
+                   (||||)_|_|_|_|R|_|_|       red semaphore frame
+                     --            |             circular end
+                                   |
+
+
+           1885    +-----------------+
+                   |                 |        */red/blk-wht rectangle (--)
+                   +-----------------+                   board
+                          R | G
+                            |
+
+                     --  _____________
+                   (||||)_|_|_|_|R|_|G|       red semaphore frame
+                     --            |             circular end
+                                   |
+</pre>
+
+Palette <b>SEM</b> - approach sémaphore (ex-Nord only and obsolete)
+
+<pre>           1941          ____________
+                        /__|_|_|_|_|_|        */yel/wht rectangle (--)
+                                |                oblique end
+                                |
+                                              stripes backlit at night
+                                                 by mirrored louvers:
+                                                    horizontal       -- yellow
+                                                    dropped (40 deg) -- green
+
+           1885          ____________
+                        /__|_|_|_|_|_|        */grn/wht rectangle (--)
+                                |                oblique end
+                                |
+                                              stripes backlit at night
+                                                 by mirrored louvers:
+                                                    horizontal       -- green
+                                                    dropped (40 deg) -- white
+</pre>
+
+<b>A</b>vertissement - approach
+
+<pre>                       .            .
+           1941       / \          / \        yel/blk-wht lozenge board
+                     /   \        /   \
+                     \   /        \  Y/
+                      \ /          \ /
+                       |G           |
+                       |Y           |
+
+                                    .           */           */
+           1885     +-----+        / \                       wht
+                    |  |  |       /\ /\       grn wht     grn   grn
+                    |--G-G|      +  /G +      wht grn        wht
+                    |  |  |       \/ \/          /opp         /opp
+                    +-----+        \ /        square       lozenge
+                       |            |G         board        board
+                       | normal     | reduced               
+</pre>
+
+<b>R</b>alentissement - approach slow
+
+<pre>                       .            .
+           1941       /|\          /|\        blk/yel/blk-wht isosceles
+                     / | \        / | \                       triangle board
+                    /  |  \      /  |  \
+                   /   |   \    / Y | Y \
+                   \___|___/    \___|___/
+                       | G          |
+                     Y | Y          |
+
+
+           1885       ---
+                    /     \    */grn/blk-wht circle board
+                        G
+                    \     /    disque de ralentissement
+                      ---
+                       |
+                       |
+</pre>
+
+<h4><a name="bapr">2.2.2  <i>SNCF</i> BAPR - Block Automatique à 
+    Permissivité Restreinte</a></h4>
+
+Limited permission automatic block home/distant used only on
+low density double track mainlines. 
+<p>
+A telephone (VAT - Sec. 4.5) is located near the home signal
+for authorisation to pass when given a stop indication.
+
+</p><pre>    -         ---         ---                     ---
+  | G |     /     \     / Y Y \                 /     \
+  |   |        G           G                     Y G R     +-------+
+  | R |     \  Y  /     \  Y  /                 \  Y  /    | rrrrr |
+    -         ---         ---                     ---      +-------+ 
+    |          |           |                       |           |
+   [PR]       [A]         [A]                     [D]         [GA]
+    |          |           |                       |           |
+    |          |           |                       |           |
+
+  home       distant    approach                disque   guidon dáarrêt
+                      interlocking                 +
+                                                distant
+                                                   «Pontoise-Goisors»
+</pre>
+
+BAPR block and signal locations:
+<p>
+speed is limited to 160 km/h, and blocks are at least 6km long
+stations and other interlockings are signaled by BAL interlocking signals
+
+</p><pre>
+                                           station
+                                          ----------
+    A&gt;    PR&gt;                A&gt;    Nf&gt;   /          \ PR&gt;
+  --------------------------------------*------------*--------------&gt;
+                                       /              \
+  &lt;-----------------------------------*----------------*-------------
+            &lt;PR    &lt;A                &lt;PR                &lt;Nf    &lt;A
+
+  BAPR      |          BAPR          |       BAL        |     BAPR
+</pre>
+
+BAPR on «Pontoise-Goisors» line (~35 km) block and signal
+locations:
+  station limits defined by disque signal and [LM] board (Sec. 4.6)
+
+<pre>                                           station
+                                          ----------
+    A&gt;    PR&gt;               D&gt;     GA&gt;   /          \   PR&gt;   [LM]
+  --------------------------------------*------------*--------------&gt;
+                                       /              \
+  &lt;-----------------------------------*----------------*-------------
+            &lt;PR    &lt;A       [LM]   &lt;PR                  &lt;GA     &lt;D
+</pre>
+
+BAPR signal indications:
+<p>
+<table border="1">
+<tbody><tr><td align="center"><b>Aspect</b>
+    </td><td align="center" colspan="2"><b>Name</b>
+    </td><td align="center"><b>Indication</b>
+    </td><td colspan="4" align="center"><b>Type</b>
+    </td><td align="center"><b>Note</b></td></tr>
+<tr><td align="center"><b><font color="#00ff00">G</font></b><br>
+    </td><td align="center"><b>VL</b> 
+    </td><td align="center">voie libre
+    </td><td>clear   
+    </td><td>A</td><td>PR</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr><td align="center"><b><font color="#ffc000">Y</font></b><br>
+    </td><td align="center"><b>A</b>  
+    </td><td align="center">avertissement
+    </td><td>approach
+    </td><td>A</td><td>&nbsp;</td><td>D</td><td>&nbsp;</td></tr>
+<tr><td align="center"><b><font color="#ff0000">R</font></b><br>
+    </td><td align="center"><b>S</b>  
+    </td><td align="center">sémaphore
+    </td><td>permissive stop
+    </td><td>&nbsp;</td><td>PR</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr><td align="center"><b><font color="#ffc000">Y&nbsp;&nbsp;&nbsp; Y&nbsp;&nbsp;</font></b><br>
+    </td><td align="center"><b>R</b>
+    </td><td align="center">ralentissement
+    </td><td>approach slow station diverging
+    </td><td>A</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr><td align="center"><b><font color="#ffc000"><blink>Y</blink>* <blink>Y</blink>*</font></b><br>
+    </td><td align="center"><b>(R)</b> 
+    </td><td align="center">ralentissement 60
+    </td><td>approach medium station diverging
+    </td><td>A</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr><td align="center"><b><font color="#ffc000">Y&nbsp;&nbsp;&nbsp;</font> <font color="#ff0000">R&nbsp;&nbsp;</font></b><br>
+    </td><td align="center"><b>D</b> 
+    </td><td align="center">disque arrêt différé 
+    </td><td>deferred stop
+    </td><td>&nbsp;</td><td>&nbsp;</td><td>D&nbsp;</td><td>&nbsp;</td><td>«P-G»</td></tr>
+<tr><td align="center"><b><font color="#ff0000">====</font></b><br>
+    </td><td align="center"><b>GA</b> 
+    </td><td align="center">guidon d'arrêt
+    </td><td>stop
+    </td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>GA</td><td>«P-G» only</td></tr>
+</tbody></table>
+
+
+</p><h4><a name="bmu">2.2.3  <i>SNCF</i> BMU - Block Manuel de Double Voie</a></h4>
+
+Double track manual block home/distant used on branch lines
+<p>
+2 types
+</p><ul>
+<li>block stations connected by telephone 
+    (cantonnement téléphonique)
+</li><li>block stations connected by electrical interlock with block
+    occupancy detection (blocks par appareile / enclenchés)
+</li></ul>
+
+when a block station clears the home signals allowing block
+entry, the next station is notified; when the train enters 
+this station and clears the block, the original station is
+notified that the block is clear
+
+<pre>    -         ---
+  | G |     /     \
+  |   |        G   
+  | R |     \  Y  /
+    -         ---
+    |          |
+   [BM]       [A]
+    |          |
+    |          |
+
+  home       distant
+</pre>
+
+BMU block and signal locations:
+<p>
+station entry is protected by BAL interlocking signals
+
+</p><pre>                                           station
+                                          ----------
+   A&gt;     BM&gt;               A&gt;    Nf&gt;    /          \  BM&gt;
+  --------------------------------------*------------*---------------
+            |                       |  /              \  |
+  ------------------------------------*----------------*-------------
+            &lt;BM     &lt;A              &lt;BM                  &lt;Nf    &lt;A
+
+  BMU       |          BMU          |        BAL         |    BMU
+</pre>
+
+BMU signal indications:
+<p>
+<table border="1">
+<tbody><tr><td align="center"><b>Aspect</b>
+    </td><td align="center" colspan="2"><b>Name</b>
+    </td><td align="center"><b>Indication</b>
+    </td><td colspan="2" align="center"><b>Type</b></td></tr>
+<tr><td align="center"><b><font color="#00ff00">G</font></b><br>
+    </td><td align="center"><b>VL</b> 
+    </td><td align="center">voie libre
+    </td><td>clear
+    </td><td>A</td><td>BM</td></tr>
+<tr><td align="center"><b><font color="#ffc000">Y</font></b><br>
+    </td><td align="center"><b>A</b>  
+    </td><td align="center">avertissement
+    </td><td>approach</td><td>A</td><td>&nbsp;</td></tr>
+<tr><td align="center"><b><font color="#ff0000">R</font></b><br>
+    </td><td align="center"><b>S</b>  
+    </td><td align="center">sémaphore
+    </td><td>stop
+    </td><td>&nbsp;</td><td>BM</td></tr>
+</tbody></table>
+
+</p><h4><a name="bmvu">2.2.4 <i>SNCF</i>BMVU - Block Manuel de Voie Unique</a></h4>
+
+Single track manual block, using deferred stop signals (<b>D</b>isque).
+<p>
+
+Operation is similar to BMU, except that block boundaries are only at
+stations with sidings, and two trains are <i>never</i> allowed in the
+same block.  Before a train is cleared to enter a block, permission
+must granted from the next block station to allow entry
+
+</p><pre>    -         ---        ---
+  | G |     /     \    /     \
+  |   |      Y G R        G
+  | R |     \  Y  /    \ Y R /
+    -         ---        ---
+    |          |          |
+   [BM]       [D]        [D]
+    |          |          |
+    |          |          |    
+
+  home      disque +    disque
+            distant 
+ (exit)     (enter) 
+</pre>
+
+BMVU block and signal locations:
+
+<pre>     BM&gt;                                  station         BM&gt;
+  ----                             ------------------------
+      \                 D&gt;   &lt;&gt;   /                        \    
+  -----*-------------------------*--------------------------*---------
+          &lt;&gt;   &lt;D                &lt;BM                           &lt;&gt;   &lt;D
+</pre>
+  
+Station entry is protected by disque signal, showing clear for
+run-through (exit signal clear), approach for stop at exit signal, and
+deferred stop when station is occupied indicating stop at pancarte
+mi-blanche, mi-noire &lt;&gt; (Sec. 4.6).
+<p>
+Interlockings and non-station sidings are protected by disque signals
+(without <b>A</b> aspect) indicating stop before switch points or
+crossing
+
+</p><p>
+Mechanical <b>D</b>isque arrêt différé
+
+</p><pre>           1941       ---                         ---       1885
+                    /     \    */red/blk-wht    /     \
+                               circle board         R
+                    \     /                     \     /
+                      ---                         ---
+                       | G                         |
+                     Y | R                         |
+</pre>
+
+BMVU signal indications:
+<p>
+<table border="1">
+</table><table border="1">
+<tbody><tr><td align="center"><b>Aspect</b>
+    </td><td align="center" colspan="2"><b>Name</b>
+    </td><td align="center"><b>Indication</b>
+    </td><td colspan="2" align="center"><b>Type</b></td></tr>
+<tr><td align="center"><b><font color="#00ff00">G</font></b><br>
+    </td><td align="center"><b>VL</b> 
+    </td><td align="center">voie libre
+    </td><td>clear
+    </td><td>D</td><td>BM</td></tr>
+<tr><td align="center"><b><font color="#ffc000">Y</font></b><br>
+    </td><td align="center"><b>A</b>  
+    </td><td align="center">avertissement
+    </td><td>approach</td><td>D</td><td>&nbsp;</td></tr>
+<tr><td align="center"><b><font color="#ff0000">R</font></b><br>
+    </td><td align="center"><b>S</b>  
+    </td><td align="center">sémaphore
+    </td><td>stop
+    </td><td>&nbsp;</td><td>BM</td></tr>
+<tr><td align="center"><b><font color="#ffc000">Y&nbsp;&nbsp;&nbsp;</font> <font color="#ff0000">R</font></b>
+    </td><td align="center"><b>D</b> 
+    </td><td align="center">disque arrêt différé 
+    </td><td>deferred stop
+    </td><td>D</td><td>&nbsp;</td></tr>
+</tbody></table>
+
+
+</p><h4><a name="ga">2.2.5 <i>SNCF</i>GA - Guidon d'Arret - 
+                       Short Term Stop Signal</a></h4>
+
+<a name="ga">Used only in conditions that will cause it to be met at restricting
+speed (marche à vue or marche en manoeuvre), <i>e.g.</i>
+preceded by <b>S</b>, <b>(S)</b>, <b>M</b>, or pancarte
+<b>GARE</b>.
+
+</a><p>
+
+<a name="ga"><b>GA</b> is used for protection of grade crossings and block limits
+(BM and «Pontoise-Gisors» BAPR) during switching moves,
+and is at stop for only short periods of time.
+
+</a></p><pre><a name="ga">           +-------+
+           | rrrrr |  (red bar)
+           +-------+
+               |
+              [GA]
+               |
+               |      note: NO indication given when clear (red bar off)
+
+
+<b>Mechanical signal</b>
+
+           1941    +-------+
+                   |       |   */red/wht rectangle (--) board
+                   +-------+
+                       |       
+                       | R     
+                       |       note: NO light is displayed when ouvert (off)
+</a></pre>
+
+
+<h3><a name="interlocking">2.3  Interlocking Signals</a></h3>
+
+<h4><a name="main">2.3.1  Mainline interlocking signals</a></h4>
+
+<p>
+<b><i>SNCF</i></b>
+</p><p>
+
+</p><pre>                                                    -            -
+                                   -----        --+ Y |      --+ Y |
+                          -      | Y   Y )    |       |    | Y   Y |
+                        | R |    | R +--      | R   Y |    | R   Y |
+                        |   |    |   |        |   +--      |   +--
+                        | G |    | G |        | G |        | G |
+                        | R |    | R |        | R |        | R |
+                        | Y |    | Y |        | Y |        | Y |
+                       u  -     u  -         u  -         u  -
+                          |        |            |            |
+                         [Nf]     [Nf]         [Nf]         [Nf]
+                          |        |            |            |
+                          |        |            |            |
+                                                    -               
+                                                --+ Y |             
+                          -                   |       |             
+                        | R |                 | R   Y |
+                        |   |                 |   +--  
+                        |   |                 |   |            [dead end block]
+                        | R |                 | R |    
+                        | Y |                 | Y |    
+                       u  -                  u  -      
+                          |                     |      
+                         [Nf]                  [Nf]    
+                          |                     |      
+                          |                     |      
+
+                      +-------+  +-------+    +-------+    +-------+  [short or
+                      | yyyyy |  | yyyyy |    | yyyyy |    | yyyyy |   occupied
+                      +-------+  +-------+    +-------+    +-------+   block]
+                          |        |            |   -        |   -
+                          |        -----        --+ Y |      --+ Y |
+                          -      | Y   Y )    |       |    | Y   Y |
+                        | R |    | R +--      | R   Y |    | R   Y |
+                        |   |    |   |        |   +--      |   +--
+                        | G |    | G |        | G |        | G |
+                        | R |    | R |        | R |        | R |
+                        | Y |    | Y |        | Y |        | Y |
+                       u  -     u  -         u  -         u  -
+                          |        |            |            |
+                         [Nf]     [Nf]         [Nf]         [Nf]
+                          |        |            |            |
+                          |        |            |            |
+
+                      +-------+               +-------+  
+                      | yyyyy |               | yyyyy |  
+                      +-------+               +-------+  
+                          |                     |   -             
+                          |                     --+ Y |             
+                          -                   |       |             
+                        | R |                 | R   Y |             
+                        |   |                 |   +--             
+                        |   |                 |   |             
+                        | R |                 | R |             
+                        | Y |                 | Y |             
+                       u  -                  u  -             
+                          |                     |             
+                         [Nf]                  [Nf]            
+                          |                     |             
+                          |                     |        
+
+
+                       -------
+                      | R   R |
+                      |   ?   |    on signal tower in Gare du Nord
+                      | ?   ? |
+                       -------
+                          Nf
+
+
+
+   [old style]                                      -            -
+                                   -----        --+ y |      --+ y |
+                          -      | y   y )    |       |    | y   y |
+                        | r |    | r +--      | r   y |    | r   y |
+                        |   |    |   |        |   +--      |   +--
+                        | G |    | G |        | G |        | G |
+                        | R |    | R |        | R |        | R |
+                        | Y |    | Y |        | Y |        | Y |
+                       u  -     u  -         u  -         u  -  
+                          |        |            |            |  
+                         [Nf]     [Nf]         [Nf]         [Nf]
+                          |        |            |            |  
+                          |        |            |            |
+
+   [older style]                                    -            -
+                                   -----          | y |      - | y |
+                                 | y   y )      - |   |    | y   y |
+                          -      |   +--      |     y |    |     y |
+                        | G |    | G |        | G | -      | G | -  
+                        | R |    | R |        | R |        | R |  
+                        | Y |    | Y |        | Y |        | Y |
+                        |   |    |   |        |   |        |   |
+                        | r |    | r |        | r |        | r |
+                       u  -     u  -         u  -         u  -  
+                          |        |            |            |  
+                         [Nf]     [Nf]         [Nf]         [Nf]
+                          |        |            |            |  
+                          |        |            |            |
+</pre>
+
+Chevron -- chevron interlocking point board
+
+<pre>     +---+     blk/wht/blk square board "\/"
+     |\ /|
+     +---+     diverging speed must be observed by this point
+       |       placed immediately before interlocking begins
+       |       [represented by V in track diagrams]
+</pre>
+
+Signalling for 30 km/h diverging route (slow speed):
+
+<pre>                                          <b><font color="#ffc000">Y</font></b>
+      <b><font color="#00ff00">G</font>          <font color="#00ff00"><blink>G</blink>*</font>          <font color="#ffc000">Y</font> <font color="#ffc000">Y</font>          <font color="#ffc000">Y</font></b>
+
+      VL        (VL)         R            RR    chevron
+
+      F&gt;         F&gt;          F&gt;           Nf&gt;   V
+  ----------------------------------------------*  -----------------&gt;
+                                                 \
+  &lt;---------------------------------------------  X  ----------------
+       &lt;F         &lt;F          &lt;F                   \ V &lt;Nf         &lt;F
+                                                    \
+                                                    |   C           A
+                                                    |
+                                                        <b><font color="#ff0000">R</font>           <font color="#ffc000">Y</font></b>
+                                                        <b><font color="#ff0000">R</font></b>
+</pre>
+
+Signalling for 60 km/h diverging route (medium speed):
+
+<pre>                                          <b><font color="#ffc000"><blink>Y</blink>*</font></b>
+      <b><font color="#00ff00">G</font>          <font color="#00ff00"><blink>G</blink>*</font>          <font color="#ffc000"><blink>Y</blink>*</font><font color="#ffc000"><blink>Y</blink>*</font>         <font color="#ffc000"><blink>Y</blink>*</font></b>
+
+      VL        (VL)        (R)          (RR)   chevron
+
+      F&gt;         F&gt;          F&gt;           Nf&gt;   V
+  ----------------------------------------------*  -----------------&gt;
+                                                 \
+  &lt;---------------------------------------------  X  ----------------
+          &lt;F         &lt;F          &lt;F                \ V &lt;Nf         &lt;F
+                                                    \
+                                                    |   C           A
+                                                    |
+                                                        <b><font color="#ff0000">R</font>           <font color="#ffc000">Y</font></b>
+                                                        <b><font color="#ff0000">R</font></b>
+</pre>
+
+BAL interlocking signal indications:
+<p>
+<table border="1">
+<tbody><tr><td align="center"><b>Aspect</b>
+    </td><td align="center" colspan="2"><b>Name</b>
+    </td><td align="center"><b>Indication</b>
+    </td><td align="center" colspan="2"><b>Type</b>
+    </td><td align="center"><b>Note</b></td></tr>
+<tr><td align="center"><b><font color="#00ff00">&nbsp;&nbsp;&nbsp;<blink>G</blink>*</font><br><font color="#c0c0ff">u&nbsp;&nbsp;&nbsp;</font></b>
+    </td><td align="center"><b>VL</b> 
+    </td><td align="center">voie libre
+    </td><td>clear
+    </td><td>Nf</td><td>F</td></tr>
+<tr><td align="center"><b><font color="#00ff00">G</font><br><font color="#c0c0ff">u&nbsp;&nbsp;&nbsp;</font></b><br>
+    </td><td align="center"><b>(VL)</b>
+    </td><td align="center">feu vert clignotant  
+    </td><td>advance advance approach
+    </td><td>Nf</td><td>F</td></tr>
+<tr><td align="center"><b><font color="#ffc000">&nbsp;&nbsp;&nbsp;<blink>Y</blink>*</font><br><font color="#c0c0ff">u&nbsp;&nbsp;&nbsp;</font></b>
+    </td><td align="center"><b>(A)</b>
+    </td><td align="center">feu jaune clignotant
+    </td><td>advance approach
+    </td><td>Nf</td><td>F</td></tr>
+<tr><td align="center"><b><font color="#00ff00">G</font><br>
+                        <font color="#ffc000">Y</font></b><br>
+    </td><td align="center"><b>PA</b>
+    </td><td align="center">préavertissement
+    </td><td>advance approach
+    </td><td>Nf</td><td>F
+    </td><td>obsolete</td></tr>
+<tr><td align="center"><b><font color="#ffc000">Y</font><br><font color="#c0c0ff">u&nbsp;&nbsp;&nbsp;</font></b>
+    </td><td align="center"><b>A</b>  
+    </td><td align="center">avertissement
+    </td><td>approach
+    </td><td>Nf</td><td>F</td></tr>
+<tr><td align="center"><b><font color="#ff0000">&nbsp;&nbsp;&nbsp;<blink>R</blink>*</font><br><font color="#c0c0ff">u&nbsp;&nbsp;&nbsp;</font></b>
+    </td><td align="center"><b>(S)</b> 
+    </td><td align="center">feu rouge clignotant
+    </td><td>restricting
+    </td><td>Nf</td><td>F</td></tr>
+<tr><td align="center"><b><font color="#ff0000">R</font><br><font color="#c0c0ff">u&nbsp;&nbsp;&nbsp;</font></b>
+    </td><td align="center"><b>S</b>
+    </td><td align="center">sémaphore
+    </td><td>stop (permissive)
+    </td><td>Nf</td><td>F</td></tr>
+<tr><td align="center"><b><font color="#ff0000">R<br>R<br></font></b>
+    </td><td align="center"><b>C</b>
+    </td><td align="center">carré 
+    </td><td>absolute stop
+    </td><td>Nf</td><td>&nbsp;</td></tr>
+<tr><td align="center"><b><font color="#ffc000">Y&nbsp;&nbsp;&nbsp; Y&nbsp;&nbsp;</font><br><font color="#c0c0ff">u&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font></b><br>
+    </td><td align="center"><b>R</b>  
+    </td><td align="center">ralentissement
+    </td><td>approach slow
+    </td><td>Nf</td><td>F</td></tr>
+<tr><td align="center"><b><font color="#ffc000"><blink>Y</blink>* <blink>Y</blink>*</font><br><font color="#c0c0ff"><font color="#c0c0ff">u&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font></font></b><font color="#c0c0ff"><br>
+    </font></td><td align="center"><b>(R)</b> 
+    </td><td align="center">ralentissement 60
+    </td><td>approach medium
+    </td><td>Nf</td><td>F</td></tr>
+<tr><td align="center"><b><font color="#ffc000">Y<br>Y</font><br><font color="#c0c0ff">u&nbsp;&nbsp;&nbsp;</font></b>
+   </td><td align="center"><b>R</b>
+   </td><td align="center">rappel de ralentissement
+   </td><td>slow clear
+   </td><td>Nf</td><td>&nbsp;</td></tr>
+<tr><td align="center"><b><font color="#ffc000">&nbsp;&nbsp;&nbsp;<blink>Y</blink>*<br>&nbsp;&nbsp;&nbsp;<blink>Y</blink>*</font><br><font color="#c0c0ff">u&nbsp;&nbsp;&nbsp;</font></b>
+   </td><td align="center"><b>(R)</b> 
+   </td><td align="center">rappel de ralentissement 60
+   </td><td>medium clear
+   </td><td>Nf</td><td>&nbsp;</td></tr>
+</tbody></table>
+
+</p><p>
+<b><i>RENFE</i></b>
+</p><p>
+
+Signalling for 30 km/h diverging route (slow speed):
+
+</p><pre>   O+-|        O+-|        O+-|                     O--|
+  &lt;---------------------------------------------*-------------------
+                                                  
+  ----P&gt;------------------------------------------*  ---------------&gt;
+      |-+O        |-+O        |-+O        |--O&lt;    \ 
+                                                    \
+                              <b><font color="#00ff00">G</font></b>            <b><font color="#c0c0ff">/</font></b>        |
+      <b><font color="#00ff00">G</font>           <font color="#00ff00"><blink>G</blink>*</font>          <font color="#ffc000">Y</font>           <font color="#00ff00">G</font></b>         |
+</pre>
+
+Signalling for 60 km/h diverging route (medium speed):
+
+<pre>   O+-|        O+-|        O+-|                     O--|
+  &lt;---------------------------------------------*-------------------
+                                                  
+  ----P&gt;------------------------------------------*  ---------------&gt;
+      |-+O        |-+O        |-+#O       |--O&lt;    \ 
+                                                    \
+                              <b><font color="#00ff00">G</font></b>            <b><font color="#c0c0ff">/</font></b>        |
+      <b><font color="#00ff00">G</font>           <font color="#00ff00"><blink>G</blink>*</font>          <font color="#ffc000">Y</font>           <font color="#00ff00">G</font></b>         |
+                             <b><font color="#c0c0ff">60´</font></b>
+</pre>
+
+<p>
+<b><i>CP</i></b>
+</p><p>
+
+
+
+</p><p>
+<b>Mechanical Interlocking Signals</b>
+
+</p><p>
+
+<b>C</b>arré - absolute stop
+</p><pre>
+           1941     +-----+      +-----+         wht red
+            and     |  |  |      |  |  |      */ red wht /opp
+           1885     |--+--|      |--R-R| 
+                    |  |  |      |  |  |      square or rectangle (--) board
+                    +-----+      +-----+      
+                       | G          |         
+                      R| R          |
+
+
+           additional            +-----+    blk/wht/blk square board
+                                 |_____| 
+           PO                    |_____|    carré de talon sur la voie directe
+                                 |     |    mainline station exit signal
+                                 +-----+ 
+           middle band white:  stop |
+                 lunar light: clear |
+</pre>
+
+<b>R</b>appel de <b>R</b>alentissement - slow clear
+
+<pre>                     _____        _____
+           1941     /     \      /   Y \      blk/yel/blk-wht isosceles
+                    \_____/      \___ _/                      triangle board
+                     \   /        \  Y/
+                      \ /          \ /
+                       | Y          |
+                       | G          |
+                       | Y          |
+
+
+           [no 1885 equivalent]
+</pre>
+
+<h4><a name="shunt">2.3.2  Shunting signals</a></h4>
+
+<pre>                          -
+                        | U |
+                        |   |
+                        | V |
+                          -
+                          |
+                 -----   [Nf]
+                | U V |   |
+        [dwarf]  -----
+                    Nf
+</pre>
+
+<b>Mechanical Shunting Signals</b>
+
+<p>
+<b>C</b>arré <b>v</b>iolet - absolute stop in yards and station sidings
+
+</p><pre>           1941     +-----+      +-----+      */vio/wht  square board
+                    |     |      |     | 
+                    |     |      |    V| 
+                    |     |      |     |      carré violet
+                    +-----+      +-----+ 
+                       | U          |
+                       | V          |
+
+
+           1885                    ---
+                                 /     \    */yel/blk-wht circle board
+           PO                        Y
+           PLM                   \     /    rond jaune
+                                   ---
+                                    |
+                                    |
+
+           1885                  +-----+ 
+                                 |     |    */yel/blk-wht square board
+           Est                   |   Y | 
+           Etat                  |     |    carré jaune
+           Midi                  +-----+ 
+                                    |
+                                    |
+
+
+           additional              ---            wht
+           PO                    / \ / \    */ blu   blu /blk circle board
+                                    / B           wht
+                                 \ / \ /
+                                   ---      voyant de talon `a quadrants
+                 blue  light: stop  |          bleus et blancs
+                 lunar light: clear |       station siding entry to mainline
+
+                                   ---   
+                                 /_____\    blk/wht/blk circle board
+                                  _____  
+                                 \     /    voyant de -
+                                   ---         transversale (crossing)
+                 lunar band:  stop  | U        refoulement ou de débranchement
+                 lunar light: clear |             (pusher or hump)
+                                               garage (siding)
+</pre>
+
+<h4><a name="shunt">2.3.3 Combination Mainline and Shunting Signals</a></h4>
+
+Mainline interlocking signals with yard entry/exit
+
+<pre>                                                    -            -
+                                   -----        --+ Y |      --+ Y |
+                          -      | Y   Y )    |       |    | Y   Y |
+                        | V |    | V +--      | V   Y |    | V   Y |
+                        | U |    | U |        | U +--      | U +--
+                        | G |    | G |        | G |        | G |
+                        | R |    | R |        | R |        | R |
+                        | Y |    | Y |        | Y |        | Y |
+                       u  -     u  -         u  -         u  -
+                          |        |            |            |
+                         [N]      [Nf]         [Nf]         [Nf]
+                          |        |            |            |
+                          |        |            |            |
+
+   [old style]                                      -            -
+                                   -----          | y |      --+ y |
+                          -      | y   y )      --+   |    | y   y |
+                        | U |    | U +--      | U   y |    | U   y |
+                        | r |    | r |        | r +--      | r +--
+                        |   |    |   |        |   |        |   |
+                        | G |    | G |        | G |        | G |
+                        | R |    | R |        | R |        | R |
+                        | Y |    | Y |        | Y |        | Y |
+                       u  -     u  -         u  -         u  -  
+                          |        |            |            |  
+                         [Nf]     [Nf]         [Nf]         [Nf]
+                          |        |            |            |
+                          |        |            |            |
+
+                          -
+                        | V | 
+                        | U | 
+                        | r |
+                        |   |
+                        | G |
+                        | R |
+                        | Y |
+                       u  -
+                          |
+               ---Nf--   [Nf]
+              | R U R |   |
+ [Nord dwarf]  -------
+</pre>
+
+Yard interlocking signal indication designations:
+<p>
+<table border="1">
+<tbody><tr><td align="center"><b>Aspect</b>
+    </td><td align="center" colspan="2"><b>Name</b>
+    </td><td align="center"><b>Indication</b>
+    </td><td align="center" colspan="2"><b>Type</b></td></tr>
+<tr><td align="center"><b><font color="#c0c0ff">U</font></b><br>
+    </td><td align="center"><b>M</b>
+    </td><td>manoeuvre
+    </td><td>restricting 30 km/h</td><td>Cv</td><td>Nf</td></tr>
+<tr><td align="center"><b><font color="#c0c0ff">&nbsp;&nbsp;&nbsp;<blink>U</blink>*</font></b>
+    </td><td align="center"><b>(M)</b>
+    </td><td>feu blanc clignotant  
+    </td><td>restricting within yard limits
+    </td><td>Cv</td><td>&nbsp;</td></tr>
+<tr><td align="center"><b><font color="#ff00ff">V</font></b><br>
+    </td><td align="center"><b>Cv</b>
+    </td><td align="center">carré violet 
+    </td><td>absolute stop
+    </td><td>Cv</td><td>&nbsp;</td></tr>
+</tbody></table>
+
+</p><h3><a name="early-light">2.4  Early Light Signals</a></h3>
+
+Early Est 1941 code colorlight signals with square heads
+
+<pre>     ------- 
+    |   Y   |     ------- 
+    | R   R |    | R O O |    Note: lamps in array of 3 columns -- much more
+    | G     |    | G   O |          information needed here!
+    | O O O |    | Y   Y |
+     -------      ------- 
+        |            | 
+     (u)|         (u)| 
+        |            |
+       [Nf]         [F]
+        |            |
+</pre>
+
+Early Etat colorlight signal type «St. Mariens»
+based on the configuration
+of light clusters below mechanical signals
+
+<pre>         ------- 
+        |     Y |  &lt;------+
+ C --&gt;  | R   R |  &lt;-- C  +-- RR    Note: lamp positions in head correct,
+VL --&gt;  | G   Y |  &lt;------+               placement of colors for fully
+ R --&gt;  | Y   Y |  &lt;-- R                  loaded head needs confirmation
+ A --&gt;  | Y     |
+         ------- 
+            |    
+            |    
+</pre>
+
+Early colorlight signals designed for 1885 to 1941 code transition
+
+<pre>     ------- -------      ------- -------                 -   
+    |       |       |    |       |       |              |   |  
+    |  G W  |  G W  |    |  O O  |  Y G  |              |Y G|  
+    |   G   |   R   |    |   O   |   R   |              | R |  
+    |       |       |    |       |       |              |   |  
+     ------- -------      ------- -------                 -    
+        |       |            |       |                    |
+        |       |            |       |                    |
+
+     1885 with dual       1941 with left         1941 with left mast
+     heads and masts    signal head blanked   removed and current target
+
+     Note: relative position of colors in triangles needs confirmation
+</pre>
+
+Early Etat colorlight signals based on 1885 code
+
+<pre>
+                       -------     -------
+           +------&gt;   |       |   |   G   |
+       R --+  C --&gt;   |       |   | R   R |
+           |  S --&gt;   |       |   | R   G |
+           | VL --&gt;   |       |   | W   W |    ---
+           +------&gt;   |       |   |   G   |   |   |
+                      |    ---     -------    |   |
+                       ---|           |        ---
+                          |           |         |
+
+                       -------     -------
+              D---&gt;   |       |   |   R   |
+              S --&gt;   |       |   | R   G |
+             VL --&gt;   |       |   | W   W |    ---
+                      |       |   |       |   |   |
+                      |    ---     -------    |   |
+                       ---|           |        ---
+                          |           |         |
+</pre>
+
+Early colorlight signals based on 1885 code
+
+<pre>                          W           W     &lt;--- some may have white added for 
+                       -------     -------                    clear indication?
+           +------&gt;   |   G   |   |   G   |
+       R --+  R --&gt;   | G   G |   | G   G |
+           |  S --&gt;   | R   G |   | R   G |
+           |  C --&gt;   | R   R |   | R   R |    ---
+           +------&gt;   |   G   |   |   G   |   |   |
+              A --&gt;   | G  ---     -------    | G |
+                       ---|           |        ---
+                          |           |         |
+</pre>
+
+<h3><a name="speed">2.5  Signaux Indicateurs de Vitesse Limite - 
+    Speed Signals</a></h3>
+
+<b>TIV</b> <b>P</b>réannonce - Speed limit advance approach
+(high speed trains)
+
+<pre>     +---+            +---+           
+     |P  |            |  ||           black <b>P</b> on white square projected (on)
+     +---+            +---+           white bar projected (off)
+       |                |             
+       |                |             reduce speed to 160 km/h
+                                      
+
+     +---+              |w            mechanical form (rotates)
+     | P |              |w      
+     +---+              |w            blk/wht/blk square board "P"
+       |                |             backlit at night
+       |                |             white vertical bar on side when off
+
+     fermé            ouvert
+      (on)            (off)
+</pre>
+
+<b>T</b>ableau <b>I</b>ndicateur de <b>V</b>itesse limite mobile à
+   distance - speed limit approach indicator
+
+<pre>      (u)x             ( )
+       |                |
+   +-------+        +-------+         black on white lozenge projected (on)
+   | / \   |        | / \ | |         white lozenge and bar projected (off)
+   |+nnn+  |        |+   +| |
+   | \ /   |        | \ / | |         approach nnn km/h (multiples of 10
+   +-------+        +-------+            &gt;60, 90 and 120 most common)
+       |                |
+      (u)+             ( )            installations after 1987 omit
+       |                |                alternately flashing lunar lights
+       |                |
+
+
+      (u)x             ( )            mechanical form (rotates)
+       |                |
+      / \               |w            blk/wht/blk lozenge board
+     +nnn+              |w            backlit at night
+      \ /               |w
+       |                |
+      (u)+             ( )
+       |                |
+       |                |
+
+     fermé            ouvert
+      (on)            (off)
+   [nnn km/h]
+</pre>
+
+<b>TIV</b> <b>R</b>appel - Speed limit repeat, 
+   maximum speed through interlocking
+
+<pre>       -                -
+     |   |            |   |
+     |   |            |   |
+     |   |            |   |
+     |   |            |   |
+     |   |            |   |
+     |   |            |   |
+    o                o  -
+       |                |
+     +---+            +---+           white on black projected (on)
+     |nnn|            | | |           white bar projected (off)
+     +---+            +---+
+       |                |             also may be wht/blk/wht fixed board
+      [Nf]             [Nf]           
+       |                |             reduce to nnn km/h
+       |                |             placed on signal governing interlocking
+
+     fermé            ouvert
+      (on)            (off)
+    [N km/h]
+</pre>
+
+Signalling for 90 km/h diverging route:
+
+<pre>                             <b><font color="#a0a0ff"><blink>u</blink>×</font></b>
+                             <b><font color="#ffffc0">90</font>           <font color="#00ff00">G</font></b>
+      <b><font color="#00ff00">G</font>          <font color="#ffffc0">P</font>           <font color="#a0a0ff"><blink>u</blink>+</font>           <font color="#ffffc0">90</font></b>
+
+      VL        TIVP         TIV       VL+TIVR
+
+      F&gt;         F&gt;          F&gt;           Nf&gt;   V
+  ----------------------------------------------*  -----------------&gt;
+                                                 \
+  &lt;---------------------------------------------  X  ----------------
+       &lt;F         &lt;F          &lt;F                  V\   &lt;Nf         &lt;F
+                                                    \
+                                                    |   C           A
+                                                    |
+                                                        <b><font color="#ff0000">R</font>           <font color="#ffc000">Y</font></b>
+                                                        <b><font color="#ff0000">R</font></b>
+</pre>
+
+<h3><a name="#direction">2.6  Signaux Indicateurs de Direction - 
+    Direction Indicators</a></h3>
+
+<b><i>SNCF</i></b>
+
+<p>
+
+<b>T</b>ableau <b>I</b>ndicateur de <b>D</b>irection à <b>D</b>istance -
+   Advance direction indicator
+
+</p><pre>     +---+        +---+               white projected on black
+     |\  |        |  /|
+     | | |        | | |               approach diverging route
+     +---+        +---+               located on its own mast
+       |            |
+       |            |
+
+
+     +---+        +---+               or
+     |\  |        |  /|
+     | | |        | | |
+     +---+        +---+               located with signal before divergence
+       |            | 
+       -            -
+     |   |        |   |
+     |   |        |   |
+     |   |        |   |
+     |   |        |   |
+       -            - 
+       |            |
+       |            |
+</pre>
+
+<b>I</b>ndicateur de <b>D</b>irection - Direction indicator
+
+<pre>g     -----
+   | U U U |  horizontal signal head with 2 to 7 (3 shown here) lights
+     -----    indicating route from leftmost geographic (left light only)
+       |      to rightmost geographic (all lights on)
+       -
+     |   |
+     |   |
+     |   |
+     |   |
+    o  -
+       |
+      [Nf]
+       |
+       |
+</pre>
+
+Early route indicators:
+
+<pre>                   +---+ 
+                  &lt;  U  &gt;
+                   |   | 
+     -----        &lt;  U  &gt;
+   &lt; U U U &gt;       |   | 
+     -----        &lt;  U  &gt;
+       |           +---+ 
+     -----           |   
+    |     |        ----- 
+    |     |       |     |
+    |     |       |     |
+     -----         -----            
+       |            [Nf]         
+       |             |           
+</pre>
+
+Directional signal example for 2 diverging routes:
+
+<pre>     <b><font color="#ffffc0">/</font></b>
+    <b><font color="#ffffc0">|</font>           <font color="#a0a0ff">U</font> <font color="#a0a0ff">U</font></b>
+
+    <b><font color="#ffc000">Y</font> <font color="#ffc000">Y</font>          <font color="#ffc000">Y</font></b>
+                 <b><font color="#ffc000">Y</font></b>        *------------
+                         /             \
+    F&gt;           Nf&gt;    /               \
+  ------------------*--*  ------------------------------------------&gt;
+  &lt;---------------*----*---------------------------------------------
+                                           \
+                         \                  \
+                          \                  -----------------------&gt;
+                           -----------------------------------------&lt;
+
+   <b><font color="#ffffc0">\</font></b>
+    <b><font color="#ffffc0">|</font>           <font color="#a0a0ff">U</font></b>  
+
+
+    <b><font color="#00ff00">G</font>            <font color="#00ff00">G</font></b>        *  ----------
+                         /             \
+    F&gt;           Nf&gt;                    \
+  ------------------*--*--------------------------------------------&gt;
+  &lt;---------------*----*---------------------------------------------
+                                           \
+                         \                  \
+                          \                  -----------------------&gt;
+                           -----------------------------------------&lt;
+</pre>
+
+<b><i>RENFE</i></b>
+
+<pre>     u u u
+      uuu 
+       u  
+       -
+     |   |
+     |   |
+     |   |
+       -
+       |
+       |
+       |
+       |
+
+
+       -
+     |   |
+     |   |
+     |   |
+       -
+      uuu 
+       u  
+       |
+       |
+</pre>
+
+<b>Mechanical Direction Indicators</b>
+<p>
+<b><i>SNCF</i></b>
+
+</p><pre>           1941     \---u-+      */ltb/blk fishtail semaphore
+                    /-----+                   
+                        |        horizontal with no light for route off
+                    \---u-+      
+                    /-----+      top arm dropped with lunar light for left
+                        |        
+                    \---u-+      n arms from top dropped with n lunar lights
+                    /-----+         for nth route to the right 
+                        |           (not limited to 3 routes)
+                        |  
+                                 semaphore obscures lunar lamp when horizontal
+
+
+           1885     \---w-+      */vio fishtail semaphore
+                    /--v--+                   
+                        |        horizontal with violet light for route off
+                    \---g-+      
+                    /--v--+      top arm dropped with white light for left
+                        |        
+                    \---g-+      nth arm from top dropped with green light
+                    /--v--+         for nth route to the right
+                        |           (not limited to 3 routes)
+                        |  
+</pre>
+
+<b><i>RENFE</i></b>
+
+<pre>                     _____
+                    |_||__|b
+                         |w      blue semaphore with white stripe 
+                     _____       horizontal with blue light
+                    |_||__|b     
+                         |w      nth arm dropped with lunar light for 
+                     _____       nth route from left
+                    |__||_|b
+                         |w
+                         |
+</pre>
+                  
+
+<b>T</b>ableau d'<b>E</b>ntreé à <b>C</b>ontresens <b>S</b> - 
+   Crossover (enter) to wrong main<br>
+<b>T</b>ableau de <b>S</b>sortie de <b>C</b>ontresens <b>S</b> -  
+   Crossover (exit) from wrong main
+
+<pre>     TECS           TSCS
+
+     +---+          +---+             white projected on black
+     | _||          ||_ |
+     ||  |          |  ||             crossover at nnn km/h
+     +---+          +---+             located on interlocking signal governing
+    +-----+        +-----+               crossover with TIV dictating speed
+    | nnn |        | nnn |
+    +-----+        +-----+            used on double track mainline signaled
+       |              |                  for both directions
+       -              -
+     |   |          |   |
+     |   |          |   |
+     |   |          |   |
+     |   |          |   |
+    u  -           u  -
+       |              |
+      [Nf]           [Nf]
+       |              |
+       |              |
+
+     +---+          +---+             white projected on black
+     | _||          ||_ |
+     ||  |          |  ||             
+     +---+          +---+             
+       |   -           |  -
+       --+ Y*|        --+ Y*|         crossover at 60 km/h
+     |       |      |       |         
+     |     Y*|      |     Y*|
+     |   +--        |   +--
+     |   |          |   |
+     |   |          |   |
+     |   |          |   |
+    u  -           u  -
+       |              |
+      [Nf]           [Nf]
+       |              |
+       |              |
+</pre>
+
+Signalling for a 90 km/h crossover (signals shown for right direction only):
+
+<pre>                                  <b><font color="#ffffc0">_|</font></b>
+                         <b><font color="#a0a0ff"><blink>u</blink>×</font>      <font color="#ffffc0">|</font></b>
+                        <b><font color="#ffffc0">90</font>       <font color="#ffffc0">90</font>                  <font color="#ff0000">R</font></b>
+      <b><font color="#00ff00">G</font>        <font color="#ffffc0">P</font>         <font color="#a0a0ff"><blink>u</blink>+</font>       <font color="#00ff00">G</font>                  <font color="#ff0000">R</font>         <font color="#00ff00">G</font></b>
+
+      F&gt;     TIVP&gt;     TIV&gt;      Nf&gt;   V            &lt;Nf        F&gt;
+  &lt;------------------------------------*  ------*------------------&gt;&gt;
+                                        \
+  &lt;&lt;-----------------------------------  *----*---------------------&gt;
+      A&gt;     TIVP&gt;     TIV&gt;      Nf&gt;     V          &lt;Nf        F&gt;
+
+      <b><font color="#ffc000">Y</font>                           <font color="#ff0000">R</font>                  <font color="#ff0000">R</font>         <font color="#00ff00">G</font></b>
+                                  <b><font color="#ff0000">R</font>                  <font color="#ff0000">R</font></b>
+</pre>
+
+Indications de destinations particulières - Siding/track indicators
+
+<pre>     +---+     white or yellow ? letter(s) projected on a black background
+     | X |     or wht/blk/wht rotating between face-on and edge-on
+     +---+
+       -       G   = garage  - service track
+     |   |     D   = dépôt   - locomotive shop
+     |   |     Imp = impasse - dead end siding
+     |   |     SAS = ?       - short block entry between interlockings
+     |   |     n             - track number
+    o  -       
+       |
+      [Nf]  
+       |
+       |
+</pre>
+
+<p>
+<b><i>SNCF</i></b> directional signal indications:
+</p><p>
+<table border="1">
+<tbody><tr><td align="center"><b>Aspect</b>
+    </td><td align="center" colspan="3"><b>Name</b>
+    </td><td align="center"><b>Indication</b>
+    </td><td colspan="2" align="center"><b>Type</b>
+    </td><td align="center"><b>Note</b></td></tr>
+<tr><td align="left"><b><font color="#ffffff">\<br><tt>&nbsp;</tt>|</font></b><br>
+    </td><td align="center" rowspan="2"><b>TIDD</b> 
+    </td><td align="center" rowspan="2" colspan="2">tableau indicateur de direction à distance 
+    </td><td>approach diverging left route
+    </td><td rowspan="2">Nf</td><td rowspan="2">F</td></tr>
+<tr><td align="right"><b><font color="#ffffff">/<br>|<tt>&nbsp;</tt></font></b><br>
+    </td><td>approach diverging right route
+</td></tr><tr><td align="left"><b><font color="#c0c0ff">u</font></b><br>
+    </td><td align="center" rowspan="4"><b>ID</b> 
+    </td><td align="center" rowspan="4" colspan="2">indicateur de direction
+    </td><td>diverge on left route
+    </td><td rowspan="4">Nf</td><td rowspan="4">&nbsp;
+    </td><td rowspan="4">arbitrary number of lamps<br>in combination with non-stop aspect</td></tr>
+<tr><td align="left"><b><font color="#c0c0ff">u u</font></b><br>
+    </td><td>diverge on 2nd to left route
+</td></tr><tr><td align="left"><b><font color="#c0c0ff">u u u</font></b><br>
+    </td><td>diverge on 3rd to left route
+</td></tr><tr><td align="left"><b><font color="#c0c0ff">u u u u</font></b><br>
+    </td><td>diverge on 4th to left route
+</td></tr><tr><td align="left"><b><font color="#ffffff">__|<br>|</font></b><br>
+    </td><td align="center"><b>TECS</b> 
+    </td><td align="center" colspan="2">tableau d'entreé à contresens
+    </td><td>cross to right track<br>enter reverse running
+    </td><td>Nf</td><td>&nbsp;
+    </td><td rowspan="2">in combination with non-stop aspect</td></tr>
+<tr><td align="right"><b><font color="#ffffff">|__<br>|</font></b><br>
+    </td><td align="center"><b>TSCS</b> 
+    </td><td align="center" colspan="2">tableau de sortie de contresens
+    </td><td>cross to left track<br>exit reverse running
+    </td><td>Nf</td><td>&nbsp;</td></tr>
+<tr><td align="center"><b><font color="#ffffff">G</font></b><br>
+    </td><td align="center" rowspan="5">IDP 
+    </td><td align="center" rowspan="5">indications de destinations particulières
+    </td><td align="center">garage
+    </td><td>route to service track
+    </td><td rowspan="5">Nf</td><td rowspan="5">&nbsp;</td></tr>
+<tr><td align="center"><b><font color="#ffffff">D</font></b><br>
+    </td><td align="center">dépôt
+    </td><td>route to loco shop</td></tr>
+<tr><td align="center"><b><font color="#ffffff">Imp</font></b><br>
+    </td><td align="center">impasse
+    </td><td>route to dead end siding</td></tr>
+<tr><td align="center"><b><font color="#ffffff">SAS</font></b><br>
+    </td><td align="center">?
+    </td><td>route to short block between interlockings</td></tr>
+<tr><td align="center"><b><font color="#ffffff"><i>n</i></font></b><br>
+    </td><td align="center">&nbsp;
+    </td><td>route to track <i>n</i></td></tr>
+</tbody></table>
+
+</p><h4>Tableau <b>I</b>ndicateur de <b>P</b>rovenance - 
+   Indicator of origin</h4>
+
+<pre>       -
+     |   |
+     |   |
+     |   |
+     |   |
+     |   |
+       -
+       |
+     +---+     white number lit from 5x7 grid(s) (one per digit)
+     | N |
+     +---+     indicates departing track number to which a non-stop indication
+       |          applies
+       |
+               placed after convergence of a number of tracks  
+</pre>
+
+
+
+
+
+
+
+<h3><a name="#switching">2.7  Signaux de Manoeuvre - Switching Signals</a></h3>
+
+<b>S</b>ignal <b>L</b>umineux de <b>M</b>anoeuvre - Switching maneuver signal
+
+<pre>             (U)   (U)
+              |-----|
+                 |  
+                 | (U)
+                 |--|
+                 |
+                +-+    blk/wht roman numeral plates 
+                |I|    
+                +-+    forward most signal numbered I, increase backwards
+                 |
+                 |
+</pre>
+
+<p>
+Signal de débranchement - Coupling and hump signal (obsolete)
+</p><pre>       ---
+     /  uu \
+      u u u 
+     \ uu  /
+       ---
+        |
+        |
+</pre>
+
+<p>
+Switching signal indications:
+</p><p>
+<table border="1">
+<tbody><tr><td align="center" colspan="2"><b>Aspect</b>
+    </td><td align="center" rowspan="2"><b>Name</b>
+    </td><td align="center" rowspan="2"><b>Indication</b>
+    </td><td align="center" rowspan="2"><b>Note</b></td></tr>
+<tr><td align="center">SLM 
+    </td><td align="center">SD</td></tr>
+<tr><td align="left"><b><font color="#c0c0ff"><blink>U</blink>×</font></b> O<br><b><font color="#c0c0ff"><blink>U</blink>+</font></b><br>
+    </td><td align="center"><b><font color="#c0c0ff">u<br>u<br>u</font><br>
+    </b></td><td align="center">tirez
+    </td><td>pull
+    </td><td>SLM vertical alternate flash</td></tr>
+<tr><td align="left"><b><font color="#c0c0ff"><blink>U</blink>× <blink>U</blink>+</font></b><br>O<br>
+    </td><td>&nbsp;
+    </td><td align="center">refoulez
+    </td><td>push
+    </td><td>SLM horizontal alternate flash</td></tr>
+<tr><td>&nbsp;
+    </td><td align="center"><b><font color="#c0c0ff"><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt>u<br><tt>&nbsp;&nbsp;</tt>u<br>u</font></b> 
+    </td><td align="center">pousez
+    </td><td>push</td></tr>
+<tr><td>&nbsp;
+    </td><td align="center"><b><font color="#c0c0ff">u<br><tt>&nbsp;&nbsp;</tt>u<br><tt>&nbsp;&nbsp;&nbsp;&nbsp;</tt>u</font></b> 
+    </td><td align="center">lancez
+    </td><td>shove</td></tr>
+<tr><td align="left">O O<br>O<br>
+    </td><td align="center"><b><font color="#c0c0ff">u u u</font></b>
+    </td><td align="center">arretêz
+    </td><td>stop
+    </td><td>SLM dark</td></tr>
+<tr><td align="left"><b><font color="#c0c0ff">U U<br>U</font></b><br>
+    </td><td>&nbsp;
+    </td><td align="center">fin dèmploi du signal
+    </td><td>end of signal use
+    </td><td>SLM on for 15 sec. then dark</td></tr>
+</tbody></table>
+
+</p><h3><a name="#departure">2.8 Signaux de Départ - 
+    Departure Signals</a></h3>
+
+
+<b>S</b>ignal <b>L</b>umineux de <b>D</b>épart -- Departure signal
+
+<pre>       -
+     | U |
+     |   |
+     |   |     mounted on mast of Cv signal
+       -
+       |
+    +---+      green and white rectangles (|) projected
+    |w|g|
+    +---+      clearance to leave station
+       |
+       |
+               or
+       -  
+     |   |
+     |   |
+     | G |     mounted on exit signal mast, frequently with TIP to
+     |   |        indicate track number for which departure authorised
+     |   |
+       -
+       |
+     +---+     
+     | N |     TIP track number (Sec. 2.6) to which this signal applies
+     +---+     
+       |       
+       |
+    +---+      green and white rectangles (|) projected
+    |w|g|
+    +---+      clearance to leave station
+       |
+       |
+</pre>
+
+<b>T</b>ableau <b>L</b>umineux de <b>C</b>orrespondance pour voies
+   convergentes - Converging track indicators
+
+<pre>     +--------------+    placed 5m in advance of fouling point, on
+     | ---  w g  wr |    ground to left of track
+     |  |   w g  rw |
+     +--------------+    replaces upward chevron
+
+     +-----------+       placed at fouling point
+     | ---  w g  |
+     |  |   w g  |       chevron ^ 5m in advance indicates stopping point
+     +-----------+
+</pre>
+  
+TLC indications:
+<p>
+<table border="1">
+<tbody><tr><td align="center" colspan="2">name</td><td align="center">symbol</td><td>meaning</td></tr>
+<tr><td align="center"></td><td align="center">lettre &amp;laquoT»</td><td align="center"><tt>T</tt></td><td>permission to switch to neighboring track</td></tr>
+<tr><td align="center"><b>SLD</b></td><td align="center">signal lumineux de départ</td><td align="center"><tt>|</tt></td><td>departure signal</td></tr>
+<tr><td align="center"><b>C</b></td><td align="center">damier rouge et blanc</td><td align="center"><tt>+</tt></td><td>stop (replaces chevron pointe et haute)</td></tr>
+</tbody></table>
+</p><p>
+  Locations of fully loaded TLCs:
+</p><pre>
+          T|+
+  ----------------
+          T|+     \
+  -----------------*-----
+                 T|+     \    Nf&gt;
+  ------------------------*------------------------------------------
+                   |  5m |         
+</pre>                    
+
+  Locations of TLCs without the stop indication (^ chevron at stopping point):
+
+<pre>            ^  T|  
+  ----------------
+            ^  T| \
+  -----------------*-----
+                   ^  T| \    Nf&gt;
+  ------------------------*------------------------------------------
+                   |  5m |         
+</pre>                    
+
+Chevron pointe en haut - Chevron pointing up
+
+<pre>     +---+     blk/wht square board "/\" (on ground)
+     |/ \|
+     +---+     point at which train must wait for TIP or TLC indication
+               located 5m in advance of fouling point
+</pre>
+
+<p>
+</p><hr>
+
+<p>
+Last updated 8 November 2004<br />
+&copy;2003&ndash;2005 <a href="http://www.sterbenz.org/james" title="James Sterbenz personal page">James P.G. Sterbenz</a>
+&lt;<a href="mailto:jpgs@sterbenz.org"><em>jpgs@sterbenz.org</em></a>&gt;<br />
+</p>
+
+</body>
+</html>
