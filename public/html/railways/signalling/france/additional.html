@@ -1,0 +1,1008 @@
+<html><head>
+<title>French Signals: Other Signals</title></head>
+<body bgcolor="#a0a0a0">
+
+©1997 James P.G. Sterbenz - All rights reserved
+<hr>
+
+<h4>Section Contents: Other Signals</h4>
+
+III. French Signalling
+<ol>
+<li><a href="french1.html">Introduction and History</a>
+</li><li><a href="french2.html">Signal Types and Location</a>
+</li><li><a href="french3.html">Signal Aspects and Indications</a>
+<b></b></li><li><b>Other Signals</b>
+   <ol>
+   <li><a href="french4.html#perm-speed">Permanent speed reductions</a>
+   </li><li><a href="french4.html#temp-speed">Temporary speed reductions</a>
+   </li><li><a href="french4.html#dest">Destination boards</a>
+   </li><li><a href="french4.html#stop">Stop orders</a>
+   </li><li><a href="french4.html#tele">Telephone communication signals</a>
+   </li><li><a href="french4.html#station">Station boards</a>
+   </li><li><a href="french4.html#temp-single">Temporary single track boards</a>
+   </li><li><a href="french4.html#levelx">Grade crossing boards</a>
+   </li><li><a href="french4.html#misc">Other fixed boards</a>
+   </li><li><a href="french4.html#elec">Electric traction signals</a>
+   </li><li><a href="french4.html#hand-whistle">Hand/whistle switching signals</a>
+   </li><li><a href="french4.html#lgv">LGV boards and singals</a>
+   </li><li><a href="french4.html#cab-tgv"> TGV cab signals</a>
+   </li></ol>
+</li><li><a href="french5.html">Acknowledgements, References, and Web Links</a>
+</li></ol>
+
+<hr>
+
+<h2>4. Fixed Boards and Additional Signals</h2>
+
+<h4><a name="perm-speed">4.1  Limitations de Vitesse Permanantes - 
+    Permanent Speed Reduction Boards</a></h4>
+
+TIV fixe à distance (du type «B») -
+   Fixed speed warning board (&gt; 140km/h)
+
+<pre>     +---+       blk/wht/blk semicircle board
+     |nnn|
+       -         reduce to nnn km/h by the next TIVR, Km, or Z board
+       |         only for trains authorised to travel at or above 140 km/h
+       |         this will be the top board in a stack of TIVs
+</pre>
+
+TIV fixe à distance (du type «C») - 
+   Fixed speed warning board (railcar)
+
+<pre>       -         blk/wht/blk semicircle board
+     |nnn|
+     +---+       reduce to <i>nnn</i> km/h by the next TIVR, Km, or Z board
+       |         only for railcars and self-propelled passenger units
+       |         this will be below type B but above ordinary in a TIV stack
+</pre>
+
+TIV fixe à distance (du type ordinaire) - Fixed speed warning board
+
+<pre>     +---+       blk/wht/blk square board
+     |nnn|
+     +---+       reduce to <i>nnn</i> km/h by the next TIVR, Km, Z board or
+       |            interlocking
+       |         may also be repeated at incoming lines
+</pre>
+
+TIV fixe à distance (crocodilé) - Fixed speed warning board (crocodile)
+
+<pre>       .
+      / \        blk/wht/blk lozenge board
+      nnn 
+      \ /        reduce to nnn km/h by the next TIVR, Km, Z board, or
+       |            interlocking
+       |         accompanied  by "crocodilé" point for cab signaling
+</pre>
+
+Pancarte de repérage de transition de vitesse - Speed limit change board
+
+<pre>     +---+       blk/wht square board <b>Km   </b> (large K small m)
+     |Km |                            <i>nnn.n</i> (large units small tenths)
+     |nnn|
+     +---+       point of speed limit change
+       |
+       |
+</pre>
+
+Speed limit transition:
+
+<pre>      TIV B             \
+      TIV C              \    TIV ordinare
+      TIV ordinare        \    (repeater)      Km
+  -------------------------*----------------------------------------&gt;
+       |       &gt;= braking distance             |
+</pre>
+
+Debut zone de ralentissement  - Begin speed reduction
+
+<pre>     +---+       wht/blk/wht square board <b>Z</b> (zone)
+     | Z |
+     +---+       beginning of speed reduction not exceeding 5 km
+       |
+       |
+</pre>
+
+Fin zone de ralentissement - End speed reduction
+
+<pre>     +---+       wht/blk/wht square board <b>R</b> (reprise)
+     | R |
+     +---+       end of the speed restriction begun by pancarte <b>Z</b>
+       |
+       |
+</pre>
+
+  Speed reduction zone:
+
+<pre>      TIV B             \
+      TIV C              \    TIV ordinare
+      TIV ordinare        \    (repeater)       Z              R
+  -------------------------*----------------------------------------&gt;
+       |       &gt;= braking distance              |    &lt;= 5km    |
+</pre>
+
+
+<h3><a name="temp-speed">4.2 Limitations de Vitesse Temporaires - 
+    Temporary Speed Recuction Boards</a></h3>
+
+Visibilité réduite - Reduced visibility announce
+
+<pre>       -         blk/wht/blk circle board <b>/</b>
+     ( / )
+       -         &gt;= 100m in advance of P board or &lt;= 100m in advance of TIVD
+       |            when visibility is reduced (e.g. due to a curve)
+                 [represented by / in the following track diagrams]
+</pre>
+
+P  Tableau préannoncé - Preannounce: reduce to 160 km/h
+
+<pre>       -         blk/wht/blk circle board <b>P</b> backlit at night
+     ( P )
+       -         reduce speed to 160 km/h
+       |
+</pre>
+
+Annonce de réduction de vitesse - Approach TIVD (&gt;40 km/h)
+
+<pre>       -         */(blk-wht stripes ///) circle board (with flashing lunar)
+     ( <b><font color="#a0a0ff"><blink>U</blink>*</font></b>)
+       -         placed 30m in advance of TIVD for speeds &gt; 40 km/h
+       |         [represented by U* in the following track diagrams]
+</pre>
+
+Disque jaune - Approach TIVD (&lt;=40 km/h and reduced visibility)
+
+<pre>       -         */yel/blk circle board (with yellow light)
+     ( <b><font color="#ffc000">Y</font></b> )
+       -         placed 30m in advance of TIVD for reduced visibility
+       |            for speeds &lt;= 40 km/h
+                 [represented by Y in the following track diagrams]
+</pre>
+
+TIVD (TIV à distance) - Approach TIV (high speed or reduced visibility)
+
+<pre>       -         blk/wht/blk circle board, backlit at night
+     (nnn)
+       -         reduce to <i>nnn</i> km/h by TIV
+       |         also used for a decreasing change in the restriction
+</pre>
+
+TIVD (TIV à distance) - Approach TIV (normal)
+
+<pre>       -         blk/wht/blk circle board, backlit at night
+     (nnn)
+       -
+       -         */yel/blk circle board (with yellow light)
+     ( <b><font color="#ffc000">Y</font></b> )
+       -         reduce speed to <i>nnn</i> km/h by TIV board
+       |         [represented by TIVD over Y in the following track diagrams]
+</pre>
+
+TIV déxécution - Begin speed restriction
+
+<pre>       -         wht/blk/wht circle board, backlit at night
+     (nnn)
+       -         start point of temporary speed restriction, or
+       |         change of speed within the restriction
+</pre>
+
+Tableau blanc de fin de limitation - End speed restriction
+
+<pre>       -         */wht/blk circle board, backlit at night
+     (   )
+       -         end of temporary speed restriction
+       |         [represented by TB in the following track diagrams]
+</pre>
+
+Tableau blanc à flèche verticale - Bypass speed restriction
+
+<pre>                                            .
+       -         blk/wht/blk circle board "/|\", backlit at night
+     ( ^ )                                  |
+       -         resume speed, diverging route has bypassed restriction
+       |         [represented by ^ in the following track diagrams]
+</pre>
+
+Examples of use:
+<p>
+  Normal visibility, restriction &lt;= 40km/h:
+
+                       TIVD       ^ /
+                        <b><font color="#ffc000">Y</font></b>          /           TIV             TB
+  --------------------------------*---------------------------------&gt;
+                        |  &gt;= braking distance  |  &lt;= 40 km/h  |
+
+
+  Reduced visibility, restriction &lt;= 40km/h:
+
+</p><pre>         /        <b><font color="#ffc000">Y</font></b>    TIVD                    TIV             TB
+  ------------------------------------------------------------------&gt;
+         |  100m  | 30m |  &gt;= braking distance  |  &lt;= 40 km/h  |
+</pre>
+
+  Normal visibility, restriction &gt; 40km/h:
+
+<pre>         <b><font color="#a0a0ff"><blink>U</blink>*</font></b>            TIVD                    TIV             TB
+  ------------------------------------------------------------------&gt;
+         |     200m     |  &gt;= braking distance  |  &lt;= 40 km/h  |
+</pre>
+
+  note: in all cases where the normal speed limit is in excess of 160 km/h,
+        a P board will be placed braking distance to 160km/h in advance of
+        the TIVD
+
+<h3><a name="temp-dest">4.3 Indicaions de Destinations Particulieres - 
+    Destination Boards</a></h3>
+
+<a name="temp-dest">Tableau «<b>G</b>» (voie de service: garage) -
+   Service track for parking trains
+
+</a><pre><a name="temp-dest">     +---+     wht/blk/wht square board <b>G</b> (garage)
+     | G |
+     +---+
+       |
+       |
+</a></pre>
+
+<a name="temp-dest">Tableau «<b>D</b>» (voie de dépôt) - Locomotive shop
+
+</a><pre><a name="temp-dest">     +---+   +---+     wht/blk/wht square board <b>D</b> (dépôt)
+     | D |   |DEP|                            or
+     +---+   +---+                              <b>DEP</b> (obsolete)
+       |       |
+       |       |
+</a></pre>
+
+<a name="temp-dest">Tableau «<b>Imp</b>» (voie en impasse) - Dead end siding
+
+</a><pre><a name="temp-dest">     +---+     wht/blk/wht square board <b>Imp</b> (impasse)
+     |Imp|
+     +---+
+       |
+       |
+</a></pre>
+
+<a name="temp-dest">Tableau «<b>SAS</b>» - Enter short block between two interlocking
+   signals
+
+</a><pre><a name="temp-dest">     +---+     wht/blk/wht rectangle (--) board <b>SAS</b>
+     |SAS|
+     +---+     
+       |       
+       |       
+</a></pre>
+
+<a name="temp-dest">Tableau «<b>Hertoir</b>» - Bumper warning in nnn meters
+
+</a><pre><a name="temp-dest">     +-----+   +---+   wht/blk/wht square board <b>HEURTOIR</b> (small "EURTIOR")
+     |H....|   | H |                            <i> nnn  m </i>
+     |nnn m|   +---+                          or
+     +-----+     |                              <b>H</b> (obsolete)
+        |        |                        
+        |
+</a></pre>
+
+<a name="temp-dest">Feu repérage de heurtoir - Bumper stop light
+
+</a><pre><a name="temp-dest">    (<b><font color="#ff00ff">V</font></b>) (<b><font color="#ff0000">R</font></b>)    fixed <b>Cv</b> or <b>C</b> mounted on bumper
+     |   |
+     |   |
+</a></pre>
+
+<a name="temp-dest">Pancarte de destination - Route destination board (obsolete)
+
+</a><pre><a name="temp-dest">    +-----+    blk/wht/blk rectangle (--) board with name of destination city
+    |PARIS|
+    +-----+    placed just past diverging junction to indicate route direction 
+       |       
+       |
+</a></pre>
+
+<h3><a name="stop">4.4  Signal D'arret - Stop Orders</a></h3>
+
+Feu rouge -- Red light
+
+<pre>     +---+       
+     | <b><font color="#ff0000">R</font></b> |       stop and stay
+     +---+       
+</pre>
+
+Jalon d'arrêt à damier rouge et blanc - 
+   Red/white checkerboard stop sign
+
+<pre>     +-+-+       wht red /opp square board
+     +-+-+       red wht
+     +-+-+
+       |         stop and stay
+</pre>
+
+Drapeau rouge - Red flag
+
+<pre>       |
+      ---        red rectangle (|) cloth banner
+      | | 
+      ---        stop and stay
+       |
+</pre>
+
+Pancarte à <b>distance</b> <b>ARRÊT</b>» - Announce stop board
+
+<pre>     +---+      blk/wht square board <b>ARRÊT</b> (large "A" small "RRÊT")
+     |A..|                           <i>nnn  m</i> (large nnn small "m")
+     |...|
+     +---+
+       |        stop sign in <i>nnn</i> meters
+       |
+</pre>
+
+Pancarte «<b>ARRÊT</b>» - Stop board
+
+<pre>     +-----+     wht/blk/wht rectangle (--) board <b>ARRÊT</b>
+     |ARRÊT|
+     +-----+     stop sign -- verbal orders must be received to proceed
+        |
+        |
+</pre>
+
+Sans arrêt - Without stop (obsolete)
+
+<pre>     +-----+     wht/blk/wht square board <b>SANS </b>
+     |SANS |                              <b>ARRÊT</b>
+     |ARRÊT|
+     +-----+     Pass S (semaphore) signal without stopping at restricted speed
+        |
+        |        obsolete -- replaced by (S) [flashing red]
+</pre>
+
+Arrêt des trains du chantier - stop for trains used in work area
+
+<pre>     +---+       wht/blk/wht rectangle (|) board <b> ARRÊT </b> (large A)
+     |A..|                                       <b>   DES  </b>
+     |...|                                       <b> TRAINS </b>
+     +---+       work trains must not pass       <b>   DU   </b>
+       |            this point                   <b>CHANTIER</b>
+       |
+</pre>
+
+<h3><a name="tele">4.5  Signaux de Communication Téléphonique -
+    Telephone Communication Signals</a></h3>
+
+DD  Demande départ - Request departure
+
+<pre>       -
+     |   |
+     |   |
+     |   |
+       -
+       |
+     +---+       blk/wht square board <b>D \ </b>
+     |D \|                            <b>   |</b>    (telephone hand set)
+     |D /|                            <b>D / </b> 
+     +---+
+       |         permission must be requested by the corresponding telephone
+     +---+          to depart either one minute before the scheduled time
+     | C |          or when the signal turns green
+     | Cv|
+     +---+       located on interlocking signal (<b>C</b> or <b>Cv</b>)
+       |
+</pre>
+
+VAT  Voyant d'appel téléphonique - Signal incoming telephone call
+
+<pre>     +----+      blk/wht square board <b>  \ </b>
+     |  \ |                           <b>   |</b>   (telephone hand set)
+     |<b><font color="#a0a0ff"><blink>u</blink>*</font></b> ||                           <b>  / </b>
+     |  / |
+     +----+      engineer must pick up the telephone immediately when
+       |            VAT (flashing lunar) is on (with corresponding C or Cv)
+       |
+
+
+     +----+      blk/wht square board <b>  \ </b>
+     | 5 \|                           <b>5  |</b>   (telephone hand set)
+     |   /|                           <b>  / </b>
+     | <b><font color="#a0a0ff"><blink>u</blink>*</font></b> |
+     +----+      when stopped by a C or Cv the engineer should wait 5
+       |            minutes before calling for authorisation to pass,
+       |            unless VAT is flashing
+
+
+     +----+      blk/wht square board <b>  \  </b>
+     | _\_|                           <b> --|-</b>   (hand set crossed by red slash)
+     |  / |                           <b>  /  </b>
+     | <b><font color="#a0a0ff"><blink>u</blink>*</font></b> |
+     +----+      it is only necessary to call for authorisation to pass
+       |            signal if VAT is flashing
+       |
+</pre>
+
+<h3><a name="station">4.6  Panneaux de Gares - Station Boards</a></h3>
+
+Tête de train - Head of train
+
+<pre>     +---+       wht/blk/wht square board <b>TT</b>
+     |T T|
+     +---+       point at which locomotive must stop for all trains
+       |         located on station platform
+       |
+</pre>
+
+Point normal d'arrêt de n véhicules - 
+   Normal stopping point for n cars
+
+<pre>     +---+       wht/blk/wht square board <i>n</i><b>V</b>
+     |n V|
+     +---+       point at which train of <i>n</i> cars should stop
+       |         multiple boards may be present for differing train lengths
+       |
+</pre>
+
+Plaque carrée mi-blanche, mi verte - Green/white starting plate
+
+<pre>       |
+     +---+       */ grn wht square board on mast below signal head
+     | | |
+     +---+       modifies restricting <b>M or</b> clear <b>VL</b> indication to
+       |            starting signal indication
+</pre>
+
+Chevron pointe en haut - Station exit markers at fouling points
+
+<pre>     +---+       blk/wht square board <b>/\</b>
+     |/ \|
+     +---+       marks fouling point of switches for station exit
+       |
+       |
+</pre>
+
+Limite de Manoeuvres - Limit of switching moves
+
+<pre>     +---+       wht/blk/wht square board <b>LM</b>
+     |L M|
+     +---+       limit past which switching moves may not pass
+       |
+       |
+</pre>
+
+Limite pour garage par refoulement - Limit of parking train
+
+<pre>     +---+       wht/blk/wht square board <b>LGR</b>
+     |LGR|
+     +---+       limit of pushing train to be parked
+       |            to avoid fouling switches and grade crossing activation
+       |
+</pre>
+
+Gare -- Minor station announce
+
+<pre>     +-----+     blk/wht/blk rectangle (--) board <b>GARE</b>
+     |GARE |
+     +-----+     braking distance in advance of a chevron entry marker
+        |           at a minor multi-platform non-signaled station
+        |
+</pre>
+
+Repère déntrée (chevron) - 
+   Minor station chevron entry marker
+
+<pre>     +---+       blk/wht square board <b>\/</b>
+     |\ /|
+     +---+       placed 100m in advance of first diverging switch to
+       |            multiple platforms at minor non-signaled station
+       |
+</pre>
+
+Repère à distance - Minor station (single platform) announce
+
+<pre>     +-----+     */ wht blk /opp rectangle (--) board
+     |  |  |
+     +-----+     braking distance in advance of a non-signaled single platform
+        |           (PL -- pleine) minor station
+        |        a chevron will be placed at the first siding switch (if any)
+</pre>
+
+Pancarte mi-blanche, mi-noire - Minor station limit marker
+
+<pre>        .        */ blk wht lozenge board (dwarf) facing track
+       /|\
+       \|/       limit of minor station:  limit for maneuvers (LM) exiting
+        |           and braking distance from disque (D) signal entering (BMVU)
+</pre>
+
+
+<h3><a name="temp-single">4.7  Panneaux de Voie Unique Temporaire - 
+    Temporary Single Track Boards</a></h3>
+
+Début de voie unique temporaire - Enter temporary single track
+
+<pre>     +---+       wht/blk/wht square board <b>VUT</b>
+     |VUT|
+     +---+       beginning of temporary bidirectional single track
+       |         located under signal head before crossover
+       |
+</pre>
+
+Annonce fin voie unique temporaire - Approach end of temporary single track
+
+<pre>     +---+       blk/wht/blk rectangle (--) board <b>  FIN </b> (large letters)
+     |FIN|                                        <b>de VUT</b> (small letters)
+     |...|
+     +---+       approach end of temporary single track operation
+       |         located in advance of crossover
+       |
+</pre>
+
+Fin voie unique temporaire - End of temporary single track
+
+<pre>     +---+       wht/blk/wht square board <b>  FIN </b> (large letters)
+     |FIN|                                <b>de VUT</b> (small letters)
+     |...|
+     +---+       end of temporary single track operation
+       |         located under temporary signal head before crossover
+       |
+</pre>
+
+<h3><a name="levelx">4.8 Panneaux et Reperes de Passages a Niveau - 
+    Grade Crossing Boards</a></h3>
+
+Sifflet - Whistle/horn
+
+<pre>      +-+        wht/blk rectangle (|) board <b>S</b>
+      |S| 
+      +-+        sound horn or whistle
+       |         placed 120m to 320m in advance of minor unprotected grade
+       |            crossings
+</pre>
+
+Annonce de passages à niveau - Approach grade crossing
+
+<pre>     +---+       blk/wht/blk square board <b>   PN   </b>
+     |PN |                                <i>   xx   </i>
+     |xx |                                <b>à</b> <i>nnn m</i>
+     |..m|
+     +---+       grade crossing #xx (numbered outward from Paris)
+       |            in nnn meters
+       |
+</pre>
+
+Passages à niveau - Grade crossing
+
+<pre>     +---+       wht/blk/wht square board <b> PN </b>
+     |PN |                                <i> xx </i>
+     |xx |
+     +---+       grade crossing #<i>xx</i>
+       |         placed 6m -- 8m in advance of crossing
+       |
+</pre>
+
+PN SAL (signalisation lumineuse et sonore) - Grade crossing sound/light
+
+<pre>    (<b><font color="#00ff40">G</font></b>)+         green lights authorise train to pass grade crossing
+       |            for which the gates may not drop in all cases
+    (<b><font color="#00ff40">G</font></b>)+
+       |
+     +---+       wht/blk/wht square board <b> PN </b>
+     |PN |                                <i> xx </i>
+     |xx |
+     +---+       grade crossing #<i>xx</i>
+       |         placed 6m -- 8m in advance of crossing
+       |
+</pre>
+
+<h3><a name="misc">4.9 Other Fixed Boards</a></h3>
+
+Mirlitons (tableaux de repérage) - 
+   Signal warning boards (reduced visibility)
+
+<pre>     +-+   +-+   +-+   blk/wht rectangle (|) with diagonal stripes
+     |/|   |/|   | |   
+     |/|   |/|   |/|   warning for signal with reduced visibility
+     |/|   | |   | |      note: used only when no other signal intervenes
+     +-+   +-+   +-+            up to 5 (with 5 stripes) used in some cases
+      |     |     |     
+      |     |     |
+
+     300m  200m  100m  in advance of signal when visibility is reduced
+                       with
+     120    60         or greater speed limit [km/h]
+</pre>
+
+Approche des ouvrages dàrt à gabarit réduit -
+   Approach reduced clearance
+
+<pre>                                      <b> _ </b>
+     +---+       wht/blk square board <b>| |</b>
+     || ||
+     +---+       approach reduced clearance (bridge, tunnel, scaffolding)
+       |         placed 300m in advance of beginning of reduced clearance
+       |
+</pre>
+
+Tunnel avec mauvaise ventilation - Enter tunnel with poor ventilation
+
+<pre>                                          
+     +---+       blk/wht square board <b> - </b> (inverted U, longer on left with 
+     | V||                            <b>| |</b>               arrow pointing down)
+     +---+                            <b>V  </b>
+       |         
+       |         entrance of tunnel with poor ventilation
+</pre>
+
+Annonce point d'arrêt - Approach minor station platform for local trains
+
+<pre>     +---+       blk/wht/blk rectangle (--) board <i>   ABC  </i>
+     |ABC|                                        <b>à</b> <i>nnn m</i>
+     |nnn|
+     +---+       station platform named <i>ABC</i> in <i>nnn m</i>
+       |
+       |
+</pre>
+
+Pancarte «<b>Y</b>» - Approach junction facing points (obsolete)
+
+<pre>     +---+       blk/wht square board <b>Y</b>
+     | Y |
+     +---+       approach facing points of diverging junction
+       |         placed in advance of diverging junction, typically on 
+       |            controlling approach signal
+</pre>
+
+Bifurcation - Approach junction trailing points (obsolete)
+
+<pre>     +---+       blk/wht square board <b>BIF</b> (bifurcation)
+     |BIF|
+     +---+       approach trailing points of junction
+       |         placed in advance of junction switch
+       |         
+</pre>
+
+<h3><a name="elec">4.10 Signaux Propes a la Traction Electrique - 
+    Electric Traction Signals</a></h3>
+
+Signal à distance «Baissez panto» -
+   Lower pantograph warning
+
+<pre>     +---+     wht/blk/wht square board <b>    |     </b>   backlit at night
+     | +=|                              <b>   =====  </b>  
+     |=+ |     prepare to lower         <b>     |    </b>
+     +---+       pantograph             <b>  =====   </b>
+       |                                <b>     |    </b>
+       |
+</pre>
+
+Baissez panto -- Lower pantograph
+
+<pre>     +---+     wht/blk/wht square board <b>|\______/|</b>   backlit at night
+     |===|                              <b>|________|</b>    
+     +---+     lower pantograph for     <b> ________ </b>
+       |          change in type of     <b>| ______ |</b>
+       |          power feed            <b>|/      \|</b>
+</pre>
+
+Fin de parcours à panto baissé - End of lowered pantograph
+
+<pre>                                        <b>  __   __ </b>
+     +----+    wht/blk/wht square board <b>  \ | | / </b>   backlit at night
+     | || |                             <b>   || ||  </b>    
+     |nnnn|    raise nn nnn V pantograph<b>   || ||  </b>
+     +----+                             <b>  /_| |_\ </b>
+       |                                   <i>nn nnn</i>
+       |
+</pre>
+
+Sectionnement à nnnn m - Cut current warning
+
+<pre>     +----+    blk/wht/blk rectangle board (--) <b>SECTA</b> (large SEC small T A)
+     |SEC |                                     <i>nnn m</i>(large nnn small m)
+     |nnnm|    prepare to cut current by <i>nnn m</i>
+     +----+    power isolation section ahead
+       |
+       |
+</pre>
+
+Coupez courant - Cut current
+
+<pre>               
+                                        <b> _______   </b>    
+     +---+     wht/blk/wht square board <b> |       | </b>   backlit at night
+     || ||                              <b>/ |     | \</b>   or projected when
+     |---|     cut current for power    <b>\ ------- /</b>   on (vertical bar
+     +---+        section transition    <b> |_______| </b>   when off)
+       |
+       |
+</pre>
+
+Fin de parcours à courant coupé --  End of current cut zone
+
+<pre>                                         <b>     _    </b>
+     +---+     wht/blk/wht square board  <b>   _/ \_  </b>   backlit at night
+     ||_||                               <b>  |     | </b>   or projected when
+     +---+     restore current           <b>  | | | | </b>   on (vertical bar
+       |                                 <b>  | |_| | </b>   when off)
+       |                                 <b>  |_   _| </b>
+                                         <b>    \_/   </b>
+</pre>
+
+Fin de caténaire - End of catenary
+
+<pre>      /\/\     wht/vio
+     /____\
+     \    /    suspended from catenary at termination point
+      \/\/
+</pre>
+
+Jalon à damier bleu et blanc - Halt for electric vehicles
+
+<pre>      /\             wht
+     /\/\      */ blu   blu /opp lozenge board
+     \/\/            wht
+      \/
+               absolute stop for electric locomotives and vehicles
+               mounted on ground next to track
+</pre>
+
+<h3><a name="hand-whistle">4.11 Manoeuvres: Signaux a Main et Sonores - 
+    Hand/Whistle Switching Signals</a></h3>
+
+Tirez - Pull
+
+<pre>__ __           2 long blasts
+                up/down movement of rolled flag or white lamp
+</pre>
+
+Refoulez - Push
+
+<pre>__ __ __        3 long blasts 
+                horizontal swing of rolled flag or white lamp
+</pre>
+
+Ralentissez - Slow
+
+<pre>__ _ __ _ __ _  3 (long + short) blast pairs
+                short vertical movement of rolled flag at arm's length or
+                   white lamp next to body
+</pre>
+
+Arrêtez - Stop
+
+<pre>_ _ _ _ _ _     several short blasts
+                waving of red flag, display of red lamp, or
+                   violent movement of hands, any flag or lamp
+</pre>
+
+Lancez - Shove to release after decoupling
+
+<pre>__ __ _         2 long + 1 short blast
+                rolled flag or white lamp moved twice away from body
+                   and quickly down
+</pre>
+
+Appuyez - Press to couple/decouple (note European coupling)
+
+<pre>                flat hands pressed together one or more times
+                   (one with lamp at night)
+</pre>
+
+<h3><a name="lgv">4.12 Panneaux et Signaux de Lignes a Grande Vitesse - 
+    LGV Boards and Singals</a></h3>
+
+Pancarte «<b>TGV</b>» à distance - 
+   Approach TGV cab signaling only
+
+<pre>      +---+      wht/blk/wht square board <b>TGV</b>
+      |TGV|
+      +---+
+       +-+       blk/wht/blk rectangle (|) board
+       |/|
+       |/|       1st warning: 100m to 2nd warning
+       |/|
+       +-+
+        |
+
+      +---+      wht/blk/wht square board <b>TGV</b>
+      |TGV|
+      +---+
+       +-+       blk/wht/blk rectangle (|) board
+       |/|
+       |/|       2nd warning: 100m to 3rd warning
+       +-+
+        |
+
+      +---+      wht/blk/wht square board <b>TGV</b>
+      |TGV|
+      +---+
+       +-+       blk/wht/blk rectangle (|) board
+       | |
+       |/|       3rd warning: 100m to LGV and end of trackside signals
+       | |
+       +-+
+        |
+</pre>
+
+Tableau de rappel TGV - Begin LGV
+
+<pre>      +---+      wht/blk/wht square board <b>TGV</b>
+      |TGV|
+      +---+
+        |
+        -
+      |   |
+      |   |
+      |   |
+      |   |
+      |   |
+     o  -        LGV begins
+        |        trackside colorlight signals end
+        Nf
+        |
+</pre>
+
+Pancarte «<b>FIN TGV</b>» - Approach end of TGV cab signaling
+
+<pre>     +---+     wht/blk/wht square board <b>FIN</b>
+     |FIN|                              <b>TGV</b>
+     |TGV|
+     +---+     TGV cab signaling ends at next signal (Nf)
+       |       placed 100m in advance of end of TGV signaling
+       |
+</pre>
+
+Limite de canton - LGV block boundary
+
+<pre>     +---+     wht/ tan blu  rectangle (--) board (reflectorised)
+     | &gt; |
+     +---+     marks LGV block boundaries
+     |         note: right side marker points to left
+     F
+     |
+</pre>
+
+Limite de canton (Nf) - LGV interlocking block boundary
+
+<pre>     +---+     wht/ tan blu  rectangle (--) board (reflectorised)
+     | &gt; |
+     +---+     marks LGV block boundaries at crossovers
+     |         lunar white light indicates M permitting crossover
+     |(<b><font color="#a0a0ff">U</font></b>)         between tracks
+     |
+     Nf        note: right side marker points to left
+     |
+</pre>
+
+Jalon de manoeuvre - Marker for maneuvers
+
+<pre>       .
+      /\\      wht/vio lozenge board
+     /  \\
+     \  //     equivalent of carré violet
+     |\//      lunar white light permits switching access to sidings
+     |
+     |(<b><font color="#a0a0ff">U</font></b>)      note: right side marker points to left
+     |
+</pre>
+
+Point d'implantation des commutateurs de protection - Protection commutator
+
+<pre>       |
+     +---+     red triangle on small wht square identifier plate
+     |/ \|
+     |---|     indicates location of switch protection commutator
+     +---+     located below block limit board
+       |
+</pre>
+
+  LGV entry/exit signal locations (variable number of blocks may
+                                   be conventionally AND TGV signaled):
+
+<pre>                                         TGV
+                                          -            -         -
+     -        -     -                    | |          | |       | |
+    | |      | |   | |   TGV  TGV  TGV   | |          | |       | |
+    |<b><font color="#00ff00">G</font></b>|      |<b><font color="#00ff00">G</font></b>|   |<b><font color="#00ff00">G</font></b>|    /    /    /    |<b><font color="#00ff00">G</font></b>|          | |       | |
+    | |      | |   | |    /    /    |    | |          | |       | |
+     -        -     -     /    |    |    <b><font color="#a0a0ff">u</font></b>-           o-        o-
+     |        |     |     |    |    |     |            |         |
+     F&gt;       F&gt;    F&gt;                    Nf&gt;    F&gt;    Nf&gt;      &lt;Nf
+  --------------------------------------------------------*----*----&gt;
+                                                           \  /
+  &lt;---------------------------------------------------------**-------
+    &lt;Nf FIN  &lt;F    &lt;F                     &lt;F    &lt;F              &lt;Nf
+        TGV
+
+  BAL|  BAL   | ... |          BAL         |
+     |  TGV   | ... |          TGV         |             TGV
+                                           |LGV --&gt;
+</pre>
+
+<h3><a name="cab-tgv">4.13 Signalisaion et Cabine TGV - 
+    TGV Cab Signals</a></h3>
+
+<pre>+--+        blk/yel square "CONTROLE" projected
+|..|                       "VITESSE "
++--+        engineer must immediately reduce speed to limit
+            due to excess speed automatic braking is taking place
+
+
++--+        blk/wht square "SECt" projected
+|..|                       "SECt"
++--+        prepare to cut current
+     
+
++--+        blk/wht square "1,5KV  " projected
+|..|                       "  =+===" 
++--+                       "===+=  "
+                           "   25KV"
+            prepare to lower pantograph
+
+
++--+--+--+  blk/grn squares projected
+|3 |0 |0 |  300 km/h speed authorised
++--+--+--+
+
++--+--+--+  blk/grn squares projected
+|2 |7 |0 |  270 km/h speed authorised
++--+--+--+
+
++--+--+--+  blk/grn squares projected
+|VL|VL|VL|  270 km/h speed authorised
++--+--+--+
+
++--+--+--+  blk/grn squares projected (flashing)
+|3*|0*|0*|  300 km/h approach 270 km/h; reduce by next block limit
++--+--+--+
+
++--+--+--+  blk/grn squares projected (flashing)
+|2*|7*|0*|  270 km/h approach 220 km/h; reduce by next block limit
++--+--+--+
+
+/ \/ \/ \   blk/wht lozenges projected
+ 2  7  0    approach 270 km/h; reduce by next block limit
+\ /\ /\ /
+
+/ \/ \/ \   blk/wht lozenges projected
+ 2  2  0    approach 220 km/h; reduce by next block limit
+\ /\ /\ /
+
+/ \/ \/ \   blk/wht lozenges projected
+ 1  6  0    approach 160 km/h; reduce by next block limit
+\ /\ /\ /
+
+/ \/ \/ \   blk/wht lozenges projected
+ 0  8  0    approach 80 km/h; reduce by next block limit
+\ /\ /\ /
+
++--+--+--+  wht/blk squares projected
+|2 |2 |0 |  220 km/h speed authorised
++--+--+--+
+
++--+--+--+  wht/blk squares projected
+|1 |6 |0 |  160 km/h speed authorised
++--+--+--+
+
++--+--+--+  wht/blk squares projected
+|0 |8 |0 |  80 km/h speed authorised
++--+--+--+
+
+/ \/ \/ \   blk/red lozenges projected
+ 0  0  0    stop by next block limit
+\ /\ /\ /
+
++--+--+--+  */red squares projected
+|  |  |  |  restricting (marcher à vue), stop by next block limit
++--+--+--+  stop by next block limit
+
+</pre>
+
+<p>
+</p><hr>
+
+<p>
+Last updated 8 November 2004<br />
+&copy;2003&ndash;2005 <a href="http://www.sterbenz.org/james" title="James Sterbenz personal page">James P.G. Sterbenz</a>
+&lt;<a href="mailto:jpgs@sterbenz.org"><em>jpgs@sterbenz.org</em></a>&gt;<br />
+</p>
+
+</body>
+</html>
