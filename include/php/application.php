@@ -289,6 +289,18 @@ class Application {
 		return $page_file;
 	}
 
+	private function makenormalpage($pagemd, $menumd, $breadcrumbs) {
+	
+	}
+
+	private function makeprintpage($pagemd) {
+	
+	}
+
+	private function makesourcepage($pagemd, $menumd, $breadcrumbs) {
+	
+	}
+
 	/*
 	 * Constructs the final page from its constituent parts
 	 * FIXED: Removed the reliance on a DOM parser for this and rely on simple string replaces. I haven't been able to discover if this minor change made a significant difference to the load time and computational load of each page request, but I suspect it has sped things up a little. 
