@@ -1,9 +1,14 @@
 <?php
+/*
+ * application.php
+ * ---------------
+ * This is the core application used to build my site. 
+ *
+ */
 
 /*
  * TODO
- * - Devise a breadcrumb maker (should be easy now)
- * - Add return to top links?
+ * - Rewrite page builder so that it takes fewer variables.
  * - Separate HTMLFilter into Filter module and add test support for other inputs
  */
 
@@ -14,11 +19,6 @@ class Application {
 
 	// The _GET variables
 	private $getvars;
-
-	/*
-	// We store the final page in here. This should be a string.
-	public $final_page;
-	 */
 
 	// The site name/toplevel index directory.
 	private $toplevel = '/';
@@ -45,6 +45,7 @@ class Application {
 
 	/*
 	 * Runs the application.
+	 * - Contemplating splitting this into separate apps for each data type; long term plans mainly.
 	 */
 	private function run() {
 		$page = (string) $this->getvars['page'];
@@ -83,57 +84,55 @@ class Application {
 		$path_dirs = explode('/', $page);
 
 		// Initialise menu
-		$menu_meta = $this->getLocalMenu($page_menu_path, $page);
+		$menu_md = $this->getLocalMenu($page_menu_path, $page);
 
 		// Create page DOM and initialise its metadata.
 		$pageDOM = new simple_html_dom($path);
 		$page_htmlfilter = new HTMLFilter($pageDOM);
-		$page_meta = $page_htmlfilter->parseMetaComment();
+		$page_md = $page_htmlfilter->parseMetaComment();
 
 		// Get title
-		$page_meta['title'] = $page_htmlfilter->getTitle();
-		$page_meta['topic'] = $path_dirs[0];
+		$page_md['title'] = $page_htmlfilter->getTitle();
+		$page_md['topic'] = $path_dirs[0];
 
 		// Generate content
 		if( ! $this->is_error_404) {
-			$page_meta['content'] = $page_htmlfilter->applyFilter($srcdir, $menu_meta);
+			$page_md['content'] = $page_htmlfilter->applyFilter($srcdir, $menu_md);
 		}
 
 		// Load scripts
-		$page_meta['scripts'] = $page_htmlfilter->findScriptElements();
+		$page_md['scripts'] = $page_htmlfilter->findScriptElements();
 
-		$page_meta['content'] = $pageDOM->find('body', 0)->innertext;
+		$page_md['content'] = $pageDOM->find('body', 0)->innertext;
 
+		/* Make print page
+		 * We don't want the menu or the breadcrumbs to appear.
+		 */
 		if($is_printview) {
-			// Make print page
-			return $this->makepage($page_meta['title'], null, null, $page_meta['content'], null, true);
+			$menu_md['menu'] = null;
+			$breadcrumbs = null;
 		} else {
-			// Generate Menu
-			$menu = $this->menugen($menu_meta['content'], $page_meta['topic']);
-
-			// Make breadcrumb trail
-			$breadcrumbs = $this->makebreadcrumbs($page_meta['title'], $is_home);
-
-			// Make normal page
-			return $this->makepage($page_meta['title'], $menu, $breadcrumbs, $page_meta['content'], $page_meta['scripts'], false);
+			$menu_md['menu'] = $this->menugen($menu_md['content'], $page_md['topic']);
+			$breadcrumbs = $this->makebreadcrumbs($page_md['title'], $is_home);
 		}
+		return $this->makepage($page_md, $menu_md, $breadcrumbs, false);
 	}
 
 	/*
 	 * Generates the local menu and stores it in a key-value array.
-	 * @param $vm_path path to the local menu
+	 * @param $lm_path path to the local menu
 	 * @param $ref_page referring page
 	 */
-	private function getLocalMenu($vm_path, $ref_page) {
-		$vm_DOM = new simple_html_dom($vm_path);
-		$vm_filter = new HTMLFilter($vm_DOM);
-		$vm_meta = $vm_filter->parseMetaComment();
+	private function getLocalMenu($lm_path, $ref_page) {
+		$lm_DOM = new simple_html_dom($lm_path);
+		$lm_filter = new HTMLFilter($lm_DOM);
+		$lm_meta = $lm_filter->parseMetaComment();
 
-		$vm_links = $vm_DOM->find('a');
-		$vm_size = sizeof($vm_links);
+		$lm_links = $lm_DOM->find('a');
+		$lm_size = sizeof($lm_links);
 
-		for($found = false, $c = 0; ! $found && $c < $vm_size;) {
-			$f = strpos($vm_links[$c], $ref_page);
+		for($found = false, $c = 0; ! $found && $c < $lm_size;) {
+			$f = strpos($lm_links[$c], $ref_page);
 			if($f === false) {
 				$found = false;
 				++$c;
@@ -142,77 +141,53 @@ class Application {
 			}
 		}
 
-		$vc = $vm_links[$c];
-		$vc->innertext = '→ ' . $vc->innertext;
-		$vm_meta['curr'] = $vc;
-		//$vm_meta['curr'] = $vm_links[$c];
+		$cl = $lm_links[$c];
+		$cl->innertext = '→ ' . $cl->innertext;
+		$lm_meta['curr'] = $cl;
 
-		if($vm_meta['ordered'] == true) {
+		if($lm_meta['ordered'] == true) {
 			if($c > 0) {
-				$vm_meta['prev'] = $vm_links[$c - 1]->outertext;
+				$lm_meta['prev'] = $lm_links[$c - 1]->outertext;
 			}
 
-			if($c < $vm_size - 1) {
-				$vm_meta['next'] = $vm_links[$c + 1]->outertext;
+			if($c < $lm_size - 1) {
+				$lm_meta['next'] = $lm_links[$c + 1]->outertext;
 			}
 
 			// Do I want these?
-			$vm_meta['first'] = $vm_links[0]->outertext;
-			$vm_meta['last'] = $vm_links[$vm_size - 1]->outertext;
+			$lm_meta['first'] = $lm_links[0]->outertext;
+			$lm_meta['last'] = $lm_links[$lm_size - 1]->outertext;
 
 		}
 
-		$vm_meta['content'] = $vm_DOM->find('.levelTwo', 0)->outertext;
-		return $vm_meta;
+		$lm_meta['content'] = $lm_DOM->find('.levelTwo', 0)->outertext;
+		return $lm_meta;
 	}
 
 	/*
 	 * Generates the main menu by loading the page menu into the appropriate section.
 	 * The main menu file is a HTML skeleton, which we import and extract just the menu list <ul>. This is then turned into a HTML DOM object that is browsed to find the appropriate section into which the local menu is inserted. It's a somewhat wasteful way of importing the data but I'm not entirely sure how to improve this.
-	 * @param $vm_path path to page menu
-	 * @param $v_topic page topic, or section to put generate menu data.
+	 * TODO Fixme so I use less resources.
+	 * @param $lm_path path to page menu
+	 * @param $page_topic page topic, or section to put generate menu data.
 	 */
-	private function menugen($vm_data, $v_topic) {
+	private function menugen($lm_data, $page_topic) {
 		// Main menu
 		$mm_file = file_get_contents($this->public_html_dir . 'menu.html');
 		preg_match('#<ul>(.*?)</ul>#s', $mm_file, $matches);
 		$main_menu = str_get_html($matches[0]);
 
 		// Determine if the page's topic is an entry in the main menu.
-		if($v_topic != null) {
-			$mm_topic = $main_menu->getElementById($v_topic);
+		if($page_topic != null) {
+			$mm_topic = $main_menu->getElementById($page_topic);
 
 			if($mm_topic != null) {
-				$mm_topic->innertext = $mm_topic->innertext . $vm_data;
+				$mm_topic->innertext = $mm_topic->innertext . $lm_data;
 			}
 		}
 
 		return $main_menu->save();
 	}
-
-	/*private function menugen($vm_path, $v_topic, $ref_page) {
-		// Main menu
-		$mm_file = file_get_contents($this->public_html_dir . 'menu.html');
-		preg_match('#<ul>(.*?)</ul>#s', $mm_file, $matches);
-		$main_menu = str_get_html($matches[0]);
-
-		// Read menu data
-		$vm_DOM = new simple_html_dom($vm_path);
-		$vm_filter = new HTMLFilter($vm_DOM);
-		// Extract menu data
-		$vm_data = $vm_DOM->find('.levelTwo', 0)->outertext;
-
-		// Determine if the page's topic is an entry in the main menu.
-		if($v_topic != null) {
-			$mm_topic = $main_menu->getElementById($v_topic);
-
-			if($mm_topic != null) {
-				$mm_topic->innertext = $mm_topic->innertext . $vm_data;
-			}
-		}
-
-		return $main_menu->save();
-	}*/
 
 	/*
 	 * Generates a breadcrumb-style trail.
@@ -250,13 +225,67 @@ class Application {
 	/*
 	 * Constructs the final page from its constituent parts
 	 * FIXED: Removed the reliance on a DOM parser for this and rely on simple string replaces. I haven't been able to discover if this minor change made a significant difference to the load time and computational load of each page request, but I suspect it has sped things up a little. 
+	 * @param $pagemd The page metadata, including its title, content, etc.
+	 * @param $menumd The menu metadata, including its content and other information.
+	 * @param $breadcrumbs The breadcrumbs link list
+	 * @param $is_print Whether we want to hide the menus and page header.
+	 */
+	private function makepage($pagemd, $menumd, $breadcrumbs, $is_print) {
+		// The skeleton page is loaded
+		if($is_print == false) {
+			$page_file = file_get_contents("../include/html/layout.html");
+		}
+		else {
+			$page_file = file_get_contents("../include/html/print.html");
+		}
+
+		// Insert the new title
+		if($pagemd['title'] != null) {
+			$page_file = preg_replace('#<title>(.+?)</title>#', '<title>'.$pagemd['title'].' @ $1</title>', $page_file);
+		}
+
+		if($pagemd['scripts'] != null) {
+			$page_file = preg_replace('#<head>(.+?)</head>#s', "<head>$1\n".$pagemd['scripts'].'</head>', $page_file);
+		}
+
+		// Insert the menu
+		if($is_print == false || $menu != null) {
+			$page_file = str_replace('<!--[SIDEBAR]-->', $menumd['menu'], $page_file);
+		}
+
+		// Insert the breadcrumb trail
+		if($is_print == false || $breadcrumbs != null) {
+			$page_file = str_replace('<!--[BREADCRUMBS]-->', $breadcrumbs, $page_file);
+		}
+
+		// Set up the print-view links
+		$print_box_href = "$this->toplevel";
+		if($is_print) {
+			$print_box_href = $print_box_href . $this->getvars['page'];
+		}
+		else {
+			$print_box_href = $print_box_href . "print/" . $this->getvars['page'];
+		}
+		$page_file = str_replace('#PRINTBOXHREF', $print_box_href, $page_file);
+
+		// Load the content
+		if($pagemd['content'] != null) {
+			$page_file = str_replace('<!--[CONTENT]-->', $pagemd['content'], $page_file);
+		}
+
+		return $page_file;
+	}
+
+	/*
+	 * Constructs the final page from its constituent parts
+	 * FIXED: Removed the reliance on a DOM parser for this and rely on simple string replaces. I haven't been able to discover if this minor change made a significant difference to the load time and computational load of each page request, but I suspect it has sped things up a little. 
 	 * @param $title The page title, to be inserted before the zgplace part.
 	 * @param $menu The constructed menu
 	 * @param $breadcrumbs The constructed menu
 	 * @param $content The page content, already filtered.
 	 * @param $is_print Whether we want to hide the menus and page header.
 	 */
-	private function makepage($title, $menu, $breadcrumbs, $content, $scripts, $is_print) {
+	private function makepageold($title, $menu, $breadcrumbs, $content, $scripts, $is_print) {
 		// The skeleton page is loaded
 		if($is_print == false) {
 			$page_file = file_get_contents("../include/html/layout.html");
