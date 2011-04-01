@@ -15,6 +15,12 @@
 require_once("modules/simple_html_dom.php");
 require_once("filters/html.php");
 
+// Constants
+// Views
+const NORMAL_VIEW = 0;
+const PRINT_VIEW = 1;
+const SOURCE_VIEW = 2;
+
 class Application {
 
 	// The _GET variables
@@ -34,6 +40,11 @@ class Application {
 	public $is_error_404 = false;
 	//public $error_type = false;
 
+	private $views = array(
+		0 => 'normal', 
+		1 => 'print', 
+		2 => 'source');
+
 	/*
 	 * Creates a new Application.
 	 * @param $getvars The _GET variables.
@@ -49,11 +60,13 @@ class Application {
 	 */
 	private function run() {
 		$page = (string) $this->getvars['page'];
-		$is_printview = (boolean) $this->getvars['print'];
+		//$is_printview = (boolean) $this->getvars['print'];
+		$view = $this->getvars['view'];
 		$is_index = false;
 		$is_menu = false;
 		$is_home = false;
 
+		// Determining if we're on the home page.
 		if(($page == '') || ($page == 'index') || ($page == 'home')) {
 			$page = 'index';
 			$is_home = true;
@@ -108,14 +121,14 @@ class Application {
 		/* Make print page
 		 * We don't want the menu or the breadcrumbs to appear.
 		 */
-		if($is_printview) {
+		if($view == PRINT_VIEW) {
 			$menu_md['menu'] = null;
 			$breadcrumbs = null;
 		} else {
 			$menu_md['menu'] = $this->menugen($menu_md['content'], $page_md['topic']);
 			$breadcrumbs = $this->makebreadcrumbs($page_md['title'], $is_home);
 		}
-		return $this->makepage($page_md, $menu_md, $breadcrumbs, false);
+		return $this->makepage($page_md, $menu_md, $breadcrumbs, $view);
 	}
 
 	/*
@@ -224,19 +237,19 @@ class Application {
 
 	/*
 	 * Constructs the final page from its constituent parts
-	 * FIXED: Removed the reliance on a DOM parser for this and rely on simple string replaces. I haven't been able to discover if this minor change made a significant difference to the load time and computational load of each page request, but I suspect it has sped things up a little. 
+	 * TODO Separate view handlers, so that the PRINT_VIEW mode is a different function. Tidier code see :)
 	 * @param $pagemd The page metadata, including its title, content, etc.
 	 * @param $menumd The menu metadata, including its content and other information.
 	 * @param $breadcrumbs The breadcrumbs link list
 	 * @param $is_print Whether we want to hide the menus and page header.
 	 */
-	private function makepage($pagemd, $menumd, $breadcrumbs, $is_print) {
+	private function makepage($pagemd, $menumd, $breadcrumbs, $view) {
 		// The skeleton page is loaded
-		if($is_print == false) {
-			$page_file = file_get_contents("../include/html/layout.html");
+		if($view == PRINT_VIEW) {
+			$page_file = file_get_contents("../include/html/print.html");
 		}
 		else {
-			$page_file = file_get_contents("../include/html/print.html");
+			$page_file = file_get_contents("../include/html/layout.html");
 		}
 
 		// Insert the new title
@@ -249,18 +262,18 @@ class Application {
 		}
 
 		// Insert the menu
-		if($is_print == false || $menu != null) {
+		if($view != PRINT_VIEW && $menumd['menu'] != null) {
 			$page_file = str_replace('<!--[SIDEBAR]-->', $menumd['menu'], $page_file);
 		}
 
 		// Insert the breadcrumb trail
-		if($is_print == false || $breadcrumbs != null) {
+		if($view != PRINT_VIEW && $breadcrumbs != null) {
 			$page_file = str_replace('<!--[BREADCRUMBS]-->', $breadcrumbs, $page_file);
 		}
 
 		// Set up the print-view links
 		$print_box_href = "$this->toplevel";
-		if($is_print) {
+		if($view == PRINT_VIEW) {
 			$print_box_href = $print_box_href . $this->getvars['page'];
 		}
 		else {
