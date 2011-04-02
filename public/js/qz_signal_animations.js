@@ -41,6 +41,7 @@
 		$('.md2rs_rlf').addClass('animate').dataset({intervals: slow, frames: 'cl/md2rs_r,cl/md2rs_rl'});
 		$('.m3cs_rlf').addClass('animate').dataset({intervals: slow, frames: 'cl/m3cs_r,cl/m3cs_rl'});
 		$('.m3rs_rlf').addClass('animate').dataset({intervals: slow, frames: 'cl/m3rs_r,cl/m3rs_rl'});
+		$('.md3rs_rlf').addClass('animate').dataset({intervals: slow, frames: 'cl/md3rs_r,cl/md3rs_rl'});
 		$('.m5ds_rlf').addClass('animate').dataset({intervals: slow, frames: 'cl/m5ds_r,cl/m5ds_rl'});
 		$('.rg3m_rlf').addClass('animate').dataset({intervals: slow, frames: 'cl/rg3m_r,cl/rg3m_rl'});
 
@@ -52,6 +53,7 @@
 		$('.md2rs_lf').addClass('animate').dataset({intervals: slow, frames: 'cl/md2rs_off,cl/md2rs_l'});
 		$('.m3cs_lf').addClass('animate').dataset({intervals: slow, frames: 'cl/m3cs_off,cl/m3cs_l'});
 		$('.m3rs_lf').addClass('animate').dataset({intervals: slow, frames: 'cl/m3rs_off,cl/m3rs_l'});
+		$('.md3rs_lf').addClass('animate').dataset({intervals: slow, frames: 'cl/md3rs_off,cl/md3rs_l'});
 		$('.m5ds_lf').addClass('animate').dataset({intervals: slow, frames: 'cl/m5ds_off,cl/m5ds_l'});
 		$('.rg3m_lf').addClass('animate').dataset({intervals: slow, frames: 'cl/rg3m_off,cl/rg3m_l'});
 		$('.sd2m_lf').addClass('animate').dataset({intervals: slow, frames: 'cl/sd2m_off,cl/sd2m_l'});
