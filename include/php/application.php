@@ -12,14 +12,8 @@
  * - Separate HTMLFilter into Filter module and add test support for other inputs
  */
 
-require_once("modules/simple_html_dom.php");
-require_once("filters/html.php");
-
-// Constants
-// Views
-const NORMAL_VIEW = 0;
-const PRINT_VIEW = 1;
-const SOURCE_VIEW = 2;
+require_once(dirname(__FILE__) . '/modules/simple_html_dom.php');
+require_once(dirname(__FILE__) . '/filters/html.php');
 
 class Application {
 
@@ -29,106 +23,160 @@ class Application {
 	// The site name/toplevel index directory.
 	private $toplevel = '/';
 
-	// The directories where all pages are stored.
+	// The directory root where all pages are stored.
 	private $public_dir = '../public/';
-	private $public_html_dir = '../public/html/';
+	private $public_content_dir = '../public/content/';
 
+	// The source formats we have parsers for
+	private $source_formats = array(
+		'md',
+		'html'); // HTML is last as it is the fallback option
+
+	// The page types we can read
+	private $page_type_is = array(
+		'index' => false,
+		'menu' => false,
+		'home' => false);
+		
 	// Errors are here.
-	private $errors_dir = '../include/html/errors/';
+	private $errors_dir = '../include/errors/';
 
 	// Whether we have a 404 error.
 	public $is_error_404 = false;
+	private $is_error = array(
+		'404' => false);
 	//public $error_type = false;
 
+	// View modes
 	private $views = array(
 		0 => 'normal', 
 		1 => 'print', 
 		2 => 'source');
+
+	const NORMAL_VIEW = 0;
+	const PRINT_VIEW = 1;
+	const SOURCE_VIEW = 2;
+
+	// Timers
+	private $starttime = 0;
 
 	/*
 	 * Creates a new Application.
 	 * @param $getvars The _GET variables.
 	 */
 	public function __construct($getvars) {
+		$this->starttime = microtime(true);
 		$this->getvars = $getvars;
 		echo $this->run();
 	}
 
 	/*
 	 * Runs the application.
-	 * - Contemplating splitting this into separate apps for each data type; long term plans mainly.
+	 * Almost ready to be split into separate handlers for each data type. Woooooo!
 	 */
 	private function run() {
 		$page = (string) $this->getvars['page'];
-		//$is_printview = (boolean) $this->getvars['print'];
 		$view = $this->getvars['view'];
-		$is_index = false;
-		$is_menu = false;
-		$is_home = false;
 
 		// Determining if we're on the home page.
 		if(($page == '') || ($page == 'index') || ($page == 'home')) {
 			$page = 'index';
-			$is_home = true;
+			$this->page_type_is['home'] = true;
 		}
 
-		// First, we check to see if the file exists and we can read it
-		if(file_exists($this->public_html_dir . $page . '.html')) {
-			$path = $this->public_html_dir . $page. '.html';
-		} elseif(file_exists($this->public_html_dir . $page . '/index.html')) {
-			$path = $this->public_html_dir . $page . '/index.html';
-			$is_index = true;
+		$page_data = $this->locatePage($page);
+
+		// Set the menu path
+		// Note that menu pages are ALWAYS html. I can't think of a way to read 
+		// in other formats, despite the inherent simplicity of the actual menu 
+		// pages.
+		if($this->page_type_is['index']) {
+			$page_data['srcdir'] = $page;
+			$page_menu_path = dirname($this->public_content_dir . $page . "/index.html") . "/menu.html";
 		} else {
-			$this->is_error_404 = true;
-			header('HTTP/1.1 404 Not Found');
-			// Otherwise we load my customised 404 page.
-			$path = $this->errors_dir . '404.html';
+			$page_data['srcdir'] = dirname($page);
+			$page_menu_path = dirname($this->public_content_dir . $page) . "/menu.html";
 		}
-
-		if($is_index) {
-			$srcdir = $page;
-			$page_menu_path = dirname($this->public_html_dir . $page . "/index.html") . "/menu.html";
-		} else {
-			$srcdir = dirname($page);
-			$page_menu_path = dirname($this->public_html_dir . $page) . "/menu.html";
-		}
-
-		// The page topic is the toplevel directory.
-		$path_dirs = explode('/', $page);
 
 		// Initialise menu
-		$menu_md = $this->getLocalMenu($page_menu_path, $page);
+		$menu_data = $this->getLocalMenu($page_menu_path, $page);
 
 		// Create page DOM and initialise its metadata.
-		$pageDOM = new simple_html_dom($path);
-		$page_htmlfilter = new HTMLFilter($pageDOM);
-		$page_md = $page_htmlfilter->parseMetaComment();
-
-		// Get title
-		$page_md['title'] = $page_htmlfilter->getTitle();
-		$page_md['topic'] = $path_dirs[0];
-
-		// Generate content
-		if( ! $this->is_error_404) {
-			$page_md['content'] = $page_htmlfilter->applyFilter($srcdir, $menu_md);
+		if($page_data['format'] == 'html') {
+			$pageDOM = new simple_html_dom($page_data['path']);
+		} else {
+			// This is where the other parsers will go.
+			$pageDOM = null;
 		}
 
-		// Load scripts
-		$page_md['scripts'] = $page_htmlfilter->findScriptElements();
+		// Do not make a TOC for error pages.
+		if($this->is_error['404']) {
+			$page_data['maketoc'] = false;
+		} else {
+			$page_data['maketoc'] = true;		
+		}
 
-		$page_md['content'] = $pageDOM->find('body', 0)->innertext;
+		// The topic is the top level directory inside content
+		$path_dirs = explode('/', $page);
+		$page_data['topic'] = $path_dirs[0];
+		
+		// Create our HTML filter. This also runs it and performs its magic, but YOU don't need to know that.
+		// The potential security risk of sharing two objects between the Application and the HTMLFilter is lessened by not making any of the filter accessible to the outside world. We create it, it does its magic, and then it gets cleaned up. 
+		$page_htmlfilter = new HTMLFilter($pageDOM, $page_data, $menu_data);
 
-		/* Make print page
-		 * We don't want the menu or the breadcrumbs to appear.
-		 */
-		if($view == PRINT_VIEW) {
-			$menu_md['menu'] = null;
+		// Filtering done, get content.
+		$page_data['content'] = $pageDOM->find('body', 0)->innertext;
+
+		// If we're printing, please do not generate breadcrumbs.
+		if($view == self::PRINT_VIEW) {
+			$menu_data['menu'] = null;
 			$breadcrumbs = null;
 		} else {
-			$menu_md['menu'] = $this->menugen($menu_md['content'], $page_md['topic']);
-			$breadcrumbs = $this->makebreadcrumbs($page_md['title'], $is_home);
+			$menu_data['menu'] = $this->menugen($menu_data['content'], $page_data['topic']);
+			$breadcrumbs = $this->makebreadcrumbs($page_data['title']);
 		}
-		return $this->makepage($page_md, $menu_md, $breadcrumbs, $view);
+
+		//echo 'Number of elements in our Page Data array: ' . sizeof($page_data) . '<br />';
+		//echo 'Number of elements in our Menu Data array: ' . sizeof($menu_data);
+
+		return $this->makepage($page_data, $menu_data, $breadcrumbs, $view);
+	}
+
+	/*
+	 * Helper function to locate our pages from sets of HTML, markdown, and other source formats.
+	 * @param $page The page we are requesting.
+	 */
+	private function locatePage($page) {
+		$page_data = array();
+		$page_found = false;
+
+		foreach($this->source_formats as $format) {
+			// Check for formats
+			if(file_exists($this->public_content_dir . $page . '.' . $format)) {
+				$page_data['path'] = $this->public_content_dir . $page. '.' . $format;
+			} elseif(file_exists($this->public_content_dir . $page . '/index.' . $format)) {
+				$page_data['path'] = $this->public_content_dir . $page . '/index.' . $format;
+				$this->page_type_is['index'] = true;
+			} else {
+				$page_data['path'] = null;
+			}
+
+			// Jump on first found
+			if($page_data['path'] != null) {
+				$page_data['format'] = $format;
+				break;
+			}
+		}
+
+		// Not found? Ok, we has 404. Damn.
+		if($page_data['path'] == null) {		
+			$this->is_error['404'] = true;
+			header('HTTP/1.1 404 Not Found');
+			$page_data['path'] = $this->errors_dir . '404.html';
+			$page_data['format'] = 'html';
+		}
+
+		return $page_data;
 	}
 
 	/*
@@ -138,8 +186,8 @@ class Application {
 	 */
 	private function getLocalMenu($lm_path, $ref_page) {
 		$lm_DOM = new simple_html_dom($lm_path);
-		$lm_filter = new HTMLFilter($lm_DOM);
-		$lm_meta = $lm_filter->parseMetaComment();
+		$lm_meta = array();
+		$lm_filter = new HTMLFilter($lm_DOM, $lm_meta);
 
 		$lm_links = $lm_DOM->find('a');
 		$lm_size = sizeof($lm_links);
@@ -186,7 +234,7 @@ class Application {
 	 */
 	private function menugen($lm_data, $page_topic) {
 		// Main menu
-		$mm_file = file_get_contents($this->public_html_dir . 'menu.html');
+		$mm_file = file_get_contents($this->public_content_dir . 'menu.html');
 		preg_match('#<ul>(.*?)</ul>#s', $mm_file, $matches);
 		$main_menu = str_get_html($matches[0]);
 
@@ -206,8 +254,8 @@ class Application {
 	 * Generates a breadcrumb-style trail.
 	 * @param &$title The title of the page.
 	 */
-	private function makebreadcrumbs(&$title, $is_home) {
-		if($is_home == false) {
+	private function makebreadcrumbs(&$title) {
+		if($this->page_type_is['home'] == false) {
 			$path = $this->getvars['page'];
 			$path_array = explode('/', $path);
 			$path_hrefs = array();
@@ -230,7 +278,6 @@ class Application {
 		} else {
 			$trail = '<p>You are at the Home Page</p>';
 		}
-		//$trail .= $path_array[sizeof($path_array) - 1];
 
 		return $trail;	
 	}
@@ -245,7 +292,7 @@ class Application {
 	 */
 	private function makepage($pagemd, $menumd, $breadcrumbs, $view) {
 		// The skeleton page is loaded
-		if($view == PRINT_VIEW) {
+		if($view == self::PRINT_VIEW) {
 			$page_file = file_get_contents("../include/html/print.html");
 		}
 		else {
@@ -262,18 +309,18 @@ class Application {
 		}
 
 		// Insert the menu
-		if($view != PRINT_VIEW && $menumd['menu'] != null) {
+		if($view != self::PRINT_VIEW && $menumd['menu'] != null) {
 			$page_file = str_replace('<!--[SIDEBAR]-->', $menumd['menu'], $page_file);
 		}
 
 		// Insert the breadcrumb trail
-		if($view != PRINT_VIEW && $breadcrumbs != null) {
+		if($view != self::PRINT_VIEW && $breadcrumbs != null) {
 			$page_file = str_replace('<!--[BREADCRUMBS]-->', $breadcrumbs, $page_file);
 		}
 
 		// Set up the print-view links
 		$print_box_href = "$this->toplevel";
-		if($view == PRINT_VIEW) {
+		if($view == self::PRINT_VIEW) {
 			$print_box_href = $print_box_href . $this->getvars['page'];
 		}
 		else {
@@ -285,6 +332,12 @@ class Application {
 		if($pagemd['content'] != null) {
 			$page_file = str_replace('<!--[CONTENT]-->', $pagemd['content'], $page_file);
 		}
+
+		// Finish our timer
+		$endtime = microtime(true);
+	   	$time = $endtime - $this->starttime;
+		$time_msg = 'Page generated in approximately ' . round($time, 4) . ' seconds.';
+		$page_file = str_replace('<!--[TIME]-->', $time_msg, $page_file);
 
 		return $page_file;
 	}
