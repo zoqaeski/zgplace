@@ -106,7 +106,6 @@ class HTMLFilter {
 
 	/**
 	 * Gets the metadata out of the special comment at the top of the page.
-	 * TODO: Type conversion.
 	 */
 	private function parseMetaComment() {
 		$comment = $this->pageDOM->find('comment', 0);
@@ -117,9 +116,12 @@ class HTMLFilter {
 			if(strlen($mcline) > 0) {
 				preg_match("/^(\S+):\s(\S+)$/im", $mcline, &$matches);
 				if($matches[1] != "") {
-					//echo 'Before: ' . $matches[1] . ' = ' . $this->pageMeta[strtolower($matches[1])] . '<br />';
-					$this->pageMeta[strtolower($matches[1])] = $matches[2];
-					//echo 'After: ' . $matches[1] . ' = ' . $this->pageMeta[strtolower($matches[1])] . '<br />';
+					$matches[1] = strtolower($matches[1]);
+					// PHP is rather fussy about booleans, so I needed a conversion function. 
+					// 'true' and 'yes' → true
+					// 'false' and 'no' → false
+					$value = Utils::str_to_bool($matches[2]);
+					$this->pageMeta[$matches[1]] = $value;
 				}
 			}
 		}
@@ -153,25 +155,12 @@ class HTMLFilter {
 		$htexts = array();
 
 		for($h = 0, $hs = count($headings); $h < $hs; $h++) {
-			$anchor = $this->anchorEncode($headings[$h]->plaintext);
+			$anchor = Utils::urlencode($headings[$h]->plaintext);
 			$htexts[$h] = $headings[$h]->tag . ':' . $headings[$h]->plaintext;
 			$headings[$h]->id = $anchor;
 			$headings[$h]->innertext = $headings[$h]->plaintext.'<a class="permalink" href="#'.$anchor.'" title="Permalink to this section">§</a>';
 		}
 		return $headings;
-	}
-
-	/**
-	 * urlencode anchors
-	 * borrowed from WikiMedia
-	 * @param $text the text to encode.
-	 */
-	private function anchorEncode($text) {
-		$a = urlencode($text);
-		$a = strtr($a, array('%' => '.', '+' => '_'));
-		// Should we leave colons alone?
-		//$a = str_replace('.3A', ':', $a);
-		return $a;
 	}
 
 	/**
@@ -193,7 +182,7 @@ class HTMLFilter {
 			$next_level = substr($toc_elements[$te + 1]->tag, -1);
 
 			if($curr_level > $prev_level) {
-				$toc_string .= "\n".$this->padStr($curr_level).'<ol>';
+				$toc_string .= "\n". Utils::padStr($curr_level).'<ol>';
 			}
 
 			if($curr_level <= $prev_level) {
@@ -202,7 +191,7 @@ class HTMLFilter {
 
 			$text_str = substr(strip_tags($toc_elements[$te]->plaintext), 0, -2);
 
-			$toc_string .= "\n".$this->padStr($curr_level + 1).'<li><a href="#'.$toc_elements[$te]->id.'" title="">'.$text_str."</a>";
+			$toc_string .= "\n". Utils::padStr($curr_level + 1).'<li><a href="#'.$toc_elements[$te]->id.'" title="">'.$text_str."</a>";
 
 			$cn_level_diff = $curr_level - $next_level;
 
@@ -212,7 +201,7 @@ class HTMLFilter {
 
 			while($cn_level_diff > 0) {
 				$toc_string .= "</li>";
-				$toc_string .= "\n".$this->padStr($curr_level)."</ol>";
+				$toc_string .= "\n". Utils::padStr($curr_level)."</ol>";
 				$cn_level_diff--;
 			}
 
@@ -223,18 +212,6 @@ class HTMLFilter {
 		$toc_string .= "</div>\n";
 
 		return $toc_string;
-	}
-
-	/**
-	 * Pads a string with tabs to the specified level.
-	 * @param $level number of tabs to prepend.
-	 */
-	private function padStr($level){
-		$str = "";
-		for(;$level > 0; $level--) {
-			$str .= "\t";
-		}
-		return $str;
 	}
 }
 ?>
