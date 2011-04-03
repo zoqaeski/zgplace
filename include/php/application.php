@@ -185,15 +185,16 @@ class Application {
 			}
 		}
 
+		// TODO: Add format error here.
+
 		// Not found? Ok, we has 404. Damn.
 		if($page_data['path'] == null) {		
 			$this->is_error = true;
 			$this->error_type['404'] = true;
 			header('HTTP/1.1 404 Not Found');
 			$page_data['path'] = $this->errors_dir . '404.html';
-			$page_data['format'] = 'html';
+			$page_data['format'] = '.html';
 		}
-		 // TODO: Add format error here.
 
 		return $page_data;
 	}
