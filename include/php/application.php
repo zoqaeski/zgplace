@@ -60,7 +60,7 @@ class Application {
 	// Timers
 	private $starttime = 0;
 
-	/*
+	/**
 	 * Creates a new Application.
 	 * @param $getvars The _GET variables.
 	 */
@@ -70,7 +70,7 @@ class Application {
 		echo $this->run();
 	}
 
-	/*
+	/**
 	 * Runs the application.
 	 * Almost ready to be split into separate handlers for each data type. Woooooo!
 	 */
@@ -132,17 +132,17 @@ class Application {
 			$menu_data['menu'] = null;
 			$breadcrumbs = null;
 		} else {
-			$menu_data['menu'] = $this->menugen($menu_data['content'], $page_data['topic']);
-			$breadcrumbs = $this->makebreadcrumbs($page_data['title']);
+			$menu_data['menu'] = $this->menuGen($menu_data['content'], $page_data['topic']);
+			$breadcrumbs = $this->makeBreadCrumbs($page_data['title']);
 		}
 
 		//echo 'Number of elements in our Page Data array: ' . sizeof($page_data) . '<br />';
 		//echo 'Number of elements in our Menu Data array: ' . sizeof($menu_data);
 
-		return $this->makepage($page_data, $menu_data, $breadcrumbs, $view);
+		return $this->makePage($page_data, $menu_data, $breadcrumbs, $view);
 	}
 
-	/*
+	/**
 	 * Helper function to locate our pages from sets of HTML, markdown, and other source formats.
 	 * @param $page The page we are requesting.
 	 */
@@ -179,7 +179,7 @@ class Application {
 		return $page_data;
 	}
 
-	/*
+	/**
 	 * Generates the local menu and stores it in a key-value array.
 	 * @param $lm_path path to the local menu
 	 * @param $ref_page referring page
@@ -225,14 +225,14 @@ class Application {
 		return $lm_meta;
 	}
 
-	/*
+	/**
 	 * Generates the main menu by loading the page menu into the appropriate section.
 	 * The main menu file is a HTML skeleton, which we import and extract just the menu list <ul>. This is then turned into a HTML DOM object that is browsed to find the appropriate section into which the local menu is inserted. It's a somewhat wasteful way of importing the data but I'm not entirely sure how to improve this.
 	 * TODO Fixme so I use less resources.
 	 * @param $lm_path path to page menu
 	 * @param $page_topic page topic, or section to put generate menu data.
 	 */
-	private function menugen($lm_data, $page_topic) {
+	private function menuGen($lm_data, $page_topic) {
 		// Main menu
 		$mm_file = file_get_contents($this->public_content_dir . 'menu.html');
 		preg_match('#<ul>(.*?)</ul>#s', $mm_file, $matches);
@@ -250,11 +250,11 @@ class Application {
 		return $main_menu->save();
 	}
 
-	/*
+	/**
 	 * Generates a breadcrumb-style trail.
 	 * @param &$title The title of the page.
 	 */
-	private function makebreadcrumbs(&$title) {
+	private function makeBreadCrumbs(&$title) {
 		if($this->page_type_is['home'] == false) {
 			$path = $this->getvars['page'];
 			$path_array = explode('/', $path);
@@ -282,7 +282,7 @@ class Application {
 		return $trail;	
 	}
 
-	/*
+	/**
 	 * Constructs the final page from its constituent parts
 	 * TODO Separate view handlers, so that the PRINT_VIEW mode is a different function. Tidier code see :)
 	 * @param $pagemd The page metadata, including its title, content, etc.
@@ -290,7 +290,7 @@ class Application {
 	 * @param $breadcrumbs The breadcrumbs link list
 	 * @param $is_print Whether we want to hide the menus and page header.
 	 */
-	private function makepage($pagemd, $menumd, $breadcrumbs, $view) {
+	private function makePage($pagemd, $menumd, $breadcrumbs, $view) {
 		// The skeleton page is loaded
 		if($view == self::PRINT_VIEW) {
 			$page_file = file_get_contents("../include/html/print.html");
@@ -342,71 +342,18 @@ class Application {
 		return $page_file;
 	}
 
-	private function makenormalpage($pagemd, $menumd, $breadcrumbs) {
-	
-	}
+	// These functions are currently unused.
+	//private function makenormalpage($pagemd, $menumd, $breadcrumbs) {
+	//
+	//}
 
-	private function makeprintpage($pagemd) {
-	
-	}
+	//private function makeprintpage($pagemd) {
+	//
+	//}
 
-	private function makesourcepage($pagemd, $menumd, $breadcrumbs) {
-	
-	}
+	//private function makesourcepage($pagemd, $menumd, $breadcrumbs) {
+	//
+	//}
 
-	/*
-	 * Constructs the final page from its constituent parts
-	 * FIXED: Removed the reliance on a DOM parser for this and rely on simple string replaces. I haven't been able to discover if this minor change made a significant difference to the load time and computational load of each page request, but I suspect it has sped things up a little. 
-	 * @param $title The page title, to be inserted before the zgplace part.
-	 * @param $menu The constructed menu
-	 * @param $breadcrumbs The constructed menu
-	 * @param $content The page content, already filtered.
-	 * @param $is_print Whether we want to hide the menus and page header.
-	 */
-	private function makepageold($title, $menu, $breadcrumbs, $content, $scripts, $is_print) {
-		// The skeleton page is loaded
-		if($is_print == false) {
-			$page_file = file_get_contents("../include/html/layout.html");
-		}
-		else {
-			$page_file = file_get_contents("../include/html/print.html");
-		}
-
-		// Insert the new title
-		if($title != null) {
-			$page_file = preg_replace('#<title>(.+?)</title>#', '<title>'.$title.' @ $1</title>', $page_file);
-		}
-
-		if($scripts != null) {
-			$page_file = preg_replace('#<head>(.+?)</head>#s', "<head>$1\n".$scripts.'</head>', $page_file);
-		}
-
-		// Insert the menu
-		if($is_print == false || $menu != null) {
-			$page_file = str_replace('<!--[SIDEBAR]-->', $menu, $page_file);
-		}
-
-		// Insert the breadcrumb trail
-		if($is_print == false || $breadcrumbs != null) {
-			$page_file = str_replace('<!--[BREADCRUMBS]-->', $breadcrumbs, $page_file);
-		}
-
-		// Set up the print-view links
-		$print_box_href = "$this->toplevel";
-		if($is_print) {
-			$print_box_href = $print_box_href . $this->getvars['page'];
-		}
-		else {
-			$print_box_href = $print_box_href . "print/" . $this->getvars['page'];
-		}
-		$page_file = str_replace('#PRINTBOXHREF', $print_box_href, $page_file);
-
-		// Load the content
-		if($content != null) {
-			$page_file = str_replace('<!--[CONTENT]-->', $content, $page_file);
-		}
-
-		return $page_file;
-	}
 }
 ?>
