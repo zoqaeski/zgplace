@@ -12,6 +12,7 @@
  * - Separate HTMLFilter into Filter module and add test support for other inputs
  */
 
+require_once(dirname(__FILE__) . '/modules/utils.php');
 require_once(dirname(__FILE__) . '/modules/simple_html_dom.php');
 require_once(dirname(__FILE__) . '/filters/html.php');
 
@@ -24,13 +25,14 @@ class Application {
 	private $toplevel = '/';
 
 	// The directory root where all pages are stored.
-	private $public_dir = '../public/';
-	private $public_content_dir = '../public/content/';
+	public $public_dir = '../public/';
+	public $public_content_dir = '../public/content/';
 
-	// The source formats we have parsers for
+	// The source formats we have parsers for. Note that the order here is VERY important: the locatePage() function will return the file name matching the first format in this list.
 	private $source_formats = array(
-		'md',
-		'html'); // HTML is last as it is the fallback option
+		'.html',
+		'.texy',
+		''); // Unspecified format. Potential to add guessing trick here; can PHP do MIME?
 
 	// The page types we can read
 	private $page_type_is = array(
@@ -42,10 +44,14 @@ class Application {
 	private $errors_dir = '../include/errors/';
 
 	// Whether we have a 404 error.
-	public $is_error_404 = false;
-	private $is_error = array(
-		'404' => false);
-	//public $error_type = false;
+	private $is_error = false;
+   	private $error_type = array(
+		'404' => false, // Not Found
+		'415' => false, // Unsupported media type
+		'418' => false, // I'm a teapot
+		'500' => false, // Internal Server Error
+		'501' => false  // Not Implemented
+	);
 
 	// View modes
 	private $views = array(
@@ -89,7 +95,8 @@ class Application {
 		// Set the menu path
 		// Note that menu pages are ALWAYS html. I can't think of a way to read 
 		// in other formats, despite the inherent simplicity of the actual menu 
-		// pages.
+		// pages. Texy looks promising, I'll add an input module for it at some 
+		// point.
 		if($this->page_type_is['index']) {
 			$page_data['srcdir'] = $page;
 			$page_menu_path = dirname($this->public_content_dir . $page . "/index.html") . "/menu.html";
@@ -98,34 +105,44 @@ class Application {
 			$page_menu_path = dirname($this->public_content_dir . $page) . "/menu.html";
 		}
 
+		// The topic is the top level directory inside content
+		$path_dirs = explode('/', $page);
+		$page_data['topic'] = $path_dirs[0];
+
 		// Initialise menu
 		$menu_data = $this->getLocalMenu($page_menu_path, $page);
 
-		// Create page DOM and initialise its metadata.
-		if($page_data['format'] == 'html') {
-			$pageDOM = new simple_html_dom($page_data['path']);
-		} else {
-			// This is where the other parsers will go.
-			$pageDOM = null;
-		}
-
-		// Do not make a TOC for error pages.
-		if($this->is_error['404']) {
+		// Do not make a TOC for error pages, index pages, and menus.
+		// This can be reset for certain pages.
+		if($this->is_error || $this->page_type_is['index'] || $this->page_type_is['menu']) {
 			$page_data['maketoc'] = false;
 		} else {
 			$page_data['maketoc'] = true;		
 		}
 
-		// The topic is the top level directory inside content
-		$path_dirs = explode('/', $page);
-		$page_data['topic'] = $path_dirs[0];
-		
-		// Create our HTML filter. This also runs it and performs its magic, but YOU don't need to know that.
-		// The potential security risk of sharing two objects between the Application and the HTMLFilter is lessened by not making any of the filter accessible to the outside world. We create it, it does its magic, and then it gets cleaned up. 
-		$page_htmlfilter = new HTMLFilter($pageDOM, $page_data, $menu_data);
-
-		// Filtering done, get content.
-		$page_data['content'] = $pageDOM->find('body', 0)->innertext;
+		// This is where the other parsers will go. They MUST return HTML.
+		if($page_data['format'] == '.html') {
+			// Create page DOM and initialise its metadata.
+			$pageDOM = new simple_html_dom($page_data['path']);
+			// Create our HTML filter. This also runs it and performs its magic, but YOU don't need to know that. 
+			// The potential security risk of sharing two objects between the Application and the HTMLFilter is lessened by not making any of the filter accessible to the outside world. We create it, it does its magic, and then it gets cleaned up. 
+			$page_htmlfilter = new HTMLFilter($pageDOM, $page_data, $menu_data);
+			// Filtering done, get content.
+			$page_data['content'] = $pageDOM->find('body', 0)->innertext;
+//		} elseif($page_data['format'] == '.texy') {
+//			// NOT IMPLEMENTED. 
+			// Note that I'll need to modify some of Texy's routines so it 
+			// formats things identically to my HTML parser. The main changes 
+			// needed are logical heading nesting (more '#'s should be deeper 
+			// nesting, not the other way around) and TOC generation links 
+			// should be URL-encoded Wikipedia-style.
+		} else {
+			$this->is_error = true;
+			$this->error_type['500'] = true;
+			header('HTTP/1.1 500 Internal Server Error');
+			throw new RuntimeException("File format invalid.");
+			$page_data['content'] = null;
+		}
 
 		// If we're printing, please do not generate breadcrumbs.
 		if($view == self::PRINT_VIEW) {
@@ -143,7 +160,7 @@ class Application {
 	}
 
 	/**
-	 * Helper function to locate our pages from sets of HTML, markdown, and other source formats.
+	 * Helper function to locate our pages from sets of HTML, Texy, and other source formats.
 	 * @param $page The page we are requesting.
 	 */
 	private function locatePage($page) {
@@ -151,11 +168,11 @@ class Application {
 		$page_found = false;
 
 		foreach($this->source_formats as $format) {
-			// Check for formats
-			if(file_exists($this->public_content_dir . $page . '.' . $format)) {
-				$page_data['path'] = $this->public_content_dir . $page. '.' . $format;
-			} elseif(file_exists($this->public_content_dir . $page . '/index.' . $format)) {
-				$page_data['path'] = $this->public_content_dir . $page . '/index.' . $format;
+			// Check for formats. The order in source_formats array is very important.
+			if(file_exists($this->public_content_dir . $page . $format)) {
+				$page_data['path'] = $this->public_content_dir . $page. $format;
+			} elseif(file_exists($this->public_content_dir . $page . '/index' . $format)) {
+				$page_data['path'] = $this->public_content_dir . $page . '/index' . $format;
 				$this->page_type_is['index'] = true;
 			} else {
 				$page_data['path'] = null;
@@ -170,11 +187,13 @@ class Application {
 
 		// Not found? Ok, we has 404. Damn.
 		if($page_data['path'] == null) {		
-			$this->is_error['404'] = true;
+			$this->is_error = true;
+			$this->error_type['404'] = true;
 			header('HTTP/1.1 404 Not Found');
 			$page_data['path'] = $this->errors_dir . '404.html';
 			$page_data['format'] = 'html';
 		}
+		 // TODO: Add format error here.
 
 		return $page_data;
 	}
