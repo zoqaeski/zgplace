@@ -81,6 +81,10 @@
 	padding: 0.25em 0.5em;
 }
 
+.caption {
+	width: 75%;
+}
+
 /* Topic navigation links */
 .tnavt {
 	/*border-top: 1px solid;*/
