@@ -5,6 +5,8 @@ class HTMLFilter {
 	private $pageDOM;
 	private $pageMeta;
 	private $menuMeta;
+	private $public_content_dir;
+	private $public_img_dir;
 
 	/**
 	 * Constructs and then runs the HTMLFilter
@@ -16,6 +18,10 @@ class HTMLFilter {
 	function __construct(&$pageDOM, &$pageMeta, $menuMeta=null) {
 		$this->pageDOM =& $pageDOM;
 		$this->pageMeta =& $pageMeta;
+
+		// Test to see if we can screw things a bit. I think the answer's yes! o_O
+		$this->public_img_dir = Application::getPublicImgDir();
+		//$public_content_dir = Application::getPublicContentDir();
 
 		// Parse meta comments in top of file
 		$this->parseMetaComment();
@@ -50,7 +56,7 @@ class HTMLFilter {
 		}
 
 		// Ordered pages? No problems. Can has next/previous links
-		if($this->menuMeta['ordered'] == true) {
+		if($this->menuMeta['ordered'] == true && $this->pageMeta['all_is_well'] ) {
 			$this->buildTopicNavLinks($this->menuMeta['prev'], $this->menuMeta['next']);
 		}
 
@@ -72,10 +78,14 @@ class HTMLFilter {
 	private function buildTopicNavLinks($prev, $next) {
 		if($prev != null) {
 			$tn_prev = '<span class="tprev">« '. $prev .'</span>';
+		} else {
+			$tn_prev = null;
 		}
 
 		if($next != null) {
 			$tn_next = '<span class="tnext">'. $next .' »</span>';
+		} else {
+			$tn_next = null;
 		}
 
 		$tn_top = '<span class="ttop"><a href="#content">Return to Top</a></span>';
@@ -109,23 +119,25 @@ class HTMLFilter {
 	 */
 	private function parseMetaComment() {
 		$comment = $this->pageDOM->find('comment', 0);
-		$metacomment = str_replace(array("<!--", "-->"), "", $comment->innertext);
 
-		$mclines = explode("\n", $metacomment);
-		foreach($mclines as $mcline) {
-			if(strlen($mcline) > 0) {
-				preg_match("/^(\S+):\s(\S+)$/im", $mcline, &$matches);
-				if($matches[1] != "") {
-					$matches[1] = strtolower($matches[1]);
-					// PHP is rather fussy about booleans, so I needed a conversion function. 
-					// 'true' and 'yes' → true
-					// 'false' and 'no' → false
-					$value = Utils::str_to_bool($matches[2]);
-					$this->pageMeta[$matches[1]] = $value;
+		if($comment != null) {
+			$metacomment = str_replace(array("<!--", "-->"), "", $comment->innertext);
+
+			$mclines = explode("\n", $metacomment);
+			foreach($mclines as $mcline) {
+				if(strlen($mcline) > 0) {
+					$mcfound = preg_match("/^(\S+):\s(\S+)$/im", $mcline, &$matches);
+					if($mcfound != 0) {
+						$matches[1] = strtolower($matches[1]);
+						// PHP is rather fussy about booleans, so I needed a conversion function. 
+						// 'true' and 'yes' → true
+						// 'false' and 'no' → false
+						$value = Utils::str_to_bool($matches[2]);
+						$this->pageMeta[$matches[1]] = $value;
+					}
 				}
 			}
 		}
-
 		return $this->pageMeta;
 	}
 
@@ -141,7 +153,8 @@ class HTMLFilter {
 		for($i = 0, $is = count($imgs); $i < $is; $i++) {
 			if($imgs[$i]->src) {
 				$url = $imgs[$i]->src;
-				$imgs[$i]->src = '/public/img/' . $this->pageMeta['srcdir'] . '/' . $url;
+				$imgs[$i]->src = $this->public_img_dir . $this->pageMeta['srcdir'] . '/' . $url;
+				//$imgs[$i]->src = '/public/img/' . $this->pageMeta['srcdir'] . '/' . $url;
 			}
 		}
 	}
@@ -179,7 +192,11 @@ class HTMLFilter {
 		// Build the TOC by looping through the data
 		for($te = 0, $tes = count($toc_elements); $te < $tes; $te++) {
 			$curr_level = substr($toc_elements[$te]->tag, -1);
-			$next_level = substr($toc_elements[$te + 1]->tag, -1);
+			if(($te + 1) != $tes) {
+				$next_level = substr($toc_elements[$te + 1]->tag, -1);
+			} else {
+				$next_level = 0;
+			}
 
 			if($curr_level > $prev_level) {
 				$toc_string .= "\n". Utils::padStr($curr_level).'<ol>';
@@ -214,4 +231,3 @@ class HTMLFilter {
 		return $toc_string;
 	}
 }
-?>

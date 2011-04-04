@@ -90,22 +90,30 @@
 	/*border-top: 1px solid;*/
 	font-size: 90%;
 	margin: -2em 0 2em 0;
-	padding: 0.5em;
+	padding: 0.5em 0;
 }
 
 .tnavb {
 	/*border-top: 1px solid;*/
 	font-size: 90%;
 	margin: 2em 0 -1em 0;
-	padding: 0.5em;
+	padding: 1em 0;
+	/*text-align: center;*/
+	width: 100%;
 }
 
 .tnext {
 	float: right;
+	text-align: right;
 }
 
 .tprev {
 	float: left;
+	text-align: left;
+}
+
+.ttop {
+	margin: 0 auto;
 }
 
 /* Thumbnails */
