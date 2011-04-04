@@ -7,6 +7,15 @@
  */
 
 class Utils {
+
+	/**
+	 * Static class.
+	 */
+	final public function __construct()
+	{
+		throw new LogicException("Cannot instantiate static class " . get_class($this));
+	}
+
 	/**
 	 * Converts a string to a boolean if and only if the string contains a keyword such as 'yes', 'no', 'true', 'false'. Returns the string if it can't be converted.
 	 * @param $str The string to test and convert.
@@ -64,5 +73,3 @@ class Utils {
 	}
 
 }
-
-?>
