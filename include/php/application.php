@@ -27,8 +27,11 @@ class Application {
 	/** @var string The directory root where all pages are stored. */
 	private static $public_content_dir = '../public/pages/';
 
-	/** @var string The directory root where generated pages may be cached. */
+	/** @var string The directory root where generated pages may be cached. This directory must have write-access for PHP. */
 	private static $public_cache_dir = '../public/cache/';
+
+	/** @var bool Whether caching is enabled. */
+	private static $caching_enabled = false;
 
 	// The following directories are relative to the document root, not this file path.
 	/** @var string The document root. */
@@ -42,7 +45,6 @@ class Application {
 	private static $source_formats = array(
 		'.html',
 		'.texy',
-		'.txt',
 		''); // Unspecified format. Potential to add guessing trick here; can PHP do MIME?
 
 	/** @var string The directory where error pages are stored. */
@@ -142,20 +144,9 @@ class Application {
 
 		// This is where the other parsers will go. They MUST return HTML.
 		if($page_data['format'] == '.html') {
-			// Create page DOM and initialise its metadata.
-			$pageDOM = new simple_html_dom($page_data['path']);
-			// Create our HTML filter. This also runs it and performs its magic, but YOU don't need to know that. 
-			// The potential security risk of sharing two objects between the Application and the HTMLFilter is lessened by not making any of the filter accessible to the outside world. We create it, it does its magic, and then it gets cleaned up. 
-			$page_htmlfilter = new HTMLFilter($pageDOM, $page_data, $menu_data);
-			// Filtering done, get content.
-			$page_data['content'] = $pageDOM->find('body', 0)->innertext;
-//		} elseif($page_data['format'] == '.texy') {
-//			// NOT IMPLEMENTED. 
-			// Note that I'll need to modify some of Texy's routines so it 
-			// formats things identically to my HTML parser. The main changes 
-			// needed are logical heading nesting (more '#'s should be deeper 
-			// nesting, not the other way around) and TOC generation links 
-			// should be URL-encoded Wikipedia-style.
+			$page_data = $this->parseHTML($page_data, $menu_data);
+		} elseif($page_data['format'] == '.texy') {
+			$page_data = $this->parseTexy($page_data, $menu_data);
 		} else {
 			$page_data['all_is_well'] = false;
 			$this->error_type['500'] = true;
@@ -177,6 +168,38 @@ class Application {
 		//echo 'Number of elements in our Menu Data array: ' . sizeof($menu_data);
 
 		return $this->makePage($page_data, $menu_data, $breadcrumbs, $view);
+	}
+
+	/**
+	 * HTML parsing function, used when our source format is HTML.
+	 * @param $page_data The Page Data array.
+	 * @param $menu_data The Menu Data array.
+	 * @return array
+	 */
+	private function parseHTML($page_data, $menu_data) {
+
+		// Create our HTML filter. This also runs it and performs its magic, but YOU don't need to know that. 
+		// The potential security risk of sharing two objects between the Application and the HTMLFilter is lessened by not making any of the filter accessible to the outside world. We create it, it does its magic, and then it gets cleaned up. 
+		$page_htmlfilter = new HTMLFilter($page_data, $menu_data);
+		$page_data = $page_htmlfilter->getData();
+
+		return $page_data;
+	}
+
+	/**
+	 * Texy parsing function, used when our source format is Texy (http://www.texy.info)
+	 * @param $page_data The Page Data array.
+	 * @param $menu_data The Menu Data array.
+	 * @return array
+	 */
+	private function parseTexy($page_data, $menu_data) {
+		// NOT IMPLEMENTED. 
+		// Note that I'll need to modify some of Texy's routines so it 
+		// formats things identically to my HTML parser. The main changes 
+		// needed are logical heading nesting (more '#'s should be deeper 
+		// nesting, not the other way around) and TOC generation links 
+		// should be URL-encoded Wikipedia-style.
+		return $page_data;
 	}
 
 	/**
@@ -232,11 +255,14 @@ class Application {
 	 * @return array
 	 */
 	private function getLocalMenu($lm_path, $ref_page) {
-		$lm_DOM = new simple_html_dom($lm_path);
-		$lm_meta = array();
-		$lm_meta['ordered'] = false; // Menus are by default non-ordered. The individual menu file has a tag to reset this.
-
-		$lm_filter = new HTMLFilter($lm_DOM, $lm_meta);
+		$lm_meta = array(
+			'path' => $lm_path,
+			'ordered' => false // Menus are by default non-ordered. If we want a menu file, add ordered: true to the first comment in the file.
+		);
+		
+		$lm_filter = new HTMLFilter($lm_meta);
+		$lm_meta = $lm_filter->getData();
+		$lm_DOM = $lm_filter->getDOM();
 
 		$lm_links = $lm_DOM->find('a');
 		$lm_size = sizeof($lm_links);

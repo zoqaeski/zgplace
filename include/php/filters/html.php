@@ -3,7 +3,7 @@
 class HTMLFilter {
 
 	private $pageDOM;
-	private $pageMeta;
+	private $pageData;
 	private $menuMeta;
 	private $public_content_dir;
 	private $public_img_dir;
@@ -11,25 +11,45 @@ class HTMLFilter {
 	/**
 	 * Constructs and then runs the HTMLFilter
 	 * @param pageDOM The DOM of the page we wish to filter
-	 * @param pageMeta The metadata of the page we wish to filter. All generated content gets written to here.
+	 * @param pageData The metadata of the page we wish to filter. All generated content gets written to here.
 	 * @param menuMeta The metadata of the menu for the page. We only read some 
 	 * fields in here, so it's not passed as a reference. It defaults to null as we read meta-comments from a menu file, and reading the menu meta for the menu pulled in by the menu ... yeah, loopiness.
 	 */
-	function __construct(&$pageDOM, &$pageMeta, $menuMeta=null) {
-		$this->pageDOM =& $pageDOM;
-		$this->pageMeta =& $pageMeta;
+	function __construct($pageData, $menuMeta=null) {
+		$this->pageData =& $pageData;
 
-		// Test to see if we can screw things a bit. I think the answer's yes! o_O
-		$this->public_img_dir = Application::getPublicImgDir();
-		//$public_content_dir = Application::getPublicContentDir();
+		if($this->pageData['path'] != null) {
+			// Create page DOM from the path to the file.
+			$this->pageDOM = new simple_html_dom($this->pageData['path']);
 
-		// Parse meta comments in top of file
-		$this->parseMetaComment();
+			// Parse meta comments in top of file
+			$this->parseMetaComment();
 
-		if($menuMeta != null) {
-			$this->menuMeta = $menuMeta;
-			$this->run();
+			if($menuMeta != null) {
+				$this->menuMeta = $menuMeta;
+
+				$this->public_img_dir = Application::getPublicImgDir();
+				//$public_content_dir = Application::getPublicContentDir();
+
+				$this->run();
+			}
+		} else {
+			throw new RuntimeException("No file path specified.");
 		}
+	}
+
+	/**
+	 * Returns the pageData object
+	 */
+	public function getData() {
+		return $this->pageData;
+	}
+
+	/**
+	 * Returns the pageDOM object
+	 */
+	public function getDOM() {
+		return $this->pageDOM;
 	}
 
 	/**
@@ -37,16 +57,16 @@ class HTMLFilter {
 	 */
 	private function run() {
 		// Get title
-		$this->pageMeta['title'] = $this->getTitle();
+		$this->pageData['title'] = $this->getTitle();
 
 		// Extract scripties
-		$this->pageMeta['scripts'] = $this->findScriptElements();
+		$this->pageData['scripts'] = $this->findScriptElements();
 
 		// Modify image src links
 		$this->modifyImgs();
 
 		// Generate a TOC based on heading hierarchy
-		if($this->pageMeta['type'] != 'index' && $this->pageMeta['type'] != 'menu' && $this->pageMeta['maketoc'] == true) {
+		if($this->pageData['type'] != 'index' && $this->pageData['type'] != 'menu' && $this->pageData['maketoc'] == true) {
 			$pageHeadings = $this->addAnchors();
 			if(count($pageHeadings) > 1) {
 				$h_ones = $this->pageDOM->find('h1');
@@ -56,9 +76,12 @@ class HTMLFilter {
 		}
 
 		// Ordered pages? No problems. Can has next/previous links
-		if($this->menuMeta['ordered'] == true && $this->pageMeta['all_is_well'] ) {
+		if($this->menuMeta['ordered'] == true && $this->pageData['all_is_well'] ) {
 			$this->buildTopicNavLinks($this->menuMeta['prev'], $this->menuMeta['next']);
 		}
+
+		// Filtering done, get content.
+		$this->pageData['content'] = $this->pageDOM->find('body', 0)->innertext;
 
 		//echo "HTMLFilter::run() just executed.";
 	}
@@ -133,12 +156,12 @@ class HTMLFilter {
 						// 'true' and 'yes' → true
 						// 'false' and 'no' → false
 						$value = Utils::str_to_bool($matches[2]);
-						$this->pageMeta[$matches[1]] = $value;
+						$this->pageData[$matches[1]] = $value;
 					}
 				}
 			}
 		}
-		return $this->pageMeta;
+		return $this->pageData;
 	}
 
 	/**
@@ -153,8 +176,8 @@ class HTMLFilter {
 		for($i = 0, $is = count($imgs); $i < $is; $i++) {
 			if($imgs[$i]->src) {
 				$url = $imgs[$i]->src;
-				$imgs[$i]->src = $this->public_img_dir . $this->pageMeta['srcdir'] . '/' . $url;
-				//$imgs[$i]->src = '/public/img/' . $this->pageMeta['srcdir'] . '/' . $url;
+				$imgs[$i]->src = $this->public_img_dir . $this->pageData['srcdir'] . '/' . $url;
+				//$imgs[$i]->src = '/public/img/' . $this->pageData['srcdir'] . '/' . $url;
 			}
 		}
 	}
