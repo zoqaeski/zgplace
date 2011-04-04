@@ -18,39 +18,48 @@ require_once(dirname(__FILE__) . '/filters/html.php');
 
 class Application {
 
-	// The _GET variables
+	/** @var array The _GET variables */
 	private $getvars;
 
-	// The directory root where all pages are stored.
+	/** @var string The directory root where all public content is stored. */
 	private static $public_dir = '../public/';
-	private static $public_content_dir = '../public/content/';
+
+	/** @var string The directory root where all pages are stored. */
+	private static $public_content_dir = '../public/pages/';
+
+	/** @var string The directory root where generated pages may be cached. */
+	private static $public_cache_dir = '../public/cache/';
 
 	// The following directories are relative to the document root, not this file path.
+	/** @var string The document root. */
 	private static $toplevel = '/';
+
+	/** @var string The directory where all images are stored. */
 	private static $public_img_dir = '/public/img/';
 	//private $public_script_dir = '/public/img/';
 
-	// The source formats we have parsers for. Note that the order here is VERY important: the locatePage() function will return the file name matching the first format in this list.
+	/** @var array The source formats we have parsers for. Note that the order here is VERY important: the locatePage() function will return the file name matching the first format in this list. */
 	private static $source_formats = array(
 		'.html',
 		'.texy',
 		'.txt',
 		''); // Unspecified format. Potential to add guessing trick here; can PHP do MIME?
 
-	// Errors are here.
+	/** @var string The directory where error pages are stored. */
 	private static $errors_dir = '../include/errors/';
 
-	// Path search/replace strings
+	/** @var array Path search strings for dynamic replacement of certain characters. Useful in the breadcrumb function */
 	private static $path_search = array(
 		'/_/', 
 		'/\buk\b/');
+
+	/** @var array Path replace strings for $path_search */
 	private static $path_replace = array(
 		' ', 
 		'United Kingdom');
 
 
-	// Whether we have a 404 error.
-	//private $is_error = false;
+	/** @var array Error type reporting */
    	private $error_type = array(
 		'404' => false, // Not Found
 		'415' => false, // Unsupported media type
@@ -59,10 +68,10 @@ class Application {
 		'501' => false  // Not Implemented
 	);
 
-	// Whether we're on the home page.
+	/** @var bool Whether we're on the home page. */
 	private $is_home = false;
 
-	// View modes
+	/** @var array Which view mode we are using, such as normal, print view, source view, etc. */
 	private $views = array(
 		0 => 'normal', 
 		1 => 'print', 
@@ -72,7 +81,7 @@ class Application {
 	const PRINT_VIEW = 1;
 	const SOURCE_VIEW = 2;
 
-	// Timers
+	/** @var int Start time of application processing. */
 	private $starttime = 0;
 
 	/**
