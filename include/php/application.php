@@ -28,7 +28,7 @@ class Application {
 	private static $public_content_dir = '../public/pages/';
 
 	/** @var string The directory root where generated pages may be cached. This directory must have write-access for PHP. */
-	private static $public_cache_dir = '../public/cache/';
+	private static $cache_dir = '../cache/';
 
 	/** @var bool Whether caching is enabled. */
 	private static $caching_enabled = false;
@@ -86,6 +86,9 @@ class Application {
 	/** @var int Start time of application processing. */
 	private $starttime = 0;
 
+	/** @var string The final generated page content. */
+	private $generatedPage;
+
 	/**
 	 * Creates a new Application.
 	 * @param $getvars The _GET variables.
@@ -93,6 +96,7 @@ class Application {
 	public function __construct($getvars) {
 		$this->starttime = microtime(true);
 		$this->getvars = $getvars;
+		//$this->makeTempFile();
 		print $this->run();
 	}
 
@@ -160,14 +164,19 @@ class Application {
 			$menu_data['menu'] = null;
 			$breadcrumbs = null;
 		} else {
-			$menu_data['menu'] = $this->menuGen($menu_data['content'], $page_data['topic']);
+			$menu_data['menu'] = $this->menuGen($menu_data['menu'], $page_data['topic']);
 			$breadcrumbs = $this->makeBreadCrumbs($page_data['title']);
 		}
 
-		//echo 'Number of elements in our Page Data array: ' . sizeof($page_data) . '<br />';
-		//echo 'Number of elements in our Menu Data array: ' . sizeof($menu_data);
+		// Include the menu? Works now. Please remember to not store objects.
+		$page_data['menu'] = $menu_data['menu'];
 
-		return $this->makePage($page_data, $menu_data, $breadcrumbs, $view);
+		//echo 'Number of elements in our Page Data array: ' . sizeof($page_data) . '<br />';
+		//echo 'Number of elements in our Menu Data array: ' . sizeof($menu_data) . '<br />';
+		$this->makePageDataFile($page_data);
+
+		$this->generatedPage = $this->makePage($page_data, $menu_data, $breadcrumbs, $view);
+		return $this->generatedPage;
 	}
 
 	/**
@@ -279,7 +288,7 @@ class Application {
 
 		$cl = $lm_links[$c];
 		$cl->innertext = '→ ' . $cl->innertext;
-		$lm_meta['curr'] = $cl;
+		$lm_meta['curr'] = $cl->outertext;
 
 		if($lm_meta['ordered'] == true) {
 			if($c > 0) {
@@ -295,12 +304,12 @@ class Application {
 			}
 
 			// Do I want these?
-			$lm_meta['first'] = $lm_links[0]->outertext;
-			$lm_meta['last'] = $lm_links[$lm_size - 1]->outertext;
+			//$lm_meta['first'] = $lm_links[0]->outertext;
+			//$lm_meta['last'] = $lm_links[$lm_size - 1]->outertext;
 
 		}
 
-		$lm_meta['content'] = $lm_DOM->find('.levelTwo', 0)->outertext;
+		$lm_meta['menu'] = $lm_DOM->find('.levelTwo', 0)->outertext;
 		return $lm_meta;
 	}
 
@@ -312,7 +321,7 @@ class Application {
 	 * @param $page_topic page topic, or section to put generate menu data.
 	 * @return string
 	 */
-	private function menuGen($lm_data, $page_topic) {
+	private function menuGen($local_menu, $page_topic) {
 		// Main menu
 		$mm_file = file_get_contents(self::$public_content_dir . 'menu.html');
 		preg_match('#<ul>(.*?)</ul>#s', $mm_file, $matches);
@@ -323,7 +332,7 @@ class Application {
 			$mm_topic = $main_menu->getElementById($page_topic);
 
 			if($mm_topic != null) {
-				$mm_topic->innertext = $mm_topic->innertext . $lm_data;
+				$mm_topic->innertext = $mm_topic->innertext . $local_menu;
 			}
 		}
 
@@ -434,6 +443,16 @@ class Application {
 	//private function makesourcepage($pagemd, $menumd, $breadcrumbs) {
 	//
 	//}
+
+	public function makePageDataFile($page_data) {
+		$pdhash = hash_init('md5');
+		$pdvar = print_r($page_data, true);
+		hash_update($pdhash, $pdvar);
+
+		$pdfile = self::$cache_dir . hash_final($pdhash) . '.txt';
+
+		return file_put_contents($pdfile, $pdvar);
+	}
 
 	/*
 	 * Getters and setters
