@@ -13,6 +13,7 @@
  */
 
 require_once(dirname(__FILE__) . '/modules/utils.php');
+require_once(dirname(__FILE__) . '/modules/cache.php');
 require_once(dirname(__FILE__) . '/modules/simple_html_dom.php');
 require_once(dirname(__FILE__) . '/filters/html.php');
 
@@ -31,7 +32,7 @@ class Application {
 	private static $cache_dir = '../cache/';
 
 	/** @var bool Whether caching is enabled. */
-	private static $caching_enabled = false;
+	private static $use_cache_file = true;
 
 	// The following directories are relative to the document root, not this file path.
 	/** @var string The document root. */
@@ -64,6 +65,7 @@ class Application {
 	/** @var array Error type reporting */
    	private $error_type = array(
 		'404' => false, // Not Found
+		'403' => false, // Forbidden
 		'415' => false, // Unsupported media type
 		'418' => false, // I'm a teapot
 		'500' => false, // Internal Server Error
@@ -117,6 +119,15 @@ class Application {
 		}
 
 		$page_data = $this->locatePage($page, $page_data);
+
+		if(self::$use_cache_file) {
+			$page_data['hash'] = Cache::makeHashOfFile($page_data['path'], false);
+			$cached_file = Cache::loadCacheFile($page_data['hash'], self::$cache_dir);
+			if($cached_file !== false) {
+				$this->generatedPage = $this->addTimeStamp($cached_file);
+				return $this->generatedPage;
+			}
+		}
 
 		// Set the menu path
 		// Note that menu pages are ALWAYS html. I can't think of a way to read 
@@ -173,10 +184,20 @@ class Application {
 
 		//echo 'Number of elements in our Page Data array: ' . sizeof($page_data) . '<br />';
 		//echo 'Number of elements in our Menu Data array: ' . sizeof($menu_data) . '<br />';
-		$this->makePageDataFile($page_data);
+		//Cache::makeCacheFile($page_data);
 
 		$this->generatedPage = $this->makePage($page_data, $menu_data, $breadcrumbs, $view);
-		return $this->generatedPage;
+
+		if(self::$use_cache_file) {
+			if($page_data['hash'] != false) {
+				$cache_file_name = self::$cache_dir . $page_data['hash'];
+				Cache::saveCacheFile($this->generatedPage, $cache_file_name);
+			} else {
+				Cache::saveCacheFile($this->generatedPage);
+			}
+		}
+
+		return $this->addTimeStamp($this->generatedPage);
 	}
 
 	/**
@@ -219,17 +240,29 @@ class Application {
 	private function locatePage($page, $page_data) {
 		//$page_data = array();
 		$page_found = false;
+		$page_readable = true;
 
+		// Check for formats. The order in source_formats array is very important.
 		foreach(self::$source_formats as $format) {
-			// Check for formats. The order in source_formats array is very important.
-			if(file_exists(self::$public_content_dir . $page . $format)) {
-				$page_data['path'] = self::$public_content_dir . $page. $format;
-				$page_data['type'] = 'page';
-				$page_found = true;
-			} elseif(file_exists(self::$public_content_dir . $page . '/index' . $format)) {
-				$page_data['path'] = self::$public_content_dir . $page . '/index' . $format;
-				$page_data['type'] = 'index';
-				$page_found = true;
+			$page_name = self::$public_content_dir . $page . $format;
+			$index_name = self::$public_content_dir . $page . '/index' . $format;
+
+			if(file_exists($page_name)) {
+				if(is_readable($page_name)) {
+					$page_data['path'] = $page_name;
+					$page_data['type'] = 'page';
+					$page_found = true;
+				} else {
+					$page_readable = false;
+				}
+			} elseif(file_exists($index_name)) {
+				if(is_readable($index_name)) {
+					$page_data['path'] = $index_name;
+					$page_data['type'] = 'index';
+					$page_found = true;
+				} else {
+					$page_readable = false;
+				}
 			} else {
 				$page_found = false;
 			}
@@ -239,6 +272,9 @@ class Application {
 				$page_data['format'] = $format;
 				$page_data['all_is_well'] = true;
 				break;
+			} elseif($page_readable == false) {
+				$page_data['all_is_well'] = false;
+				break;
 			}
 		}
 
@@ -246,10 +282,17 @@ class Application {
 
 		// Not found? Ok, we has 404. Damn.
 		if($page_found == false) {		
-			$page_data['all_is_well'] = false;
 			$this->error_type['404'] = true;
 			header('HTTP/1.1 404 Not Found');
 			$page_data['path'] = self::$errors_dir . '404.html';
+			$page_data['format'] = '.html';
+			$page_data['type'] = 'error';
+			$page_data['all_is_well'] = false;
+		} elseif($page_readable == false) {
+			$this->error_type['403'] = true;
+			header('HTTP/1.1 403 Forbidden');
+			$page_data['path'] = self::$errors_dir . '404.html';
+			//$page_data['path'] = self::$errors_dir . '403.html';
 			$page_data['format'] = '.html';
 			$page_data['type'] = 'error';
 		}
@@ -422,12 +465,15 @@ class Application {
 			$page_file = str_replace('<!--[CONTENT]-->', $pagemd['content'], $page_file);
 		}
 
+		return $page_file;
+	}
+
+	private function addTimeStamp($page_file) {
 		// Finish our timer
 		$endtime = microtime(true);
 	   	$time = $endtime - $this->starttime;
 		$time_msg = 'Page generated in approximately ' . round($time, 4) . ' seconds.';
 		$page_file = str_replace('<!--[TIME]-->', $time_msg, $page_file);
-
 		return $page_file;
 	}
 
@@ -443,16 +489,6 @@ class Application {
 	//private function makesourcepage($pagemd, $menumd, $breadcrumbs) {
 	//
 	//}
-
-	public function makePageDataFile($page_data) {
-		$pdhash = hash_init('md5');
-		$pdvar = print_r($page_data, true);
-		hash_update($pdhash, $pdvar);
-
-		$pdfile = self::$cache_dir . hash_final($pdhash) . '.txt';
-
-		return file_put_contents($pdfile, $pdvar);
-	}
 
 	/*
 	 * Getters and setters
@@ -472,6 +508,14 @@ class Application {
 	 */
 	public static function getPublicContentDir() {
 		return self::$public_content_dir;
+	}
+
+	/**
+	 * Returns the path to the cache directory.
+	 * @return string
+	 */
+	public static function getCacheDir() {
+		return self::$cache_dir;
 	}
 
 	/**
