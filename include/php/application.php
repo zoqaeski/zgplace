@@ -45,8 +45,7 @@ class Application {
 	/** @var array The source formats we have parsers for. Note that the order here is VERY important: the locatePage() function will return the file name matching the first format in this list. */
 	private static $source_formats = array(
 		'.html',
-		'.texy',
-		''); // Unspecified format. Potential to add guessing trick here; can PHP do MIME?
+		'.texy');
 
 	/** @var string The directory where error pages are stored. */
 	private static $errors_dir = '../include/errors/';
@@ -91,6 +90,9 @@ class Application {
 	/** @var string The final generated page content. */
 	private $generatedPage;
 
+	/** @var object The cache generator. */
+	private $cache;
+
 	/**
 	 * Creates a new Application.
 	 * @param $getvars The _GET variables.
@@ -98,8 +100,6 @@ class Application {
 	public function __construct($getvars) {
 		$this->starttime = microtime(true);
 		$this->getvars = $getvars;
-		//$this->makeTempFile();
-		print $this->run();
 	}
 
 	/**
@@ -107,7 +107,7 @@ class Application {
 	 * Almost ready to be split into separate handlers for each data type. Woooooo!
 	 * @return string
 	 */
-	private function run() {
+	public function run() {
 		$page = (string) $this->getvars['page'];
 		$view = $this->getvars['view'];
 		$page_data = array();
@@ -120,12 +120,16 @@ class Application {
 
 		$page_data = $this->locatePage($page, $page_data);
 
-		if(self::$use_cache_file) {
-			$page_data['hash'] = Cache::makeHashOfFile($page_data['path'], false);
-			$cached_file = Cache::loadCacheFile($page_data['hash'], self::$cache_dir);
-			if($cached_file !== false) {
-				$this->generatedPage = $this->addTimeStamp($cached_file);
-				return $this->generatedPage;
+		if(self::$use_cache_file === true) {
+			$this->cache = new Cache();
+			$page_data['hash'] = $this->cache->makeHashOfFile($page_data['path'], false);
+			//$this->cache->updateHashOfFile($page_data['path'], false);
+
+			$cached_data = $this->cache->loadCacheFile($page_data['hash']);
+			if($cached_data === false) {
+				$this->cache->cleanCache($page_data['path']);
+			} else {
+				return $this->addTimeStamp($cached_data['generated_page']);
 			}
 		}
 
@@ -177,27 +181,35 @@ class Application {
 		} else {
 			$menu_data['menu'] = $this->menuGen($menu_data['menu'], $page_data['topic']);
 			$breadcrumbs = $this->makeBreadCrumbs($page_data['title']);
+
+			// Add a hash for the menu.
+			//if(self::$use_cache_file === true) {
+			//	$menu_data['hash'] = $this->cache->makeHash($menu_data);
+			//}
+
 		}
 
+		$page_data['generated_page'] = $this->makePage($page_data, $menu_data, $breadcrumbs, $view);
+
 		// Include the menu? Works now. Please remember to not store objects.
-		$page_data['menu'] = $menu_data['menu'];
+		//$page_data['menu'] = $menu_data['menu'];
 
-		//echo 'Number of elements in our Page Data array: ' . sizeof($page_data) . '<br />';
-		//echo 'Number of elements in our Menu Data array: ' . sizeof($menu_data) . '<br />';
-		//Cache::makeCacheFile($page_data);
+		// $page_data['generated_page'] contains the final page. So we can dump the content field. And the menu field.
+		unset($page_data['content']);
+		//unset($page_data['menu']);
 
-		$this->generatedPage = $this->makePage($page_data, $menu_data, $breadcrumbs, $view);
-
-		if(self::$use_cache_file) {
-			if($page_data['hash'] != false) {
+		if(self::$use_cache_file === true) {
+			if($page_data['hash'] !== false) {
 				$cache_file_name = self::$cache_dir . $page_data['hash'];
-				Cache::saveCacheFile($this->generatedPage, $cache_file_name);
+				$this->cache->saveCacheFile($page_data, $cache_file_name);
+				$this->cache->logCacheEntry($page_data['hash'], $page_data['path']);
 			} else {
-				Cache::saveCacheFile($this->generatedPage);
+				echo "WARNING: File didn't have hash. This entry is not logged.";
+				$this->cache->saveCacheFile($page_data);
 			}
 		}
 
-		return $this->addTimeStamp($this->generatedPage);
+		return $this->addTimeStamp($page_data['generated_page']);
 	}
 
 	/**
@@ -309,56 +321,64 @@ class Application {
 	private function getLocalMenu($lm_path, $ref_page) {
 		$lm_meta = array(
 			'path' => $lm_path,
-			'ordered' => false // Menus are by default non-ordered. If we want a menu file, add ordered: true to the first comment in the file.
+			'ordered' => false, // Menus are by default non-ordered. If we want a menu file, add ordered: true to the first comment in the file.
+			'menu' => ''
 		);
-		
-		$lm_filter = new HTMLFilter($lm_meta);
-		$lm_meta = $lm_filter->getData();
-		$lm_DOM = $lm_filter->getDOM();
 
-		$lm_links = $lm_DOM->find('a');
-		$lm_size = sizeof($lm_links);
+		if(file_exists($lm_path) && is_readable($lm_path)) {
 
-		for($found = false, $c = 0; ! $found && $c < $lm_size;) {
-			$f = strpos($lm_links[$c], $ref_page);
-			if($f === false) {
-				$found = false;
-				++$c;
-			} else {
-				$found = true;
-			}
-		}
+			$lm_filter = new HTMLFilter($lm_meta);
+			$lm_meta = $lm_filter->getData();
+			$lm_DOM = $lm_filter->getDOM();
 
-		$cl = $lm_links[$c];
-		$cl->innertext = '→ ' . $cl->innertext;
-		$lm_meta['curr'] = $cl->outertext;
+			$lm_links = $lm_DOM->find('a');
+			$lm_size = sizeof($lm_links);
 
-		if($lm_meta['ordered'] == true) {
-			if($c > 0) {
-				$lm_meta['prev'] = $lm_links[$c - 1]->outertext;
-			} else {
-				$lm_meta['prev'] = null;
+			for($found = false, $c = 0; ! $found && $c < $lm_size;) {
+				$f = strpos($lm_links[$c], $ref_page);
+				if($f === false) {
+					$found = false;
+					++$c;
+				} else {
+					$found = true;
+				}
 			}
 
-			if($c < $lm_size - 1) {
-				$lm_meta['next'] = $lm_links[$c + 1]->outertext;
-			} else {
-				$lm_meta['next'] = null;
+			$cl = $lm_links[$c];
+			$cl->innertext = '→ ' . $cl->innertext;
+			$lm_meta['curr'] = $cl->outertext;
+
+			if($lm_meta['ordered'] == true) {
+				if($c > 0) {
+					$lm_meta['prev'] = $lm_links[$c - 1]->outertext;
+				} else {
+					$lm_meta['prev'] = null;
+				}
+
+				if($c < $lm_size - 1) {
+					$lm_meta['next'] = $lm_links[$c + 1]->outertext;
+				} else {
+					$lm_meta['next'] = null;
+				}
+
+				// Do I want these?
+				//$lm_meta['first'] = $lm_links[0]->outertext;
+				//$lm_meta['last'] = $lm_links[$lm_size - 1]->outertext;
+
 			}
 
-			// Do I want these?
-			//$lm_meta['first'] = $lm_links[0]->outertext;
-			//$lm_meta['last'] = $lm_links[$lm_size - 1]->outertext;
-
-		}
-
-		$lm_meta['menu'] = $lm_DOM->find('.levelTwo', 0)->outertext;
+			$lm_meta['menu'] = $lm_DOM->find('.levelTwo', 0)->outertext;
+		} 
 		return $lm_meta;
 	}
 
 	/**
 	 * Generates the main menu by loading the page menu into the appropriate section.
-	 * The main menu file is a HTML skeleton, which we import and extract just the menu list <ul>. This is then turned into a HTML DOM object that is browsed to find the appropriate section into which the local menu is inserted. It's a somewhat wasteful way of importing the data but I'm not entirely sure how to improve this.
+	 * The main menu file is a HTML skeleton, which we import and extract just 
+	 * the menu list <ul>. This is then turned into a HTML DOM object that is 
+	 * browsed to find the appropriate section into which the local menu is 
+	 * inserted. It's a somewhat wasteful way of importing the data but I'm not 
+	 * entirely sure how to improve this.
 	 * TODO Fixme so I use less resources.
 	 * @param $lm_path path to page menu
 	 * @param $page_topic page topic, or section to put generate menu data.
@@ -393,7 +413,7 @@ class Application {
 			$path_array = explode('/', $path);
 			$path_hrefs = array();
 
-			for($p = 0, $ps = sizeof($path_array) - 1; $p < $ps; ++$p) {
+			for($p = sizeof($path_array) - 2; $p >= 0; --$p) {
 				$link_text = ucwords(preg_replace(self::$path_search, self::$path_replace, $path_array[$p]));
 				$path = substr($path, 0, strlen($path) - strlen(strrchr($path, '/')));
 				$path_hrefs[$p] = '<a href="' .self::$toplevel . $path . '">' . $link_text . '</a>';
@@ -402,7 +422,7 @@ class Application {
 			$trail = '';
 
 			foreach($path_hrefs as $ph) {
-				$trail = $trail . $ph . ' » ';
+				$trail = $ph . ' » '. $trail;
 			}
 
 			$trail = '<p><a href="' . self::$toplevel .'">Home</a> » ' . $trail . $title . '</p>';
@@ -415,7 +435,8 @@ class Application {
 
 	/**
 	 * Constructs the final page from its constituent parts
-	 * TODO Separate view handlers, so that the PRINT_VIEW mode is a different function. Tidier code see :)
+	 * TODO Separate view handlers, so that the PRINT_VIEW mode is a different 
+	 * function. Tidier code see :)
 	 * @param $pagemd The page metadata, including its title, content, etc.
 	 * @param $menumd The menu metadata, including its content and other information.
 	 * @param $breadcrumbs The breadcrumbs link list
@@ -468,6 +489,11 @@ class Application {
 		return $page_file;
 	}
 
+	/**
+	 * Adds a time stamp to the generated page.
+	 * @param $page_file The generated page.
+	 * @return string
+	 */
 	private function addTimeStamp($page_file) {
 		// Finish our timer
 		$endtime = microtime(true);
@@ -477,22 +503,7 @@ class Application {
 		return $page_file;
 	}
 
-	// These functions are currently unused.
-	//private function makenormalpage($pagemd, $menumd, $breadcrumbs) {
-	//
-	//}
-
-	//private function makeprintpage($pagemd) {
-	//
-	//}
-
-	//private function makesourcepage($pagemd, $menumd, $breadcrumbs) {
-	//
-	//}
-
-	/*
-	 * Getters and setters
-	 */
+	//---------------------------------[GETTERS]
 
 	/**
 	 * Returns the path to the public directory.
@@ -558,4 +569,69 @@ class Application {
 //	   return self::$views;
 //	}
 
+	//--------------------------------[SETTERS]
+
+	/**
+	 * Returns the path to the public directory.
+	 * @return string
+	 */
+	public function setPublicDir($dir) {
+		self::$public_dir = $dir;
+	}
+
+	/**
+	 * Returns the path to the public content directory.
+	 * @return string
+	 */
+	public static function setPublicContentDir($dir) {
+		self::$public_content_dir = $dir;
+	}
+
+	/**
+	 * Sets the path to the cache directory.
+	 * @param $dir The new cache directory path.
+	 */
+	public static function setCacheDir($dir) {
+		self::$cache_dir = $dir;
+	}
+
+	/**
+	 * Returns the path to the public images directory.
+	 * @return string
+	 */
+	public static function setPublicImgDir($dir) {
+		self::$public_img_dir = $dir;
+	}
+
+//	/**
+//	 * Returns the path to the public images directory.
+//	 * @return string
+//	 */
+//	public static function setPublicScriptDir() {
+//		return self::$public_script_dir;
+//	}
+
+	/**
+	 * Returns the path to the errors directory.
+	 * @param $dir the new directory
+	 */
+	public function setErrorsDir($dir) {
+		self::$errors_dir = $dir;
+	}
+	
+//	/**
+//	 * Returns an array of the source formats enabled. The order of the array is the order in which parsers will be tried.
+//	 * @return array
+//	 */
+//	public function setSourceFormats() {
+//		return self::$source_formats;
+//	}
+
+//	/**
+//	 * Returns an array of the views enabled.
+//	 * @return array
+//	 */
+//	public function setViews(){
+//	   return self::$views;
+//	}
 }
