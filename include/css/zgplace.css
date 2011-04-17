@@ -195,7 +195,7 @@ border-top: 1px solid #d8d8d8;
 }*/
 
 #sidebar a, #sidebar a:link, #sidebar a:visited {
-	/*color: #686868;*/
+	color: #404040;
 	font-weight: inherit;
 	text-decoration: none;
 }
@@ -243,7 +243,6 @@ border-top: 1px solid #d8d8d8;
 }
 
 
-/* Links */
 a, a:link, a:visited {
 	color: #404040;
 	text-decoration: none;
@@ -254,12 +253,13 @@ a.quickref, a.quickref:link, a.quickref:visited {
 }
 
 a:hover {
-	/*color: #c00000;*/
+	color: #fa6000;
 	text-decoration: underline;
 }
 
 a:active {
-	/*color: #ff6000;*/
+	/*color: #fc8000 !important;*/
+	color: #ff6000;
 	outline: medium none 0px;
 	text-decoration: underline;
 }

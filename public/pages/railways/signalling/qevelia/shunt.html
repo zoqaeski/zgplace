@@ -140,9 +140,9 @@
 				</div>
 			</div>
 
-			<h2>Shunt permission indicators</h2>
+			<h2>Shunting indicators on Main Signals</h2>
 
-			<p>If indication that shunting is permitted is required at a main signal, a shunt permission light may be embedded into the main head. These signals also double as calling-on signals, by pulsating the white light.  </p>
+			<p>If indication that shunting is permitted is required at a main signal, a shunt permission light may be embedded into the main head. </p>
 
 			<h3>Aspects</h3>
 
@@ -332,6 +332,7 @@
 					<img src="sign/pp-combinedshunt.png" alt="" />
 					<img src="post/p2-base.png" alt="" />
 				</div>
+				<p class="caption">This aspect is typically displayed when a train movement is entering an occupied road, such as in a coupling movement between two timetabled trains. Note that a locomotive coupling to its train is classed as a shunting movement. </p>
 			</div>
 
 			<h4>Route Clear</h4>
@@ -404,7 +405,75 @@
 					<img src="sign/pp-combinedshunt.png" alt="" />
 					<img src="post/p2-base.png" alt="" />
 				</div>
+				<p class="caption">The leftmost aspect is shown only for completeness; in practise, it will seldom be displayed by a dwarf shunting signal as shunting signals are to be ignored by train movements. </p>
 			</div>
+
+			<h2>Dwarf Signals</h2>
+
+			<p>Dwarf signals are a special class of signal which are valid for both trains and shunting movements. Unlike ordinary shunting signals, dwarf signals indicate route occupancy. </p>
+
+			<div class="nbox vb">
+				<div class="signal">
+					<img src="cl/adv3_all.png" alt="" />
+					<img src="post/p2-base-dwarf.png" alt="" />
+				</div>
+				<div class="signal">
+					<img src="cl/md2s_rb.png" alt="" />
+					<img src="cl/adv3_all.png" alt="" />
+					<img src="post/p2-base-dwarf.png" alt="" />
+				</div>
+			</div>
+
+			<p>Dwarf signals are capable of displaying the following aspects: </p>
+
+			<table>
+				<colgroup>
+					<col width="20%" />
+					<col />
+				</colgroup>
+				<tr>
+					<th>Aspect</th>
+					<th>Indication</th>
+				</tr>
+				<tr>
+					<td class="vb">
+						<div class="signal">
+							<img src="cl/adv3_l00.png" alt="" />
+							<img src="post/p2-base-dwarf.png" alt="" />
+						</div>
+					</td>
+					<td class="tj">
+						<strong>No Passing</strong><br />
+						Route is blocked. Both train and shunting movements must stop before this signal. 
+					</td>
+				</tr>
+				<tr>
+					<td class="vb">
+						<div class="signal">
+							<img src="cl/adv3_l45.png" alt="" />
+							<img src="post/p2-base-dwarf.png" alt="" />
+						</div>
+					</td>
+					<td class="tj">
+						<strong>Route Blocked</strong><br />
+						Route is blocked. Train and shunting movements may proceed but route may be obstructed. All turnouts are set and locked; next dwarf or main signal may be at Stop. 
+					</td>
+				</tr>
+				<tr>
+					<td class="vb">
+						<div class="signal">
+							<img src="cl/adv3_l90.png" alt="" />
+							<img src="post/p2-base-dwarf.png" alt="" />
+						</div>
+					</td>
+					<td class="tj">
+						<strong>Route Free</strong><br />
+						Route is free of obstructions. Train and shunting movements may proceed; all turnouts are set and locked. 
+					</td>
+				</tr>
+			</table>
+
+			<p>Dwarf signals are provided to protect turnouts and other obstructions, whereas shunting indicators are only provided where a distinction needs to be made between train and shunting movements. This is most commonly at the start and end points of shunting routes. </p>
 
 		</div>
 	</body>
