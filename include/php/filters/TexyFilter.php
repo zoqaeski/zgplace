@@ -69,6 +69,25 @@ class TexyFilter {
 
 		$this->texy->imageModule->root = Application::getPublicImgDir() . $this->pageData['srcdir'];
 		$this->texy->imageModule->linkedRoot = Application::getPublicImgDir() . $this->pageData['srcdir'];
+
+		$this->texy->typographyModule->locale = 'en';
+
+		$this->texy->listModule->bullets = array(
+			//            first-rexexp          ordered?  list-style-type   next-regexp
+			'*'  => array('\*\ ',               0, ''),
+			'-'  => array('[\x{2013}-](?![>-])',0, ''),
+			'+'  => array('\+\ ',               0, ''),
+			'1.' => array('1\.\ ',/* not \d !*/ 1, '',             '\d{1,3}\.\ '),
+			'1)' => array('\d{1,3}\)\ ',        1, ''),
+			'I.' => array('I\.\ ',              1, 'upper-roman',  '[IVX]{1,4}\.\ '),
+			'I)' => array('[IVX]+\)\ ',         1, 'upper-roman'),
+			'i.' => array('i\.\ ',              1, 'lower-roman',  '[ivx]{1,4}\.\ '),
+			'i)' => array('[ivx]+\)\ ',         1, 'lower-roman'),
+			'a.' => array('[a-z]\.\ ',          1, 'lower-alpha',	'[a-z]{1,3}\.\ '),
+			'a)' => array('[a-z]\)\ ',          1, 'lower-alpha'),
+			'A.' => array('[A-Z]\.\ ',          1, 'upper-alpha',	'[A-Z]{1,3}\.\) '),
+			'A)' => array('[A-Z]\)\ ',          1, 'upper-alpha')
+		);
 	}
 
 	/**
@@ -85,7 +104,10 @@ class TexyFilter {
 		$this->html = $this->texy->process($this->file_content);
 
 		if($this->pageData['type'] != 'index' && $this->pageData['type'] != 'menu' && $this->pageData['maketoc'] == true) {
-			$this->generated_toc = $this->generateTOC();
+			$toc_elements = $this->texy->headingModule->TOC;
+			if(sizeof($toc_elements) > 1) {
+				$this->generated_toc = $this->generateTOC($toc_elements);
+			}
 		}
 
 		// Ordered pages? No problems. Can has next/previous links
@@ -142,13 +164,11 @@ class TexyFilter {
 		$this->html = $this->html . $tn_links['bottom'];
 	}
 
-	private function generateTOC() {
+	private function generateTOC($toc_elements) {
 		// Create two arrays, one to keep track of levels, the other to keep track of contents
 		$curr_level = 0;
 		$prev_level = 0;
 		$next_level = 0;
-
-		$toc_elements = $this->texy->headingModule->TOC;
 
 		// Initialise the string we want
 		$toc_string = '<div class="toc"><span><a href="#" id="toctoggle">Contents</a></span>';
