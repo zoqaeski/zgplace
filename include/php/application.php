@@ -15,7 +15,8 @@
 require_once(dirname(__FILE__) . '/modules/utils.php');
 require_once(dirname(__FILE__) . '/modules/cache.php');
 require_once(dirname(__FILE__) . '/modules/simple_html_dom.php');
-require_once(dirname(__FILE__) . '/filters/html.php');
+require_once(dirname(__FILE__) . '/filters/HTMLFilter.php');
+require_once(dirname(__FILE__) . '/filters/TexyFilter.php');
 
 class Application {
 
@@ -44,8 +45,8 @@ class Application {
 
 	/** @var array The source formats we have parsers for. Note that the order here is VERY important: the locatePage() function will return the file name matching the first format in this list. */
 	private static $source_formats = array(
-		'.html',
-		'.texy');
+		'.texy',
+		'.html');
 
 	/** @var string The directory where error pages are stored. */
 	private static $errors_dir = '../include/errors/';
@@ -60,6 +61,8 @@ class Application {
 		' ', 
 		'United Kingdom');
 
+	/** @var The meta comment replace string */
+	private static $metacomment_preg = "/^(\S+):\s([ \S]+)$/im";
 
 	/** @var array Error type reporting */
    	private $error_type = array(
@@ -84,8 +87,8 @@ class Application {
 	const PRINT_VIEW = 1;
 	const SOURCE_VIEW = 2;
 
-	/** @var int Start time of application processing. */
-	private $starttime = 0;
+	/** @var int Time for application to process. */
+	private $time;
 
 	/** @var string The final generated page content. */
 	private $generatedPage;
@@ -98,7 +101,7 @@ class Application {
 	 * @param $getvars The _GET variables.
 	 */
 	public function __construct($getvars) {
-		$this->starttime = microtime(true);
+		$this->time = -microtime(true);
 		$this->getvars = $getvars;
 	}
 
@@ -202,7 +205,7 @@ class Application {
 			if($page_data['hash'] !== false) {
 				$cache_file_name = self::$cache_dir . $page_data['hash'];
 				$this->cache->saveCacheFile($page_data, $cache_file_name);
-				$this->cache->logCacheEntry($page_data['hash'], $page_data['path']);
+				$this->cache->logCacheEntry($page_data['hash'], $page_data['path'], null, true);
 			} else {
 				echo "WARNING: File didn't have hash. This entry is not logged.";
 				$this->cache->saveCacheFile($page_data);
@@ -241,6 +244,8 @@ class Application {
 		// needed are logical heading nesting (more '#'s should be deeper 
 		// nesting, not the other way around) and TOC generation links 
 		// should be URL-encoded Wikipedia-style.
+		$page_texyfilter = new TexyFilter($page_data, $menu_data);
+		$page_data = $page_texyfilter->getData();
 		return $page_data;
 	}
 
@@ -496,9 +501,8 @@ class Application {
 	 */
 	private function addTimeStamp($page_file) {
 		// Finish our timer
-		$endtime = microtime(true);
-	   	$time = $endtime - $this->starttime;
-		$time_msg = 'Page generated in approximately ' . round($time, 4) . ' seconds.';
+		$this->time += microtime(true);
+		$time_msg = 'Page generated in approximately ' . round($this->time, 4) . ' seconds.';
 		$page_file = str_replace('<!--[TIME]-->', $time_msg, $page_file);
 		return $page_file;
 	}
@@ -561,6 +565,13 @@ class Application {
 		return self::$source_formats;
 	}
 
+	/**
+	 * Returns the preg match string for meta comments.
+	 * @return string
+	 */
+	public static function getMetacommentPreg() {
+		return self::$metacomment_preg;
+	}
 //	/**
 //	 * Returns an array of the views enabled.
 //	 * @return array
@@ -593,6 +604,14 @@ class Application {
 	 */
 	public static function setCacheDir($dir) {
 		self::$cache_dir = $dir;
+	}
+
+	/**
+	 * Sets the path to the cache directory.
+	 * @param $dir The new cache directory path.
+	 */
+	public static function setCaching($enabled=true) {
+		self::$use_cache_file = $enabled;
 	}
 
 	/**

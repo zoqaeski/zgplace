@@ -20,10 +20,10 @@
 final class TexyImageModule extends TexyModule
 {
 	/** @var string  root of relative images (http) */
-	public $root = 'images/';
+	public $root = null;
 
 	/** @var string  root of linked images (http) */
-	public $linkedRoot = 'images/';
+	public $linkedRoot = null;
 
 	/** @var string  physical location of images on server */
 	public $fileRoot = NULL;

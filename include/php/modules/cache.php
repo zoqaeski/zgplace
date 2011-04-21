@@ -91,7 +91,7 @@ class Cache {
 	 * @param $original The path to the original file
 	 * @param $cache_dir The path to the cache directory.
 	 */
-	public static function logCacheEntry($cache_entry, $original, $cache_dir=null) {
+	public static function logCacheEntry($cache_entry, $original, $cache_dir=null, $human_readable=false) {
 		$cache_dir = ($cache_dir == null) ? Application::getCacheDir() : $cache_dir;
 		$log_file = $cache_dir . 'cache_log';
 
@@ -106,7 +106,7 @@ class Cache {
 			throw new RuntimeException("Log file is not a valid format.");
 		}
 
-		return self::saveCacheLog($cache_log, $log_file);
+		return self::saveCacheLog($cache_log, $log_file, $human_readable);
 	}
 
 	/**
@@ -132,11 +132,13 @@ class Cache {
 	 * @param $cache_log The cache log array.
 	 * @param $log_file The file to save.
 	 */
-	public static function saveCacheLog($cache_log, $log_file) {
+	public static function saveCacheLog($cache_log, $log_file, $human_readable=false) {
 		if(file_exists($log_file) && ! is_writeable($log_file)) {
 			throw new RuntimeException("Log file cannot be opened for writing.");
 			return false;
 		} else {
+			$log_file_human = $log_file . '.txt';
+			file_put_contents($log_file_human, print_r($cache_log, true));
 			return file_put_contents($log_file, serialize($cache_log));
 		}
 	}
