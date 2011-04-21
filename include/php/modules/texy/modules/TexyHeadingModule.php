@@ -146,7 +146,8 @@ final class TexyHeadingModule extends TexyModule
 				$title = trim($item['el']->toText($this->texy));
 				if ($title !== '') {
 					$this->TOC[$key]['title'] = $title;
-					$id = $this->idPrefix . Texy::webalize($title);
+					//$id = $this->idPrefix . Texy::webalize($title);
+					$id = Utils::urlencode($title);
 					$counter = '';
 					if (isset($this->usedID[$id . $counter])) {
 						$counter = 2;

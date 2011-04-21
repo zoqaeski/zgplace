@@ -10,7 +10,6 @@ class HTMLFilter {
 
 	/**
 	 * Constructs and then runs the HTMLFilter
-	 * @param pageDOM The DOM of the page we wish to filter
 	 * @param pageData The metadata of the page we wish to filter. All generated content gets written to here.
 	 * @param menuMeta The metadata of the menu for the page. We only read some 
 	 * fields in here, so it's not passed as a reference. It defaults to null as we read meta-comments from a menu file, and reading the menu meta for the menu pulled in by the menu ... yeah, loopiness.
@@ -99,25 +98,10 @@ class HTMLFilter {
 	 * @param $next the next page link
 	 */
 	private function buildTopicNavLinks($prev, $next) {
-		if($prev != null) {
-			$tn_prev = '<span class="tprev">« '. $prev .'</span>';
-		} else {
-			$tn_prev = null;
-		}
-
-		if($next != null) {
-			$tn_next = '<span class="tnext">'. $next .' »</span>';
-		} else {
-			$tn_next = null;
-		}
-
-		$tn_top = '<span class="ttop"><a href="#content">Return to Top</a></span>';
-
-		$tn_links_top = '<div class="tnavt">'. $tn_prev . $tn_next . '</div>';
-		$tn_links_bottom = '<div class="tnavb">'. $tn_prev . $tn_top . $tn_next . '</div>';
+		$tn_links = Utils::buildTopicNavLinks($prev, $next);
 
 		$tn_place = $this->pageDOM->find("#body", 0);
-		$tn_place->innertext = $tn_place->innertext . $tn_links_bottom;
+		$tn_place->innertext = $tn_place->innertext . $tn_links['bottom'];
 	}
 
 	/**
@@ -149,7 +133,7 @@ class HTMLFilter {
 			$mclines = explode("\n", $metacomment);
 			foreach($mclines as $mcline) {
 				if(strlen($mcline) > 0) {
-					$mcfound = preg_match("/^(\S+):\s(\S+)$/im", $mcline, &$matches);
+					$mcfound = preg_match(Application::getMetacommentPreg(), $mcline, &$matches);
 					if($mcfound != 0) {
 						$matches[1] = strtolower($matches[1]);
 						// PHP is rather fussy about booleans, so I needed a conversion function. 

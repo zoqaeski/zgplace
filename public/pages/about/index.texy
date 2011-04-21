@@ -1,0 +1,6 @@
+About this site
+###############
+
+This site was written by Zoqaeski, and it was mostly hand coded using Vim:[http://www.vim.org]. The site was optimised for modern browsers such as Chromium:[http://www.chromium.org/chromium-projects] and Firefox:[http://www.mozilla.com], and has been tested with the latest (relatively) stable versions of each of these. The pages are rendered by a PHP:[http://www.php.org] application that I wrote, which in turn relies on an "excellent DOM parser":[http://simplehtmldom.sourceforge.net] and a rather useful "plain-text to HTML converter called Texy":[http://www.texy.info/en].
+
+Both the CSS((Cascading Style Sheets)) and HTML((HyperText Markup Language)) have been validated with the W3C's validator service to ensure compliance. Please note that some features may not work in other browsers to those listed above.
