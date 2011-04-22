@@ -1,12 +1,9 @@
 <?php
 
-class HTMLFilter {
+class HTMLFilter extends Filter {
 
+	/** @var The page DOM element used internally for filtering. */
 	private $pageDOM;
-	private $pageData;
-	private $menuMeta;
-	private $public_content_dir;
-	private $public_img_dir;
 
 	/**
 	 * Constructs and then runs the HTMLFilter
@@ -18,18 +15,18 @@ class HTMLFilter {
 		$this->pageData =& $pageData;
 
 		if($this->pageData['path'] != null) {
-			// Create page DOM from the path to the file.
-			$this->pageDOM = new simple_html_dom($this->pageData['path']);
+
+			$this->file_content = file_get_contents($this->pageData['path']);
 
 			// Parse meta comments in top of file
 			$this->parseMetaComment();
 
+			// Create page DOM from the path to the file.
+			$this->pageDOM = new simple_html_dom();
+			$this->pageDOM->load($this->file_content);
+
 			if($menuMeta != null) {
 				$this->menuMeta = $menuMeta;
-
-				$this->public_img_dir = Application::getPublicImgDir();
-				//$public_content_dir = Application::getPublicContentDir();
-
 				$this->run();
 			}
 		} else {
@@ -37,12 +34,6 @@ class HTMLFilter {
 		}
 	}
 
-	/**
-	 * Returns the pageData object
-	 */
-	public function getData() {
-		return $this->pageData;
-	}
 
 	/**
 	 * Returns the pageDOM object
@@ -54,7 +45,7 @@ class HTMLFilter {
 	/**
 	 * Applies the filter.
 	 */
-	private function run() {
+	protected function run() {
 		// Get title
 		$this->pageData['title'] = $this->getTitle();
 
@@ -82,7 +73,6 @@ class HTMLFilter {
 		// Filtering done, get content.
 		$this->pageData['content'] = $this->pageDOM->find('body', 0)->innertext;
 
-		//echo "HTMLFilter::run() just executed.";
 	}
 
 	/**
@@ -122,33 +112,6 @@ class HTMLFilter {
 	}
 
 	/**
-	 * Gets the metadata out of the special comment at the top of the page.
-	 */
-	private function parseMetaComment() {
-		$comment = $this->pageDOM->find('comment', 0);
-
-		if($comment != null) {
-			$metacomment = str_replace(array("<!--", "-->"), "", $comment->innertext);
-
-			$mclines = explode("\n", $metacomment);
-			foreach($mclines as $mcline) {
-				if(strlen($mcline) > 0) {
-					$mcfound = preg_match(Application::getMetacommentPreg(), $mcline, &$matches);
-					if($mcfound != 0) {
-						$matches[1] = strtolower($matches[1]);
-						// PHP is rather fussy about booleans, so I needed a conversion function. 
-						// 'true' and 'yes' → true
-						// 'false' and 'no' → false
-						$value = Utils::str_to_bool($matches[2]);
-						$this->pageData[$matches[1]] = $value;
-					}
-				}
-			}
-		}
-		return $this->pageData;
-	}
-
-	/**
 	 * Modifies image src links to point to the appropriate location. 
 	 * Images are stored in a mirrored hierarchy, so a page in 
 	 * /content/topic/section/page would have images stored in 
@@ -160,8 +123,7 @@ class HTMLFilter {
 		for($i = 0, $is = count($imgs); $i < $is; $i++) {
 			if($imgs[$i]->src) {
 				$url = $imgs[$i]->src;
-				$imgs[$i]->src = $this->public_img_dir . $this->pageData['srcdir'] . '/' . $url;
-				//$imgs[$i]->src = '/public/img/' . $this->pageData['srcdir'] . '/' . $url;
+				$imgs[$i]->src = Application::getPublicImgDir() . $this->pageData['srcdir'] . '/' . $url;
 			}
 		}
 	}
