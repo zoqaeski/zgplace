@@ -143,11 +143,11 @@ class Application {
 		// pages. Texy looks promising, I'll add an input module for it at some 
 		// point.
 		if($page_data['type'] == 'index') {
-			$page_data['srcdir'] = $page;
-			$page_menu_path = dirname(self::$public_content_dir . $page . "/index.html") . "/menu.html";
+			$page_data['sitedir'] = $page;
+			$page_data['srcdir'] = dirname(self::$public_content_dir . $page . "/index.html");
 		} else {
-			$page_data['srcdir'] = dirname($page);
-			$page_menu_path = dirname(self::$public_content_dir . $page) . "/menu.html";
+			$page_data['sitedir'] = dirname($page);
+			$page_data['srcdir'] = dirname(self::$public_content_dir . $page);
 		}
 
 		// The topic is the top level directory inside content
@@ -155,7 +155,7 @@ class Application {
 		$page_data['topic'] = $path_dirs[0];
 
 		// Initialise menu
-		$menu_data = $this->getLocalMenu($page_menu_path, $page);
+		$menu_data = $this->getLocalMenu($page_data['srcdir'], $page_data['sitedir'], $page);
 
 		// Do not make a TOC for error pages, index pages, and menus.
 		// This can be reset for certain pages.
@@ -202,7 +202,7 @@ class Application {
 		unset($page_data['content']);
 		//unset($page_data['menu']);
 
-		if(self::$use_cache_file === true) {
+		if(self::$use_cache_file === true && $page_data['all_is_well'] === true) {
 			if($page_data['hash'] !== false) {
 				$cache_file_name = self::$cache_dir . $page_data['hash'];
 				$this->cache->saveCacheFile($page_data, $cache_file_name);
@@ -262,28 +262,28 @@ class Application {
 
 		// Check for formats. The order in source_formats array is very important.
 		foreach(self::$source_formats as $format) {
-			$page_name = self::$public_content_dir . $page . $format;
-			$index_name = self::$public_content_dir . $page . '/index' . $format;
+				$page_name = self::$public_content_dir . $page . $format;
+				$index_name = self::$public_content_dir . $page . '/index' . $format;
 
-			if(file_exists($page_name)) {
-				if(is_readable($page_name)) {
-					$page_data['path'] = $page_name;
-					$page_data['type'] = 'page';
-					$page_found = true;
+				if(file_exists($page_name)) {
+					if(is_readable($page_name)) {
+						$page_data['path'] = $page_name;
+						$page_data['type'] = 'page';
+						$page_found = true;
+					} else {
+						$page_readable = false;
+					}
+				} elseif(file_exists($index_name)) {
+					if(is_readable($index_name)) {
+						$page_data['path'] = $index_name;
+						$page_data['type'] = 'index';
+						$page_found = true;
+					} else {
+						$page_readable = false;
+					}
 				} else {
-					$page_readable = false;
+					$page_found = false;
 				}
-			} elseif(file_exists($index_name)) {
-				if(is_readable($index_name)) {
-					$page_data['path'] = $index_name;
-					$page_data['type'] = 'index';
-					$page_found = true;
-				} else {
-					$page_readable = false;
-				}
-			} else {
-				$page_found = false;
-			}
 
 			// Jump on first found
 			if($page_found == true) {
@@ -302,14 +302,14 @@ class Application {
 		if($page_found == false) {		
 			$this->error_type['404'] = true;
 			header('HTTP/1.1 404 Not Found');
-			$page_data['path'] = self::$errors_dir . '404.html';
-			$page_data['format'] = '.html';
+			$page_data['path'] = self::$errors_dir . '404.texy';
+			$page_data['format'] = '.texy';
 			$page_data['type'] = 'error';
 			$page_data['all_is_well'] = false;
 		} elseif($page_readable == false) {
 			$this->error_type['403'] = true;
 			header('HTTP/1.1 403 Forbidden');
-			$page_data['path'] = self::$errors_dir . '404.html';
+			$page_data['path'] = self::$errors_dir . '404.texy';
 			//$page_data['path'] = self::$errors_dir . '403.html';
 			$page_data['format'] = '.html';
 			$page_data['type'] = 'error';
@@ -324,18 +324,51 @@ class Application {
 	 * @param $ref_page referring page
 	 * @return array
 	 */
-	private function getLocalMenu($lm_path, $ref_page) {
+	private function getLocalMenu($ref_page_dir, $ref_page_site_dir, $ref_page) {
 		$lm_meta = array(
-			'path' => $lm_path,
 			'ordered' => false, // Menus are by default non-ordered. If we want a menu file, add ordered: true to the first comment in the file.
+			'sitedir' => $ref_page_site_dir,
 			'menu' => ''
 		);
 
-		if(file_exists($lm_path) && is_readable($lm_path)) {
+		$menu_found = false;
+		$menu_format = null;
 
-			$lm_filter = new HTMLFilter($lm_meta);
-			$lm_meta = $lm_filter->getData();
-			$lm_DOM = $lm_filter->getDOM();
+		foreach(self::$source_formats as $format) {
+			$menu_name = $ref_page_dir . '/menu' . $format;
+
+			if(file_exists($menu_name) && is_readable($menu_name)) {
+				$lm_meta['path'] = $menu_name;
+				$lm_meta['type'] = 'menu';
+				$menu_found = true;
+			} else {
+				$page_readable = false;
+				$menu_found = false;
+			}
+
+			// Jump on first found
+			if($menu_found == true) {
+				$menu_format = $format;
+				break;
+			}
+		}
+
+		if($menu_found) {
+
+			if($menu_format === '.texy') {
+				$lm_filter = new TexyFilter($lm_meta);
+				$lm_meta = $lm_filter->getData();
+
+				// Interim solution. Oh god it's bad.
+				$lm_DOM = new simple_html_dom();
+				$lm_DOM->load($lm_filter->getHTML());
+				//$lm_texy = $lm_filter->getTexy();
+
+			} elseif($menu_format === '.html') {
+				$lm_filter = new HTMLFilter($lm_meta);
+				$lm_meta = $lm_filter->getData();
+				$lm_DOM = $lm_filter->getDOM();
+			}
 
 			$lm_links = $lm_DOM->find('a');
 			$lm_size = sizeof($lm_links);
@@ -386,7 +419,7 @@ class Application {
 	 * inserted. It's a somewhat wasteful way of importing the data but I'm not 
 	 * entirely sure how to improve this.
 	 * TODO Fixme so I use less resources.
-	 * @param $lm_path path to page menu
+	 * @param $local_menu The local menu resource
 	 * @param $page_topic page topic, or section to put generate menu data.
 	 * @return string
 	 */

@@ -123,7 +123,7 @@ class HTMLFilter extends Filter {
 		for($i = 0, $is = count($imgs); $i < $is; $i++) {
 			if($imgs[$i]->src) {
 				$url = $imgs[$i]->src;
-				$imgs[$i]->src = Application::getPublicImgDir() . $this->pageData['srcdir'] . '/' . $url;
+				$imgs[$i]->src = Application::getPublicImgDir() . $this->pageData['sitedir'] . '/' . $url;
 			}
 		}
 	}
@@ -149,7 +149,7 @@ class HTMLFilter extends Filter {
 	 * Generates a table of contents from the headings within an HTML DOM
 	 * @param $toc_elements The headings extracted from an HTML DOM.
 	 */
-	private function generateTOC($toc_elements) {
+	protected function generateTOC($toc_elements) {
 		// Create two arrays, one to keep track of levels, the other to keep track of contents
 		$curr_level = 0;
 		$prev_level = 0;
