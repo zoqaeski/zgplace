@@ -1,0 +1,28 @@
+<!--
+ordered: true
+type: menu
+-->
+
+.[levelTwo]
+- Introduction and History .[subHeading]
+- "Basic Principles":[/railways/signalling/qevelia/basics]
+- "History of Signalling Systems":[/railways/signalling/qevelia/history]
+- Signal Descriptions .[subHeading]
+- "Main and Distant signals":[/railways/signalling/qevelia/main]
+- "Shunting signals":[/railways/signalling/qevelia/shunt]
+- "Supplementary signals":[/railways/signalling/qevelia/supplementary]
+- "Cab Signalling":[/railways/signalling/qevelia/cab]:
+	- "Speed Control by Beacon":[/railways/signalling/qevelia/cab_scb]
+	- "Linear Train Control":[/railways/signalling/qevelia/cab_lct]
+- "Route and Speed Indicators":[/railways/signalling/qevelia/route_speed]
+- "Lineside signs":[/railways/signalling/qevelia/lineside_signs]
+- "Turnouts and interlockings":[/railways/signalling/qevelia/turnouts]
+- "Level crossings":[/railways/signalling/qevelia/level_crossings]
+- "Signals on vehicles":[/railways/signalling/qevelia/vehicles]
+- "Miscellaneous":[/railways/signalling/qevelia/miscellaneous]
+- "Foreign Signals":[/railways/signalling/qevelia/foreign_signals]
+- Operations .[subHeading]
+- "Interlocking Principles":[/railways/signalling/qevelia/interlocking]
+- "Manual Block":[/railways/signalling/qevelia/manual_block]
+- "Automatic Block":[/railways/signalling/qevelia/automatic_block]
+- "Train Order":[/railways/signalling/qevelia/train_order]

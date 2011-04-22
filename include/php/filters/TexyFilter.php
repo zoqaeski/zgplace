@@ -31,6 +31,9 @@ class TexyFilter extends Filter {
 			// Parse meta comments in top of file
 			$this->parseMetaComment();
 
+			// Generate HTML
+			$this->html = $this->texy->process($this->file_content);
+
 			if($menuMeta != null) {
 				$this->menuMeta = $menuMeta;
 				$this->run();
@@ -40,28 +43,48 @@ class TexyFilter extends Filter {
 		}
 	}
 
+	public function getHTML() {
+		return $this->html;
+	}
+
+	public function getTexy() {
+		return $this->texy;
+	}
+
 	/**
 	 * This is where we set our options for Texy.
 	 */
 	private function configureTexy() {
 		$this->texy = new Texy();
 
-		// Configuring Texy
-		$this->texy->headingModule->top = 1;   // set headings top limit
-		$this->texy->headingModule->generateID = true;
-		$this->texy->headingModule->moreMeansHigher = false;
-		$this->texy->headingModule->balancing = TexyHeadingModule::FIXED;
-		$this->texy->headingModule->levels['#'] = 0;  // # means 0 + top (1) = 1 (h1)
-		$this->texy->headingModule->levels['='] = 1;  // = means 1 + top (1) = 2 (h2)
-		$this->texy->headingModule->levels['-'] = 2;  // - means 1 + top (1) = 3 (h3)
-		$this->texy->headingModule->levels['*'] = 3;  // * means 1 + top (1) = 4 (h4)
-		$this->texy->headingModule->levels['.'] = 4;  // . means 1 + top (1) = 5 (h5)
+		// Texy has been initialised, now it's got to be configured. Dum de dum...
 
-		$this->texy->imageModule->root = Application::getPublicImgDir() . $this->pageData['srcdir'];
-		$this->texy->imageModule->linkedRoot = Application::getPublicImgDir() . $this->pageData['srcdir'];
+		// The top level heading height.
+		$this->texy->headingModule->top = 1;
+
+		// Generate IDs on each heading for permalinks? Yes, please.
+		$this->texy->headingModule->generateID = true;
+
+		// More heading markers are higher? Yup.
+		$this->texy->headingModule->moreMeansHigher = false;
+
+		// Fixed heading definitions
+		$this->texy->headingModule->balancing = TexyHeadingModule::FIXED;
+
+		// Custom heading level definitions
+		$this->texy->headingModule->levels['#'] = 0;
+		$this->texy->headingModule->levels['='] = 1;
+		$this->texy->headingModule->levels['-'] = 2;
+		$this->texy->headingModule->levels['*'] = 3;
+
+		$this->texy->imageModule->root = Application::getPublicImgDir() . $this->pageData['sitedir'];
+		$this->texy->imageModule->linkedRoot = Application::getPublicImgDir() . $this->pageData['sitedir'];
 
 		$this->texy->typographyModule->locale = 'en';
+		$this->texy->longWordsModule->wordLimit = 1000;
+		$this->texy->htmlOutputModule->lineWrap = false;
 
+		// Do I really NEED this many ways of defining lists?
 		$this->texy->listModule->bullets = array(
 			//            first-rexexp          ordered?  list-style-type   next-regexp
 			'*'  => array('\*\ ',               0, ''),
@@ -84,8 +107,6 @@ class TexyFilter extends Filter {
 	 * Runs the Texy Filter
 	 */
 	protected function run() {
-		$this->html = $this->texy->process($this->file_content);
-
 		if($this->pageData['type'] != 'index' && $this->pageData['type'] != 'menu' && $this->pageData['maketoc'] == true) {
 			$toc_elements = $this->texy->headingModule->TOC;
 			if(sizeof($toc_elements) > 1) {
@@ -116,7 +137,7 @@ class TexyFilter extends Filter {
 		$this->html = $this->html . $tn_links['bottom'];
 	}
 
-	private function generateTOC($toc_elements) {
+	protected function generateTOC($toc_elements) {
 		// Create two arrays, one to keep track of levels, the other to keep track of contents
 		$curr_level = 0;
 		$prev_level = 0;
@@ -164,7 +185,6 @@ class TexyFilter extends Filter {
 
 		$toc_string .= "</div>\n";
 
-		//echo $toc_string;
 		return $toc_string;
 	}
 

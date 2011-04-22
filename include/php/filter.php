@@ -50,6 +50,11 @@ abstract class Filter {
 	abstract protected function run();
 
 	/**
+	 * Generate a table of contents listing.
+	 */
+	abstract protected function generateTOC($toc_elements);
+
+	/**
 	 * Returns the pageData object
 	 */
 	public function getData() {
