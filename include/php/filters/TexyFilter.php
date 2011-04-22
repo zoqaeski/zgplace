@@ -8,17 +8,11 @@
 
 require_once(dirname(__FILE__) . '/../modules/texy/texy.php');
 
-class TexyFilter {
+class TexyFilter extends Filter {
 
 	private $texy;
-	private $file_content;
 	private $html;
 	private $generated_toc;
-
-	private $pageData;
-	private $menuMeta;
-	private $public_content_dir;
-	private $public_img_dir;
 
 	/**
 	 * Constructs and then runs the Texy Filter
@@ -39,10 +33,6 @@ class TexyFilter {
 
 			if($menuMeta != null) {
 				$this->menuMeta = $menuMeta;
-
-				$this->public_img_dir = Application::getPublicImgDir();
-				//$public_content_dir = Application::getPublicContentDir();
-
 				$this->run();
 			}
 		} else {
@@ -91,16 +81,9 @@ class TexyFilter {
 	}
 
 	/**
-	 * Returns the pageData object
-	 */
-	public function getData() {
-		return $this->pageData;
-	}
-
-	/**
 	 * Runs the Texy Filter
 	 */
-	private function run() {
+	protected function run() {
 		$this->html = $this->texy->process($this->file_content);
 
 		if($this->pageData['type'] != 'index' && $this->pageData['type'] != 'menu' && $this->pageData['maketoc'] == true) {
@@ -121,37 +104,6 @@ class TexyFilter {
 
 		$this->pageData['content'] = $this->finish();
 
-	}
-
-	/**
-	 * Gets the metadata out of the special comment at the top of the page.
-	 */
-	private function parseMetaComment() {
-		$lines = explode("\n", $this->file_content);
-
-		if($lines[0] === "<!--") {
-			array_shift($lines);
-			foreach($lines as $line) {
-				if(strlen($line) > 0) {
-					$mcline = array_shift($lines);
-					if($mcline === "-->") {
-						break;
-					} else {
-						$mcfound = preg_match(Application::getMetacommentPreg(), $mcline, &$matches);
-						if($mcfound != 0) {
-							$matches[1] = strtolower($matches[1]);
-							// PHP is rather fussy about booleans, so I needed a conversion function. 
-							// 'true' and 'yes' → true
-							// 'false' and 'no' → false
-							$value = Utils::str_to_bool($matches[2]);
-							$this->pageData[$matches[1]] = $value;
-						}
-					}
-				}
-			}
-			$this->file_content = implode("\n", $lines);
-		}
-		return $this->pageData;
 	}
 
 	/**

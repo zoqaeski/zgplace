@@ -15,6 +15,7 @@
 require_once(dirname(__FILE__) . '/modules/utils.php');
 require_once(dirname(__FILE__) . '/modules/cache.php');
 require_once(dirname(__FILE__) . '/modules/simple_html_dom.php');
+require_once(dirname(__FILE__) . '/filter.php');
 require_once(dirname(__FILE__) . '/filters/HTMLFilter.php');
 require_once(dirname(__FILE__) . '/filters/TexyFilter.php');
 
