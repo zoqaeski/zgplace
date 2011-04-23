@@ -21,14 +21,14 @@ require_once(dirname(__FILE__) . '/filters/TexyFilter.php');
 
 class Application {
 
-	/** @var array The _GET variables */
-	private $getvars;
+	/** @var string The referring URI */
+	private $uri;
 
 	/** @var string The directory root where all public content is stored. */
-	private static $public_dir = '../public/';
+	private static $public_dir = '../public';
 
 	/** @var string The directory root where all pages are stored. */
-	private static $public_content_dir = '../public/pages/';
+	private static $public_content_dir = '../public/pages';
 
 	/** @var string The directory root where generated pages may be cached. This directory must have write-access for PHP. */
 	private static $cache_dir = '../cache/';
@@ -41,7 +41,7 @@ class Application {
 	private static $toplevel = '/';
 
 	/** @var string The directory where all images are stored. */
-	private static $public_img_dir = '/public/img/';
+	private static $public_img_dir = '/public/img';
 	//private $public_script_dir = '/public/img/';
 
 	/** @var array The source formats we have parsers for. Note that the order here is VERY important: the locatePage() function will return the file name matching the first format in this list. */
@@ -99,11 +99,34 @@ class Application {
 
 	/**
 	 * Creates a new Application.
-	 * @param $getvars The _GET variables.
 	 */
-	public function __construct($getvars) {
+	public function __construct() {
 		$this->time = -microtime(true);
-		$this->getvars = $getvars;
+		$this->processURI($_SERVER['REQUEST_URI']);
+		$this->processGET();
+	}
+
+	private function processURI($uri) {
+		$query_pos = strpos($uri, '?');
+		if($query_pos !== false) {
+			$uri = substr($uri, 0, $query_pos);
+		}
+
+		// Determining if we're on the home page.
+		if(($uri == '') || ($uri == '/' ) || ($uri == '/index') || ($uri == '/home')) {
+			$uri = '/index';
+			$this->is_home = true;
+		} elseif($uri == '/sitemap') {
+			//$this->processSiteMap();
+//		} elseif($uri == '/tools') {
+//			//TODO
+		}
+
+		$this->uri = $uri;
+	}
+
+	private function processGET() {
+		// Do nothing
 	}
 
 	/**
@@ -112,15 +135,9 @@ class Application {
 	 * @return string
 	 */
 	public function run() {
-		$page = (string) $this->getvars['page'];
-		$view = $this->getvars['view'];
+		$page = $this->uri;
+		$view = self::NORMAL_VIEW;
 		$page_data = array();
-
-		// Determining if we're on the home page.
-		if(($page == '') || ($page == 'index') || ($page == 'home')) {
-			$page = 'index';
-			$this->is_home = true;
-		}
 
 		$page_data = $this->locatePage($page, $page_data);
 
@@ -152,7 +169,7 @@ class Application {
 
 		// The topic is the top level directory inside content
 		$path_dirs = explode('/', $page);
-		$page_data['topic'] = $path_dirs[0];
+		$page_data['topic'] = $path_dirs[1]; // $page now starts with a slash!
 
 		// Initialise menu
 		$menu_data = $this->getLocalMenu($page_data['srcdir'], $page_data['sitedir'], $page);
@@ -239,12 +256,8 @@ class Application {
 	 * @return array
 	 */
 	private function parseTexy($page_data, $menu_data) {
-		// NOT IMPLEMENTED. 
-		// Note that I'll need to modify some of Texy's routines so it 
-		// formats things identically to my HTML parser. The main changes 
-		// needed are logical heading nesting (more '#'s should be deeper 
-		// nesting, not the other way around) and TOC generation links 
-		// should be URL-encoded Wikipedia-style.
+		// MOSTLY IMPLEMENTED
+		// Still need to figure out a few thingses
 		$page_texyfilter = new TexyFilter($page_data, $menu_data);
 		$page_data = $page_texyfilter->getData();
 		return $page_data;
@@ -425,7 +438,7 @@ class Application {
 	 */
 	private function menuGen($local_menu, $page_topic) {
 		// Main menu
-		$mm_file = file_get_contents(self::$public_content_dir . 'menu.html');
+		$mm_file = file_get_contents(self::$public_content_dir . '/menu.html');
 		preg_match('#<ul>(.*?)</ul>#s', $mm_file, $matches);
 		$main_menu = str_get_html($matches[0]);
 
@@ -448,14 +461,14 @@ class Application {
 	 */
 	private function makeBreadCrumbs(&$title) {
 		if($this->is_home == false) {
-			$path = $this->getvars['page'];
+			$path = $this->uri;
 			$path_array = explode('/', $path);
 			$path_hrefs = array();
 
-			for($p = sizeof($path_array) - 2; $p >= 0; --$p) {
+			for($p = sizeof($path_array) - 2; $p > 0; --$p) {
 				$link_text = ucwords(preg_replace(self::$path_search, self::$path_replace, $path_array[$p]));
 				$path = substr($path, 0, strlen($path) - strlen(strrchr($path, '/')));
-				$path_hrefs[$p] = '<a href="' .self::$toplevel . $path . '">' . $link_text . '</a>';
+				$path_hrefs[$p] = '<a href="' . $path . '">' . $link_text . '</a>';
 			}
 
 			$trail = '';
@@ -513,10 +526,10 @@ class Application {
 		// Set up the print-view links
 		$print_box_href = self::$toplevel;
 		if($view == self::PRINT_VIEW) {
-			$print_box_href = $print_box_href . $this->getvars['page'];
+			$print_box_href = $print_box_href . $this->uri;
 		}
 		else {
-			$print_box_href = $print_box_href . "print/" . $this->getvars['page'];
+			$print_box_href = $print_box_href . $this->uri . '?print';
 		}
 		$page_file = str_replace('#PRINTBOXHREF', $print_box_href, $page_file);
 

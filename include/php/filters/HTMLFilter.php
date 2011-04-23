@@ -87,8 +87,8 @@ class HTMLFilter extends Filter {
 	 * @param $prev the previous page link
 	 * @param $next the next page link
 	 */
-	private function buildTopicNavLinks($prev, $next) {
-		$tn_links = Utils::buildTopicNavLinks($prev, $next);
+	protected function buildTopicNavLinks($prev, $next) {
+		$tn_links = parent::buildTopicNavLinks($prev, $next);
 
 		$tn_place = $this->pageDOM->find("#body", 0);
 		$tn_place->innertext = $tn_place->innertext . $tn_links['bottom'];

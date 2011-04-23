@@ -60,5 +60,30 @@ abstract class Filter {
 	public function getData() {
 		return $this->pageData;
 	}
+
+	/**
+	 * Constructs the next/previous links for ordered page sets.
+	 * @param $prev the previous page link
+	 * @param $next the next page link
+	 */
+	protected function buildTopicNavLinks($prev, $next) {
+		if($prev != null) {
+			$tn_prev = '<span class="tprev">« '. $prev .'</span>';
+		} else {
+			$tn_prev = null;
+		}
+
+		if($next != null) {
+			$tn_next = '<span class="tnext">'. $next .' »</span>';
+		} else {
+			$tn_next = null;
+		}
+
+		$tn_top = '<span class="ttop"><a href="#content">Return to Top</a></span>';
+
+		$tn_links['top'] = '<div class="tnavt">'. $tn_prev . $tn_next . '</div>';
+		$tn_links['bottom'] = '<div class="tnavb">'. $tn_prev . $tn_top . $tn_next . '</div>';
+		return $tn_links;
+	}
 }
 ?>

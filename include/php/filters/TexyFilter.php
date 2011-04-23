@@ -132,8 +132,8 @@ class TexyFilter extends Filter {
 	 * @param $prev the previous page link
 	 * @param $next the next page link
 	 */
-	private function buildTopicNavLinks($prev, $next) {
-		$tn_links = Utils::buildTopicNavLinks($prev, $next);
+	protected function buildTopicNavLinks($prev, $next) {
+		$tn_links = parent::buildTopicNavLinks($prev, $next);
 		$this->html = $this->html . $tn_links['bottom'];
 	}
 
