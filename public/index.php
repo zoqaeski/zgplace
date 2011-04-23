@@ -4,9 +4,9 @@
 require_once(dirname(__FILE__) . '/../include/php/application.php');
 
 try {
-	$zgplace = new Application($_GET);
+	$zgplace = new Application();
 	// Options
-	$zgplace->setCaching(true);
+	$zgplace->setCaching(false);
 
 	// Run application
 	print $zgplace->run();
