@@ -21,6 +21,9 @@ require_once(dirname(__FILE__) . '/filters/TexyFilter.php');
 
 class Application {
 
+	/** @var The response we will send */
+	protected $response;
+
 	/** @var string The referring URI */
 	private $uri;
 
@@ -41,7 +44,7 @@ class Application {
 	private static $toplevel = '/';
 
 	/** @var string The directory where all images are stored. */
-	private static $public_img_dir = '/public/img';
+	private static $public_img_dir = '/img';
 	//private $public_script_dir = '/public/img/';
 
 	/** @var array The source formats we have parsers for. Note that the order here is VERY important: the locatePage() function will return the file name matching the first format in this list. */
@@ -50,7 +53,10 @@ class Application {
 		'.html');
 
 	/** @var string The directory where error pages are stored. */
-	private static $errors_dir = '../include/errors/';
+	private static $errors_dir = '../lib/errors/';
+
+	/** @var string The directory where the HTML templates are stored */
+	private static $template_dir = '../lib/html/';
 
 	/** @var array Path search strings for dynamic replacement of certain characters. Useful in the breadcrumb function */
 	private static $path_search = array(
@@ -62,7 +68,7 @@ class Application {
 		' ', 
 		'United Kingdom');
 
-	/** @var The meta comment replace string */
+	/** @var string The meta comment replace string */
 	private static $metacomment_preg = "/^(\S+):\s([ \S]+)$/im";
 
 	/** @var array Error type reporting */
@@ -74,6 +80,7 @@ class Application {
 		'500' => false, // Internal Server Error
 		'501' => false  // Not Implemented
 	);
+	// TODO create a response and request class to handle these things.
 
 	/** @var bool Whether we're on the home page. */
 	private $is_home = false;
@@ -91,16 +98,14 @@ class Application {
 	/** @var int Time for application to process. */
 	private $time;
 
-	/** @var string The final generated page content. */
-	private $generatedPage;
-
 	/** @var object The cache generator. */
 	private $cache;
 
 	/**
 	 * Creates a new Application.
+	 * @param $request The request being made. TODO
 	 */
-	public function __construct() {
+	public function __construct($request = null) {
 		$this->time = -microtime(true);
 		$this->processURI($_SERVER['REQUEST_URI']);
 		$this->processGET();
@@ -113,10 +118,10 @@ class Application {
 		}
 
 		// Determining if we're on the home page.
-		if(($uri == '') || ($uri == '/' ) || ($uri == '/index') || ($uri == '/home')) {
+		if(($uri === null) || ($uri === '/' ) || ($uri === '/index') || ($uri === '/home')) {
 			$uri = '/index';
 			$this->is_home = true;
-		} elseif($uri == '/sitemap') {
+		} elseif($uri === '/sitemap') {
 			//$this->processSiteMap();
 //		} elseif($uri == '/tools') {
 //			//TODO
@@ -155,13 +160,9 @@ class Application {
 		}
 
 		// Set the menu path
-		// Note that menu pages are ALWAYS html. I can't think of a way to read 
-		// in other formats, despite the inherent simplicity of the actual menu 
-		// pages. Texy looks promising, I'll add an input module for it at some 
-		// point.
 		if($page_data['type'] == 'index') {
 			$page_data['sitedir'] = $page;
-			$page_data['srcdir'] = dirname(self::$public_content_dir . $page . "/index.html");
+			$page_data['srcdir'] = dirname(self::$public_content_dir . $page . "/index");
 		} else {
 			$page_data['sitedir'] = dirname($page);
 			$page_data['srcdir'] = dirname(self::$public_content_dir . $page);
@@ -231,6 +232,7 @@ class Application {
 		}
 
 		return $this->addTimeStamp($page_data['generated_page']);
+		// return $this->response;
 	}
 
 	/**
@@ -498,10 +500,10 @@ class Application {
 	private function makePage($pagemd, $menumd, $breadcrumbs, $view) {
 		// The skeleton page is loaded
 		if($view == self::PRINT_VIEW) {
-			$page_file = file_get_contents("../include/html/print.html");
+			$page_file = file_get_contents(self::$template_dir . 'print.html');
 		}
 		else {
-			$page_file = file_get_contents("../include/html/layout.html");
+			$page_file = file_get_contents(self::$template_dir . 'layout.html');
 		}
 
 		// Insert the new title
