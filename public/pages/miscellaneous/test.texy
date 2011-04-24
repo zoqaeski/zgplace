@@ -1,0 +1,54 @@
+Texy Test Page
+##############
+
+This is a test page for //Texy// formatting commands while I work out how to use it. Apparently it even does "quote" substitutions. 'This is kinda cool'.
+
+Apparently nested lists don’t work. Well... they didn’t before.
+
+Lists!
+======
+
+- An item
+- Another item
+	- A sub item of another item
+	- Another sub item
+- A third major item.
+
+Testing a nested enumerated list
+a) The first item
+b) The second item
+	i) The first item of the second item
+	i) The second item of the second item
+	i) The third item of the second item
+c) The third item
+	1) A different first item
+	2) Meh
+	4) Hello!
+
+Mixing enumerated and bulleted lists
+a) A first item
+	- A sub item
+	- Another sub item
+b) A second item
+	2) A second item?
+		- A sub item
+		- Squeeeeee!
+	3) Hello!
+
+Tables
+======
+
+|* Heading  |* Heading	|* Heading	|
+| Column	| Column	| Column	|
+|	A big column	   || Squee!	|
+
+Heading Three
+-------------
+
+Heading Four
+************
+
+###### Heading Five
+####### Heading Six
+
+Testing a heading. Yeah.

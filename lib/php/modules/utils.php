@@ -71,5 +71,4 @@ class Utils {
 		}
 		return $str;
 	}
-
 }

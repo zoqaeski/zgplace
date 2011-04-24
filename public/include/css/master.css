@@ -26,6 +26,7 @@ body {
 
 /* Headings */
 h1, h2, h3, h4, h5, h6 {
+	clear: left;
 	font-weight: normal;
 	margin: 0.75em 0 0.5em 0;
 	padding: 0;
@@ -186,7 +187,7 @@ dt.subentry {
 
 dd {
 	font-weight: normal;
-	margin: 0 0 0 1em;
+	margin: 0.125em 0 0 1em;
 	padding: 0;
 }
 

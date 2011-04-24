@@ -1,16 +1,12 @@
 <?php
 
-class HTMLFilter {
+class HTMLFilter extends Filter {
 
+	/** @var The page DOM element used internally for filtering. */
 	private $pageDOM;
-	private $pageData;
-	private $menuMeta;
-	private $public_content_dir;
-	private $public_img_dir;
 
 	/**
 	 * Constructs and then runs the HTMLFilter
-	 * @param pageDOM The DOM of the page we wish to filter
 	 * @param pageData The metadata of the page we wish to filter. All generated content gets written to here.
 	 * @param menuMeta The metadata of the menu for the page. We only read some 
 	 * fields in here, so it's not passed as a reference. It defaults to null as we read meta-comments from a menu file, and reading the menu meta for the menu pulled in by the menu ... yeah, loopiness.
@@ -19,18 +15,18 @@ class HTMLFilter {
 		$this->pageData =& $pageData;
 
 		if($this->pageData['path'] != null) {
-			// Create page DOM from the path to the file.
-			$this->pageDOM = new simple_html_dom($this->pageData['path']);
+
+			$this->file_content = file_get_contents($this->pageData['path']);
 
 			// Parse meta comments in top of file
 			$this->parseMetaComment();
 
+			// Create page DOM from the path to the file.
+			$this->pageDOM = new simple_html_dom();
+			$this->pageDOM->load($this->file_content);
+
 			if($menuMeta != null) {
 				$this->menuMeta = $menuMeta;
-
-				$this->public_img_dir = Application::getPublicImgDir();
-				//$public_content_dir = Application::getPublicContentDir();
-
 				$this->run();
 			}
 		} else {
@@ -38,12 +34,6 @@ class HTMLFilter {
 		}
 	}
 
-	/**
-	 * Returns the pageData object
-	 */
-	public function getData() {
-		return $this->pageData;
-	}
 
 	/**
 	 * Returns the pageDOM object
@@ -55,7 +45,7 @@ class HTMLFilter {
 	/**
 	 * Applies the filter.
 	 */
-	private function run() {
+	protected function run() {
 		// Get title
 		$this->pageData['title'] = $this->getTitle();
 
@@ -83,7 +73,6 @@ class HTMLFilter {
 		// Filtering done, get content.
 		$this->pageData['content'] = $this->pageDOM->find('body', 0)->innertext;
 
-		//echo "HTMLFilter::run() just executed.";
 	}
 
 	/**
@@ -98,26 +87,11 @@ class HTMLFilter {
 	 * @param $prev the previous page link
 	 * @param $next the next page link
 	 */
-	private function buildTopicNavLinks($prev, $next) {
-		if($prev != null) {
-			$tn_prev = '<span class="tprev">« '. $prev .'</span>';
-		} else {
-			$tn_prev = null;
-		}
-
-		if($next != null) {
-			$tn_next = '<span class="tnext">'. $next .' »</span>';
-		} else {
-			$tn_next = null;
-		}
-
-		$tn_top = '<span class="ttop"><a href="#content">Return to Top</a></span>';
-
-		$tn_links_top = '<div class="tnavt">'. $tn_prev . $tn_next . '</div>';
-		$tn_links_bottom = '<div class="tnavb">'. $tn_prev . $tn_top . $tn_next . '</div>';
+	protected function buildTopicNavLinks($prev, $next) {
+		$tn_links = parent::buildTopicNavLinks($prev, $next);
 
 		$tn_place = $this->pageDOM->find("#body", 0);
-		$tn_place->innertext = $tn_place->innertext . $tn_links_bottom;
+		$tn_place->innertext = $tn_place->innertext . $tn_links['bottom'];
 	}
 
 	/**
@@ -138,33 +112,6 @@ class HTMLFilter {
 	}
 
 	/**
-	 * Gets the metadata out of the special comment at the top of the page.
-	 */
-	private function parseMetaComment() {
-		$comment = $this->pageDOM->find('comment', 0);
-
-		if($comment != null) {
-			$metacomment = str_replace(array("<!--", "-->"), "", $comment->innertext);
-
-			$mclines = explode("\n", $metacomment);
-			foreach($mclines as $mcline) {
-				if(strlen($mcline) > 0) {
-					$mcfound = preg_match("/^(\S+):\s(\S+)$/im", $mcline, &$matches);
-					if($mcfound != 0) {
-						$matches[1] = strtolower($matches[1]);
-						// PHP is rather fussy about booleans, so I needed a conversion function. 
-						// 'true' and 'yes' → true
-						// 'false' and 'no' → false
-						$value = Utils::str_to_bool($matches[2]);
-						$this->pageData[$matches[1]] = $value;
-					}
-				}
-			}
-		}
-		return $this->pageData;
-	}
-
-	/**
 	 * Modifies image src links to point to the appropriate location. 
 	 * Images are stored in a mirrored hierarchy, so a page in 
 	 * /content/topic/section/page would have images stored in 
@@ -176,8 +123,7 @@ class HTMLFilter {
 		for($i = 0, $is = count($imgs); $i < $is; $i++) {
 			if($imgs[$i]->src) {
 				$url = $imgs[$i]->src;
-				$imgs[$i]->src = $this->public_img_dir . $this->pageData['srcdir'] . '/' . $url;
-				//$imgs[$i]->src = '/public/img/' . $this->pageData['srcdir'] . '/' . $url;
+				$imgs[$i]->src = Application::getPublicImgDir() . $this->pageData['sitedir'] . '/' . $url;
 			}
 		}
 	}
@@ -203,7 +149,7 @@ class HTMLFilter {
 	 * Generates a table of contents from the headings within an HTML DOM
 	 * @param $toc_elements The headings extracted from an HTML DOM.
 	 */
-	private function generateTOC($toc_elements) {
+	protected function generateTOC($toc_elements) {
 		// Create two arrays, one to keep track of levels, the other to keep track of contents
 		$curr_level = 0;
 		$prev_level = 0;
