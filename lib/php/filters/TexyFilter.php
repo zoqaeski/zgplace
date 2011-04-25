@@ -5,8 +5,8 @@
  * zgplace modified Texy routines
  *
  */
-
-require_once(dirname(__FILE__) . '/../modules/texy/texy.php');
+//use Texy\Texy;
+require_once(dirname(__FILE__) . '/../modules/Texy/Texy.php');
 
 class TexyFilter extends Filter {
 
