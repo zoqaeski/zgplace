@@ -24,22 +24,27 @@ class TexyFilter extends Filter {
 		$this->pageData =& $pageData;
 
 		if($this->pageData['path'] != null) {
-			// Setup Texy
-			$this->configureTexy();
 			$this->file_content = file_get_contents($this->pageData['path']);
-
-			// Parse meta comments in top of file
-			$this->parseMetaComment();
-
-			// Generate HTML
-			$this->html = $this->texy->process($this->file_content);
-
-			if($menuMeta != null) {
-				$this->menuMeta = $menuMeta;
-				$this->run();
-			}
 		} else {
 			throw new RuntimeException("No file path specified.");
+		}
+
+		if($this->pageData['input'] !== null) {
+			$this->file_content = $this->file_content . $this->pageData['input'];
+		}
+
+		// Setup Texy
+		$this->configureTexy();
+
+		// Parse meta comments in top of file
+		$this->parseMetaComment();
+
+		// Generate HTML
+		$this->html = $this->texy->process($this->file_content);
+
+		if($menuMeta != null) {
+			$this->menuMeta = $menuMeta;
+			$this->run();
 		}
 	}
 

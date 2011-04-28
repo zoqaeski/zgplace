@@ -83,15 +83,15 @@ if (!class_exists('UnexpectedValueException', FALSE)) {
  * Compatibility with Nette
  */
 if (!class_exists('NotSupportedException', FALSE)) {
-	class NotSupportedException extends LogicException {}
+	class NotSupportedException extends \LogicException {}
 }
 
 if (!class_exists('MemberAccessException', FALSE)) {
-	class MemberAccessException extends LogicException {}
+	class MemberAccessException extends \LogicException {}
 }
 
 if (!class_exists('InvalidStateException', FALSE)) {
-	class InvalidStateException extends RuntimeException {}
+	class InvalidStateException extends \RuntimeException {}
 }
 
 

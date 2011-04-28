@@ -5,10 +5,16 @@
  *
  */
 
-@import url("default.css");
+@import url("zgplace.css");
 /*@import url("master.css");*/
 
 #body {
+	background: #fff;
 	margin: 0 auto;
+	max-width: 48em;
 	padding: 1em 2em;
+}
+
+#sidebar, #header, #breadcrumbs {
+	display: none !important;
 }

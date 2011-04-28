@@ -11,6 +11,7 @@ spl_autoload_register(function ($className) {
 	$possibilities = array(
 		$phplib . 'modules/' . $className . '.php',
 		$phplib . 'filters/' . $className . '.php',
+		$phplib . 'modules/' . __NAMESPACE__ . '.php',
 		$phplib . $className . '.php',
 	);
 	
@@ -30,7 +31,7 @@ $request = Request::createFromGlobals();
 $zgplace = new Application($request);
 
 // Options
-$zgplace->setCaching(false);
+//$zgplace->setCaching(true);
 
 // Run application
 $response = $zgplace->run();

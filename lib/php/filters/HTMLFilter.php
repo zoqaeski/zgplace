@@ -14,23 +14,26 @@ class HTMLFilter extends Filter {
 	function __construct($pageData, $menuMeta=null) {
 		$this->pageData =& $pageData;
 
-		if($this->pageData['path'] != null) {
-
+		if($this->pageData['path'] !== null) {
 			$this->file_content = file_get_contents($this->pageData['path']);
-
-			// Parse meta comments in top of file
-			$this->parseMetaComment();
-
-			// Create page DOM from the path to the file.
-			$this->pageDOM = new simple_html_dom();
-			$this->pageDOM->load($this->file_content);
-
-			if($menuMeta != null) {
-				$this->menuMeta = $menuMeta;
-				$this->run();
-			}
 		} else {
-			throw new RuntimeException("No file path specified.");
+			throw new RuntimeException("No file path or HTML content specified.");
+		}
+
+		if($this->pageData['input'] !== null) {
+			$this->file_content = $this->file_content . $this->pageData['input'];
+		}
+
+		// Parse meta comments in top of file
+		$this->parseMetaComment();
+
+		// Create page DOM from the path to the file.
+		$this->pageDOM = new simple_html_dom();
+		$this->pageDOM->load($this->file_content);
+
+		if($menuMeta != null) {
+			$this->menuMeta = $menuMeta;
+			$this->run();
 		}
 	}
 

@@ -66,12 +66,14 @@ class Application {
 	/** @var array Path search strings for dynamic replacement of certain characters. Useful in the breadcrumb function */
 	private static $path_search = array(
 		'/_/', 
-		'/\buk\b/');
+		'/\buk\b/'
+	);
 
 	/** @var array Path replace strings for $path_search */
 	private static $path_replace = array(
 		' ', 
-		'United Kingdom');
+		'United Kingdom'
+	);
 
 	/** @var string The meta comment replace string */
 	private static $metacomment_preg = "/^(\S+):\s([ \S]+)$/im";
@@ -80,6 +82,12 @@ class Application {
 
 	/** @var bool Whether we're on the home page. */
 	private $is_home = false;
+
+	/** @var bool Whether we're on the site map. */
+	private $is_sitemap = false;
+
+	/** @var object The site map generator. */
+	private $sitemap;
 
 	/** @var int Which view mode we are using, such as normal, print view, source view, etc. */
 	private $view = 0;
@@ -115,8 +123,10 @@ class Application {
 			$this->is_home = true;
 		} elseif($uri === '/sitemap') {
 			// TODO
-			$sitemap = new Sitemap();
-			echo $sitemap;
+			$this->is_sitemap = true;
+			$this->sitemap = new Sitemap();
+			$this->sitemap->makeTexyStr();
+			//echo $sitemap->getSiteTreeTexy();
 		}
 
 		$this->uri = $uri;
@@ -128,6 +138,7 @@ class Application {
 		// Print view mode
 		if(array_key_exists('print', $getvars)) {
 			$this->view = self::PRINT_VIEW;
+			self::$use_cache_file = false;
 		}
 	}
 
@@ -142,12 +153,19 @@ class Application {
 
 		$page_data = $this->locatePage($page, $page_data);
 
+		if($this->is_sitemap) {
+			$page_data['input'] = $this->sitemap->getSiteTreeTexy();
+			// Caching the site map will require much more thought. Do-able, but not yet.
+			// I think to implement this properly I'm going to have to store the list of pages somewhere.
+			self::$use_cache_file = false;
+		}
+
 		// If caching is enabled, check for a cached version of the (complete) page. 
 		// Note that while this speeds up loading and page processing, if one of the 
 		// components changes this may not be detected. I'll implement a cache management 
 		// class at some point.
 		if(self::$use_cache_file === true) {
-			$this->cache = new Cache();
+			$this->cache = new PageCache();
 			$page_data['hash'] = $this->cache->makeHashOfFile($page_data['path'], false);
 			//$this->cache->updateHashOfFile($page_data['path'], false);
 
@@ -155,7 +173,9 @@ class Application {
 			if($cached_data === false) {
 				$this->cache->cleanCache($page_data['path']);
 			} else {
-				return $this->addTimeStamp($cached_data['generated_page']);
+				//return $this->addTimeStamp($cached_data['generated_page']);
+				$this->response->setContent($this->addTimeStamp($cached_data['generated_page']));
+				return $this->response;
 			}
 		}
 
@@ -233,8 +253,7 @@ class Application {
 			}
 		}
 
-		$this->response->setContent($page_data['generated_page']);
-
+		$this->response->setContent($this->addTimeStamp($page_data['generated_page']));
 		return $this->response;
 	}
 
@@ -413,7 +432,8 @@ class Application {
 
 			if($lm_meta['ordered'] == true) {
 				if($c > 0) {
-					$lm_meta['prev'] = $lm_links[$c - 1]->outertext;
+					$link = $lm_links[$c - 1]->outertext;
+					$lm_meta['prev'] = $link;
 				} else {
 					$lm_meta['prev'] = null;
 				}
@@ -628,6 +648,22 @@ class Application {
 	 */
 	public static function getMetacommentPreg() {
 		return self::$metacomment_preg;
+	}
+
+	/**
+	 * Returns the preg search string for path replacements
+	 * @return string
+	 */
+	public static function getPathSearch() {
+		return self::$path_search;
+	}
+
+	/**
+	 * Returns the preg replace string for path replacements
+	 * @return string
+	 */
+	public static function getPathReplace() {
+		return self::$path_replace;
 	}
 
 	//--------------------------------[SETTERS]
