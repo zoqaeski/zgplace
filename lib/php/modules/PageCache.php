@@ -6,7 +6,7 @@
  *
  */
 
-class Cache {
+class PageCache {
 
 	private static $hash_ctx;
 
