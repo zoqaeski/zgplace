@@ -44,6 +44,9 @@ class Application {
 	/** @var bool Whether caching is enabled. */
 	private static $use_cache_file = true;
 
+	/** @var bool Whether we should force a reload of the page to clean the cache. */
+	private static $force_cache_reload = false;
+
 	// The following directories are relative to the document root, not this file path.
 	/** @var string The document root. */
 	private static $toplevel = '/';
@@ -126,7 +129,7 @@ class Application {
 			$this->is_sitemap = true;
 			$this->sitemap = new Sitemap();
 			$this->sitemap->makeTexyStr();
-			//echo $sitemap->getSiteTreeTexy();
+			//echo $this->sitemap;
 		}
 
 		$this->uri = $uri;
@@ -139,6 +142,14 @@ class Application {
 		if(array_key_exists('print', $getvars)) {
 			$this->view = self::PRINT_VIEW;
 			self::$use_cache_file = false;
+		}
+
+		// Dynamically enable/disable caching
+		if(array_key_exists('cache', $getvars)) {
+			if(self::$use_cache_file = true) {
+				self::$force_cache_reload = true;
+			}
+			self::$use_cache_file = Utils::str_to_bool($getvars['cache']);
 		}
 	}
 
@@ -164,18 +175,19 @@ class Application {
 		// Note that while this speeds up loading and page processing, if one of the 
 		// components changes this may not be detected. I'll implement a cache management 
 		// class at some point.
-		if(self::$use_cache_file === true) {
+		if(self::$use_cache_file === true || self::$force_cache_reload === true) {
 			$this->cache = new PageCache();
 			$page_data['hash'] = $this->cache->makeHashOfFile($page_data['path'], false);
 			//$this->cache->updateHashOfFile($page_data['path'], false);
 
-			$cached_data = $this->cache->loadCacheFile($page_data['hash']);
-			if($cached_data === false) {
-				$this->cache->cleanCache($page_data['path']);
-			} else {
-				//return $this->addTimeStamp($cached_data['generated_page']);
-				$this->response->setContent($this->addTimeStamp($cached_data['generated_page']));
-				return $this->response;
+			if(self::$force_cache_reload !== true) {
+				$cached_data = $this->cache->loadCacheFile($page_data['hash']);
+				if($cached_data === false) {
+					$this->cache->cleanCache($page_data['path']);
+				} else {
+					$this->response->setContent($this->addTimeStamp($cached_data['generated_page']));
+					return $this->response;
+				}
 			}
 		}
 
@@ -242,7 +254,7 @@ class Application {
 		unset($page_data['content']);
 		//unset($page_data['menu']);
 
-		if(self::$use_cache_file === true && $page_data['all_is_well'] === true) {
+		if($page_data['all_is_well'] === true && self::$use_cache_file === true || self::$force_cache_reload === true) {
 			if($page_data['hash'] !== false) {
 				$cache_file_name = self::$cache_dir . $page_data['hash'];
 				$this->cache->saveCacheFile($page_data, $cache_file_name);
@@ -432,14 +444,19 @@ class Application {
 
 			if($lm_meta['ordered'] == true) {
 				if($c > 0) {
-					$link = $lm_links[$c - 1]->outertext;
-					$lm_meta['prev'] = $link;
+					//$link_element = $lm_links[$c - 1]->outertext;
+					$link_text = $lm_links[$c - 1]->innertext;
+					$link_href = $lm_links[$c - 1]->href;
+					$lm_meta['prev'] = '<a href="'. $link_href .'">Previous: '. $link_text .'</a>';
 				} else {
 					$lm_meta['prev'] = null;
 				}
 
 				if($c < $lm_size - 1) {
-					$lm_meta['next'] = $lm_links[$c + 1]->outertext;
+					//$lm_meta['next'] = $lm_links[$c + 1]->outertext;
+					$link_text = $lm_links[$c + 1]->innertext;
+					$link_href = $lm_links[$c + 1]->href;
+					$lm_meta['next'] = '<a href="'. $link_href .'">Next: '. $link_text .'</a>';
 				} else {
 					$lm_meta['next'] = null;
 				}
@@ -562,6 +579,19 @@ class Application {
 			$print_box_href = $this->uri . '?print';
 		}
 		$page_file = str_replace('#PRINTBOXHREF', $print_box_href, $page_file);
+
+		// Set up cache toggling
+		if($this->view != self::PRINT_VIEW) {
+			if(self::$use_cache_file == true) {
+				$cache_view_href = $this->uri . '?cache=false';
+				$cache_view_text = 'Refresh Cache';
+			} else {
+				$cache_view_href = $this->uri . '?cache=true';
+				$cache_view_text = 'Enable Cache';
+			}
+			$page_file = str_replace('#CACHEMODE', $cache_view_href, $page_file);
+			$page_file = str_replace('Refresh Cache', $cache_view_text, $page_file);
+		}
 
 		// Load the content
 		if($pagemd['content'] != null) {

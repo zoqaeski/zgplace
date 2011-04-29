@@ -41,6 +41,7 @@ class Sitemap {
 		}
 
 		$this->site_tree = array_unique($this->site_tree);
+		asort($this->site_tree);
 	}
 
 	public function __toString() {
@@ -58,7 +59,8 @@ class Sitemap {
 			//TODO
 			$link_text = substr($node, strrpos($node, '/') + 1);
 			$link_text = ucwords(preg_replace(Application::getPathSearch(), Application::getPathReplace(), $link_text));
-			$texy = '- "'. $link_text . '":[' . $node . ']';
+			$indent = substr_count($node, '/') - 1;
+			$texy = Utils::padStr($indent) . '- "'. $link_text . '":[' . $node . ']';
 
 			$this->site_tree_texy = $this->site_tree_texy . "\n" . $texy;
 		}
