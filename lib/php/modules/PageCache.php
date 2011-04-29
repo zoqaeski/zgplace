@@ -35,18 +35,12 @@ class PageCache {
 	 * @param $file_name The full path to the file that we wish to generate a hash of.
 	 * @param $do_checks Whether we should do some basic sanity checks.
 	 */
-	public function updateHashOfFile($file_name, $do_checks=true) {
-		$file_data = '';
-		if($do_checks) {
-			// No need to have separate handlers here.
-			if(file_exists($file_name) && is_readable($file_name)) {
-				$file_data = file_get_contents($file_name);
-			} else {
-				return false;
-			}
-		} else {
-			$file_data = file_get_contents($file_name);
+	public function updateHashOfFile($file_name, $do_checks = true) {
+		$file_data = FileUtils::loadFile($file_name, false, $do_checks);
+		if($file_data === false) {
+			return false;
 		}
+
 		return $this->updateHash($file_data);
 	}
 
@@ -55,8 +49,8 @@ class PageCache {
 	 * @param $data The data we wish to store in a cache.
 	 * @param $file The complete name (including path) of the file to be used as a cache. Note that this file will be overwritten.
 	 */
-	public static function saveCacheFile($data, $file=null) {
-		if($file == null) {
+	public static function saveCacheFile($data, $file = null) {
+		if($file === null) {
 			$cfile = Application::getCacheDir() . self::makeHash($data);
 		} else {
 			$cfile = $file;
@@ -72,17 +66,14 @@ class PageCache {
 	 * @param $cache_dir The directory in which to look
 	 * @return The content of the file, if found.
 	 */
-	public static function loadCacheFile($hash, $cache_dir=null) {
-		if($cache_dir == null) {
+	public static function loadCacheFile($hash, $cache_dir = null) {
+		if($cache_dir === null) {
 			$file_name = Application::getCacheDir() . $hash;
 		} else {
 			$file_name = $cache_dir . $hash;
 		}
-		if(file_exists($file_name) && is_readable($file_name)) {
-			return unserialize(file_get_contents($file_name));
-		} else {
-			return false;
-		}
+
+		return FileUtils::loadFile($file_name, true, true);
 	}
 
 	/**

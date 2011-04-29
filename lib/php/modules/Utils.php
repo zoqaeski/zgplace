@@ -1,8 +1,8 @@
 <?php
 /*
- * utils.php
+ * Utils.php
  * ---------------
- * This is the core application used to build my site. 
+ * Static class with some string utility functions.
  *
  */
 
