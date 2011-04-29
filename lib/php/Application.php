@@ -42,10 +42,10 @@ class Application {
 	private static $cache_dir = '../cache/';
 
 	/** @var bool Whether caching is enabled. */
-	private static $use_cache_file = true;
+	private static $use_cache_file;
 
 	/** @var bool Whether we should force a reload of the page to clean the cache. */
-	private static $force_cache_reload = false;
+	private static $force_cache_reload;
 
 	// The following directories are relative to the document root, not this file path.
 	/** @var string The document root. */
@@ -113,8 +113,6 @@ class Application {
 		$this->request = $request;
 		$this->response = new Response();
 		$this->time = -microtime(true);
-		$this->processURI();
-		$this->processGET();
 	}
 
 	private function processURI() {
@@ -142,6 +140,7 @@ class Application {
 		if(array_key_exists('print', $getvars)) {
 			$this->view = self::PRINT_VIEW;
 			self::$use_cache_file = false;
+			self::$force_cache_reload = false;
 		}
 
 		// Dynamically enable/disable caching
@@ -159,6 +158,8 @@ class Application {
 	 * @return string
 	 */
 	public function run() {
+		$this->processURI();
+		$this->processGET();
 		$page = $this->uri;
 		$page_data = array();
 
@@ -168,14 +169,14 @@ class Application {
 			$page_data['input'] = $this->sitemap->getSiteTreeTexy();
 			// Caching the site map will require much more thought. Do-able, but not yet.
 			// I think to implement this properly I'm going to have to store the list of pages somewhere.
-			self::$use_cache_file = false;
+			self::$force_cache_reload = true;
 		}
 
 		// If caching is enabled, check for a cached version of the (complete) page. 
 		// Note that while this speeds up loading and page processing, if one of the 
 		// components changes this may not be detected. I'll implement a cache management 
 		// class at some point.
-		if(self::$use_cache_file === true || self::$force_cache_reload === true) {
+		if(self::$use_cache_file == true) {
 			$this->cache = new PageCache();
 			$page_data['hash'] = $this->cache->makeHashOfFile($page_data['path'], false);
 			//$this->cache->updateHashOfFile($page_data['path'], false);
@@ -254,7 +255,7 @@ class Application {
 		unset($page_data['content']);
 		//unset($page_data['menu']);
 
-		if($page_data['all_is_well'] === true && self::$use_cache_file === true || self::$force_cache_reload === true) {
+		if($page_data['all_is_well'] === true && self::$use_cache_file == true || self::$force_cache_reload == true) {
 			if($page_data['hash'] !== false) {
 				$cache_file_name = self::$cache_dir . $page_data['hash'];
 				$this->cache->saveCacheFile($page_data, $cache_file_name);
