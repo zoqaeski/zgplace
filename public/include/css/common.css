@@ -48,7 +48,7 @@
 }
 
 /* Boxes */
-.hbox, .nbox, .ibox {
+.hbox, .nbox, .bbox {
 	display: table;
 	margin: 0.5em auto 1em;
 	padding: 1em;
@@ -56,7 +56,14 @@
 	width: auto;
 }
 
-.hbox, .ibox, .nbox {
+.ibox {
+	display: table-cell;
+	margin: 0;
+	padding: 1em;
+	text-align: center;
+}
+
+.hbox, .bbox, .nbox {
 	border: 1px solid;
 	border-collapse: collapse;
 }
@@ -66,11 +73,12 @@
 	/* No specific styles here */
 }
 
-.hbox .caption, .ibox .caption, .nbox .caption {
-	font-size: 90%;
+.hbox .caption, .bbox .caption, .nbox .caption {
+	/* No specific styles here */
+	/*font-size: 90%;
 	font-style: italic;
 	margin: 0.25em auto;
-	padding: 0 0.5em;
+	padding: 0 0.5em;*/
 }
 
 .hbox .heading {
@@ -82,6 +90,10 @@
 }
 
 .caption {
+	font-size: 90%;
+	font-style: italic;
+	margin: 0.25em auto;
+	padding: 0 0.5em;
 	width: 75%;
 }
 

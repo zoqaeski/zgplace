@@ -79,7 +79,7 @@ body {
 #header span {
 	color: #fc8000;
 	display: block;
-	font-family: "Droid Sans Mono", "Consolas", sans-serif;
+	font-family: "DejaVu Sans Mono", "Droid Sans Mono", "Consolas", sans-serif;
 	font-size: 2.75em; 
 	line-height: 1.5em;
 	margin: 0;
@@ -89,6 +89,7 @@ body {
 
 #breadcrumbs {
 	background: #404040;
+	/*border-top: 1px solid #fa6000;*/
 	color: #a0a0a0;
 	display: block;
 	float: right;
@@ -196,26 +197,29 @@ border-top: 1px solid #d8d8d8;
 
 #sidebar a, #sidebar a:link, #sidebar a:visited {
 	color: #404040;
+	border: 1px solid transparent;
 	font-weight: inherit;
 	text-decoration: none;
 }
 
 #sidebar a:hover, #sidebar a:active, #sidebar a:focus {
-	outline: medium none 0px;
-	font-weight: inherit;
-	color: #fa6000;
+	color: #004494;
+	/*color: #fa6000;*/
+	/*border-bottom: 1px solid #404040;*/
+	border-bottom: 1px solid #fa6000;
 }
 
 #sidebar a:active, #sidebar a:focus {
 	color: #fc8000;
+	outline: none;
 }
 
-#breadcrumb {
+/*#breadcrumb {
 	float: right;
 	font-size: 90%;
 	margin: 0.5em 1em;
 	text-align: right;
-}
+}*/
 
 #content {
 	float: right;
@@ -248,24 +252,47 @@ a, a:link, a:visited {
 	text-decoration: none;
 }
 
-a.quickref, a.quickref:link, a.quickref:visited {
-	/*color: #c00000;*/
-}
-
 a:hover {
+	/*background: #404040;*/
 	color: #fa6000;
 	text-decoration: underline;
 }
 
-a:active {
+a:active, a:focus {
 	/*color: #fc8000 !important;*/
 	color: #ff6000;
-	outline: medium none 0px;
+	outline: none;
 	text-decoration: underline;
+}
+
+#body a, #body a:link, #body a:visited {
+	/*border-bottom: 1px solid #fa6000;*/
+	color: #004494;
+	/*color: #fa6000;*/
+	/*color: #404040;*/
+	text-decoration: none;
+}
+
+#body a:hover {
+	/*border-bottom: 1px solid #404040;*/
+	/*color: #fa6000;*/
+	/*color: #404040;*/
+	text-decoration: underline;
+	/*border-bottom: 1px solid #fa6000;*/
+}
+
+#body a:active, #body a:focus {
+	/*color: #fc8000 !important;*/
+	color: #fa6000;
+	/*color: #fc8000;*/
+	outline: none;
+	text-decoration: underline;
+	/*border-bottom: 1px solid #fa6000;*/
 }
 
 /* Permalinks */
 a.permalink {
+	border: none !important;
 	text-decoration: none !important;
 }
 a.permalink:hover, a.permalink:active {
@@ -380,7 +407,7 @@ dl.dictionary dt.h {
 	/*border: 1px solid #d0d0d0;*/
 }
 
-.hbox, .ibox {
+.hbox, .bbox {
 	border-color: #b0b0b0;
 }
 
@@ -450,5 +477,5 @@ input {
 
 /* Code */
 .pre, pre, .code, code {
-	font-family: "Droid Sans Mono", "DejaVu Sans Mono", monospace, sans-serif;
+	font-family: "DejaVu Sans Mono", "Droid Sans Mono", monospace, sans-serif;
 }

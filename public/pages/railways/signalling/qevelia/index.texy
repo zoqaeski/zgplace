@@ -22,13 +22,18 @@ Signal Descriptions
 "Supplementary signals":[/railways/signalling/qevelia/supplementary]:
 	- Additional signals for train and shunting movements.
 "Cab Signalling":[/railways/signalling/qevelia/cab]:
-	- //"Speed Control by Beacon":[/railways/signalling/qevelia/cab_scb]//
-	- //"Linear Train Control":[/railways/signalling/qevelia/cab_lct]//
+	- "Speed Control by Beacon":[/railways/signalling/qevelia/cab_scb] is the older system based around trackside magnetic beacons.
+	- "Linear Train Control":[/railways/signalling/qevelia/cab_lct] is a newer system that continuously transmits movement authority telegrams via inductive cable loops.
 "Route and Speed Indicators":[/railways/signalling/qevelia/route_speed]:
+	- Signals and signs that provide route and speed indications.
 "Lineside signs":[/railways/signalling/qevelia/lineside_signs]:
+	- Additional lineside signs not previously covered.
 "Turnouts and interlockings":[/railways/signalling/qevelia/turnouts]:
+	- Signals and signs specific to turnouts and interlocking equipment. 
 "Level crossings":[/railways/signalling/qevelia/level_crossings]:
+	- Signals and signs for level crossings.
 "Signals on vehicles":[/railways/signalling/qevelia/vehicles]:
+	- Signals and signs displayed on vehicles. 
 "Miscellaneous":[/railways/signalling/qevelia/miscellaneous]:
 	- Signals which do not fit into the above categories.
 "Foreign Signals":[/railways/signalling/qevelia/foreign_signals]:

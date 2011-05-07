@@ -1,6 +1,6 @@
 ;(function($){
 	$(function() {
-		var base_path = "/public/img/railways/signalling/qevelia/";
+		var base_path = "/img/railways/signalling/qevelia/";
 		var vslow = '800,100';
 		var slow = '500,100';
 		var fast = '200,100';
