@@ -9,8 +9,8 @@ spl_autoload_register(function ($className) {
 	$className = str_replace('\\', '/', $className);
 
 	$possibilities = array(
-		$phplib . 'modules/' . $className . '.php',
 		$phplib . 'filters/' . $className . '.php',
+		$phplib . 'modules/' . $className . '.php',
 		$phplib . 'modules/' . __NAMESPACE__ . '.php',
 		$phplib . $className . '.php',
 	);

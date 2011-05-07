@@ -8,13 +8,31 @@
 @import url("zgplace.css");
 /*@import url("master.css");*/
 
-#body {
+#print-content {
 	background: #fff;
-	margin: 0 auto;
 	max-width: 48em;
+	margin: 0 auto;
+}
+
+#body {
 	padding: 1em 2em;
 }
 
-#sidebar, #header, #breadcrumbs {
+#header, #footer {
+	background: #fff;
+	margin: 0;
+	padding: 1em 0;
+}
+
+#header span {
+	border-bottom: 1px solid #fa6000;
+	color: #004494;
+	/*border-bottom: 1px solid #004494;*/
+	/*color: #fa6000;*/
+	text-align: center;
+	/*text-shadow: 1px 1px 1px #404040;*/
+}
+
+#sidebar, #breadcrumbs {
 	display: none !important;
 }

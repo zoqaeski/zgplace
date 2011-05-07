@@ -45,11 +45,13 @@
 
 			<h2>Basic Operation</h2>
 
-			<p>Inductive beacons located inside the left-hand rail are connected to passive resonance circuits that are tuned to a set number of frequencies which correspond to the number of speed indications the signal can display. An antenna mounted on the locomotive continuously emits magnetic fields with those frequencies. </p>
+			<p>Locomotives and leading vehicles of train movements are fitted with onboard trasmitter coils that resonate at four fixed frequencies. Passive tuned inductor circuits are located just outside the left-hand rail at appropriate locations; each beacon resonates at one of these frequencies, depending on its location. </p>			
 
-			<p>When the system is inactive, the trackside relay is shorted and cannot resonate. If the circuit is active, and the magnet is passed by the locomotive's antenna, it will begin resonating at its proper frequency, extracting energy from the locomotive's magnet and reducing the voltage by 80–90%. This voltage drop is detected by the onboard subsystems, which then perform the appropriate action. </p>
+			<p>When the system is inactive, the trackside relay is shorted and cannot resonate. If the circuit is active, and the magnet is passed by the locomotive's transmitter, it will begin resonating at its proper frequency, and be detected by the locomotive through a change in magnetix flux. </p>
 
-			<p>There are normally three trackside resonators located along the track at specific points. At the distant signal is the arming magnet, which is active if the main signal is at Stop or displays a speed restriction. Approximately 300 metres before the main signal is a second magnet, used to transmit the speed restriction. At the main signal is a third magnet, which enforces the speed restrictions imposed by the arming magnet. If the main signal is at Stop, this magnet activates an unconditional braking application that will bring the train to a standstill. </p>
+			<p>There are normally three trackside beacons located along the track at specific points. At the distant signal is the arming magnet, which is active if the main signal is at Stop or displays a speed restriction. Approximately 300 metres before the main signal is an enforcing magnet, used to transmit the speed restriction if it is more restrictive than some preset value. At the main signal is a third magnet, which is only active if the signal is at Stop; it will enforce an immediate emergency braking application. </p>
+
+			<p>Main signals coupled with distant signals will have three beacons, arranged from most restrictive to least restrictive, ensuring that a train approaching a signal at Stop will not have its onboard equipment reset. </p>
 
 			<h3>Magnets and Frequencies</h3>
 
@@ -72,6 +74,11 @@
 					<td colspan="3">All magnets are deactivated</td>
 				</tr>
 				<tr>
+					<td class="strong">Expect High Speed</td>
+					<td class="strong">High Speed</td>
+					<td colspan="3">All magnets are deactivated<sup>[<a href="#Magnets_and_Frequencies__note-1">1</a>]</sup></td>
+				</tr>
+				<tr>
 					<td class="strong">Expect Reduced Stop*</td>
 					<td class="strong">Expect Stop*</td>
 					<td>1728 Hz</td>
@@ -79,14 +86,7 @@
 					<td>—</td>
 				</tr>
 				<tr>
-					<td class="strong">Expect Medium</td>
-					<td class="strong">84 km/h</td>
-					<td>1728 Hz</td>
-					<td>—</td>
-					<td>—</td>
-				</tr>
-				<tr>
-					<td class="strong">Expect Medium</td>
+					<td class="strong">Expect Medium*</td>
 					<td class="strong">60 km/h</td>
 					<td>1728 Hz</td>
 					<td>864 Hz</td>
@@ -107,6 +107,10 @@
 					<td>2592 Hz</td>
 				</tr>
 			</table>
+			<ol class="caption">
+				<li id="Magnets_and_Frequencies__note-1">This only occurs if and only if the signal after the main signal displays Proceed or better</li>
+			</ol>
+
 			<p>The <em>Reduced Stop</em> aspect is only available on four-aspect automatic block lines and is a recent addition. The next magnet encountered will normally be warning of an <em>Expect Stop</em> indication; consequently, the following signal must also be capable of displaying distant aspects. </p>
 
 			<p>In order to transmit each of the set frequencies at the control points, a series of magnets is provided, each of which can resonate at the appropriate frequency. They are normally arranged such that the most restrictive magnet is encountered last. In some newer installations, switchable resonance circuits coupled to a single magnet are provided. </p>
@@ -191,8 +195,6 @@
 		<div class="nbox">
 			<img src="dia/SCB_type_160_curve.png" />
 			<p class="caption">Braking curve chart for Train Type 160. The red lines indicate the restrictions for a train approaching a signal at Stop or a 36 km/h speed restriction; the green lines indicate the restrictions for a train approaching some other speed restriction. </p>
-			<p class="caption">The green dashed line is the ideal braking curve for a train approaching a signal at Stop from 100 km/h, such as would occur on lines with two blocks warning (assuming 1200 metre blocks). </p>
-			<!--<p class="caption">Note that for the higher speed limits, the restrictions imposed by the system are greater than the “perfect” braking rate required to slow a train down to the prescribed limit. This is because the system requires that the driver prove they are in control of the train, hence the stepped-speed control; historically it was due to limitations in the hardware. </p>-->
 		</div>
 
 		<p>In the above diagram, the distance between the distant signal and the main signal is approximately 1200 metres. Lines with half-size blocks, as is common in sections with higher-density traffic, will use the same braking curve but place the 1152 Hz magnet at the second signal from the main signal at Stop. The intermediate signal will also have a 1152 Hz magnet, although it will not enforce any restrictions (provided the driver is taking the appropriate actions).   </p>

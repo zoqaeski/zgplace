@@ -24,7 +24,7 @@ class FileUtils {
 	 * @return mixed This function returns one of the following: a string containing the file contents, a mixed variable representing whatever was encapsulated in the file, or the boolean FALSE if the file could not be opened.
 	 */
 	public static function loadFile($file_name, $is_serial_data = false, $do_sanity_checks = true) {
-		if($do_checks) {
+		if($do_sanity_checks) {
 			// No need to have separate handlers here.
 			if(file_exists($file_name) && is_readable($file_name)) {
 				$file_data = file_get_contents($file_name);
@@ -50,6 +50,7 @@ class FileUtils {
 	 * @return mixed This function returns one of the following: a string containing the file contents, a mixed variable representing whatever was encapsulated in the file, or the boolean FALSE if the file could not be opened.
 	 */
 	public static function saveFile($file_name, $data, $do_sanity_checks = true) {
+		//TODO
 //		if($do_checks) {
 //			// No need to have separate handlers here.
 //			if(file_exists($file_name) && is_readable($file_name)) {

@@ -136,6 +136,14 @@ class Application {
 	private function processGET() {
 		$getvars = $this->request->query->all();
 
+		// Dynamically enable/disable caching
+		if(array_key_exists('cache', $getvars)) {
+			self::$use_cache_file = Utils::str_to_bool($getvars['cache']);
+			if(self::$use_cache_file == false) {
+				self::$force_cache_reload = true;
+			}
+		}
+
 		// Print view mode
 		if(array_key_exists('print', $getvars)) {
 			$this->view = self::PRINT_VIEW;
@@ -143,13 +151,6 @@ class Application {
 			self::$force_cache_reload = false;
 		}
 
-		// Dynamically enable/disable caching
-		if(array_key_exists('cache', $getvars)) {
-			if(self::$use_cache_file = true) {
-				self::$force_cache_reload = true;
-			}
-			self::$use_cache_file = Utils::str_to_bool($getvars['cache']);
-		}
 	}
 
 	/**
@@ -176,7 +177,8 @@ class Application {
 		// Note that while this speeds up loading and page processing, if one of the 
 		// components changes this may not be detected. I'll implement a cache management 
 		// class at some point.
-		if(self::$use_cache_file == true) {
+		// As an interim measure, use $force_cache_reload to achieve the same goal.
+		if(self::$use_cache_file == true || self::$force_cache_reload == true) {
 			$this->cache = new PageCache();
 			$page_data['hash'] = $this->cache->makeHashOfFile($page_data['path'], false);
 			//$this->cache->updateHashOfFile($page_data['path'], false);
@@ -585,13 +587,13 @@ class Application {
 		if($this->view != self::PRINT_VIEW) {
 			if(self::$use_cache_file == true) {
 				$cache_view_href = $this->uri . '?cache=false';
-				$cache_view_text = 'Refresh Cache';
+				//$cache_view_text = 'Disable Cache';
 			} else {
 				$cache_view_href = $this->uri . '?cache=true';
-				$cache_view_text = 'Enable Cache';
+				//$cache_view_text = 'Disable Cache';
 			}
 			$page_file = str_replace('#CACHEMODE', $cache_view_href, $page_file);
-			$page_file = str_replace('Refresh Cache', $cache_view_text, $page_file);
+			//$page_file = str_replace('Refresh Cache', $cache_view_text, $page_file);
 		}
 
 		// Load the content

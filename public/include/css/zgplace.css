@@ -79,7 +79,7 @@ body {
 #header span {
 	color: #fc8000;
 	display: block;
-	font-family: "Droid Sans Mono", "Consolas", sans-serif;
+	font-family: "DejaVu Sans Mono", "Droid Sans Mono", "Consolas", sans-serif;
 	font-size: 2.75em; 
 	line-height: 1.5em;
 	margin: 0;
@@ -211,7 +211,7 @@ border-top: 1px solid #d8d8d8;
 
 #sidebar a:active, #sidebar a:focus {
 	color: #fc8000;
-	outline: medium none 0px;
+	outline: none;
 }
 
 /*#breadcrumb {
@@ -258,10 +258,10 @@ a:hover {
 	text-decoration: underline;
 }
 
-a:active {
+a:active, a:focus {
 	/*color: #fc8000 !important;*/
 	color: #ff6000;
-	outline: medium none 0px;
+	outline: none;
 	text-decoration: underline;
 }
 
@@ -278,13 +278,16 @@ a:active {
 	/*color: #fa6000;*/
 	/*color: #404040;*/
 	text-decoration: underline;
+	/*border-bottom: 1px solid #fa6000;*/
 }
 
-#body a:active {
+#body a:active, #body a:focus {
 	/*color: #fc8000 !important;*/
-	/*color: #ff6000;*/
-	outline: medium none 0px;
-	/*text-decoration: underline;*/
+	color: #fa6000;
+	/*color: #fc8000;*/
+	outline: none;
+	text-decoration: underline;
+	/*border-bottom: 1px solid #fa6000;*/
 }
 
 /* Permalinks */
@@ -404,7 +407,7 @@ dl.dictionary dt.h {
 	/*border: 1px solid #d0d0d0;*/
 }
 
-.hbox, .ibox {
+.hbox, .bbox {
 	border-color: #b0b0b0;
 }
 
