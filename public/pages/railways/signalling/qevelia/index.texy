@@ -23,7 +23,7 @@ Signal Descriptions
 	- Additional signals for train and shunting movements.
 "Cab Signalling":[/railways/signalling/qevelia/cab]:
 	- "Speed Control by Beacon":[/railways/signalling/qevelia/cab_scb] is the older system based around trackside magnetic beacons.
-	- "Linear Train Control":[/railways/signalling/qevelia/cab_lct] is a newer system that continuously transmits movement authority telegrams via inductive cable loops.
+	- "Linear Train Control":[/railways/signalling/qevelia/cab_ltc] is a newer system that continuously transmits movement authority telegrams via inductive cable loops.
 "Route and Speed Indicators":[/railways/signalling/qevelia/route_speed]:
 	- Signals and signs that provide route and speed indications.
 "Lineside signs":[/railways/signalling/qevelia/lineside_signs]:
@@ -50,3 +50,5 @@ Operations
 	- Automatic block systems, past and present.
 "Train Orders and Direct Traffic Control":[/railways/signalling/qevelia/train_order]:
 	- Train Orders are used on lightly-trafficked branch lines.
+"Track and Signal Numbering":[/railways/signalling/qevelia/numbering]:
+	- How tracks and signals are numbered.
