@@ -143,6 +143,14 @@ class TexyFilter extends Filter {
 	}
 
 	protected function generateTOC($toc_elements) {
+		// Strip H1s
+		foreach($toc_elements as $t => $el) {
+			if($toc_elements[$t]['el']->getName() === "h1") {
+				unset($toc_elements[$t]);
+			}
+		}
+		$toc_elements = array_values($toc_elements);
+
 		// Create two arrays, one to keep track of levels, the other to keep track of contents
 		$curr_level = 0;
 		$prev_level = 0;
@@ -152,7 +160,8 @@ class TexyFilter extends Filter {
 		$toc_string = '<div class="toc"><span><a href="#" id="toctoggle">Contents</a></span>';
 
 		// Build the TOC by looping through the data
-		for($te = 1, $tes = count($toc_elements); $te < $tes; $te++) {
+		for($te = 0, $tes = count($toc_elements); $te < $tes; $te++) {
+			//var_dump($toc_elements);
 			$curr_level = $toc_elements[$te]['level'];
 			if(($te + 1) != $tes) {
 				$next_level = $toc_elements[$te + 1]['level'];

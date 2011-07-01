@@ -2,7 +2,7 @@
 	$(function() {
 		var base_path = "/img/railways/signalling/qevelia/";
 		var vslow = '800,100';
-		var slow = '500,100';
+		var slow = '500,200';
 		var fast = '200,100';
 		var vfast = '100,50';
 
@@ -91,8 +91,10 @@
 		$('.tv2d_yf').addClass('animate').dataset({intervals: vfast, frames: 'cl/tv2d_off,cl/tv2d_y'});
 
 		$('.lr3_yf').addClass('animate').dataset({intervals: fast, frames: 'cl/lr3_off,cl/lr3_y'});
-		$('.lx3_wf').addClass('animate').dataset({intervals: slow, frames: 'roads/lx3_off,roads/lx3_w'});
-		$('.lx3_rf').addClass('animate').dataset({intervals: '300', frames: 'roads/lx3_r_left,roads/lx3_r_right'});
+		$('.lr4_yf').addClass('animate').dataset({intervals: fast, frames: 'cl/lr4_off,cl/lr4_y'});
+		$('.lr4_lf').addClass('animate').dataset({intervals: fast, frames: 'cl/lr4_off,cl/lr4_l'});
+		$('.lx3_rf').addClass('animate').dataset({intervals: '200', frames: 'roads/lx3_r_left,roads/lx3_r_right'});
+		$('.lx3_lf').addClass('animate').dataset({intervals: slow, frames: 'roads/lx3_off,roads/lx3_l'});
 
 		$('.af_lf').addClass('animate').dataset({intervals: fast, frames: 'cl/af_off,cl/af_l'});
 
