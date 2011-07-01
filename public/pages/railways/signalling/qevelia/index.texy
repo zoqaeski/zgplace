@@ -7,10 +7,24 @@ These pages describe the signalling and safeworking practises of the Qevelian ra
 Introduction and History
 ------------------------
 
-"Basic Principles":[/railways/signalling/qevelia/basics]:
-	- A brief description of the principles and theories behind contemporary Qevelian safeworking practices.
 "History of Signalling Systems":[/railways/signalling/qevelia/history]:
 	- ?
+
+Operations
+----------
+
+"Basic Principles":[/railways/signalling/qevelia/basics]:
+	- A brief description of the principles and theories behind contemporary Qevelian safeworking practices.
+"Interlocking Principles":[/railways/signalling/qevelia/interlocking]:
+	- Principles of interlocking in stations and other controlled areas.
+"Manual Block":[/railways/signalling/qevelia/manual_block]:
+	- Manual block principles and operation.
+"Automatic Block":[/railways/signalling/qevelia/automatic_block]:
+	- Automatic block systems, past and present.
+"Train Orders and Direct Traffic Control":[/railways/signalling/qevelia/train_order]:
+	- Train Orders are used on lightly-trafficked branch lines.
+"Track and Signal Numbering":[/railways/signalling/qevelia/numbering]:
+	- How tracks and signals are numbered.
 
 Signal Descriptions
 -------------------
@@ -39,16 +53,3 @@ Signal Descriptions
 "Foreign Signals":[/railways/signalling/qevelia/foreign_signals]:
 	- Foreign signals which may be seen on Qevelian railways in and around national borders.
 
-Operations
-----------
-
-"Interlocking Principles":[/railways/signalling/qevelia/interlocking]:
-	- Principles of interlocking in stations and other controlled areas.
-"Manual Block":[/railways/signalling/qevelia/manual_block]:
-	- Manual block principles and operation.
-"Automatic Block":[/railways/signalling/qevelia/automatic_block]:
-	- Automatic block systems, past and present.
-"Train Orders and Direct Traffic Control":[/railways/signalling/qevelia/train_order]:
-	- Train Orders are used on lightly-trafficked branch lines.
-"Track and Signal Numbering":[/railways/signalling/qevelia/numbering]:
-	- How tracks and signals are numbered.
