@@ -1,0 +1,1259 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="sv" lang="sv">
+<head>
+  <meta name="generator" content=
+  "HTML Tidy for Linux (vers 25 March 2009), see www.w3.org" />
+
+  <title>Med ATC-systemet går tåget som på räls</title>
+  <meta http-equiv="Content-Type" content=
+  "text/html; charset=utf-8" />
+  <base href="../../../../" />
+  <link type="text/css" rel="stylesheet" href=
+  "include/css/default.css" title="default" media="all" />
+  <meta name="description" content=
+  "Du tycker att ditt datorsystem, som är uppe 365 dagar om året, är säkert - IDG.se" />
+  <meta name="keywords" content=
+  "Jörgens artiklar på TechWorld, Mjukvara, Säkerhet, Systemutveckling, Teknik, IDG.se" />
+  </head>
+
+<body>
+				<div id="body">
+  <h1>Med ATC-systemet går tåget som på räls</h1>
+
+  <p>Du tycker att ditt datorsystem, som är uppe 365 dagar om året, är säkert? Du kanske tror att 99,6 procents upptid är bra? Lägg då till drift i minus 40 grader och isbark, att godståg dundrar förbi på 30 centimeters avstånd en gång i kvarten, att anläggningen ska fungera i minst 25 år utan översyn och dessutom har livsuppehållande.</p>
+
+  <div class="nbox"><img alt="" src=
+  "ATC-systemet/413715283.jpg" /></div>
+
+  <p>Hur förhindrar man att ett tåg med en massa människor ombord krockar med andra tåg eller kör av spåret i kurvor? Järnvägen har trafikregler och varningsskyltar precis som bilarna, men eftersom farterna är höga och bromssträckorna längre och en tågförare inte alls har samma överblick som en bilförare måste trafikreglerna åtlydas absolut. Misstag tolereras inte.</p>
+
+  <p>Eftersom flera tåg måste samsas om ett spår måste tågvägen planeras i förväg. Det sker i tågledningscentraler som vet var alla tåg finns och skapar färdiguppställda tågvägar i förväg. Det här kan du läsa mer om i Nätverk &amp; Kommunikation 08/2001.</p> 
+
+  <p>Det vi här ska koncentrera oss på är hur varningar når ut till tågförarna, hur systemet ser till att dessa åtlyds, och i annat fall tar över kommandot och förhindrar en olycka. Vi kikar här närmare på det svenska säkerhetssystemet ATC 2, Automatic Train Control. Andra länders system är uppbyggda på annat sätt.</p>
+  
+  <div class="nbox">
+	  <img alt="" src="ATC-systemet/1247985674.jpg" />
+	  <p class="caption">Hann du se den där? Nej, och det hann säkert inte tågföraren heller, i 200 kilometer i timmen. Men ATC-systemet hann se den!</p>
+  </div>
+
+  <h2>Innehållsförteckning</h2>
+
+  <p>Artikeln är mycket lång och den är indelad i följande avsnitt:</p> 
+
+  <h2>Historik</h2>
+
+  <p>Sverige har haft sin beskärda del av hemska järnvägsolyckor, även om denna, vid Getå 1918 inte hade något med signalsäkerheten att göra, vilket faktiskt är betecknande även för svenska olyckor efter 1980. <a target="_blank" href= "https://cm.idg.se:8288/polopoly_fs/1.160558.1210282988!imageManager/2204852305.jpg"> <img border="0" alt="" src= "ATC-systemet/3623883823.jpg" /></a></p>
+
+  <p>För att undvika olyckor använde SJ under 90 år dubbelbemanning, alltså en lokförare och ett lokbiträde, enligt principen att fyra ögon ser mer än två. Det gav vissa vinster men fick avbrytas under 1970-talet på grund av lönekostnaderna.</p>
+
+  <p>Att idén inte var helt fel bevisas dock av att flygtrafikledning sköts på motsvarande sätt i dag. I stället införde man dödmansgreppet, i sin praktiska form en pedal som föraren måste trampa på, eller släppa, med vissa tidsintervaller, så att man kunde veta att han inte hade somnat.</p>
+
+  <p>Men olyckorna fortsatte och ett tvingande system sågs som den enda lösningen. Och en lösning blev det när ATC 1 togs i drift 1980. Olyckor är numera mycket sällsynta. För det mesta handlar det om kollisioner med bilar, kollisioner på bangårdar utan ATC, eller där signalanläggningen blivit felkopplad.</p>
+
+  <h3>Olyckor efter 1980</h3>
+
+  <dl>
+    <dt>Enånger-Trönödal 1982:</dt>
+    <dd>På grund av en solkurva spårade ett passagerartåg ur. Tre döda.</dd>
+
+    <dt>Stöde 1987:</dt>
+    <dd>Två sammankopplade lok körde förbi en stoppsignal och kolliderade med ett passagerartåg på grund av en fastfrusen växel. Två döda. ATC-utrustningen i loket var satt ur funktion.</dd>
+
+    <dt>Lerum 1987:</dt>
+    <dd>Två expresståg kolliderar eftersom en växel indikerar fel läge efter en felkoppling i signalsystemet. Nio döda.</dd>
+
+    <dt>Sköldinge 1990:</dt>
+    <dd>Ett passagerartåg höll 120 kilometer i timmen över en växel där bara 40 kilometer i timmen var tillåtet. Två döda. ATC hade varnat men kvitterats bort då föraren trodde att systemet var felaktigt.</dd>
+  </dl>
+
+  <p>Andra länder har inte varit så lyckligt lottade.</p>
+
+  <div class="nbox">
+    <a target="_blank" href= "https://cm.idg.se:8288/polopoly_fs/1.160541.1210278394!imageManager/1955480661.jpg"> <img border="0" alt="" src="ATC-systemet/1267700128.jpg" /></a>
+    <p class="caption">Ett antal pendeltågsolyckor inträffade utanför London under 80- och 90-talen, där Ealing, Moorgate, Clapham Junction och Potters Bar är några av de mest kända.  Tillsammans tvingades många hundra sätta livet till innan haverikommissionen rekommenderade att införa ett ATC-system, men ännu (2008) finns det bara på vissa sträckor.</p>
+  </div>
+
+  <h2>Säkerhetshistorik</h2>
+
+  <p>SJ började redan på 1940-talet att experimentera med olika sätt att få tågen att stanna vid stoppsignaler automatiskt och diskuterade en gemensam standard för tågkontrollsystem.</p>
+
+  <p>Men först på 1970-talet bestämde sig SJ för ett eget system av punktformig karaktär med informationsgivande don (baliser) som är placerade vid signaler, tavlor och vissa väganläggningar, som vid passage avger information till lokutrustningen. Systemet skulle fungera utan central styrning och vara helt distribuerat.</p>
+
+  <p>ATC började projekteras 1978 och de första sträckorna togs i bruk 1980.</p>
+
+  <p>SJ:s avsikt var att alla komponenter skulle utvecklas av två oberoende, konkurrerande leverantörer enligt identiska specifikationer. Valet föll på LM Ericsson och Standard Radio &amp; Telefon.</p>
+
+  <p>Från början var avsikten att båda företagen skulle driva oberoende utveckling, men med tiden blev det så att det ena, LM Ericsson, som sålde av sin verksamhet till ABB Signal, som sålde den till Adtranz som blev Daimler-Chrysler som numera är Bombardier, kom att leverera huvuddelen av baliserna, de gula som sitter i hela landet i dag. Bombardier kallar sina produkter för <strong>Ebicab 700</strong>.</p>
+
+  <p>Standard Radio &amp; Telefon kom huvudsakligen att ägna sig åt ombordutrustningen. Standard Radio sålde denna verksamhet till italienska Ansaldo 1990, som fortsatte att driva ATC-verksamheten under namnet ATSS, vilket sedan gick upp i italienska Ansaldo STS som är en del av Finmeccanica, Italiens ABB ungefär.</p>
+
+  <p>Ansaldo kallar sin lösning för <strong>L10 000</strong>.  Banverket fortsätter att kalla den för <strong>ATC 2</strong>.</p>
+
+  <p>I och med att systemet hela tiden utvecklas håller de flesta lokverkstäder numera på att byta ut de äldre blå Bombardier-antennerna mot Ansaldos nya, fräscha, rostfria.</p>
+
+  <p>Sverige var väldigt tidigt ute med tågskyddssystem, men nu har EU hunnit ikapp. Avsikten är att skapa ett ATP-system som ska fungera i hela Europa. Terminologin har ändrats, den också.  Automatic Train Control (automatisk tågstyrning) var egentligen aldrig något lyckat namn och i EU kallar man det Automatic Train Protection i stället.</p>
+
+  <p>Hela det europeiska systemet kallas ERTMS, vilket ska uttydas European Railway Traffic Management System, och det är ett helhetsgrepp på att styra tåg från alla länder inom hela EU-området.</p>
+
+  <h2>Järnvägssignalering</h2>
+
+  <p>Säkerheten i ATC-systemet medför att hastigheten nedbringas till ofarligt värde före varje restriktion, till praktiskt taget stopp framför varje stoppsignal och till stopp (nödbroms) om en stoppsignal passeras.</p>
+
+  <p>De flesta toleranser har lagts åt den säkra sidan, vilket undantagsvis kan innebära att tågen ibland måste framföras på ett något mer restriktivt sätt än tidigare. Stor möda har dock lagts ner för att begränsa den här olägenheten så mycket som möjligt.</p>
+
+  <h2>Säkerhet i flera lager</h2>
+
+  <p>Allting börjar med någon form av tågdetektering. I Sverige är spårledningen (funktion, se nedan) den i särklass vanligaste metoden. Det är alltid spårledningen som anger om ett spår är belagt eller fritt. Det är den grundläggande säkerheten.  Spårledningen ställer huvudsignalen till rött om spåret är belagt, inte någon tjänsteman eller någon dator på någon central.</p>
+
+  <p>Alla huvudsignaler har dessutom hjälpsignaler, så kallade försignaler, som anger huvudsignalens status långt före huvudsignalen. Reglerna för hur ett tåg ska framföras ser till att tåg som närmar sig en röd signal ska hinna stanna innan den röda signalen passeras.</p>
+
+  <p>Ett tåg definieras som något som kör efter en tidtabell, så står ett tåg på en station så kan föraren åka, om han vill. Det finns ingen signal som kommenderar utan det är tidtabellen. När tåget kommit in på blocksträckan (funktion, se nedan) blir signalen röd för efterföljande och motgående trafik.</p>
+
+  <p>Allt tågledningscentralen kan göra är att ställa om växlar för den tågväg man bestämt för tåget och titta på signalerna som blir resultatet. Om föraren inte åker får man diskutera den saken på kommunikationsradio.</p>
+
+  <p>Tågvägen innebär att växlar och spårspärrar står i rätt lägen och att vägen är hinderfri, samt låst i detta tillstånd. Dessutom ska det finnas fria skyddssträckor så att inte ett tåg kan slå i ett annat som stannat för nära en växel, till exempel.</p>
+
+  <p>ATC visar föraren exakt samma sak som de optiska signalerna: ljussignaler, hastighetsskyltar, lutningsvarningar med meram, om föraren skulle ha missat dem. Det är nästa lager.</p>
+
+  <p>ATC förvarnar föraren om att det snart är dags att börja bromsa om han vill hålla sig inom givna hastighetsregler, i och med att ATC vet hur tungt tåget är och hur lång tid det tar att bromsa. Vid det här laget har varje uppmärksam förare själv börjat bromsa, men han kan ju ha haft tankarna på annat håll, till exempel.</p>
+
+  <p>ATC bromsar åt föraren om han skulle ignorera alla varningar, och bromsar enligt en beräknad bromskurva så att tåget alltid ska hinna stanna före den röda signalen.</p>
+
+  <p>ATC är till för att ge föraren ett stöd vid framförandet av tåget genom att alltid visa aktuell och korrekt information. Om denna information ignoreras ger systemet föraren en serie varningar, och tar till sist över och bromsar tåget. Ända ned till noll om så skulle behövas.</p>
+
+  <p>Det kan dock finnas andra anledningar än en belagd spårsträcka som kan ge röd signal, till exempel en broöppning längre fram, en sönderkörd vägbom (med varningselektronik) eller om tågledningscentralen vet något som föraren inte vet, till exempel att det inträffat en olycka längre fram. I det fallet kan centralen ställa en grön signal till röd, men aldrig tvärt om.</p>
+
+  <p>ATC möjliggör högre hastigheter utan minskning av säkerheten.</p>
+
+  <p>ATC är också ett hjälpmedel för föraren att tillgodogöra sig den alltmer ökade informationsmängden, som i de trafikstarkaste banområdena är så stor att förarna har svårigheter att på ett säkert sätt ta den till sig.</p>
+
+  <p>Införandet av ATC har inneburit att nya, i signaler ej visade, hastighetsnivåer etcetera visas för föraren i förarpanelen, varvid föraren följer det som panelen visar. De optiska signalbilderna får därmed för ATC-tåg en vidare betydelse genom att panelen ger mer exakta besked.</p>
+
+  <h2>Spårledningens funktion</h2>
+
+  <p>Definitionsmässigt ingår spårledningen inte i ATC, men lämnar information till signalsystemet. Signalsystemet påverkar i sin tur de optiska signalerna utefter banan och därmed även ATC-systemet.</p>
+
+  <p>Rälsen är inte kontinuerlig, även om vi i Sverige har helsvetsad räls nästan överallt. Rälerna är genomsågade på strategiska punkter, till exempel vid signaler, och utrymmet är uppfyllt med en isolerande nylonbit.</p>
+
+  <p>Rälsen fram till nästa signal kallas för en blocksträcka och förekomsten av tåg undersöks hela tiden genom att man har lagt en spänning, vanligen ungefär sex volt, mellan rälerna. Ett relä undersöker om det fortfarande är sex volt, eller om rälerna är kortslutna av ett tåg. I så fall faller reläet och signalen visar rött. Det finns inte mycket intelligens här - systemet är stendumt. Och det är det som gör det idiotsäkert.</p>
+
+  <div class="nbox">
+    <img alt="" src="ATC-systemet/4078242027.jpg" />
+    <p class="caption">Här är kitet som ingår i varje lokförares handväska: kortslutningsklämmorna. Skulle det uppstå ett behov av att markera spåret som upptaget kan man kortsluta rälerna med de här klämmorna.</p>
+  </div>
+
+  <p>Det går inte att veta att det är ett tåg. Det kan vara något annat som kortsluter, men den absoluta majoriteten av kortslutningar är faktiskt tåg. Om kortslutningen dessutom inträffar precis när pendeltåget mellan Rönninge och Östertälje borde vara precis just där, kan man utgå ifrån att det är ett tåg.</p>
+
+  <p>Tågledningscentralens jobb är enkelt uttryckt att följa alla kortslutningar som rör sig på spåren runt om i sitt kontrollområde, matcha dem mot tidtabellen och sätta rätt tågnummer på kortslutningen.</p>
+
+  <p>I andra länder, till exempel Danmark, kan tåget aktivt identifiera sig mot systemet, men det använder vi inte här i Sverige. Däremot använder vi ett tågnummerföljningssystem, vilket innebär att ett visst tågnummer aktiveras vid utgångsstation.  Sedan följer tågnumret med genom logiska funktioner allt efter det att tåget rör sig i systemet.</p>
+
+  <p>Hur klarar man sig mot naturens försök att göra kortslutning, med snö, vatten, våta löv, gegga med mera? För det mesta går det bra, men då och då går det inte och då får man de berömda signalfelen.</p>
+
+  <p>Hur är det då med rost och smuts på rälsen? Tåg är tunga och jätteduktiga på att kortsluta. Det är faktiskt inget problem.</p>
+
+  <p>Andra användningar av spårledningen är till exempel att fälla bommar vid järnvägsövergångar, eller att banarbetare med vett och vilja kortsluter spåren med en ledning när de ska arbeta för att vara säkra på att inget tåg kan passera.</p>
+
+  <h2>Signalernas betydelse</h2>
+
+  <p>Du behöver kunna några signaler för att kunna följa med i fortsättningen. För att styra tågtrafiken används olika signaler.  De viktigaste huvudgrupperna är försignaler, huvudsignaler och dvärgsignaler.</p>
+
+  <div class="nbox">
+    <a target="_blank" href= "https://cm.idg.se:8288/polopoly_fs/1.160566.1210283488!imageManager/350678570.jpg"> <img border="0" alt="" src="ATC-systemet/1119537644.jpg" /></a>
+    <p class="caption">Huvudsignaler finns framför allt vid in- och utfarter till stationer men även på linjer som är uppdelade i blocksträckor (vilka tillåter flera tåg att finnas på linjen samtidigt).</p>
+  </div>
+
+  <div class="nbox">
+    <a target="_blank" href= "https://cm.idg.se:8288/polopoly_fs/1.160563.1210283324!imageManager/1561469926.jpg"> <img border="0" alt="" src="ATC-systemet/1129975030.jpg" /></a>
+    <p class="caption">Försignaler används ute på linjen och förvarnar lokföraren om vad nästa huvudsignal kommer att visa så att den hinner bromsa tåget om det skulle behövas.</p>
+  </div>
+
+  <h3>Så här tolkas signalerna</h3>
+
+  <div class="nbox"><img alt="" src= "ATC-systemet/3098297797.jpg" /></div>
+
+  <p>Stopp är kanske uppenbart. Tåget måste stanna före en sådan signal. Kör är också ganska klar och betyder att det går bra att köra med maximalt tillåten hastighet. 40 kilometer i timmen anses som en säker hastighet, till exempel över växlar och anges när försiktighet behövs. Det betyder ungefär kör sakta.</p>
+
+  <div class="nbox"><img alt="" src=
+  "ATC-systemet/2873134285.jpg" /></div>
+
+  <p>Försignalerna berättar om vad som komma skall. Vänta stopp betyder att föraren kan förvänta sig att huvudsignalen visar stopp (om exempelvis 1 000 meter). Det är en smula paradoxalt att blinkande grön signal faktiskt betyder stopp.</p>
+
+  <p>Vänta kör 40 betyder att föraren kan förvänta sig att bara få köra sakta vid huvudsignalen och måste bromsa i enlighet med detta. Vänta kör, den vita blinken, innebär att huvudsignalen är grön och det går bra att fortsätta med maximalt tillåten hastighet.</p>
+
+  <div class="nbox"><img alt="" src= "ATC-systemet/2141377552.jpg" /></div>
+
+  <p>På linjer där signalerna står tätt kan man se kombinerade huvud- och försignaler som visar både aktuellt och nästkommande signalbesked. Kör och Vänta stopp betyder att det går bra att köra nu, men förvänta dig att nästa huvudsignal visar stopp. Kör och Vänta kör betyder att det är grönt hela vägen och att det bara är att köra på.</p>
+
+  <p>Utöver detta finns vägsignaler som visar vad som händer vid en vägkorsning (med tillhörande försignaler), runda hastighetstavlor i plåt med maximal hastighet angiven i svart mot gul bakgrund, samt lutningstavlor som visar banans stigning eller utförslut i promille. Allt detta signalerar baliserna till lokdatorn.</p>
+
+  <h2>Ett signalexempel</h2>
+
+  <p>Låt oss betrakta ett typexempel på signalering på en sträcka mellan två stationer, Station A och Station B. Tåget står på Station A och är på väg ut på linjen. Tågvägen är uppställd av trafikledningscentralen varför alla växlar står i rätt läge.</p>
+
+  <div class="nbox">
+    <a target="_blank" href= "http://www.idg.se/polopoly_fs/1.160552.1210281137!imageManager/2231738757.jpg"> <img border="0" alt="" src="ATC-systemet/1212717406.jpg" /></a>
+  </div>
+
+  <p>Utfartssignalerna från Station A är röda från sidospåren för att ge tåget hinderfrihet men grön för tåget som får köra ut.  Blocksignalen som är en reaktion på spårledningen visar grönt för det finns inget tåg på linjen. Försignalen vid Station B visar också att föraren kan förvänta sig körsignal i infartssignalen eftersom det inte finns något tåg inne på Station B.</p>
+
+  <p>Utfartssignalerna på Station B är röda, uppställda av fjärrblockeringen eftersom ett tåg väntas in.</p>
+
+  <p>Notera att rälerna är genomsågade ungefär vid blocksignalerna för att ge en isolerad spårledning emellan dem som används för att indikera närvaro av tåg.</p>
+
+  <h2>Att köra ATC-tåg</h2>
+
+  <p>För att du ska förstå hur ATC-systemet fungerar måste du börja med att förstå hur det får sina startvärden. Systemet måste veta ett antal saker för att kunna fullgöra sin uppgift: Att ge föraren aktuell information och att se till att tåget stannar säkert.</p>
+
+  <h3>Littera</h3>
+
+  <p>Alla vagnar och lok har ett littera, en uppgift om mått, vikt och bromskraft med mera målad på sidan. Det är dessa uppgifter som ligger till grund för indata till ATC. Innan ett tåg får gå iväg går en man längs hela tåget och noterar alla vagnars längd och tjänstevikt (eller den verkliga vikten om den är känd) och alla bromsvärden. Framme vid lokföraren summeras alla värden så att tågets hela längd och vikt blir känd.</p>
+
+  <p>Bromsfaktorn är den tredje parametern. Systemet behöver veta hur kraftigt tåget kan bromsa för att kunna beräkna bromssträckan. Dessutom måste systemet veta hur lång tid det tar innan bromsen verkligen tar, efter att man aktiverat den: bromsfördröjningen.</p>
+
+  <p>Det är olika för olika vagntyper. Gamla godsvagnar med blockbromsar har tämligen svag bromsverkan i jämförelse med exempelvis X2 som har skivbromsar. Moderna helelektroniska tåg börjar bromsa inom kanske två sekunder efter att föraren slagit till bromsen, medan gamla godståg inte börjar bromsa förrän efter 10-12 sekunder. 10 sekunder kan innebära väldigt många meter körsträcka och systemet måste kunna kompensera för detta.</p>
+
+  <p>Nu vet du varför det står vagnslängd och tjänstevikt på varenda vagn.</p>
+
+  <div class="nbox">
+    <a target="_blank" href= "https://cm.idg.se:8288/polopoly_fs/1.160554.1210281208!imageManager/1536957849.jpg"> <img border="0" alt="" src="ATC-systemet/2922645695.jpg" /></a>
+    <p class="caption">Littera, ett antal uppgifter på varje vagn, är av högsta vikt för att ATC-systemet ska kunna programmeras korrekt.</p>
+  </div>
+
+  <dl class="inline">
+    <dt>SJ</dt>
+    <dd>= Vagnens ägare</dd>
+
+    <dt>2806</dt>
+    <dd>= Inventarienummer</dd>
+
+    <dt>U</dt>
+    <dd>= Passagerarvagn</dd>
+
+    <dt>B</dt>
+    <dd>= Andra klass</dd>
+
+    <dt>2</dt>
+    <dd>= Modellbeteckning (2 betyder X2, alltså X2000)</dd>
+
+    <dt>[200]</dt>
+    <dd>= Högsta hastighet 200 kilometer i timmen</dd>
+
+    <dt>72 Pl</dt>
+    <dd>= 72 passagerare</dd>
+
+    <dt>47 t</dt>
+    <dd>= Tjänstevikt 47 ton</dd>
+
+    <dt>(—25.0 m –)</dt>
+    <dd>= Längd över buffertar 25 meter</dd>
+
+    <dt>R73</dt>
+    <dd>= Driftbromsarnas bromstal (en konstant som anger
+    bromsarnas effektivitet, uttryckt i ton)</dd>
+
+    <dt>R+Mg109</dt>
+    <dd>= Bromstal med driftbromsar och magnetskenbroms</dd>
+
+    <dt>kurvsymbol</dt>
+    <dd>= Vagnen får inte köras över växlingsrygg på rangerbangård,
+    vanligen för att den har lång hjulbas eller betraktas som
+    ömtålig (med järnvägsmått mätt)</dd>
+
+    <dt>KE-R</dt>
+    <dd>= Bromstyp</dd>
+  </dl>
+
+  <h2>ATC-panelen</h2>
+
+  <div class="nbox">
+    <a target="_blank" href= "https://cm.idg.se:8288/polopoly_fs/1.160543.1210278497!imageManager/679363747.jpg"> <img border="0" alt="" src="ATC-systemet/337108596.jpg" /></a>
+  </div>
+  <p>Detta möter en förare av X2-loket (X2000) när han slurkat i sig morgonkaffet och ska ta turen till Göteborg. ATC-panelen ligger överst på styrpanelen.</p>
+
+  <div class="nbox">
+    <a target="_blank" href= "https://cm.idg.se:8288/polopoly_fs/1.160531.1210277831!imageManager/1109183632.jpg"> <img border="0" alt="" src="ATC-systemet/3271565658.jpg" /></a>
+  </div>
+
+  <p>ATC-panelen överst på styrpanelen. Det kan tyckas som en väldig massa grejor bara för att visa en hastighet och bromsa ett lok, men här har man följt the principle of least astonishment.  Allting ska vara idiotsäkert, övertydligt.</p>
+
+  <p>Mera i detalj kan man se att panelen har två huvuddelar, en tågdataenhet för inmatning av grunddata om tåget, och en förarpanel som används vid körning.</p>
+
+  <div class="nbox">
+    <a target="_blank" href= "http://www.idg.se/polopoly_fs/1.160536.1210278145!imageManager/44397039.jpg"> <img border="0" alt="" src="ATC-systemet/3250839099.jpg" /></a>
+  </div>
+
+  <h3>Tågdatapanelen:</h3>
+
+  <dl class="inline">
+    <dt>A:</dt>
+    <dd>Tågets högsta tillåtna hastighet i tiotals kilometer i
+    timmen</dd>
+
+    <dt>B:</dt>
+    <dd>Tågets längd i hundratal meter</dd>
+
+    <dt>C:</dt>
+    <dd>Bromsarnas fördröjningstid i sekunder</dd>
+
+    <dt>D:</dt>
+    <dd>Tågets retardation i meter per sekundkvadrat</dd>
+
+    <dt>E:</dt>
+    <dd>Procentuellt överskridande av hastighetsbegränsning för tåg med specialtillstånd</dd>
+
+    <dt>F:</dt>
+    <dd>Mindre fel, lampa</dd>
+  </dl>
+
+  <p>Föraren måste mata in nya uppgifter före start för till exempel godståg som kopplas ihop olika varje gång.</p>
+
+  <p>Ett tåg som X2 förändras dock nästan aldrig. Där är längd, vikt och bromsförmåga redan känd. Därmed behöver man väldigt sällan ändra tumhjulsinställningarna för ett sådant tåg.</p>
+
+  <p>Trots detta måste föraren alltid programmera in dessa vid start, genom att trycka på inmatningsknappen. Då överförs informationen från tumhjulen till ATC-datorns minne. Fördelen är att man kan fortsätta att köra om till exempel bromsen blir felaktig (och måste stängas av) på en vagn mitt i tåget. Då programmerar man bara om ATC, och så kan man fortsätta färden.</p>
+
+  <div class="nbox">
+    <a target="_blank" href= "http://www.idg.se/polopoly_fs/1.160532.1210277908!imageManager/1552130166.jpg"> <img border="0" alt="" src="ATC-systemet/2890152961.jpg" /></a>
+</div>
+
+<h3>Förarpanelen:</h3>
+
+<dl class="inline">
+  <dt>G:</dt>
+  <dd>Växling tillåten i 40 kilometer i timmen trots signaler (gäller bara en kilometer sedan krävs ny tryckning) </dd>
+  <dt>H:</dt> 
+  <dd> Försignalindikator </dd>
+  <dt>J:</dt>
+  <dd> Indikatorlampa - systemfel </dd>
+  <dt>K:</dt> 
+  <dd> Indikatorlampa - balisfel </dd>
+  <dt>L:</dt> 
+  <dd> Indikatorlampa - hastighetsöverträdelse </dd>
+  <dt>M:</dt> 
+  <dd> Huvudsignalindikator </dd>
+  <dt>N:</dt> 
+  <dd> Lossningsknapp för att häva ATC-broms tidigare </dd>
+  <dt>O:</dt>
+  <dd> Höjningslampa, höjningsknapp med vilken föraren själv kan ange att han vill höja farten efter en nedsättning om baliser skulle saknas </dd>
+  <dt>P:</dt>
+  <dd> Bromsverkan, omkopplare för att ange sämre bromseffekt (halkigt på grund av löv på spåret), gör att ATC förstår att tåget bromsar försiktigare </dd>
+  <dt>R:</dt> 
+  <dd> Stoppassageknapp för att kunna passera stoppsignal vid signalfel utan att få nödbroms </dd>
+  <dt>S:</dt> 
+  <dd> Panelbelysningsdimmer </dd>
+  <dt>T:</dt>
+  <dd> Volymknapp </dd>
+  <dt>U:</dt> 
+  <dd>Inmatningsknapp för tågdata (ENTER)</dd>
+  </dl>
+
+  <p>ATC-panelen visar information om signaler och hastigheter.  Teckenfönstret <strong>H</strong> kallas försignalindikator och visar i detta fall gult 100. Den talar om vad som kommer att hända. Visar en försignal Vänta kör 40 (förvänta dig att få köra 40 kilometer i timmen om 1000 meter) tänds försignalindikatorn och visar 40.</p>
+
+  <h4>Huvudsignalindikatorn</h4>
+
+  <p><strong>M</strong> visar aktuell högsta tillåtna hastighet just nu, alltså den lägsta av antingen hastighetstavlor, signaler eller tågets högsta tillåtna hastighet. I just detta fall får tåget köra 140 kilometer i timmen.</p>
+
+  <p>Försignalindikatorn kan visa bokstavskombinationer också, som indikerar andra hinder. <strong>0P</strong> betyder förvänta dig stopp vid en senare signal, dock ej nästa (bortflyttad målpunkt).  <strong>L</strong> visar att ytterligare en hastighetsnedsättning finns bortom den aktuella.</p>
+
+  <p><strong>4H</strong> betyder att en ATC-övervakad vägkorsning inte är spärrad eller att ett hinder upptäckts på spåret.  <strong>A</strong> anger att målpunkten ligger bortom stoppsignalen. Så där kan man hålla på.</p>
+
+  <h2>Så programmeras ATC-panelen</h2>
+
+  <p>ATC-panelen måste ha ett par viktiga värden för att tåget ska kunna köras. Tågets högsta tillåtna hastighet står målat på sidan av varje vagn. Efter att tåget satts samman av rangerpersonalen går en man längs tåget och slår ihop alla uppgifter och skriver på en lapp.</p>
+
+  <p>Tågets längd är en summering av alla vagnars längd plus loket.  Tågets vikt är på samma sätt summan av alla vagnars vikt plus lokets. Slutligen står tågets bromsvikt, som också finns målad på varje vagn. Föraren dividerar dessa och får fram bromstalet, en sortlös konstant som för ett persontåg ligger lite grann över 100.</p>
+
+  <p>Den sista parametern är bromstyp, G eller P (G står för godståg, lite långsammare och inte så effektiv, P står för persontåg som är snabb och effektiv). Med alla dessa data går föraren in i en tabell och får reda på två saker: <strong>retardationen</strong> i meter per sekundkvadrat vid full broms och <strong>fördröjningstiden</strong>.</p>
+
+  <p>Föraren anger dessa värden på tumhjulen på ATC-panelen (tågdatapanelen, ovan) och trycker på inmatningsknappen (förarpanelen, ovan). I det svenska systemet ges föraren förtroendet att själv beräkna retardationen och mata in alla värden. Anda länder har helt fråntagit föraren detta ansvar.</p>
+
+  <p>Med allt detta inmatat kan systemet beräkna ett antal bromskurvor för driftbromsarna och nödbromsen, magnetskenbromsen.</p>
+
+  <p>Varför behöver man veta tågets längd? Om tåget befinner sig på en sträcka med hatighetsbegränsning är det inte tillåtet att öka farten förrän hela tåget lämnat sträckan. Annars kan exempelvis de sista vagnarna åka av.</p>
+
+  <p>Därefter kan systemet ständigt se till att hålla tågets hastighet under ett antal gränser:</p>
+
+  <p>Tågets maximala hastighet (beror av den lägsta hastighet som står målad på någon vagn i tåget, samt en tabell som heter största tillåtna hastighet med hänsyn till bromstal, lutningar och försignalavstånd.</p>
+
+  <p>Banans maximala hastighet (lämnas av skyltar och baliser). Hastighetsprofil för att kunna bromsa ned till en hastighetsbegränsning (lämnas av skyltar och baliser).  <strong>&gt;</strong> Hastighetsprofil för att kunna stanna för en röd signal (lämnas av baliser).  <strong>&gt;</strong> De två sistnämnda korrigeras kontinuerligt med uppgifter om lutningar (lämnas av skyltar och baliser).   Metoderna att bromsa varierar. Är tåget sent kommer föraren naturligtvis att försöka ligga på högsta möjliga hastighet och kommer att kanske att överskrida dessa hastigheter lite grann i stort sett hela tiden. ATC-systemet börjar med att varna, först på ett snällt och trevligt sätt, men sedan allt ilsknare, tills systemet börjar bromsa, med en bromsverkan anpassad för situationen.</p>
+
+  <p>Nu kan det hända att föraren också insett situationen och
+  själv börjar bromsa innan, eller samtidigt med ATC. Men
+  bromssystemet har en viss reaktionstid, upp till 10-15 sekunder i
+  vissa fall.</p>
+
+  <p>ATC kommer att ta över och ändå bromsa ned farten eftersom
+  systemet känner på lufttrycket i bromsledningen som inte kommer
+  att sjunka omedelbart, och föraren kan med all rätt undra varför
+  han straffas trots att han bromsat korrekt. Därför har systemet
+  toleranser mot sådant.</p>
+
+  <p>Märker ATC ingen reaktion från föraren använder det
+  driftbromsen om möjligt för att få tåget att stanna helt inom
+  säkerhetsavståndet. Skulle farten vara för hög för att
+  driftbromsarna ska hinna bromsa, bromsar tåget enligt
+  nödbromskurvan med driftbromsar och i förekommande fall
+  magnetskenbromsar.</p>
+
+  <h2>Varningskurvor och bromskurvor</h2>
+
+  <p>Tågets bromssträcka ökar kvadratiskt med farten. Den påverkas
+  även avbromstypen, bromstalet, banans lutning, med mera. För att
+  kunna stanna vid en given punkt (target) räknar ATC-systemet
+  baklänges för att hitta den punkt vid vilken bromsen måste sättas
+  in för att tåget ska hinna stanna. Resultatet blir en bromskurva
+  (braking curve, E) som, inte oväntat, anger att bromsen måste
+  slås till allt tidigare ju högre hastigheten är.</p>
+
+  <p>Föraren måste också förvarnas allt tidigare ju högre farten
+  är, varför systemet beräknar flera förvarningskurvor (A, B, C,
+  D). Slutligen beräknas nödbromskurvan (F) som är det absolut
+  sista ställe där tåget kan börja bromsa med både driftbroms
+  (service brake) och nödbroms (emergency brake).</p>
+
+  <div class="nbox">
+    <a target="_blank" href=
+    "http://www.idg.se/polopoly_fs/1.160539.1210278315!imageManager/3219048757.jpg">
+    <img border="0" alt="" src="ATC-systemet/594143353.jpg" /></a>
+
+    <p class="caption">Bild: Ansaldo STS</p>
+  </div>
+
+  <p>Antag att tåget närmar sig en försignal som visar Vänta kör 40
+  (två gröna blinkande ljus). Försignalindikatorn visar 40 efter
+  att baliserna passerats, men det står fortfarande 140 i
+  huvudsignalindikatorn. Då börjar datorn beräkna varningskurvor
+  och bromskurvor.</p>
+
+  <p>Om inte föraren bromsar vid försignalen ändras
+  huvudsignalindikatorn till ett blinkande 40 och lite senare, när
+  tåget hunnit så långt att varningskurvan anger att föraren bör
+  börja bromsa hör föraren två tonstötar. Då bör han börja bromsa
+  ned till angiven hastighet.</p>
+
+  <p>Skulle han inte bromsa väntar ATC tills tåget hunnit så långt
+  att bromskurvan anger att bromsen måste sättas in omedelbart för
+  att tåget säkert ska ha kommit ned till 40 kilometer i timmen när
+  det hunnit fram till huvudsignalen och slår sedan till
+  bromsarna.</p>
+
+  <p>När ATC tagit över kan föraren inte göra något förrän farten
+  är nere i 40 kilometer i timmen. Först då kan han ta över genom
+  att kvittera med en tangenttryckning. Skulle han inte kvittera,
+  bromsas farten ned till noll.</p>
+
+  <h2>Att köra på pipet</h2>
+
+  <p>ATC-systemet varnar föraren med ljudsignaler i en mängd olika
+  situationer, allt från att nu är det dags att bromsa, till att nu
+  är det #@%&amp; dags att bromsa, nu kör du in i ett annat land,
+  ett område utan baliser, ett område med baliser, ett område där
+  det kan förekomma jordskred, ja en helt otrolig massa
+  förhållanden som vi bara kan skrapa på ytan av.</p>
+
+  <p>Körstilarna varierar, men alla förare har ett mål: att köra så
+  nära största tillåtna hastighet (STH) som möjligt för att klara
+  tidtabellen. ATC har en liten hastighetstolerans innan det avger
+  sitt första varningspip, normalt mellan 5 och 9 kilometer i
+  timmen. Ligger man däromkring kommer det att pipa till då och då,
+  men det är ofarligt.</p>
+
+  <h2>ATC-systemets uppbyggnad</h2>
+
+  <div class="nbox">
+    <a target="_blank" href=
+    "http://www.idg.se/polopoly_fs/1.160569.1210283660!imageManager/536663094.jpg">
+    <img border="0" alt="" src="ATC-systemet/4006540081.jpg" /></a>
+
+    <p class="caption">Så här ansluter signalsystemet till
+    baliserna och vidare till lokdatorn. Schemat är kraftigt
+    förenklat och många olika kopplingar kan förekomma.</p>
+  </div>
+
+  <p>I <strong>signalerna</strong> använder man bara 12 volt
+  likspänning till signallampor på korta avstånd. Över längre
+  avstånd används 110 volt växel med en nedtransformator i
+  signalen. Observera också att figuren för spårledning är
+  förenklad och inte tar hänsyn till att rälsen dessutom fungerar
+  som <strong>återledning</strong> för drivströmmen till loket.</p>
+
+  <p>Det kompliceras ytterligare av att rälsen inte är återledning
+  i sin helhet utan indelad i sektioner varifrån returströmmen sugs
+  upp av en sugtransformator och leds till en jordledning som löper
+  längs spåret.</p>
+
+  <p>Spår av järn är inte tillräckligt bra ledare och strömmarna är
+  höga, flera hundra ampere (Ett Rc-lok drar maximalt 3,6 megawatt.
+  Med en spänning på 16 kilovolt blir det 225 ampere. Det är några
+  stycken.) De störningar som returströmmen inför i rälsen måste
+  man också kompensera för i spårledningskretsen.</p>
+
+  <p>Lokdatorn känner av om det passerar en A-balis först och avgör
+  om denna informationspunkt är avsedd för denna
+  <strong>färdriktning</strong> eller motgående. Motriktade
+  informationspunkter ignoreras.</p>
+
+  <p>Test1 är en funktion (en fuskbalis) för att med jämna
+  mellanrum kolla att transmissionssystemet fungerar. Med jämna
+  mellanrum betyder i detta fall 50 millisekunder, det vill säga
+  ungefär den tid som det tar för X2000 att köra knappt tre
+  meter.</p>
+
+  <p>Test1 sitter i inbyggd i antennen, men syns egentligen inte.
+  Skulle Test1 av någon anledning fallera så varnas föraren
+  omedelbart, tåget bromsas och man får indikeringen systemfel.</p>
+
+  <h2>Ett kapabelt system hopsatt av enkla bitar</h2>
+
+  <p>SJ tänkte mycket och länge innan man lade fast
+  specifikationerna för systemet. De enskilda delarna skulle vara
+  mycket driftsäkra och fick inte bli för komplicerade och dyra.
+  Det skulle bli många av dem och de skulle sitta över hela
+  landet.</p>
+
+  <p>Man kan inte direkt säga att baliserna, transpondrarna, är
+  speciellt komplicerade. Med dagens mått mätt är de tämligen
+  primitiva. Å andra sidan är de oerhört driftsäkra.</p>
+
+  <p>Men det viktigaste är de smarta programmen i lokdatorn.
+  Meddelandena från baliserna är mycket korta med begränsat
+  informationsinnehåll och det får programmen kompensera för.</p>
+
+  <h2>Omborddatorn dubblerad</h2>
+
+  <p>Det finns olika sätt att skapa säkerhet i datorsystem. I
+  ATC-systemet från Ansaldo valde man tidigt principen med två
+  separata cpu:er. De båda sektionerna, är identiska men behöver
+  inte nödvändigtvis exekvera exakt samma program (även om de gör
+  det i det i Ansaldos ATC).</p>
+
+  <p>I äldre system rörde det sig om två helt skilda moduler i
+  samma racklåda, men i Ansaldos moderna konstruktioner är det två
+  likadana datorer på samma kretskort, dock helt åtskilda. Båda
+  datorerna kör samma program, men klocksignalerna är fasförskjutna
+  i den ena datorn, så att en störning inte ska påverka båda
+  datorerna på samma sätt.</p><a href=
+  "https://cm.idg.se:8288/polopoly_fs/1.160529.1210277657!imageManager/248846056.jpg"
+  target="_blank"><img border="0" src="ATC-systemet/2515606566.jpg"
+  alt="" /></a>
+
+  <p>ATC-datorn sitter i loket, ovanför lokdatorn som sköter lokets
+  övriga funktioner. Just den här datorn (se bild ovan) sitter i
+  ett X2-lok och kommer från Ansaldo (tidigare Standard Radio &amp;
+  Telefon, märkt SRT, även märkt ATSS). Datorn är oerhört
+  driftsäker. Det finns inget Windows.</p>
+
+  <dl class="inline">
+  <dt>A:</dt>
+  <dd>Tågdatasändare, för att fälla bommarna tidigare för ett höghastighetståg (används inte längre, utan ersätts successivt med markbaserad hastighetsmätning). </dd> 
+  <dt>B+C:</dt>
+  <dd> Dubblerade spänningsaggregat.  </dd>
+  <dt>D:</dt> 
+  <dd> Lokanpassare: Gränssnitt mot bromssystem, vägmätning och manöverorgan.  </dd>
+  <dt>E+F:</dt>
+  <dd> Dubblerade datorkort. Den gula märkningen ATC2 hänför sig till programrevisionen.  </dd>
+  <dt>G:</dt>
+  <dd> Komparator: Enhet som jämför och sammanväger datatrafiken till och från datorkorten.  </dd>
+  <dt>H:</dt> 
+  <dd> Registreringsenhet: Tågets svarta låda.  </dd>
+  <dt>J:</dt> 
+  <dd> Transmission, alltså sändare-mottagare. Den bruna skärmade ledaren bär 27 megahertz-signalen medan den tjocka svarta bär svarssignalen på 4,5 megahertz.  </dd>
+  <dt>K:</dt> 
+  <dd> Kablage till diverse reglage på framsidan.  </dd>
+  
+  </dl>
+
+  <h2>Antennen under loket</h2>
+
+  <p>Vi har gått på inspektionsrond under några X2-lok och hittat
+  två sorters ATC-antenner.</p>
+
+  <div class="nbox">
+    <a href= "https://cm.idg.se:8288/polopoly_fs/1.160523.1210277220!imageManager/2095603981.jpg" target="_blank"><img border="0" src= "ATC-systemet/3451795082.jpg" alt="" /></a>
+    <p class="caption">Adtranz (Bombardiers) gamla, blå ATC-antenn.  Spolens form är uppenbar. Just den här är lite sliten och bankad av stenskott och sjunger på sista versen.</p>
+  </div>
+
+  <div class="nbox">
+    <a href= "https://cm.idg.se:8288/polopoly_fs/1.160526.1210277328!imageManager/2513694865.jpg" target="_blank"><img border="0" src= "ATC-systemet/3395648157.jpg" alt="" /></a>
+    <p class="caption">Ansaldos ATC-antenn. Den här antennen är i skick som ny, eftersom Ansaldos antenner håller på att ersätta de gamla från Adtranz. Antennen sitter cirka 35 centimeter ovanför baliserna.</p>
+  </div>
+
+  <h2>Balisen - enkel fast svår</h2>
+
+  <p>Balis betyder egentligen sjömärke på franska och är ett konstigt namn på en transponder, alltså en apparat som tar emot en radiosignal och svarar med en annan, kodad radiosignal.</p>
+
+  <p>Baliserna i en informationspunkt placeras vid signaler, tavlor och på övriga platser, där information ska överföras till tågen.  Den överförda informationen innehåller uppgift om vilken informationspunkt som avses (tavlor, signaler etcetera).</p>
+
+  <p>Baliserna är helt passiva. De har ingen kraftförsörjning och är inte galvaniskt anslutna till Banverkets signalsystem och tar heller ingen kraft därifrån. Skulle en balis drabbas av ett katastrofalt fel ska det inte påverka ljussignalen.</p>
+
+  <p>Det finns egentligen tre typer av baliser: fast kodade och styrbara, samt markörer. Dessutom förekommer olika typer av testbaliser.</p>
+
+  <strong>F:</strong>
+
+  <dd>
+	  Fast proppad balis, sänder information om hastighet, avstånd,
+	  lutning och så vidare. Används där informationen inte förändras
+	  till exempel vid tavlor.
+  </dd>
+
+  <dt>S:</dt>
+
+  <p>Styrbar balis, sänder information om hastighet, avstånd och
+  tågvägsinformation som den får via en kabel från signalsystemet.
+  Både Y- och Z-orden (se nedan) kan vara styrbara. Används där
+  informationen varierar, till exempel vid signaler. Dessa
+  förekommer sedan i tre undergrupper:</p>
+
+  <p> <strong>Y:</strong> Styrbar balis, endast Y-ordet
+  styrbart.  <strong>Z:</strong> Styrbar balis, endast
+  Z-ordet styrbart.  <strong>YZ:</strong> Styrbar balis, där
+  både Y- och Z-orden är styrbara.</p>
+
+  <p><strong>M:</strong></p>
+
+  <p>Markör, sänder ingen annan information än balisnärvaro.
+  Används tillsammans med en fast eller styrbar balis för att
+  säkerställa att en informationspunkt upptäcks samt för
+  riktningsbestämning.</p>
+
+  <p><strong>T:</strong></p>
+
+  <p>Testbalis vid driftverkstäder, där den används för att
+  kontrollera ATC-antennernas känslighet hos de fordon som passerar
+  över balisgruppen.</p>
+
+  <p>T-balisen läggs normalt ut tillsammans med en F-balis, så att
+  de bildar en grupp. Genom att T-balisen kräver fullgod
+  sändareffekt och mottagarkänslighet för att kunna läsas, ges
+  balisfel om fordonsantennen inte uppfyller kraven.</p>
+
+  <p>Dessutom finns baliser som kan trigga prov av lokets
+  vägmätningsutrustning. Med 1000 meters mellanrum monteras en
+  A-balis som sänder koden BMK (Början väg Mätnings Kontroll) och
+  en A-balis som sänder SMK (Slut väg Mätnings Kontroll). Skulle
+  loket mäta ett avstånd utanför 980-1200 meter ges en
+  felindikering. (Om A, B, C-basliser, se nedan.)</p>
+
+  <p>De fasta och styrbara baliserna är exakt likadant
+  konstruerade, men där den styrbara balisen tar in signaler i
+  serieform (eller på äldre baliser; i parallellform) från en
+  extern kodare som sitter vid signalstolpen eller i ett
+  signalskåp, har den fasta balisen i stället fast programmerade
+  pluggar, byglade kontaktdon inskruvade i signalingångarna.
+  <a href=
+  "https://cm.idg.se:8288/polopoly_fs/1.160520.1210277081!imageManager/1339365926.jpg"
+  target="_blank"><img border="0" src="ATC-systemet/180054292.jpg"
+  alt="" /></a></p>
+
+  <p><em>Den här balisen är styrbar. Du ser att det kommer in en
+  kabel från sidan.</em></p>
+
+  <h2>BALISKOMBINATIONER OCH DATA</h2>
+
+  <p>Balisen är en högsäker massprodukt. Runt om i Sverige sitter
+  cirka 45 000 baliser som helst ska klara sig utan underhåll i 25
+  år. De ska fungera fast de är infrusna i is, i minus 40 grader,
+  eller stekta av solen i plus 70 grader.</p>
+
+  <p>Signalen måste gå fram trots att balisen, som på Malmbanan,
+  ofta är täckt av ledande järnmalmsdamm. Tåligheten mot
+  vibrationer är enorm. Balisen ska tåla att godståg far fram på 20
+  centimeters håll, otaliga gånger per dag. För den skull ligger
+  kretskortet ingjutet i en tjock, fjädrande klump av
+  silkonmaterial.</p>
+
+  <p>Balisen strömförsörjs av en radiosändare i loket som pulsar ut
+  27 megahertz med en effekt av 15 watt i pulser om 50 kilohertz.
+  Anledningen till att man inte sänder kontinuerligt är att balisen
+  också ska synkroniseras med ATC-datorn.</p>
+
+  <p>Energiöverföringen är inte att likna vid radiosändning utan de
+  båda enheterna är snarare primär- och sekundärlindingar i en
+  luftlindad transformator.</p>
+
+  <p>Denna typ av distribuerad strömförsörjning är väldigt smart
+  uttänkt. Alla enkla plåttavlor som indikerar fart och lutning med
+  mera kan finnas var som helst ute i ödemarken och man behöver
+  inte dra dit en kabel med drivspänning.</p>
+
+  <p>Balisen sänder tillbaka data (telegram) AM-modulerat på 4,5
+  megahertz med 50 kilobit per sekund. Sändningen sker via en annan
+  transformatorlindning och tas emot av en liknande i
+  ATC-antennen.</p>
+
+  <p>Nedanstående förklaring är en grov överförenkling av
+  innehållet i det data som baliserna sänder, eftersom det mycket
+  begränsade antalet bitar kräver mycket tabelluppslagning och
+  resultatet blir många förbjudna bitkombinationer.</p>
+
+  <h2>Balisplats</h2>
+
+  <p>En informationspunkt kan bestå av 2-5 baliser, kallade i tur
+  och ordning A, B, C och så vidare. Är alla baliser i en grupp
+  fast kodade så kan den indikera en hastighetsbegränsning, till
+  exempel. Har gruppen minst en styrbar balis är det fråga om
+  varierbar information, vanligen förknippat med en signal.</p>
+
+  <p>Med två baliser vid en signal, AB (vanligast) indikerar
+  A-balisen signalbeskedet och B-balisen avståndet till
+  restriktionen. Finns det en lutning som påverkar bromsningen så
+  lägger man till en C balis. Baliser sitter alltid på 2,6 meters
+  inbördes avstånd.</p>
+
+  <p>Minst två baliser utnyttjas för att bilda en så kallad
+  informationspunkt. Anledningen till att minst två baliser används
+  är:</p>
+
+  <p><strong>&gt;</strong></p>
+
+  <p>Säkerhetsskäl (en balis kanske går sönder).</p>
+
+  <p><strong>&gt;</strong></p>
+
+  <p>För att fordonsutrustningen ska kunna avgöra om
+  informationspunkten gäller den aktuella körriktningen eller den
+  motsatta (de båda baliserna är olika).</p>
+
+  <p><strong>&gt;</strong></p>
+
+  <p>För att utöka informationsmängden.</p>
+
+  <p>I och med den begränsade informationsmängden betyder balisens
+  plats i informationsgruppen också något. Den balis som ligger
+  först i färdriktningen kallas för A-balis, nästkommande för
+  B-balis och så vidare.</p>
+
+  <p>Denna information överförs inte utan är underförstådd av de
+  telegram som tas emot. Det finns även dubbelriktade balisgrupper,
+  till exempel ABCA.</p>
+
+  <h2>Telegrammets sammansättning</h2><a href=
+  "http://www.idg.se/polopoly_fs/1.160571.1210283744!imageManager/3151904119.jpg"
+  target="_blank"><img border="0" src="ATC-systemet/3678674271.jpg"
+  alt="" /></a>
+
+  <p>När balisen vaknat av energin från sändaren börjar den sända
+  telegram med sin förbestämda information. Ett telegram består av
+  ett åtta bitars synkord och därefter de fyra första databitarna
+  ur dataorden X, Y och Z.</p>
+
+  <p>Efter dessa följer slutet av dataorden som är den redundanta
+  hammingkoden. Ett telegram är totalt 32 bitar, varav 24 är
+  nyttobitar, men när synkordet och hammingkoden skalats bort blir
+  det bara ynka 12 bitar över.</p>
+
+  <p>Samma telegram upprepas så länge det finns ström. För att det
+  ska accepteras måste loket höra minst 8 telegram, alltså 256
+  bitar, och minst fyra av dem måste vara identiska.</p>
+
+  <p>12 bitar har historiska skäl. När ATC uppfanns i mitten av
+  1970-talet kunde man inte tolka tätare data än 50 kilobit per
+  sekund i realtid och AM-modulation var avancerat nog.</p>
+
+  <p>I dag har vi inga problem med det och de kommande
+  eurobaliserna, som använder precis samma frekvenser och
+  bandbredd, modulerar i stället in ända upp till 1023 bitar med
+  kvadraturmodulation.</p>
+
+  <h2>Kategorier</h2>
+
+  <p>Varje balis ges en kategori (1 - 14, 0 och 15 är reserverade),
+  som anges i telegrammets X-ord. Y- och Z-ordens information
+  tolkas olika beroende på kategorin, och i vissa fall beroende på
+  läget inom informationspunkten.</p>
+
+  <p>Endast baliser av vissa kategorier (vissa X-ord) får placeras
+  som A-baliser. A-balisen innehåller alltid gruppens
+  kategorinummer i X-ordet (kallat AX).</p>
+
+  <p>Eftersom de första fyra bitarna alltid går åt för att
+  signalera balis-kategori blir det bara åtta kvar att göra något
+  nyttigt med. Skulle inte det räcka till skarvar man med nästa
+  balis. Då behövs i stället en kod för att visa att man ska
+  skarva. Kvar blir bara fyra bitars nyttodata i första
+  balisen.</p>
+
+  <h2>Länkningsavstånd</h2>
+
+  <p>Alla balisgrupper överför ett länkningsavstånd, alltså ett
+  avstånd där målhastigheten ska vara uppnådd, eller avståndet till
+  nästa balisgrupp. Skulle någon balis eller balisgrupp vara borta
+  eller utslagen känner lokdatorn av det och börjar bromsa tåget
+  automatiskt. Länkningsavståndet noll är inte tillåtet, utom vid
+  passage av stoppsignal, då man faktiskt just överträtt
+  målavståndet.</p>
+
+  <p>Man skulle kunna tro att länkningsavståndet kunde ge problem
+  om tåget kör in på en station med flera spår. Beroende på vilket
+  spår tåget växlas in på så kan länkningsavståndet misstämma
+  eftersom det kan vara olika långt till nästa balis.</p>
+
+  <p>Länkningsavståndet har dock sådana toleranser att det ofta
+  inte spelar någon Dessutom vet den som lagt ut baliserna givetvis
+  om problemet, och kan då lägga till så kallade
+  länkningsbaliser, vars enda uppgift är att förlänga ett
+  tidigare överfört länkningsavstånd.</p>
+
+  <h2>Ett signalexempel</h2>
+
+  <p>Låt oss bara titta på ett enda telegramexempel, nämligen det
+  som överförs vid en huvudsignal, alltså den vanligaste typen av
+  signal. Kombinationerna är så många att de enklast sammanställs i
+  en tabell, enligt nedan.</p>
+
+  <p>Vid huvudsignal överförs takhastighet och grundavstånd
+  (länkningsavstånd).</p>
+
+  <div class="nbox">
+    <img src="ATC-systemet/1303794582.jpg" alt="" />
+
+    <p class="caption">Tabellen anger alla möjligheter, även
+    nummer- och prefixbaliser, som är frivilliga att använda.</p>
+  </div><strong>Nummerbalis:</strong> Finns nummerbalis (N) ska den
+  ligga först och ha NX = 12. Kategori 12 är alltså nummerbalis.
+  NY+NZ anger numret (8 bitar), där signalnummer 0 inte är
+  tillåtet. Numret kan användas i tabelluppslagning eller vid
+  automatiska förfrågningar, till exempel via radio.
+  <strong>Prefixbalis:</strong> Finns prefixbalis (P) så har den PX
+  = 8. PY+PZ anger prefixet och förekommer dels vid
+  tågslagsberoende hastighetsnedsättning, dels vid bortflyttning av
+  målpunkt till växel eller signal. P-balisen placeras före
+  huvudbaliserna.
+
+  <p><strong>A-balis:</strong></p>
+
+  <p>A-balisen kan ha två värden i <strong>AX</strong>, 1 och 4.
+  Båda betyder huvudsignal.</p>
+
+  <p><strong>AY</strong></p>
+
+  <p>anger farten från den signal där man befinner sig, där AY = 0
+  är farten noll, dvs stoppsignal. Detta är det s k
+  huvudsignalbeskedet.</p>
+
+  <p><strong>AY = 1 ... 12</strong> anger Kör och en viss fart, där
+  värdet tas ur en tabell (1 = 40 kilometer i timmen upp till 12 =
+  270 kilometer i timmen. Slå upp tabell HS i handbok 544.30008.
+  <strong>AY = 13</strong> används inte. <strong>AY = 14</strong>
+  betyder att huvudsignal saknas och att det alltså rör sig om en
+  ren försignal. <strong>AY = 15</strong> är inte tillåtet.</p>
+
+  <p><strong>AZ</strong></p>
+
+  <p>anger farten från nästa signal, där AY = 0 är farten noll, det
+  vill säga nästa signal visar stopp. Detta är det så kallade
+  försignalbeskedet.</p>
+
+  <p><strong>AZ = 1 ....12</strong> betyder att nästa signal visar
+  en fart, där värdet tas ur en tabell (1 = 40 kilometer i timmen
+  upp till 12 = 270 kilometer i timmen). Slå upp tabell HS i
+  handbok 544.30008. <strong>AZ = 14</strong> betyder att försignal
+  saknas och att det alltså rör sig om en ren huvudsignal.
+  <strong>B-Balis:</strong></p>
+
+  <p><strong>BX = 9</strong> anger att det rör sig om en B-balis
+  som visar länkningsavstånd. <strong>BY = 0 ... 14</strong> där
+  värdena är kolumnnummer i en avståndstabell (tabell DF i handbok
+  544.30008). <strong>BZ = 1 ... 14</strong> där värdena är
+  radnummer i samma avståndstabell DF. <strong>BZ =
+  0</strong> pekar vidare till C-balis (och anger att C-balis
+  finns) där CY i stället anger radnummer i tabell DF. Detta behövs
+  om man också har ett lutningsvärde, som då anges av CZ.
+  <strong>C-balis:</strong></p>
+
+  <p><strong>CX = 14</strong> anger att C-balisen är en
+  fortsättning på länkavståndet i B-balisen. <strong>CY = 1 ...
+  14</strong> där värdena är radnummer i tabell DF.
+  <strong>CZ = 0 ... 14</strong> anger lutning i en tabell (tabell
+  GR) där 0 anger -40 promille och 14 anger +30 promille.</p>
+
+  <p><strong>Nummerbalis på slutet:</strong> Nummerbalisen kan
+  också placeras sist men ska fortfarande ha <strong>NX =
+  12</strong>.</p>
+
+  <h2>Praktiskt exempel</h2>
+
+  <p>Låt oss prova. Antag att vi har en huvudsignal med A, B och
+  C-baliser. Då kan baliserna till exempel visa följande
+  värden:</p>
+
+  <table cellspacing="1" cellpadding="1" border="1" align="" width=
+  "100%" summary="">
+    <tbody>
+      <tr>
+        <td align="center" valign="middle"><strong><span class=
+        "">AX</span></strong></td>
+
+        <td align="center" valign="middle"><strong><span class=
+        "">AY</span></strong></td>
+
+        <td align="center" valign="middle"><strong><span class=
+        "">AZ</span></strong></td>
+
+        <td align="center" valign="middle"><strong>BX</strong></td>
+
+        <td align="center" valign="middle"><strong>BY</strong></td>
+
+        <td align="center" valign="middle"><strong>BZ</strong></td>
+
+        <td align="center" valign="middle"><strong>CX</strong></td>
+
+        <td align="center" valign="middle"><strong>CY</strong></td>
+
+        <td align="center" valign="middle"><strong>CZ</strong></td>
+      </tr>
+
+      <tr>
+        <td align="center" valign="middle">4</td>
+
+        <td align="center" valign="middle">12</td>
+
+        <td align="center" valign="middle">1</td>
+
+        <td align="center" valign="middle">9</td>
+
+        <td align="center" valign="middle">5</td>
+
+        <td align="center" valign="middle">0</td>
+
+        <td align="center" valign="middle">14</td>
+
+        <td align="center" valign="middle">7</td>
+
+        <td align="center" valign="middle">5</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p>Omkodat hexadecimalt skulle detta
+  bli:</p><strong>4C1950E75</strong>
+
+  <p>Lokdatorn tolkar det som: "Vi körde förbi en medriktad signal
+  (<strong>AX=1 eller 4</strong>). Den innehöll både
+  huvudsignalinformation och försignalinformation. Från denna punkt
+  är tillåtna hastigheten 270 km/h (<strong>AY=12</strong>).
+  Hastigheten begränsas dock i själva verket till exempelvis 130
+  kilometer i timmen, eftersom loket alltid har med sig information
+  om banans största tillåtna hastighet från en tidigare balisgrupp
+  placerad vid hastighetstavla.</p>
+
+  <p>Från nästa signal får vi köra max 40 kilometer i timmen
+  (<strong>AZ = 1</strong>). Det är det så kallade
+  försignalbeskedet. Avståndet till denna punkt är 1225 meter
+  (<strong>BY = 5, CY = 7</strong>). Dessutom vet vi att det finns
+  en utförslutning på 11-15 promille (<strong>CZ = 5</strong>),
+  vilket gör att loket måste inleda bromsning tidigare."</p>
+
+  <div class="nbox">
+    <a href=
+    "https://cm.idg.se:8288/polopoly_fs/1.160516.1210276765!imageManager/962280948.jpg"
+    target="_blank"><img border="0" src=
+    "ATC-systemet/2069295822.jpg" alt="" /></a>
+
+    <p class="caption">Tre baliser som jobbar tillsammans,
+    A+B+C-baliser. Två av dem är styrbara.</p>
+  </div>
+
+  <h2>Repeterbaliser</h2>
+
+  <p>Om en balis sitter exempelvis 3000 meter före en röd signal
+  har tåget visserligen god tid på sig att bromsa, men om signalen
+  skulle ha slagit om till grönt innan tåget nått fram till den,
+  får lokdatorn aldrig reda på det.</p>
+
+  <p>Det här är ett mycket svårt fall att åtgärda med punktformiga
+  signaler. En eller fler repeterbalisgrupper kan därför sitta
+  närmare huvudsignalen och meddela om denna ändrats.</p>
+
+  <h2>Test1-funktionen</h2>
+
+  <p>ATC-datorn måste hela tiden kunna veta att den kan sända och
+  ta emot kommandon, men utan balis att prova på är det svårt.
+  Därför innehåller ATC-antennen en fiktiv balis kallad Test1
+  (egentligen bara en extra slinga i lokets antenn och lite
+  elektronik) som alltid svarar på ATC-datorns signaler, var
+  femtionde millisekund. Koden är sammansatt så att en verklig
+  balis inte kan maskeras bort av svaret från Test1.</p>
+
+  <p>Får ATC-datorn inget svar av testbalisen måste den anta att
+  systemet är trasigt, indikera detta och nödbromsa tåget.</p>
+
+  <p>Det här var bara ett litet skrap på ytan av balisernas
+  funktioner. Om du verkligen vill grotta ned dig i detta kan du
+  läsa Banverkets handbok <em>544.30003: Informationsflöde mellan
+  bana och lok</em>. När du härdat dig fortsätter du med handbok
+  <em>544.30008: ATC-tabeller</em>.</p>
+
+  <p>Det är faktiskt så knepigt att ta reda på hur baliserna ska
+  programmeras att Banverket har ett speciellt programverktyg
+  kallat Patcy som gör det åt dem. Utdata ur Patcy kan direkt föras
+  vidare in i cad-systemet som används för att planera och
+  konstruera banor och bangårdar.</p>
+
+  <h2>Tillägg och bakåtkompatibilitet</h2>
+
+  <div class="nbox">
+    <img src="ATC-systemet/3318097018.jpg" alt="" />
+
+    <p class="caption">Som alla andra datorsystem är ATC med i
+    uppgraderingsspiralen.</p>
+  </div>
+
+  <h2>ATC 1 – ATC 2 – ATC 2.1 – ATC 2.2</h2>
+
+  <p>Den första programutgåvan för lokdatorn infördes 1980 och kom
+  att kallas <strong>ATC 1</strong>.</p>
+
+  <p>1993 infördes en ny programrelease med namnet <strong>ATC
+  2</strong> som bland annat är frikostigare med möjligheterna att
+  lossa broms som ATC har satt om hastigheten är på väg ned. Om
+  flera hastighetsnedsättningar följer efter varandra visade ATC 1
+  den lägsta, medan ATC 2 har ändrats till att visa den närmaste,
+  med resultat att tåget kan köras fortare. Lite extra smått och
+  gott som gjort det trevligare att köra tåg.</p>
+
+  <p><strong>ATC 2.1</strong></p>
+
+  <p>medger att extrainformation, till exempel signalbesked
+  överförs via radio, så kallade radioblock. Härigenom kan
+  restriktiva försignalbesked (exempelvis Vänta stopp) hävas så
+  snart som den försignalerade huvudsignalens besked ändrats
+  (stoppsignal som slår om till Kör).</p>
+
+  <p>Varje försignal ges då ett nummer, vilket egentligen refererar
+  till den huvudsignal som försignaleras. Vid passage av restriktiv
+  försignal med nummer sänder fordonsutrustningen en
+  höjningsbegäran. Centralutrustningen sänder ett höjningsbesked så
+  snart signalen ändrats.</p>
+
+  <p>På motsvarande sätt som för signaler ska också restriktiva
+  besked från numrerade orienteringstavlor kunna höjas via radio
+  (gäller i första hand för vägkorsningar).</p>
+
+  <p><strong>ATC 2.2</strong></p>
+
+  <p>utvecklades speciellt för loken på Öresundsbron, som ska kunna
+  växla mellan svenskt och danskt system. Den danska delen av
+  Öresundssystemet utvecklades av Siemens, så på ett tåg som går
+  över bron sitter både svensk och dansk ATC, samt en hel del extra
+  enheter som har med systemval och omkoppling att göra.
+  Omkopplingen sker helt automatiskt i hastigheter upp till 200
+  kilometer i timmen.</p>
+
+  <p>Lustigt nog blev Ansaldos och Bombardiers program inte helt
+  likadana, trots att de är utarbetade efter samma specifikationer.
+  Det är särskilt i undantagsfallen, som när två balisgrupper råkar
+  blandas, olika balisfel uppträder, eller tåget kör in eller ut ur
+  balisutrustat område eller i annat land, som indikeringarna på
+  förarpanelen skiljer sig något åt.</p><strong>ERTMS</strong>
+
+  <p>Tågkontrollsystemet ATC i Sverige och Norge är helt unikt men
+  en aning ålderstiget. EU har beslutat att införa ett nytt
+  gemensamt signalsystem för järnvägen, vilket går under
+  beteckningarna ERTMS/ETCS, som står för European Railway Traffic
+  Management System/European Train Control System.</p>
+
+  <p>När det nya systemet är i drift kommer gränsöverskridande
+  järnvägstrafik i Europa att slippa ett stort hinder. I dag har i
+  princip varje land sitt eget signalsystem.</p>
+
+  <p>Det nya systemet använder annan modulation från baliserna.
+  Sålunda behöver vi i Sverige nya baliser. Eftersom man inte kan
+  byta alla baliser på en gång måste det nya loksystemet kunna
+  fungera med gamla baliser.</p>
+
+  <p>Lösningen, åtminstone för svenska förhållanden, kallas STM,
+  Specific Transmission Module, och utvecklas av Ansaldo på uppdrag
+  av Banverket. STM kopplas in mellan antennen och ERTMS-lokdatorn
+  och tar gammaldags ATC-data och kodar om det till den nya formen
+  och lämnar det till lokdatorn.</p>
+
+  <p>Lok utrustade med nya lokdatorer kan sålunda köras på banor
+  med gamla baliser. När alla baliser bytts ut på de banor där
+  detta fordon brukar köras, kan STM tas bort. Ett sådant utbyte
+  kan ta upp till 30 år, så STM blir inte omodern i första
+  taget.</p>
+
+  <h2>180-bitarskoden</h2>
+
+  <p>Så här i efterhand kan man lugnt konstatera att 12 bitar är
+  för liten meddelandelängd för att vara praktiskt användbar. Alla
+  kommandon måste plockas ur tabeller, kombineras med andra värden
+  och alltför många värden är otillåtna. Alltför många bitar i en
+  balisgrupp går åt till att hänvisa till nästa balis. Det blir
+  egentligen väldigt lite plats kvar för nyttodata.</p>
+
+  <p>Det nya ERTMS åtgärdar 12-bitarsproblemet genom att införa nya
+  telegram med över 500 bitars nyttodata (och CRC som felrättade
+  kod). Resultatet är naturligtvis att man kan klara sig med
+  maximalt två baliser i varje informationspunkt, vilket minskar
+  kostnaderna. Samtidigt ligger fältet öppet för nya
+  funktioner.</p>
+
+  <p>Det finns även ett mellansteg med 180-bitarsbaliser vilket
+  används redan i Sverige, dels för malmtågen nere i LKAB:s
+  järnmalmsgruva i Kiruna och dels på Roslagsbanan norr om
+  Stockholm.</p>
+
+  <h2>Radioblockering</h2>
+
+  <p>Standardiserad tågradio enligt gsm-principen håller på att
+  införas över hela landet. Vissa data som sänds över tågradion kan
+  modifiera ATC-systemets funktion, till exempel
+  positionsinformation och reviderad målhastighet avseende en
+  bestämd signalpunkt (signalbesked) överföras. För att det ska
+  fungera lämnar baliserna också positionsinformation till
+  tågradion.</p>
+
+  <p>Radioblockering infördes på en bana i Sverige 1995 (utan gsm),
+  men Banverket valde att avvakta med vidare implementering. Nu
+  kommer dock radioblock igen (nu med gsm), som en del i ERTMS
+  (Level 3).</p>
+
+  <p>I en framtid kommer radioblockering helt att ta över
+  tågstyrningen. Fysiska signaler och tavlor kommer inte längre att
+  behövas utmed banan och underhållet för dessa bortfaller.
+  Samtidigt kan mycket mera detaljerade besked lämnas till
+  föraren.</p>
+
+  <h2>Data via kodad spårledning</h2>
+
+  <p>Det finns ett besvärligt fall för både tågförare och ATC: Om
+  försignalen och baliserna sagt att huvudsignalen visar rött måste
+  föraren bromsa så att tåget kan stanna framför den röda
+  signalen.</p>
+
+  <p>Skulle den röda signalen slå om till grönt efter att tåget
+  passerat försignalen finns det inget sätt för föraren eller
+  ATC-systemet att få reda på det utan tåget kommer att bromsas som
+  om inget hänt och när föraren ser den nu gröna signalen tvingas
+  han börja accelerera igen. Detta minskar kapaciteten på linjen i
+  och med att trafiken uppehålls onödigt.</p>
+
+  <p>Fanns det ett sätta att meddela den gröna signalen skulle man
+  kunna öka linjens kapacitet. Radioblock med reviderad
+  målhastighet är en möjlighet, och att överföra signaldata som en
+  bärvåg genom rälsen är en annan, så kallad kodad spårledning
+  (coded track ciruit).</p>
+
+  <p>I det senare fallet används inte spårlednigen bara till att
+  signalera till systemet att spåret är belagt utan även för
+  dataöverföring. Detta är vanligt i andra länder, till exempel
+  Australien och är på väg att införas på vissa banor i Sverige.
+  Man använder bärvågor på mellan 100 och 1000 Hertz och tämligen
+  låg datahastighet, men allt är bättre än att tvingas stanna för
+  en signal som egentligen visar grönt.</p>
+
+  <p>De gula baliserna är inte särskilt moderna eller hippa längre.
+  Både Ansaldo och Bombardier har utvecklat nyare baliser som
+  säkerligen kommer att ersätta de gamla gula i sinom tid.</p>
+
+  <p>I och med att senaste generationen kodare är heldatoriserade
+  och befinner sig i datorstyrda signalskåp, genererar de även
+  själva telegrammen och matar ut till baliserna vid behov. Det ger
+  dessutom nya möjligheter till föränderliga telegram. Men det blir
+  inte i år och inte om tio år heller.</p>
+
+  <h2>Skolboksuppvisning</h2>
+
+  <p>Vi hoppas att vi här kunnat visa på något av tekniken och
+  systemtänkandet bakom ett doldissystem som trots detta, eller
+  tack vare detta, dagligen räddar liv.</p>
+
+  <p>ATC-systemet är uppbyggt av en mängd var för sig enkla delar,
+  som tagna tillsammans, övervakade och styrda av kluriga program
+  är en skolboksuppvisning i hur man ska gå till väga när man
+  bygger ett säkert system.</p>
+
+  <p>Systemet var ett barn av sin tid och de begränsade datamängder
+  som var möjliga att överföra och tolka under 1970-talet har fått
+  ersättas med att man använt en större mängd maskiner.</p>
+
+  <p>ATC är en quiet lifesaver, en svensk uppfinning som,
+  förmodligen på grund av sin stora komplexitet, inte fått den
+  uppmärksamhet den förtjänar.</p>
+
+  <h2>Så går du vidare</h2>
+
+  <p>Ansaldo som blev det företag som de facto levererar all
+  ombordutrustning i Sverige, finns på: <a href=
+  "http://www.atss.se/" target=
+  "_blank"><strong>www.atss.se</strong></a></p>
+
+  <p>Bombardier, som blev det företag som de facto levererar alla
+  (Adtranz-) baliser i Sverige, finns på: <a href=
+  "http://www.bombardier.se/" target=
+  "_blank"><strong>www.bombardier.se</strong></a></p>
+
+  <p>Teknogram AB har också varit med och utvecklat ATC och flera
+  tågsimulatorer. Ett intressant doldisföretag som verkar ha
+  utvecklat säkerhetssystem för järnvägar i många länder: <a href=
+  "http://www.teknogram.se/" target=
+  "_blank"><strong>www.teknogram.se</strong></a></p>
+
+  <p>Läs gärna Banverkets mycket intressanta handböcker för
+  ytterligare förklaringar om ATC-systemet:</p>
+
+  <ul>
+    <li><strong>BVH 544.30001:</strong> ATC — systemprinciper</li>
+
+    <li><strong>BVH 544.30003:</strong> Informationsflöde mellan
+    bana och lok</li>
+
+    <li><strong>BVH 544.30008:</strong> ATC-tabeller</li>
+  </ul>
+
+  <p>Som kan sökas fram på: <a href=
+  "http://ida2004.banverket.se/bvdok_extern" target=
+  "_blank"><strong>http://ida2004.banverket.se/bvdok_extern</strong></a></p><a href="http://jorgen.naslund.skvadern.kund.riksnet.se/hemsidor/huvudsida/mitt-arbete/signaler/signaler.html"
+  target="_blank"><strong>Förklaring av signaler</strong></a>
+  <a href="http://www.jarnvag.net/banguide/signaler.asp" target=
+  "_blank">Signaler på Järnväg.net</a>
+
+  <h2>Bombardier EBI Link 900 Serial balisspecifikationer</h2>
+
+  <div class="nbox">
+    <a href=
+    "https://cm.idg.se:8288/polopoly_fs/1.160518.1210276913!imageManager/3174020363.jpg"
+    target="_blank"><img border="0" src=
+    "ATC-systemet/476391110.jpg" alt="" /></a>
+
+    <p class="caption"><strong>EBI Link 900</strong> kallas den typ
+    av gula baliser (fast den här är ganska smutsig) som finns på
+    nästan alla järnvägssträckningar i Sverige.</p>
+  </div>
+
+  <p><strong>Mått:</strong></p>
+
+  <p>400 x 532 x 62 millimeter <strong>Vikt:</strong> 6 kilo
+  <strong>Temperaturområde:</strong> -40 ... +70 °C
+  <strong>EMI-skydd enligt:</strong> EN 61000-4 <strong>EMC-skydd
+  enligt:</strong> EN 300330 <strong>Avstånd</strong> mellan balis
+  och antenn: 245 ... 465 millimeter</p>
+
+  <p>Helt bortsett från att den dessutom fungerar helt infrusen,
+  under vatten, täckt av järndamm och trots att den passeras av
+  massor av skakande godståg varje dag, på 20 centimeters håll.</p>
+
+  <p>Dataöverföringen mellan kodare och balis är
+  <strong>seriell</strong>.</p>
+
+  <p>Runt i hela Sverige ligger det cirka <strong>45 000</strong>
+  baliser utplacerade.</p>
+
+  <p>Balisen är så stor som den är av en enda anledning: Den ska ha
+  sådan utsträckning att den ska nås av radioenergi under så lång
+  tid att den hinner sända ett fullständigt telegram om den
+  passeras i <strong>500</strong> kilometer i timmen. Med en längd
+  på 53 centimeter innebär det en passagetid på cirka
+  <strong>3,6</strong> millisekunder.</p>
+
+  <p><strong>Kuriosa:</strong> Mönstret av underliga, runda knoppar
+  ovanpå balisen som verkar vara olika från balis till balis
+  betyder i själva verket ingenting. Det kan vara täcklock till
+  skruvar eller liknande.</p>
+</div>
+</body>
+</html>

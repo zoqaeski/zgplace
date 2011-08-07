@@ -1,0 +1,55 @@
+*{margin:0;padding:0;}
+iframe,a img,fieldset,form,table{border:0;}
+h6,h5,h4,h3,h2,h1,caption,th,td{font-size:100%;font-weight:normal;}
+dd,dt,li,dl,ol,ul{list-style:none;}
+legend{color:#000;}
+button,select,textarea,input{font:100% serif;}
+table{border-collapse:collapse;}
+caption,th,td{text-align:left;}
+body{text-align:left;background:#fff;}
+body.popup{background:none;}
+a{text-decoration:none;color:#000;}
+p{font-size:12pt;line-height:16pt;font-family:times,georgia,serif;}
+p.articlePreTeaser{font-size:10pt;line-height:12pt;font-family:arial,sans-serif;text-transform:uppercase;}
+p.articleAuthor{font-size:10pt;line-height:12pt;font-family:arial,sans-serif;}
+.articleAuthor img{margin:0;}
+blockquote{float:left;}
+blockquote p{font-family:arial,sans-serif;font-size:9pt;line-height:11pt;}
+h1{font-size:26pt;line-height:34pt;font-family:arial,sans-serif;}
+h2,h3,h4{font-weight:bold;font-size:18pt;line-height:22pt;font-family:arial,sans-serif;}
+img{margin:.2cm;}
+.articleStory{font-family:arial,sans-serif;font-weight:bold;}
+#articleFactsContainer{width:12cm;padding:.2cm;background-color:#EBEBEB;border:1px solid #666;}
+#articleFactsContainer .articlePreTeaser{font-weight:bold;font-size:18pt;line-height:22pt;font-family:arial,sans-serif;}
+#topMenuWrapper{display:none;}
+#divNavigationContainer{display:none;}
+#divLeftContainer{display:none;}
+#divColumn3{display:none;}
+#divMainColumnFooter{display:none;}
+#divArticleMainColumnFooter{display:none;}
+#copyWriteContainer{display:none;}
+#articleProductAd{display:none;}
+.adContainer{display:none;}
+.divCommentWide{display:none;}
+.divColumn2article{display:none;}
+.logoScreen{display:none;}
+.logoPrint{display:none;}
+.bannerTop{display:none;}
+.logoScreen{display:none;}
+.articleTools{display:none;}
+.articleLinkServices{display:none;}
+.articleBlogLinks{display:none;}
+.articleProductFooter{display:none;}
+.divColumn2article .teaserContainer{display:none;}
+.vinjett1{display:none;}
+.vinjett2{display:none;}
+hr{display:none;}
+#divSiteContainer .fotbitar{display:none;}
+.fotbitar img{display:none;}
+. .divColumn2article{display:block;}
+.teaserContainerBorder{display:block;}
+#articleFactsContainer{display:block;}
+.articlePreTeaser{display:block;}
+.articleTeaser{display:block;}
+.newsList3{display:block;}
+.margin{display:block;}

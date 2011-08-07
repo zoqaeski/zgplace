@@ -1,0 +1,202 @@
+.tw_tooltip {
+	font-size: 10px;
+	font-family: Arial, Helvetica, sans-serif;
+	background: #FFF;
+	border: 1px solid #c0c0c0;
+	padding: 2px;
+	width: auto;
+}
+.tw_widget 
+{
+	width: 100%;
+	font-size: 11px;
+	font-family: Arial, Helvetica, sans-serif;
+	text-align:left;
+	border: 1px solid #ccc;
+	padding: 9px;
+	color: black;
+	border: 1px solid #999;
+}
+
+.tw_widget img 
+{
+	border:0px;
+	vertical-align: text-top;
+}
+
+.tw_header 
+{
+	font-weight: 900;
+	font-size:18px;
+	margin-top: 6px;
+	margin-bottom: 6px;
+	letter-spacing: -1px;
+}
+
+.tw_sub_header
+{
+	width: 100%;
+	text-align:left;
+	margin-bottom:4px;
+}
+
+.tw_logo
+{
+	font-weight: 100;
+	font-size:9px;
+	float:right;
+}
+
+.tw_logo img 
+{
+	margin-right:4px;
+}
+
+/* pager */
+.tw_pager
+{
+	text-align: center;
+}
+.tw_pager .hidden {
+	display: none;
+}
+.tw_pager li, .tw_pager div, .tw_pager a {
+	font-size:14px;
+	font-weight:900;
+	color:black;
+	text-decoration:none;
+}
+.tw_pager:after {
+    content: "."; 
+    display: block; 
+    height: 0; 
+    clear: both; 
+    visibility: hidden;
+}
+
+.tw_pager .next {
+	padding-right: 5px;	
+}
+
+.tw_pager .prev {
+	padding-left: 5px;
+}
+
+.tw_pager a:hover, .tw_pager li:hover
+{
+	color:red;
+}
+.tw_pager div, .tw_pager ul, .tw_pager li {
+	float:left;
+	
+}
+.tw_pager  ul {
+	margin:0;
+	padding:0;
+}
+.tw_pager ul li {
+	display: inline;
+	list-style: none;
+	margin:0;
+	padding:0;
+	margin: 0 2px 0 2px;
+	cursor: pointer;
+}
+.tw_pager .indicator {
+	
+}
+.tw_pager .right-buttons {
+
+	
+}
+
+.tw_pager ul .selected {
+	background: #C0C0C0;
+}
+
+#tw_searchframe 
+{
+	padding:5px;
+}
+
+.tw_footer
+{
+	padding-top: 5px;
+}
+
+/* LIST */
+
+.tw_list
+{
+	clear: both;
+	background-color:#fff;
+}
+
+.tw_list a
+{
+	color:black;
+	text-decoration:none;
+}
+
+.tw_list a:hover
+{
+	color:blue;
+	text-decoration:underline;
+}
+
+.tw_list .tw_item .headline
+{
+	font-size:12px;
+	font-weight:900;
+	overflow:hidden;
+	/* clip text */
+	height: 15px;
+}
+
+.tw_reportbutton 
+{
+	cursor:pointer;
+	float:right;
+	padding:4px 4px 0px 0px;
+	vertical-align:middle;
+}
+
+.tw_list .tw_item img.nopointer 
+{
+	cursor:default;
+}
+
+.tw_list .sub 
+{
+	font-weight:100;
+	overflow: hidden;
+	/* clip text */
+	height: 13px;
+}
+
+.tw_list .alt 
+{
+	background-color:#eee;
+}
+
+.tw_selectbox 
+{
+	background-color:#EEEEEE;
+	float:right;
+}
+
+.tw_selectbox select {
+	font-size:9px;
+	
+}
+.tw_list .tw_rss_icon img {
+	margin: 0;
+	filter: alpha(opacity=30);
+	-moz-opacity: 0.3;
+	opacity: 0.3	; 
+	padding: 0 4px 0 2px;
+}
+
+
+
+

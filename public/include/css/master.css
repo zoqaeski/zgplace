@@ -161,6 +161,15 @@ li {
 	padding: 0;
 }
 
+.para li, li.para {
+	font-size: 1em;
+	line-height: 1.25em;
+	padding: 0;
+	text-align: justify;
+	text-indent: 0;
+	word-spacing: 0.25em;
+}
+
 li.explanation {
 	list-style: none;
 	margin: 0 0 0 0.5em;

@@ -37,7 +37,7 @@
 
 			<p>There are three core train-borne components: </p>
 
-			<ul class="tj">
+			<ul class="para">
 				<li>An antenna mounted underneath the locomotive receives and sends telegrams to and from the control centre. </li>
 				<li>An onboard computer, consisting of a 2-of-3 system, that decodes the telegrams and calculates the speed limits and braking curves. If the driver does not take the correct actions, the computer system applies the brakes and controls the train appropriately. </li>
 				<li>The driver display unit presents the driver with the necessary information, including the current permissable speed, the current actual speed, the target speed limit, and the distance until the target is reached. Other information, such as the system status, is also displayed. </li>
@@ -45,7 +45,7 @@
 
 			<h2>Operation</h2>
 
-			<p>Linear Train Control operates by sending data packets, or telegrams, between the control centre and the trains. The <em>call telegrams</em> are transmitted at <abbr title="2592 bits per viukit">2215 bits per second</abbr> using frequency-shift keying on a 36 kHz ± 0.4 kHz carrier, and the train replies with a <em>response telegram</em> transmitted at <abbr="1728 bits per viukit">1107 bits per second</abbr> on a 60 kHz ± 0.2 kHz carrier. </p>
+			<p>Linear Train Control operates by sending data packets, or telegrams, between the control centre and the trains. The <em>call telegrams</em> are transmitted at <abbr title="1152 bits per viukit">1348 bits per second</abbr> using frequency-shift keying on a 36 kHz ± 0.4 kHz carrier, and the train replies with a <em>response telegram</em> transmitted at <abbr="576 bits per viukit">674 bits per second</abbr> on a 60 kHz ± 0.2 kHz carrier. </p>
 
 			<p>As with lineside signal systems, LTC-equipped track is still divided into blocks of approximately 1200 to 2400 metres long (and sometimes as short as 300 m), but instead of placing signals at each block boundary, only turnouts and stations have fixed signals. Normally only the Accepting and Starting signals are provided at stations, and turnouts have main signals to indicate the route. Distant signals are not provided, as a continuous in-cab system has no need for these, so <a href="/railways/signalling/qevelia/lineside_signs#Landmark_signs">landmark signs</a> are provided instead. </p>
 
@@ -62,10 +62,11 @@
 
 			<p>This is the basic telegram transmitted to the train from the central computer. It is usually transmitted between one and six times a second. </p>
 
-			<table class="tj">
+			<table class="tl">
 				<colgroup>
 					<col />
 					<col />
+					<col width="15%" />
 					<col width="15%" />
 					<col />
 				</colgroup>
@@ -77,7 +78,7 @@
 					<th>Comments</th>
 				</tr>
 				<tr>
-					<td colspan="4" class="strong">Packet Header</td>
+					<td colspan="5" class="strong">Packet Header</td>
 				</tr>
 				<tr>
 					<td class="code">M_SYNC</td>
@@ -91,7 +92,7 @@
 					<td>3</td>
 					<td></td>
 					<td></td>
-					<td>The default call telegram has an <code>NID_PACKET</code> of 0.</td>
+					<td>The default call telegram has an <code>NID_PACKET</code> of 0 (<code>001</code>).</td>
 				</tr>
 				<!--<tr>
 					<td class="code">L_PACKET</td>
@@ -101,7 +102,7 @@
 					<td>Qualifier to indicate the length of the packet, including all header bits. </td>
 				</tr>-->
 				<tr>
-					<td colspan="4" class="strong">Addressing information</td>
+					<td colspan="5" class="strong">Addressing information</td>
 				</tr>
 				<tr>
 					<td class="code">N_ZONE</td>
@@ -123,8 +124,28 @@
 					<td></td>
 					<td>The ID for the current block. Blocks must be an integer multiple of zones, and there can be up to 63 blocks in a given section. Generally, many shorter blocks are preferable to fewer longer ones, and they can be shorter than the signalled blocks. </td>
 				</tr>
+				<!--Unnecessary: the gradient information is static -->
+				<!--This information may still be useful nonetheless, as the train's onboard subsystem can use it to calculate stopping distances -->
 				<tr>
-					<td colspan="4" class="strong">Vehicle information</td>
+					<td colspan="5" class="strong">Gradient information</td>
+				</tr>
+				<tr>
+					<td class="code">Q_GDIR</td>
+					<td>1</td>
+					<td></td>
+					<td>—</td>
+					<td>0: Ascending<br />
+						1: Descending</td>
+				</tr>
+				<tr>
+					<td class="code">G_AVG</td>
+					<td>8</td>
+					<td>0–254,255</td>
+					<td>Parts per 1728</td>
+					<td>Average gradient throughout block, measured in parts per gross (1728). A value of 255 indicates that the gradient is steeper than 254/1728, or ~14.7% (approximately 1 in 6.8). </td>
+				</tr>
+				<tr>
+					<td colspan="5" class="strong">Vehicle information</td>
 				</tr>
 				<tr>
 					<td class="code">Q_DIR</td>
@@ -147,8 +168,9 @@
 					<td></td>
 					<td>The brake curve number that indicates the train’s rate of deceleration. </td>
 				</tr>
-				<tr>
-					<td colspan="4" class="strong">Braking information</td>
+				<!-- Not sure about this -->
+				<!--<tr>
+					<td colspan="5" class="strong">Braking information</td>
 				</tr>
 				<tr>
 					<td class="code">D_BRAKE</td>
@@ -159,47 +181,37 @@
 				</tr>
 				<tr>
 					<td class="code">D_NOMINAL</td>
-					<td>10</td>
-					<td>0–13110.768 m</td>
-					<td>12.816 m</td>
+					<td>9</td>
+					<td>0–13097.952 m</td>
+					<td>25.632 m</td>
 					<td class="tj">Nominal braking distance in which a train, travelling at its currently permitted speed, will come to a complete stop. </td>
+				</tr>-->
+				<tr>
+					<td colspan="5" class="strong">Speed information</td>
 				</tr>
 				<tr>
-					<td colspan="4" class="strong">Target information</td>
-				</tr>
-				<tr>
-					<td class="code">D_TARGET</td>
-					<td>7</td>
-					<td>0–13021.056 m</td>
-					<td>102.528 m</td>
-					<td>The distance until the target speed restriction applies, for display to the driver. </td>
+					<td class="code">V_CURRENT</td>
+					<td>6</td>
+					<td>0–378 km/h</td>
+					<td>6 km/h</td>
+					<td>The current speed permitted. This speed restriction generally applies for the length of the target distance. </td>
 				</tr>
 				<tr>
 					<td class="code">V_TARGET</td>
 					<td>6</td>
 					<td>0–378 km/h</td>
 					<td>6 km/h</td>
-					<td>The target speed that the train should accelerate or decelerate to within the target distance. This value is displayed to the driver and used as a reference value to check the speed against. </td>
-				</tr>
-				<!--Unnecessary: the gradient information is static -->
-				<!--<tr>
-					<td colspan="4" class="strong">Gradient information</td>
+					<td>The target speed that the train should accelerate or decelerate to within the target distance. </td>
 				</tr>
 				<tr>
-					<td class="code">Q_GDIR</td>
-					<td>1</td>
-					<td></td>
-					<td>0: Ascending<br />
-						1: Descending</td>
-				</tr>
-				<tr>
-					<td class="code">G_AVG</td>
+					<td class="code">D_TARGET</td>
 					<td>9</td>
-					<td>0–510,511</td>
-					<td>Average gradient throughout block, measured in parts per gross (1728). A value of 511 indicates that the gradient is steeper than 510/1728, or ~29.5%. </td>
-				</tr>-->
+					<td>0–13097.952 m</td>
+					<td>25.632 m</td>
+					<td>The distance until the target speed restriction applies. </td>
+				</tr>
 				<tr>
-					<td colspan="4" class="strong">Auxiliary information</td>
+					<td colspan="5" class="strong">Auxiliary information</td>
 				</tr>
 				<tr>
 					<td class="code">Q_NETWORK</td>
@@ -231,7 +243,7 @@
 				</tr>
 			</table>
 
-			<!--<h5>Change of Section</h5>
+			<h5>Change of Section</h5>
 
 			<p>This telegram is transmitted when the train is about to change section, either at the entry of an LTC controlled line, at the boundary between sections, or when changing tracks. After receiving this telegram, the train will ignore all telegrams not specifically addressed to it, so this telegram is the last sent before one of these operations takes place. </p>
 
@@ -248,31 +260,35 @@
 					<th>Variable</th>
 					<th>Length</th>
 					<th>Range</th>
+					<th>Resolution</th>
 					<th>Comments</th>
 				</tr>
 				<tr>
-					<td colspan="4" class="strong">Packet Header</td>
+					<td colspan="5" class="strong">Packet Header</td>
 				</tr>
 				<tr>
 					<td class="code">M_SYNC</td>
 					<td>10</td>
 					<td>—</td>
+					<td></td>
 					<td>Synchronisation data to ensure transmission integrity. </td>
 				</tr>
 				<tr>
 					<td class="code">NID_PACKET</td>
 					<td>3</td>
 					<td></td>
+					<td></td>
 					<td>The default call telegram has an <code>NID_PACKET</code> of 1 (<code>001</code>).</td>
 				</tr>
-				<tr>
+				<!--<tr>
 					<td class="code">L_PACKET</td>
 					<td>8</td>
 					<td>0–255</td>
+					<td></td>
 					<td>Qualifier to indicate the length of the packet, including all header bits. </td>
-				</tr>
+				</tr>-->
 				<tr>
-					<td colspan="4" class="strong">Addressing information</td>
+					<td colspan="5" class="strong">Addressing information</td>
 				</tr>
 				<tr>
 					<td class="code">N_ZONE</td>
@@ -282,6 +298,7 @@
 						-1 to -127<br />
 						(254 to 128)
 					</td>
+					<td></td>
 					<td>The zone ID used to address the train. <br />
 						±0: indicates that train is entering a new LTC section and is applicable for all trains.
 					</td>
@@ -292,10 +309,11 @@
 					<td>1 to 63<br />
 						-1 to -63
 					</td>
+					<td></td>
 					<td>The ID for the current block. </td>
 				</tr>
-				<tr>
-					<td colspan="4" class="strong">Braking information</td>
+				<!--<tr>
+					<td colspan="5" class="strong">Braking information</td>
 				</tr>
 				<tr>
 					<td class="code">D_BRAKE</td>
@@ -308,24 +326,16 @@
 					<td>9</td>
 					<td>0–13097.952 m</td>
 					<td class="tj">Nominal braking distance in which a train, travelling at its currently permitted speed, will come to a complete stop. </td>
+				</tr>-->
+				<tr>
+					<td colspan="5" class="strong">Change of Section information</td>
 				</tr>
 				<tr>
-					<td colspan="4" class="strong">Target information</td>
-				</tr>
-				<tr>
-					<td class="code">D_TARGET</td>
-					<td>7</td>
-					<td>0–12918.528 m</td>
-					<td>The distance until the target speed restriction applies, for display to the driver. <br />
-						0–126: Distance in multiples of 102.528 m<br />
-						127: Distance greater than 12918.528 m
-					</td>
-				</tr>
-				<tr>
-					<td class="code">V_TARGET</td>
-					<td>6</td>
-					<td>0–378 km/h</td>
-					<td>The target speed that the train should accelerate or decelerate to within the target distance. Normally used only for display to the driver. </td>
+					<td class="code">D_NEWZONE</td>
+					<td>9</td>
+					<td>0–13097.952 m</td>
+					<td>25.632 m</td>
+					<td>The distance until the train will enter the new zone. </td>
 				</tr>
 				<tr>
 					<td class="code">N_NEWZONE</td>
@@ -335,29 +345,49 @@
 						-1 to -127<br />
 						(254 to 128)
 					</td>
+					<td></td>
 					<td>
 						The zone ID that will be used to address the train at the change of section. <br />
 						±0: indicates train is leaving LTC.
 					</td>
 				</tr>
 				<tr>
-					<td colspan="4" class="strong">Auxiliary information</td>
+					<td class="code">N_NEWBLOCK</td>
+					<td>7</td>
+					<td>1 to 63<br />
+						-1 to -63
+					</td>
+					<td></td>
+					<td>The ID for the first block that the train will enter when it changes section. </td>
+				</tr>
+				<tr>
+					<td class="code">V_NEWZONE</td>
+					<td>6</td>
+					<td>0–378 km/h</td>
+					<td>6 km/h</td>
+					<td>The target speed limit of the new zone. </td>
+				</tr>
+				<tr>
+					<td colspan="5" class="strong">Auxiliary information</td>
 				</tr>
 				<tr>
 					<td class="code">Q_NETWORK</td>
 					<td>2</td>
 					<td>0–3</td>
+					<td></td>
 					<td>Network code for distinguishing between high speed and ordinary main lines. </td>
 				</tr>
 				<tr>
 					<td class="code">Q_RTYPE</td>
 					<td>2</td>
 					<td>0–3</td>
+					<td></td>
 					<td>Response type required. </td>
 				</tr>
 				<tr>
 					<td class="code">Q_VERSION</td>
 					<td>2</td>
+					<td></td>
 					<td></td>
 					<td>Software version used by central computer. </td>
 				</tr>
@@ -365,9 +395,10 @@
 					<td class="code">M_CRC</td>
 					<td>8</td>
 					<td></td>
+					<td></td>
 					<td>A cyclic redundancy check to determine the validity of the telegram. </td>
 				</tr>
-			</table>-->
+			</table>
 
 			<h4>Response Telegrams</h4>
 
@@ -377,10 +408,11 @@
 
 			<p>This is the most frequently sent response. The train will normally send it each time it responds to the control centre, or when it detects it has travelled 100 m. </p>
 
-			<table class="tj">
+			<table class="tl">
 				<colgroup>
 					<col />
 					<col />
+					<col width="15%" />
 					<col width="15%" />
 					<col />
 				</colgroup>
@@ -388,31 +420,35 @@
 					<th>Variable</th>
 					<th>Length</th>
 					<th>Range</th>
+					<th>Resolution</th>
 					<th>Comments</th>
 				</tr>
 				<tr>
-					<td colspan="4" class="strong">Packet Header</td>
+					<td colspan="5" class="strong">Packet Header</td>
 				</tr>
 				<tr>
 					<td class="code">M_SYNC</td>
 					<td>6</td>
 					<td>—</td>
+					<td></td>
 					<td>Synchronisation data to ensure transmission integrity. </td>
 				</tr>
 				<tr>
 					<td class="code">NID_PACKET</td>
 					<td>3</td>
 					<td></td>
+					<td></td>
 					<td>The default response telegram has an <code>NID_PACKET</code> of 4 (<code>100</code>).</td>
 				</tr>
-				<tr>
+				<!--<tr>
 					<td class="code">L_PACKET</td>
 					<td>8</td>
 					<td>0–255</td>
+					<td></td>
 					<td>Qualifier to indicate the length of the packet, including all header bits. </td>
-				</tr>
+				</tr>-->
 				<tr>
-					<td colspan="4" class="strong">Addressing information</td>
+					<td colspan="5" class="strong">Addressing information</td>
 				</tr>
 				<tr>
 					<td class="code">N_ZONE</td>
@@ -421,6 +457,7 @@
 						1 to 127<br />
 						-1 to -127
 					</td>
+					<td></td>
 					<td>The zone ID last used to address the train. </td>
 				</tr>
 				<tr>
@@ -430,20 +467,23 @@
 						+0 to +3<br />
 						-0 to -3<br />
 					</td>
+					<td></td>
 					<td>The number of zones advanced since receiving the last telegram. </td>
 				</tr>
 				<tr>
 					<td class="code">D_ZONE</td>
 					<td>3</td>
 					<td>0–89.712 m</td>
-					<td>The distance into the current zone, measured in 12.816 m intervals. </td>
+					<td>12.816 m</td>
+					<td>The distance into the current zone. </td>
 				</tr>
 				<tr>
-					<td colspan="4" class="strong">Vehicle information</td>
+					<td colspan="5" class="strong">Vehicle information</td>
 				</tr>
 				<tr>
 					<td class="code">Q_DIR</td>
 					<td>1</td>
+					<td></td>
 					<td></td>
 					<td>Up/Down</td>
 				</tr>
@@ -451,11 +491,13 @@
 					<td class="code">Q_BRAKETYPE</td>
 					<td>2</td>
 					<td></td>
+					<td></td>
 					<td>Passenger/Freight</td>
 				</tr>
 				<tr>
 					<td class="code">M_BRAKECURVE</td>
 					<td>4</td>
+					<td></td>
 					<td></td>
 					<td>The brake curve number that indicates the train’s rate of deceleration. </td>
 				</tr>
@@ -463,14 +505,23 @@
 					<td class="code">V_TRAIN</td>
 					<td>6</td>
 					<td>0–378 km/h</td>
-					<td>The current speed of the train, measured to the next largest 6 km/h increment. </td>
+					<td>6 km/h</td>
+					<td>The current speed of the train. </td>
 				</tr>
 				<tr>
-					<td colspan="4" class="strong">Auxiliary information</td>
+					<td colspan="5" class="strong">Auxiliary information</td>
+				</tr>
+				<tr>
+					<td class="code">Q_VERSION</td>
+					<td>2</td>
+					<td></td>
+					<td></td>
+					<td>Software version used by onboard computer. </td>
 				</tr>
 				<tr>
 					<td class="code">M_CRC</td>
 					<td>8</td>
+					<td></td>
 					<td></td>
 					<td>A cyclic redundancy check to determine the validity of the telegram. </td>
 				</tr>
@@ -485,37 +536,42 @@
 					<col />
 					<col />
 					<col width="15%" />
+					<col width="15%" />
 					<col />
 				</colgroup>
 				<tr>
 					<th>Variable</th>
 					<th>Length</th>
 					<th>Range</th>
+					<th>Resolution</th>
 					<th>Comments</th>
 				</tr>
 				<tr>
-					<td colspan="4" class="strong">Packet Header</td>
+					<td colspan="5" class="strong">Packet Header</td>
 				</tr>
 				<tr>
 					<td class="code">M_SYNC</td>
 					<td>6</td>
 					<td>—</td>
+					<td></td>
 					<td>Synchronisation data to ensure transmission integrity. </td>
 				</tr>
 				<tr>
 					<td class="code">NID_PACKET</td>
 					<td>3</td>
 					<td></td>
+					<td></td>
 					<td>The train details telegram has an <code>NID_PACKET</code> of 5 (<code>101</code>).</td>
 				</tr>
-				<tr>
+				<!--<tr>
 					<td class="code">L_PACKET</td>
 					<td>8</td>
 					<td>0–255</td>
+					<td></td>
 					<td>Qualifier to indicate the length of the packet, including all header bits. </td>
-				</tr>
+				</tr>-->
 				<tr>
-					<td colspan="4" class="strong">Addressing information</td>
+					<td colspan="5" class="strong">Addressing information</td>
 				</tr>
 				<tr>
 					<td class="code">N_ZONE</td>
@@ -524,6 +580,7 @@
 						1 to 127<br />
 						-1 to -127
 					</td>
+					<td></td>
 					<td>The zone ID last used to address the train. </td>
 				</tr>
 				<tr>
@@ -533,20 +590,23 @@
 						+0 to +3<br />
 						-0 to -3<br />
 					</td>
+					<td></td>
 					<td>The number of zones advanced since receiving the last telegram. </td>
 				</tr>
 				<tr>
 					<td class="code">D_ZONE</td>
 					<td>3</td>
 					<td>0–89.712 m</td>
-					<td>The distance into the current zone, measured in 12.816 m intervals. </td>
+					<td>12.816 m</td>
+					<td>The distance into the current zone. </td>
 				</tr>
 				<tr>
-					<td colspan="4" class="strong">Vehicle information</td>
+					<td colspan="5" class="strong">Vehicle information</td>
 				</tr>
 				<tr>
 					<td class="code">Q_DIR</td>
 					<td>1</td>
+					<td></td>
 					<td></td>
 					<td>Up/Down</td>
 				</tr>
@@ -554,11 +614,13 @@
 					<td class="code">Q_BRAKETYPE</td>
 					<td>2</td>
 					<td></td>
+					<td></td>
 					<td>Passenger/Freight</td>
 				</tr>
 				<tr>
 					<td class="code">M_BRAKECURVE</td>
 					<td>4</td>
+					<td></td>
 					<td></td>
 					<td>The brake curve number that indicates the train’s rate of deceleration. </td>
 				</tr>
@@ -566,18 +628,21 @@
 					<td class="code">V_MAXTRAIN</td>
 					<td>6</td>
 					<td>0–378 km/h</td>
-					<td>The current speed of the train, measured to the next largest 6 km/h increment. </td>
+					<td>6 km/h</td>
+					<td>The current speed of the train. </td>
 				</tr>
 				<tr>
 					<td class="code">L_TRAIN</td>
 					<td>7</td>
 					<td>0–1627.632 m</td>
-					<td>The total length of the train, including locomotives (if any), measured in 12.816 m intervals. </td>
+					<td>12.816 m</td>
+					<td>The total length of the train, including locomotives (if any). </td>
 				</tr>
 				<tr>
 					<td class="code">N_AXLES</td>
 					<td>10</td>
 					<td>0–508</td>
+					<td></td>
 					<td>
 						The total number of axles, so that axle counters can verify train integrity. Maximum number of 127 four-axle vehicles — this is longer than any train that could be expected, so there is no risk of exceeding this value. <br />
 						509–511: Spare
@@ -596,11 +661,19 @@
 					</td>
 				</tr>-->
 				<tr>
-					<td colspan="4" class="strong">Auxiliary information</td>
+					<td colspan="5" class="strong">Auxiliary information</td>
+				</tr>
+				<tr>
+					<td class="code">Q_VERSION</td>
+					<td>2</td>
+					<td></td>
+					<td></td>
+					<td>Software version used by onboard computer. </td>
 				</tr>
 				<tr>
 					<td class="code">M_CRC</td>
 					<td>8</td>
+					<td></td>
 					<td></td>
 					<td>A cyclic redundancy check to determine the validity of the telegram. </td>
 				</tr>
@@ -608,7 +681,7 @@
 
 			<p>The <code>N_AXLES</code> variable is used for automated train integrity checking. Axle counters normally increment when a train enters a block, and decrement when the train leaves the block: if the total is zero, then it can be inferred that the block is free of obstructions. In this particular situation, the axle counters already know how many axles to expect, so the train integrity and block occupation checks can be performed in a single operation. </p>
 
-			<h5>Operational Details</h5>
+			<!--<h5>Operational Details</h5>
 
 			<p>This telegram is normally the second response transmitted when the train first enters an LTC controlled section. It transmits the train operational details, including serial number, operator, and other auxiliary information. </p>
 
@@ -626,7 +699,7 @@
 					<th>Comments</th>
 				</tr>
 				<tr>
-					<td colspan="4" class="strong">Packet Header</td>
+					<td colspan="5" class="strong">Packet Header</td>
 				</tr>
 				<tr>
 					<td class="code">M_SYNC</td>
@@ -647,7 +720,7 @@
 					<td>Qualifier to indicate the length of the packet, including all header bits. </td>
 				</tr>
 				<tr>
-					<td colspan="4" class="strong">Addressing information</td>
+					<td colspan="5" class="strong">Addressing information</td>
 				</tr>
 				<tr>
 					<td class="code">N_ZONE</td>
@@ -674,7 +747,7 @@
 					<td>The distance into the current zone, measured in 12.816 m intervals. </td>
 				</tr>
 				<tr>
-					<td colspan="4" class="strong">Vehicle information</td>
+					<td colspan="5" class="strong">Vehicle information</td>
 				</tr>
 				<tr>
 					<td class="code">M_TRAINID</td>
@@ -698,7 +771,7 @@
 					</td>
 				</tr>
 				<tr>
-					<td colspan="4" class="strong">Auxiliary information</td>
+					<td colspan="5" class="strong">Auxiliary information</td>
 				</tr>
 				<tr>
 					<td class="code">M_CRC</td>
@@ -706,7 +779,7 @@
 					<td></td>
 					<td>A cyclic redundancy check to determine the validity of the telegram. </td>
 				</tr>
-			</table>
+			</table>-->
 
 			<h3>Addressing and Zones</h3>
 
@@ -726,24 +799,26 @@
 
 			<ul>
 				<li>Target distance</li>
+				<li>Current speed</li>
 				<li>Target speed</li>
-				<li>Nominal stopping distance</li>
-				<li>Distance to brake application point</li>
+				<li>Average Gradient</li>
+				<!--<li>Nominal stopping distance</li>-->
+				<!--<li>Distance to brake application point</li>-->
 			</ul>
 
-			<p>The target distance and speed are normally only used for display to the driver, and for the automatic brake/power operation (<em>“cruise control”</em>) in some newer locomotives. The nominal stopping distance is a special variable that indicates the distance in which a train with the specified braking curve will stop, minus the distance within the current zone. If the train is approaching a signal at Stop or the beginning of an occupied block, this distance will be set such that it matches the location of the signal or block boundary. </p>
+			<p>The target distance is the distance until a speed change, and the target speed is the new value; the current speed is the permitted speed up to the target distance. The gradient information allows the train to take into account the average gradient of the block in determining stopping distances. </p>
 
-			<p>The on-board equipment continuously calculates the permitted speed so that a train, decelerating according to its braking curve, will stop before the obstruction. This braking curve is parabolic, using the formula: </p>
+			<p>The on-board equipment continuously calculates the permitted speed so that a train, decelerating according to its braking curve, will stop before the obstruction. </p>
 
-			<div class="nbox">
+			<!--<div class="nbox">
 				<img src="dia/LCT_formula.png" alt="Linear Train Control deceleration formula" />
-			</div>
+			</div>-->
 
-			<p>Here, <em>b</em> is the rate of deceleration, <em>s<sub>nominal</sub></em> is the nominal braking distance, and <em>s<sub>dist</sub></em> is the distance since the train received the last telegram, normally the start of the zone. The periodic telegrams from the central computer update the <em>s<sub>nominal</sub></em> variable; if the train loses contact, it will brake to a complete stop. The system is therefore inherently fail-safe. </p>
+			<!--<p>Here, <em>b</em> is the rate of deceleration, <em>s<sub>nominal</sub></em> is the nominal braking distance, and <em>s<sub>dist</sub></em> is the distance since the train received the last telegram, normally the start of the zone. The periodic telegrams from the central computer update the <em>s<sub>nominal</sub></em> variable; if the train loses contact, it will brake to a complete stop. The system is therefore inherently fail-safe. </p>-->
 
-			<p>When a train is approaching a decreasing change in maximum speed (a signal at Stop or an occupied block is indicated with a speed limit of 0), the central computer will send a telegram with the end point of the nominal stopping distance set behind the start of the speed restriction such that a train, decelerating according to its braking curve, will arrive at the correct speed at the start of the speed restriction. The target speed and target distance are not used in this calculation but in the monitoring equipment to ensure the train does not overspeed or exceed its limit of authority. </p>
+			<p>When a train is approaching a decreasing change in maximum speed (a signal at Stop or an occupied block is indicated with a speed limit of 0), the central computer will send a telegram with the target distance set to the point at which the restriction applies. The train will continuously calculate its permitted speed so that it arrives at the target point at the correct speed. When the target limit is higher than the present limit, the onboard computer waits until the train has passed its own length past the target point before recalculating the speed limit. </p>
 
-			<p>A train travelling at a constant velocity will receive telegrams that specify the nominal braking distance for that speed. If the speed limit decreases, the distance decreases accordingly; if the speed limit increases, then at the point where the higher speed takes effect, the distance will be updated. </p>
+			<!--<p>A train travelling at a constant velocity will receive telegrams that specify the nominal braking distance for that speed. If the speed limit decreases, the distance decreases accordingly; if the speed limit increases, then at the point where the higher speed takes effect, the distance will be updated. </p>-->
 
 			<!--<table>
 				<caption>Example values of <em>s<sub>nominal</sub></em> for a passenger train with a deceleration rate of 0.55 m/s<sup>2</sup></caption>

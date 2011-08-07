@@ -1,0 +1,15 @@
+function cu_1248772_getAdId() { return 6322941; }
+function cu_1248772_getWidth() { return 480; }
+function cu_1248772_getHeight() { return 250; }
+function cu_1248772_getAlttext() { return " "; }
+function cu_1248772() {
+document.write("<scr"+"ipt language=\"javascript\" src=\"http://track.adform.net/adfscript/?bn=606178;click=http://adserver.adtech.de/adlink|506|1248772|18006|2343|AdId=6322941;BnId=1;itime=688110374;key=Mjukvara+S%E4kerhet+Systemutveckling+J%F6rgens%20artiklar%20p%E5%20TechWorld+tw;nodecode=yes;link=;ord=688110374\">\n");
+document.write("</scr"+"ipt>\n");
+document.write("<noscript>\n");
+document.write("<A HREF=\"http://adserver.adtech.de/adlink|506|1248772|18006|2343|AdId=6322941;BnId=1;itime=688110374;key=Mjukvara+S%E4kerhet+Systemutveckling+J%F6rgens%20artiklar%20p%E5%20TechWorld+tw;nodecode=yes;link=http://track.adform.net/C/?bn=606178;C=0\" TARGET=\"_blank\">\n");
+document.write("<IMG SRC=\"http://track.adform.net/adfserve/?bn=606178;srctype=4;ord=688110374\" BORDER=\"0\" WIDTH=\"480\" HEIGHT=\"250\" ALT=\"\">\n");
+document.write("</A>\n");
+document.write("</noscript>\n");
+
+
+}
