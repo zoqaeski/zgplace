@@ -640,7 +640,7 @@
 					<td>12.816 m</td>
 					<td>The total length of the train, including locomotives (if any). </td>
 				</tr>
-				<tr>
+				<!--<tr>
 					<td class="code">N_AXLES</td>
 					<td>10</td>
 					<td>0–508</td>
@@ -649,7 +649,7 @@
 						The total number of axles, so that axle counters can verify train integrity. Maximum number of 127 four-axle vehicles — this is longer than any train that could be expected, so there is no risk of exceeding this value. <br />
 						509–511: Spare
 					</td>
-				</tr>
+				</tr>-->
 				<!-- Is this needed? -->
 				<!--<tr>
 					<td class="code">M_AXLELOAD</td>
@@ -681,7 +681,7 @@
 				</tr>
 			</table>
 
-			<p>The <code>N_AXLES</code> variable is used for automated train integrity checking. Axle counters normally increment when a train enters a block, and decrement when the train leaves the block: if the total is zero, then it can be inferred that the block is free of obstructions. In this particular situation, the axle counters already know how many axles to expect, so the train integrity and block occupation checks can be performed in a single operation. </p>
+			<!--<p>The <code>N_AXLES</code> variable is used for automated train integrity checking. Axle counters normally increment when a train enters a block, and decrement when the train leaves the block: if the total is zero, then it can be inferred that the block is free of obstructions. In this particular situation, the axle counters already know how many axles to expect, so the train integrity and block occupation checks can be performed in a single operation. </p>-->
 
 			<!--<h5>Operational Details</h5>
 
