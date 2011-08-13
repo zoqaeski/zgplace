@@ -194,7 +194,7 @@ class Application {
 			}
 		}
 
-		// Set the menu path
+		// Set the source and menu paths
 		if($page_data['type'] == 'index') {
 			$page_data['sitedir'] = $page;
 			$page_data['srcdir'] = dirname(self::$public_content_dir . $page . "/index");
@@ -203,13 +203,15 @@ class Application {
 			$page_data['srcdir'] = dirname(self::$public_content_dir . $page);
 		}
 
+		$page_data = $this->getPageMeta($page_data);
+
 		// The topic is the top level directory inside content
 		// This can also be set by a flag in the file if we want.
 		$path_dirs = explode('/', $page);
 		$page_data['topic'] = $path_dirs[1]; // $page now starts with a slash!
 
 		// Initialise menu
-		$menu_data = $this->getLocalMenu($page_data['srcdir'], $page_data['sitedir'], $page);
+		$menu_data = $this->getLocalMenu($page_data['menudir'], $page_data['sitedir'], $page);
 
 		// Do not make a TOC for error pages, index pages, and menus.
 		// This can be reset for certain pages.
@@ -284,7 +286,7 @@ class Application {
 		// sharing two objects between the Application and the HTMLFilter is 
 		// lessened by not making any of the filter accessible to the outside 
 		// world. We create it, it does its magic, and then it gets cleaned up. 
-		$page_htmlfilter = new HTMLFilter($page_data, $menu_data);
+		$page_htmlfilter = new HTMLFilter($page_data, true, $menu_data);
 		$page_data = $page_htmlfilter->getData();
 
 		return $page_data;
@@ -299,7 +301,7 @@ class Application {
 	private function parseTexy($page_data, $menu_data) {
 		// MOSTLY IMPLEMENTED
 		// Still need to figure out a few thingses
-		$page_texyfilter = new TexyFilter($page_data, $menu_data);
+		$page_texyfilter = new TexyFilter($page_data, true, $menu_data);
 		$page_data = $page_texyfilter->getData();
 		return $page_data;
 	}
@@ -308,6 +310,7 @@ class Application {
 	 * Helper function to locate our pages from sets of HTML, Texy, and other 
 	 * source formats.
 	 * @param $page The page we are requesting.
+	 * @param $page_data The array to store the data.
 	 * @return array
 	 */
 	private function locatePage($page, $page_data) {
@@ -316,28 +319,28 @@ class Application {
 
 		// Check for formats. The order in source_formats array is very important.
 		foreach(self::$source_formats as $format) {
-				$page_name = self::$public_content_dir . $page . $format;
-				$index_name = self::$public_content_dir . $page . '/index' . $format;
+			$page_name = self::$public_content_dir . $page . $format;
+			$index_name = self::$public_content_dir . $page . '/index' . $format;
 
-				if(file_exists($page_name)) {
-					if(is_readable($page_name)) {
-						$page_data['path'] = $page_name;
-						$page_data['type'] = 'page';
-						$page_found = true;
-					} else {
-						$page_readable = false;
-					}
-				} elseif(file_exists($index_name)) {
-					if(is_readable($index_name)) {
-						$page_data['path'] = $index_name;
-						$page_data['type'] = 'index';
-						$page_found = true;
-					} else {
-						$page_readable = false;
-					}
+			if(file_exists($page_name)) {
+				if(is_readable($page_name)) {
+					$page_data['path'] = $page_name;
+					$page_data['type'] = 'page';
+					$page_found = true;
 				} else {
-					$page_found = false;
+					$page_readable = false;
 				}
+			} elseif(file_exists($index_name)) {
+				if(is_readable($index_name)) {
+					$page_data['path'] = $index_name;
+					$page_data['type'] = 'index';
+					$page_found = true;
+				} else {
+					$page_readable = false;
+				}
+			} else {
+				$page_found = false;
+			}
 
 			// Jump on first found
 			if($page_found == true) {
@@ -365,6 +368,37 @@ class Application {
 			//$page_data['path'] = self::$errors_dir . '403.html';
 			$page_data['format'] = '.html';
 			$page_data['type'] = 'error';
+		}
+
+		return $page_data;
+	}
+
+	/**
+	 * Reads the metadata from the comments at the top of each page.
+	 * @param $page The page we are requesting.
+	 * @param $page_data The array to store the data.
+	 * @return array
+	 */
+	private function getPageMeta($page_data) {
+		if($page_data['format'] == '.html') {
+			$pm_filter = new HTMLFilter($page_data, false);
+			$page_data = $pm_filter->getData();
+		} elseif($page_data['format'] == '.texy') {
+			// The Texy parser needs some adjustments yet.
+			//$page_data = $this->parseTexy($page_data, false);
+			$pm_filter = new TexyFilter($page_data, false);
+			$page_data = $pm_filter->getData();
+		} else {
+			$page_data['all_is_well'] = false;
+			$this->response->setStatusCode(500);
+			//throw new RuntimeException("File format invalid.");
+			$page_data['content'] = null;
+		}
+
+		if($page_data['menudir'] == null) {
+			$page_data['menudir'] = $page_data['srcdir'];
+		} else {
+			$page_data['menudir'] = self::$public_content_dir . $page_data['menudir'];
 		}
 
 		return $page_data;
@@ -651,13 +685,13 @@ class Application {
 		return self::$public_img_dir;
 	}
 
-//	/**
-//	 * Returns the path to the public images directory.
-//	 * @return string
-//	 */
-//	public static function getPublicScriptDir() {
-//		return self::$public_script_dir;
-//	}
+	//	/**
+	//	 * Returns the path to the public images directory.
+	//	 * @return string
+	//	 */
+	//	public static function getPublicScriptDir() {
+	//		return self::$public_script_dir;
+	//	}
 
 	/**
 	 * Returns the path to the errors directory.
@@ -666,7 +700,7 @@ class Application {
 	public function getErrorsDir() {
 		return self::$errors_dir;
 	}
-	
+
 	/**
 	 * Returns an array of the source formats enabled. The order of the array is the order in which parsers will be tried.
 	 * @return array
@@ -741,13 +775,13 @@ class Application {
 		self::$public_img_dir = $dir;
 	}
 
-//	/**
-//	 * Returns the path to the public images directory.
-//	 * @return string
-//	 */
-//	public static function setPublicScriptDir() {
-//		return self::$public_script_dir;
-//	}
+	//	/**
+	//	 * Returns the path to the public images directory.
+	//	 * @return string
+	//	 */
+	//	public static function setPublicScriptDir() {
+	//		return self::$public_script_dir;
+	//	}
 
 	/**
 	 * Returns the path to the errors directory.
@@ -756,13 +790,13 @@ class Application {
 	public function setErrorsDir($dir) {
 		self::$errors_dir = $dir;
 	}
-	
-//	/**
-//	 * Returns an array of the source formats enabled. The order of the array is the order in which parsers will be tried.
-//	 * @return array
-//	 */
-//	public function setSourceFormats() {
-//		return self::$source_formats;
-//	}
+
+	//	/**
+	//	 * Returns an array of the source formats enabled. The order of the array is the order in which parsers will be tried.
+	//	 * @return array
+	//	 */
+	//	public function setSourceFormats() {
+	//		return self::$source_formats;
+	//	}
 
 }
