@@ -31,7 +31,7 @@ $request = Request::createFromGlobals();
 $zgplace = new Application($request);
 
 // Options
-$zgplace->setCaching(true);
+$zgplace->setCaching(false);
 
 // Run application
 $response = $zgplace->run();
