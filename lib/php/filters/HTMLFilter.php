@@ -57,8 +57,9 @@ class HTMLFilter extends Filter {
 		// Extract scripties
 		$this->pageData['scripts'] = $this->findScriptElements();
 
-		// Modify image src links
+		// Modify src links and hrefs
 		$this->modifyImgs();
+		$this->modifyHrefs();
 
 		// Generate a TOC based on heading hierarchy
 		if($this->pageData['type'] != 'index' && $this->pageData['type'] != 'menu' && $this->pageData['maketoc'] == true) {
@@ -129,6 +130,20 @@ class HTMLFilter extends Filter {
 			if($imgs[$i]->src) {
 				$url = $imgs[$i]->src;
 				$imgs[$i]->src = Application::getPublicImgDir() . $this->pageData['sitedir'] . '/' . $url;
+			}
+		}
+	}
+
+	private function modifyHrefs() {
+		$anchors = $this->pageDOM->find('a');
+		for($a = 0, $as = count($anchors); $a < $as; $a++) {
+			if($anchors[$a]->href) {
+				$url = $anchors[$a]->href;
+				$is_img_prefix = strpos($url, Application::getImgLinkPrefix());
+				if($is_img_prefix !== false) {
+					$url = substr($url, strlen(Application::getImgLinkPrefix()));
+					$anchors[$a]->href = Application::getPublicImgDir() . $this->pageData['sitedir'] . '/' . $url;
+				} 
 			}
 		}
 	}

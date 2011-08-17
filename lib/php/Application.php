@@ -53,6 +53,7 @@ class Application {
 
 	/** @var string The directory where all images are stored. */
 	private static $public_img_dir = '/img';
+	private static $img_link_prefix = '~img/';
 	//private $public_script_dir = '/public/img/';
 
 	/** @var array The source formats we have parsers for. Note that the order here is VERY important: the locatePage() function will return the file name matching the first format in this list. */
@@ -683,6 +684,14 @@ class Application {
 	 */
 	public static function getPublicImgDir() {
 		return self::$public_img_dir;
+	}
+
+	/**
+	 * Returns the string prefix for links to images.
+	 * @return string
+	 */
+	public static function getImgLinkPrefix() {
+		return self::$img_link_prefix;
 	}
 
 	//	/**
