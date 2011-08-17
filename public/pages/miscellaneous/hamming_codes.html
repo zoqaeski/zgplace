@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+	<!-- saved from url=(0029)http://pdc.ro.nu/hamming.html -->
+	<head>
+		<title>Hamming Codes</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<base href="../" />
+		<link type="text/css" rel="stylesheet" href="include/css/default.css" title="default" media="all" />
+	</head>
+	<body>
+		<div id="body">
+
+			<h1>Hamming Codes</h1>
+
+			<p>Several Teletext packets contain information protected by <em>hamming</em>. This is a method for encoding data such that errors in reception can be detected, and if the error is sufficiently small, corrected. Teletext uses two hamming codes. </p>
+
+			<p>The simpler and more robust version encodes 4 bits of data in one 8-bit byte. This code is used extensively to protect the fields that have meaning to the Teletext system itself. The more efficient code encodes 18 bits of data in three 8-bit bytes. It is used for to protect some of the data fields inside Teletext packets. Both codes are designed such that any one-bit error can be corrected, and any 2-bit error can be detected. </p>
+
+			<h3>8/4 Hamming</h3>
+
+			<p>The 8/4 code is quite simple; if the input nibble is the 4-bit value: </p>
+
+			<pre>b3, b2, b1, b0</pre>
+
+			<p>with <code>b3</code> being the most significant bit, then the output hammed byte is the 8-bit value: </p>
+
+			<pre>b3, b3^b2^b1, b2, !b2^b1^b0, b1, !b3^b1^b0, b0, !b3^b2^b0</pre>
+
+			<p>This code has the property that every value is four bits different from all other such values. A one-bit error is therefore unambiguously correctable, being only one bit away from a valid code. A two-bit error is detectable but not correctable, being equidistant between two valid codes. </p>
+
+			<p>Here is the table of all 16 encoded nibbles: </p>
+
+			<pre>Data nibble    Hammed byte
+0 = 0 0 0 0    15 = 0 0 0 1 0 1 0 1
+1 = 0 0 0 1    02 = 0 0 0 0 0 0 1 0
+2 = 0 0 1 0    49 = 0 1 0 0 1 0 0 1
+3 = 0 0 1 1    5E = 0 1 0 1 1 1 1 0
+4 = 0 1 0 0    64 = 0 1 1 0 0 1 0 0
+5 = 0 1 0 1    73 = 0 1 1 1 0 0 1 1
+6 = 0 1 1 0    38 = 0 0 1 1 1 0 0 0
+7 = 0 1 1 1    2F = 0 0 1 0 1 1 1 1
+8 = 1 0 0 0    D0 = 1 1 0 1 0 0 0 0
+9 = 1 0 0 1    C7 = 1 1 0 0 0 1 1 1
+A = 1 0 1 0    8C = 1 0 0 0 1 1 0 0
+B = 1 0 1 1    9B = 1 0 0 1 1 0 1 1
+C = 1 1 0 0    A1 = 1 0 1 0 0 0 0 1
+D = 1 1 0 1    B6 = 1 0 1 1 0 1 1 0
+E = 1 1 1 0    FD = 1 1 1 1 1 1 0 1
+F = 1 1 1 1    EA = 1 1 1 0 1 0 1 0
+    | | | |         | | | | | | | |
+   b3b2b1b0         b3|b2 |b1 |b0 |
+                      |   |   |   |
+                    321!210!310!320</pre>
+
+			<p>Decoding a hammed byte back in to a 4-bit nibble can be done using the table below, or by a bit-twiddling algorithm. In the table, the hammed byte value is used to index the row (most significant 4 bits) and column (least significant four bits), and the decoded nibble is read out of the table. </p>
+
+			<p>If a single bit error has been detected and corrected, the nibble is followed by “!”. </p>
+
+			<p>If an uncorrecteable error has occurred, the table cell is “.”. </p>
+
+			<pre>     LSB
+   | 0  1  2  3  4  5  6  7  8  9  A  B  C  D  E  F |
+MSB+------------------------------------------------+---
+ 0 | 1! .  1  1! .  0! 1! .  .  2! 1! .  A! .  .  7!| 0
+ 1 | .  0! 1! .  0! 0  .  0! 6! .  .  B! .  0! 3! . | 1
+ 2 | .  C! 1! .  4! .  .  7! 6! .  .  7! .  7! 7! 7 | 2
+ 3 | 6! .  .  5! .  0! D! .  6  6! 6! .  6! .  .  7!| 3
+ 4 | .  2! 1! .  4! .  .  9! 2! 2  .  2! .  2! 3! . | 4
+ 5 | 8! .  .  5! .  0! 3! .  .  2! 3! .  3! .  3  3!| 5
+ 6 | 4! .  .  5! 4  4! 4! .  .  2! F! .  4! .  .  7!| 6
+ 7 | .  5! 5! 5  4! .  .  5! 6! .  .  5! .  E! 3! . | 7
+ 8 | .  C! 1! .  A! .  .  9! A! .  .  B! A  A! A! . | 8
+ 9 | 8! .  .  B! .  0! D! .  .  B! B! B  A! .  .  B!| 9
+ A | C! C  .  C! .  C! D! .  .  C! F! .  A! .  .  7!| A
+ B | .  C! D! .  D! .  D  D! 6! .  .  B! .  E! D! . | B
+ C | 8! .  .  9! .  9! 9! 9  .  2! F! .  A! .  .  9!| C
+ D | 8  8! 8! .  8! .  .  9! 8! .  .  B! .  E! 3! . | D
+ E | .  C! F! .  4! .  .  9! F! .  F  F! .  E! F! . | E
+ F | 8! .  .  5! .  E! D! .  .  E! F! .  E! E  .  E!| F
+---+------------------------------------------------+---
+   | 0  1  2  3  4  5  6  7  8  9  A  B  C  D  E  F |</pre>
+
+			<p>The algorithmic approach shows what is going on more clearly. Assuming the hammed byte is </p>
+
+			<pre>h7, h6, h5, h4, h3, h2, h1, h0</pre>
+
+			<p>with <code>h7</code> being the most significant bit, we compute </p>
+
+			<pre>p  = h7 ^ h6 ^ h5 ^ h4 ^ h3 ^ h2 ^ h1 ^ h0
+c0 = h7 ^ h5 ^ h1 ^ h0
+c1 = h7 ^ h3 ^ h2 ^ h1
+c2 = h5 ^ h4 ^ h3 ^ h1</pre>
+
+			<p>If the parity, <code>p</code>, is correct (equal to 1) then either 0 or 2 errors occurred. If all the check bits, <code>c0</code>, <code>c1</code>, <code>c2</code> are correct (equal to 1) then the byte was received intact, (no errors) otherwise it was damaged beyond repair (two errors). </p>
+
+			<p>If <code>p</code> is 0, then there was a single bit error which can be recovered: </p>
+
+			<pre>c0 c1 c2    meaning
+1  1  1    error in bit h6
+1  1  0    error in bit h4
+1  0  1    error in bit h2
+0  1  1    error in bit h0
+0  0  1    error in bit h7
+0  1  0    error in bit h5
+1  0  0    error in bit h3
+0  0  0    error in bit h1</pre>
+
+			<p>The erroneous bit should be flipped. Note that there is actually no need to fix errors in bits <code>h6</code>, <code>h4</code>, <code>h2</code> and <code>h0</code> since they are not used in the decoded byte. </p>
+			<p>After flipping bits if necessary, the decoded byte is then: </p>
+
+			<pre>h7, h5, h3, h1</pre>
+
+			<h3>24/18 Hamming</h3>
+
+			<p>The more efficient 24/18 code is based on the same principle of interleaved check bits and an overall parity bit as the simpler <a href="#8.2F4_Hamming">8/4 code</a>. </p>
+
+			<p>Assuming the input bits are: </p>
+
+			<pre>b17, b16, b15, b14, b13, b12,
+b11, b10,  b9,  b8,  b7,  b6,
+ b5,  b4,  b3,  b2,  b1,  b0</pre>
+
+			<p>with <code>b17</code> being the most significant bit, the six hamming check bits are: </p>
+
+			<pre>c0 = ! b17 ^ b15 ^ b13 ^ b11 ^ b10 ^  b8 ^  b6 ^ b4 ^ b3 ^ b1 ^ b0
+c1 = ! b17 ^ b16 ^ b13 ^ b12 ^ b10 ^  b9 ^  b6 ^ b5 ^ b3 ^ b2 ^ b0
+c2 = ! b17 ^ b16 ^ b15 ^ b14 ^ b10 ^  b9 ^  b8 ^ b7 ^ b3 ^ b2 ^ b1
+c3 = ! b10 ^  b9 ^  b8 ^  b7 ^  b6 ^  b5 ^  b4
+c4 = ! b17 ^ b16 ^ b15 ^ b14 ^ b13 ^ b12 ^ b11
+c5 =   b17 ^ b14 ^ b12 ^ b11 ^ b10 ^  b7 ^  b5 ^ b4 ^ b2 ^ b1 ^ b0</pre>
+
+			<p><code>c5</code> can alternatively and equivalently be computed as the odd parity of all the other data and check bits. </p>
+			<!-- It might be instructive to look at the pattern of bits in a table:
+			111111110000000000
+			765432109876543210
+			c0 x.x.x.xx.x.x.xx.xx
+			c1 xx..xx.xx..xx.xx.x
+			c2 xxxx...xxxx...xxx.
+			c3 .......xxxxxxx....
+			c4 xxxxxxx...........
+			c5 x..x.xxx..x.xx.xxx
+			It is even more instructive to look at the bits after they have been
+			interleaved to form the output triplet:
+			cdddddddcdddddddcdddcdcc
+			011111110100000000000000
+			576543214098765433212010
+			c0 .x.x.x.x.x.x.x.x.x.x.x.#
+			c1 .xx..xx..xx..xx..xx..x#.
+			c2 .xxxx....xxxx....xxx#...
+			c3 .........xxxxxxx#.......
+			c4 .xxxxxxx#...............
+			c5 #x..x.xx.x..x.xx..xx.x..
+			-->
+			<p>The output bytes are then: </p>
+
+			<pre>c3,  b3,  b2,  b1,  c2,  b0,  c1,  c0
+c4, b10,  b9,  b8,  b7,  b6,  b5,  b4
+c5, b17, b16, b15, b14, b13, b12, b11</pre>
+
+			<p>in byte transmission order, with the most significant bit of each byte on the left. </p>
+
+			<p>To decode a hammed byte triplet: </p>
+
+			<pre> h7,  h6,  h5,  h4,  h3,  h2,  h1,  h0
+h15, h14, h13, h12, h11, h10,  h9,  h8
+h23, h22, h21, h20, h19, h18, h17, h16</pre>
+
+			<p>with <code>h0</code> being the least significant bit of the first byte and <code>h23</code> being the most significant bit of the third byte, we compute </p>
+
+			<pre> p = h23 ^ h22 ^ h21 ^ h20 ^ ... ^  h1 ^ h0
+c0 =  h0 ^  h2 ^  h4 ^  h6 ^  h8 ^ h10 ^ h12 ^ h14 ^ h16 ^ h18 ^ h20 ^ h22
+c1 =  h1 ^  h2 ^  h5 ^  h6 ^  h9 ^ h10 ^ h13 ^ h14 ^ h17 ^ h18 ^ h21 ^ h22
+c2 =  h3 ^  h4 ^  h5 ^  h6 ^ h11 ^ h12 ^ h13 ^ h14 ^ h19 ^ h20 ^ h21 ^ h22
+c3 =  h7 ^  h8 ^  h9 ^ h10 ^ h11 ^ h12 ^ h13 ^ h14
+c4 = h15 ^ h16 ^ h17 ^ h18 ^ h19 ^ h20 ^ h21 ^ h22</pre>
+
+			<p>If the parity, <code>p</code>, is correct (equal to 1) then either 0 or 2 errors occurred. If all the check bits, <code>c0</code>, <code>c1</code>, <code>c2</code>, <code>c3</code>, <code>c4</code>, <code>c5</code> are correct (equal to 1), then the byte was received intact, (no errors) otherwise it was damaged beyond repair (two errors). </p>
+
+			<p>If <code>p</code> is 0, then there was a single bit error which can be recovered. For the check bits which are incorrect (equal to 0), add the following powers of two together: </p>
+
+			<pre>if c0 = 0  add  1
+if c1 = 0  add  2
+if c2 = 0  add  4
+if c3 = 0  add  8
+if c4 = 0  add 16</pre>
+
+			<p>The sum gives the bit position 1--24 corresponding to h0--h23 which is in error. The erroneous bit should be flipped. Note that there is actually no need to fix errors in bits <code>h23</code>, <code>h15</code>, <code>h7</code>, <code>h3</code>, <code>h1</code> and <code>h0</code> since they are not used in the decoded byte. </p>
+
+			<p>The output data bits, <code>d17--d0</code> are: </p>
+			<pre>h22, h21, h20, h19, h18, h17, 
+h16, h14, h13, h12, h11, h10,
+ h9,  h8,  h6,  h5,  h4,  h2</pre>
+			</div>
+
+</body></html>

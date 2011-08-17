@@ -139,6 +139,11 @@ p + p {
 	/*text-indent: 1em;*/
 }
 
+/*pre + p {
+	margin: 0.5em 0 0.5em 0;
+	padding: 0;
+}*/
+
 /* Lists */
 ol, ul {
 	font-size: 1em;
@@ -253,3 +258,13 @@ input {
 tt, code, pre {
 	font-family: monospace, sans-serif;
 }
+
+pre {
+	margin: 0 2em;
+	text-align: left;
+}
+
+p + pre {
+	margin: -0.75em 2em 0 2em;
+}
+

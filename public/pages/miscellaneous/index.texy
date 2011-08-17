@@ -1,0 +1,15 @@
+<!--
+type: index
+-->
+Miscellaneous Stuff
+###################
+
+This is where I'm storing pages which I haven't yet categorised. Every now and then I might save a useful resource here.
+
+"Duodecimal/Decimal Converter":[ /miscellaneous/duodecimal_decimal_converter ]:
+	- Conversion utility for switching between decimal and duodecimal. Currently broken for some reason.
+"Qeveli Measurements":[ /miscellaneous/measurements ]:
+	- Notes on the Qeveli system of measurements. Extremely useful.
+"Hamming Codes":[ /miscellaneous/hamming_codes ]:
+	- Useful page about Hamming code construction.
+
