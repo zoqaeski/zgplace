@@ -108,14 +108,15 @@ table.no-border * td {
 }
 
 caption {
-	/*caption-side: bottom;*/
-	display: none !important;
-	/*font-size: 90%;*/
-	/*font-style: italic;*/
+	caption-side: bottom;
+	/*display: none !important;*/
+	font-size: 90%;
+	font-style: italic;
 	/*line-height: 1em;*/
-	/*margin: 0 0 1em 0;*/
-	/*padding: 0;*/
-	/*text-align: center;*/
+	margin: 0 auto;
+	padding: 0.25em 0 0 0;
+	text-align: center;
+	width: 75%;
 }
 
 /* Paragraph styles */
