@@ -369,6 +369,11 @@ dl.dictionary dt.h {
 	/*color: #004e9c;*/
 }
 
+/* Resets font */
+.ff {
+	font-family: "DejaVu Sans", "Lucida Grande", "Verdana", "Helvetica", "Arial", sans-serif !important;
+}
+
 /* Boxes */
 .infobox {
 	border-color: #909090;

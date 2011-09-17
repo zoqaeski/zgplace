@@ -1,0 +1,34 @@
+
+NX
+There is only a single NX value:
+110000 = 48
+
+PX
+There is only a single PX value:
+001100 = 12
+
+AX
+001xxx = Main/Distant signal
+   001 = Release speed of 12 km/h
+   011 = Release speed of 36 km/h
+   111 = Cancelled signal
+
+010xxx = Speed restriction (Permanent)
+011xxx = Speed restriction (Temporary)
+   001 = Warning
+   010 = Begin
+   100 = End
+   111 = Cancelled
+
+100xxx = Miscellaneous signs
+
+Valid AX values are 9, 11, 15, 17, 18, 20, 23, 25, 26, 28, 31 and 33 to 39.
+
+BX
+Valid BX values range from 1 to 7.
+
+CX
+Valid CX values range from 49 to 55.
+
+X values not used are 10, 14, 16, 19, 21, 24, 27, 32, 40 to 47, and 56 to 62. 63 is invalid.
+

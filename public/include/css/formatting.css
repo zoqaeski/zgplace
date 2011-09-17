@@ -26,6 +26,15 @@ strong, .strong {
 .no-strong, .ns, .nf { font-weight: normal !important; }
 .no-text-decoration, .ntd, .nf { text-decoration: none !important; }
 
+.nf {
+	font-variant: normal !important;
+	text-transform: none !important;
+}
+
+.ff {
+	/* Nothing to do */
+}
+
 /* Subscript and superscript */
 sub, sup {
 	font-size: 70%;
@@ -57,8 +66,8 @@ sup {
 }
 
 .nc {
-	text-transform: none;
 	font-variant: normal;
+	text-transform: none;
 }
 
 
