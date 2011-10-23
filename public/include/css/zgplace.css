@@ -25,14 +25,14 @@ body {
 	margin: 0px auto;
 	min-width: 900px;
 	padding: 0;
-	width: 90%;
+	width: 95%;
 }
 
 #body {
 	background: transparent;
 	margin: 0;
 	/*max-width: 48em;*/
-	padding: 2em;
+	padding: 1em;
 }
 
 #tools {
@@ -128,14 +128,14 @@ body {
 	font-size: 90%;
 	margin: 0;
 	padding: 0;
-	width: 26%;
+	width: 22%;
 }
 
 #sidebar ul {
 	/*color: #686868;*/
 	list-style: none;
 	margin: 0 0 0.5em 0;
-	padding: 0 1em 0 0;
+	padding: 0;
 	text-align: left;
 }
 
@@ -226,7 +226,7 @@ border-top: 1px solid #d8d8d8;
 	margin: 0;
 	padding: 0;
 	/*position: relative;*/
-	width: 74%;
+	width: 78%;
 }
 
 #footer {
