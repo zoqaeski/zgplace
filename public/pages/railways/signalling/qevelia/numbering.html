@@ -1,10 +1,18 @@
 <!DOCTYPE html>
+<!--
+title: Track and Signal Numbering
+-->
 <html>
 	<head>
 		<title>Track and Signal Numbering</title>
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<base href="../../../../" />
-		<link type="text/css" rel="stylesheet" href="include/css/default.css" title="default" media="all" />
+		<link type="text/css" rel="stylesheet" href="include/css/zgplace.css" title="default" media="all" />
+
+		<script type="text/javascript" src="/include/js/jquery.dataset.js"></script>
+		<script type="text/javascript" src="/include/js/jquery.animateimg.js"></script>
+		<script type="text/javascript" src="/include/js/qz_signal_animations.js"></script>
+
 	</head>
 	<body>
 		<div id="body">
@@ -13,15 +21,59 @@
 
 			<h1>Track and Signal Numbering</h1>
 
-			<p>Tracks, signals and other items of infrastructure are numbered in the <em>Down</em> direction, that is, away from the start point of the line. Normally this is the (largest) station closest to the coastline by rail; unlike on some other railways, every line is reset at the station from which it diverges. This is primarily due to the non-radial (i.e. pluricentric) nature of the Qevelian network. </p>
 
-			<h2>Numbering of Signals</h2>
+			<p>Tracks, signals and other items of infrastructure are numbered in the <em>Down</em> direction, that is, away from the start point of the line. Normally this is the most important station closest to the coastline by rail; unlike on some other railways, every line is reset at the station from which it diverges. This is primarily due to the non-radial (i.e. pluricentric) nature of the Qevelian network. </p>
 
-			<div class="nbox">
+			<h2>Signals</h2>
+
+			<p>All signals receive alphanumeric identification numbers in which the letters and digits are assigned to indicate specific information about the signal and its location. </p>
+
+			<p>Home signals in stations receive numbers of the form ‘<code>(\d){1,4}[A-H]</code>’, that is, one to four digits followed by a letter between ‘A’ and ‘H’. The letters are assigned such that odd letters indicate signals in the <em>Down</em> direction, and even letters indicate signals in the <em>Up</em> direction. Most stations consist of Accepting and Starting signals for each direction, and their associated distant signals, so the Accepting signals usually receive the letters ‘A’ and ‘D’, and the Starting signals receive the letters ‘C’ and ‘B’. Distant signals receive the same number as the home signal they protect, prefixed with a ‘T’; distant signals acting in conjunction with a home signal do not receive individual numbers. </p>
+
+			<p>Block signals on the open line receive numbers of the form ‘<code>[PQRS](\d)+</code>’, that is, one of the letters ‘P’, ‘Q’, ‘R’ or ‘S’, followed by at least one digit. ‘P’ and ‘Q’ indicate block signals in the <em>Down</em> and <em>Up</em> direction on the normal (i.e. left-hand) track; ‘R’ and ‘S’ indicate <em>Down</em> and <em>Up</em> on the opposite (right-hand) track. The final digits indicate the distance of the signal in hundreds of feet; to convert the number to a mileage, divide it by 32. </p>
+
+			<p>Block signals which also act as a distant signal for a home signal receive a composite number of the form ‘<code>[PQRS][A-H](\d)+</code>’, that is, one of the letters ‘P’, ‘Q’, ‘R’ or ‘S’, followed by the letter that identifies the home signal, and finally followed by at least one digit, indicating the mileage. Stand-alone distant signals for block signals receive a number of the form ‘<code>T[PQRS](\d)+</code>’, that is, a valid block signal number prefixed with ‘T’. Note that the number will indicate that signal's distance, and not that of the block signal it provides an advanced warning of. </p>
+
+			<h3>Examples</h3>
+
+			<table>
+				<tr>
+					<th>Signal Number</th>
+					<th>Meaning</th>
+				</tr>
+				<tr>
+					<td>1A</td>
+					<td class="tl">Down Accepting signal on Track 1</td>
+				</tr>
+				<tr>
+					<td>T2D</td>
+					<td class="tl">Distant for Up Accepting signal on Track 2</td>
+				</tr>
+				<tr>
+					<td>P3015</td>
+					<td class="tl">Block signal on the normal Down track located at ~116 km </td>
+				</tr>
+				<tr>
+					<td>Q907</td>
+					<td class="tl">Block signal on the Normal Up Track located at ~28 km </td>
+				</tr>
+				<tr>
+					<td>SD1023</td>
+					<td class="tl">Block signal on the Opposite Up Track located at ~40 km that acts as a distant signal for an Accepting signal </td>
+				</tr>
+				<tr>
+					<td>TR598</td>
+					<td class="tl">Distant for block signal on Opposite Down Track located at ~18 km </td>
+			</table>
+
+			<!--<div class="nbox">
 				<img src="dia/station_loop_01.png" alt="" />
 				<p class="caption">Basic arrangement of a simple station/crossing loop. </p>
-			</div>
+			</div>-->
+			<h2>Tracks</h2>
 
-		</div>
+			<p>Tracks are numbered …</p>
+
+		</div> 
 	</body>
 </html>

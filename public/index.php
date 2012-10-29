@@ -26,7 +26,6 @@ spl_autoload_register(function ($className) {
 	return false;
 }, true);
 
-
 $request = Request::createFromGlobals();
 $zgplace = new Application($request);
 
@@ -36,5 +35,7 @@ $zgplace->setCaching(false);
 // Run application
 $response = $zgplace->run();
 $response->send();
+
+//echo $php_errormsg;
 
 ?>

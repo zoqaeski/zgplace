@@ -4,7 +4,7 @@
 		<title>Cab Signalling</title>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<base href="../../../../" />
-		<link type="text/css" rel="stylesheet" href="include/css/default.css" title="default" media="all" />
+		<link type="text/css" rel="stylesheet" href="include/css/zgplace.css" title="default" media="all" />
 	</head>
 	<body>
 		<div id="body">
@@ -434,7 +434,7 @@
 				
 				<tr>
 					<td class="code">35</td>
-					<td colspan="2">348 km/h</td>
+					<td colspan="2">348 km/h or line max speed (full clear)</td>
 				</tr>
 				<tr>
 					<td class="code">36</td>
@@ -508,7 +508,10 @@
 				</tr>
 			</table>
 
-			<p>The <code>AY</code> and <code>AZ</code> variables encode the speed restrictions and their type using a lookup table. Speeds are incremented by 6 km/h from 0 to 348 km/h; an <code>AY</code> value of <code>0</code> is a balise error, and the value <code>27</code> annulls the group. The highest four bits of the <code>AZ</code> values encode the type of restriction. </p>
+
+			<p>The <code>AY</code> and <code>AZ</code> variables encode the speed restrictions and their type using a lookup table. Speeds are incremented by 6 km/h from 6 to 348 km/h. The highest four bits of the <code>AZ</code> values encode the type of restriction. </p>
+
+			<p>The formula used internally is <code>(AZ % 4) * 15 + AY</code>. </p>
 
 			<table>
 				<caption>Basic values</caption>
@@ -875,11 +878,76 @@
 
 			<p>All other signs use an <code>AX</code> variable beginning with <code>101xxx</code>. The valid range is <code>101000</code> (<code>50</code>) through to <code>101111</code> (<code>57</code>). </p>
 
-			<h2>The “B” Balise</h2>
+			<h4>Signs for Electric Operation</h4>
 
-			<h2>The “C” Balise</h2>
+			<p>Signs that indicate information for electric trains, such as section breaks, also have balise messages associated with them. All of these messages are indicated with the <code>AX</code> variable set to <code>101001</code> (<code>51</code>); the <code>AY</code> and <code>AZ</code> variables are used to indicate further details. </p>
+
+			<table class="tl">
+				<tr>
+					<th class="code">AY</th>
+					<th>Sign</th>
+				</tr>
+				<tr>
+					<td class="code">00</td>
+					<td>Announcement of Section Break</td>
+				</tr>
+				<tr>
+					<td class="code">01</td>
+					<td>Start of Section Break</td>
+				</tr>
+				<tr>
+					<td class="code">02</td>
+					<td>End of Section Break</td>
+				</tr>
+				<tr>
+					<td class="code">10</td>
+					<td>Lower Pantograph Announcement</td>
+				</tr>
+				<tr>
+					<td class="code">11</td>
+					<td>Lower Pantograph</td>
+				</tr>
+				<tr>
+					<td class="code">12</td>
+					<td>Raise Pantograph</td>
+				</tr>
+				<tr>
+					<td class="code">20</td>
+					<td>Announce End of Catenary</td>
+				</tr>
+				<tr>
+					<td class="code">21</td>
+					<td>End of Catenary</td>
+				</tr>
+			</table>
+
+			<h2>The “B” and “C” Balises</h2>
+
+			<p>The “B” and “C” balises generally encode distance and gradient information. The low three bits of the <code>X</code> value of both balises must match, so a <code>B(41)</code> balise will be followed by a <code>C(61)</code> balise. </p>
+
+			<h3>Calculation of Distance</h3>
+
+			<p>The most common encoding of distance is given by a <code>B(41)</code> balise. The distance is calculated by the formula <code>(BY * 31 + BZ) * 12.816</code>, where <code>BZ = 0</code> indicates that a <code>C(61)</code> balise follows, and that the <code>CY</code> value is to be used in place of the <code>BZ</code> value. <code>BY</code>, <code>BZ</code> and <code>CY</code> range from <code>00</code> to <code>37</code>. </p>
+
+			<h3>Calculation of Gradient</h3>
+
+			<p>The gradient is given by the <code>CZ</code> value. The highest bit indicates whether the grade is ascending or descending, and the remaining five bits give the value of the gradient, in multiples of 3 parts per 1728 (note that 1728<sub>10</sub> is 1000<sub>12</sub>). <code>CZ</code> ranges from <code>00</code> to <code>37</code>. </p>
 
 			<h2>The Prefix Balise</h2>
+
+			<p>The prefix balise is used to encode additional information, such as extensions to the braking curve and train-specific restrictions. How the prefix balise is interpreted is dependent on the message contained on the “A” balise, specifically the <code>AX</code> variable, which signifies the type of object the balise group represents. </p>
+
+			<h3>Prefix Messages at Signals</h3>
+
+			<p>At signals, the prefix balise extends the distance until the speed restriction given by the signal is enforced. There are two types of extension: <em>A-extensions</em> and <em>P-extensions</em>. The A-extension typically points towards a physical obstruction, such as a turnout, and the P-extension is used for multiple-block signals. </p>
+
+			<p>The A-extension distance is given by the formula <code>(PY * 31 + PZ) * 12.816</code>, with <code>PY</code> ranging from <code>00</code> to <code>07</code>, and <code>PZ</code> ranging from <code>00</code> to <code>37</code>. </p>
+
+			<p>The P-extension distance is given by the formula <code>((PY - 8) * 23 + (PZ - 32)) * 25.632</code>, with <code>PY</code> ranging from <code>10</code> to <code>27</code>, and <code>PZ</code> ranging from <code>40</code> to <code>67</code>. </p>
+
+			<h3>Prefix Messages at Boards</h3>
+
+			<p>…</p>
 
 			<h2>The Number Balise</h2>
 

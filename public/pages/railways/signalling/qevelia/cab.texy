@@ -2,11 +2,9 @@
 type: index
 title: Cab Signalling
 -->
-Qevelian Railway Signalling .[title]
-###########################
+## Qevelian Railway Signalling .[title]
 
-Cab Signalling
-##############
+## Cab Signalling
 
 
 There are two cab signalling systems in use on the Qevelian railways. The older system uses beacons powered by magnetic induction that indicate the state of the next main signal. This has been augmented with a newer system that can transmit a complete movement authority from cable loops mounted between the rails.
@@ -16,8 +14,8 @@ Each of these systems are described in greater detail on their own page:
 
 "Inductive Signal Repetition":[/railways/signalling/qevelia/cab_isr]:
     - The older system that uses magnetic beacons to transmit signal information to the trains.
-"Linear Train Control":[/railways/signalling/qevelia/cab_ltc]:
-    - A newer system, developed for high-speed trains, that continuously transmits speed information to the trains.
 "Advanced Train Control":[/railways/signalling/qevelia/cab_atc]:
     - A newer system that relies on balises to transmit detailed movement authority telegrams to the trains.
+"Linear Train Control":[/railways/signalling/qevelia/cab_ltc]:
+    - A newer system, developed for high-speed trains, that continuously transmits speed information to the trains.
 
