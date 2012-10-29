@@ -1,2 +1,8 @@
 # Do NOT track cached files
 cache/*
+
+# Do NOT track images
+*.png
+*.jpg
+*.svg
+*.gif

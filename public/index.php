@@ -26,15 +26,16 @@ spl_autoload_register(function ($className) {
 	return false;
 }, true);
 
-
 $request = Request::createFromGlobals();
 $zgplace = new Application($request);
 
 // Options
-$zgplace->setCaching(true);
+$zgplace->setCaching(false);
 
 // Run application
 $response = $zgplace->run();
 $response->send();
+
+//echo $php_errormsg;
 
 ?>

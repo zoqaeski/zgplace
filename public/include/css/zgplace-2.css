@@ -1,0 +1,485 @@
+/*
+ * default.css
+ * -----------
+ * The default theme for this site
+ *
+ */
+
+@import url("master.css");
+/*@import url("fonts.css");*/
+
+/* THE BODY!!! */
+body {
+	color: #404040;
+	background: #ffffff url("../img/stripy_bg_grey.png");
+	/*font-family:  "DejaVu Serif", "Georgia", "Droid Serif", "Times", "Times New Roman", serif;*/
+	font-family: "DejaVu Sans", "Lucida Grande", "Verdana", "Helvetica", "Arial", sans-serif;
+	margin: 0;
+	padding: 0;
+	text-align: center;
+}
+
+#container {
+	background: #f8f8f8;
+	border: none;
+	margin: 0px auto;
+	min-width: 900px;
+	padding: 0;
+	width: 90%;
+}
+
+#body {
+	background: transparent;
+	margin: 0;
+	/*max-width: 48em;*/
+	padding: 2em;
+}
+
+#tools {
+	/*background: #242424;*/
+	background: transparent;
+	color: #808080;
+	float: right;
+	font-family: "DejaVu Sans", "Droid Sans", "Verdana", "Helvetica", "Arial", sans-serif;
+	font-size: 90%;
+	line-height: 1.2em;
+	margin: 0;
+	padding: 0;
+	width: 100%;
+}
+
+#tools p {
+	line-height: 2em;
+	margin: 0;
+	padding: 0 2em 0 0;
+	text-align: right;
+}
+
+#tools a, #tools a:link, #tools a:visited {
+	color: inherit;
+	text-decoration: none;
+}
+
+#tools a:hover, #tools a:active, #tools a:focus {
+	color: #fc8000;
+}
+
+#tools a:active, #tools a:focus {
+	color: #fca800;
+}
+
+#header {
+	/*background: #202020;*/
+	background: transparent url("../img/gorf3.png") 7.5% 50% no-repeat;
+	clear: both;
+	/*height: 100px;*/
+	margin: 0;
+	padding: 0;
+	vertical-align: middle;
+}
+
+#header span {
+	color: #fc8000;
+	display: block;
+	font-family: "DejaVu Sans Mono", "Droid Sans Mono", "Consolas", sans-serif;
+	font-size: 2.75em; 
+	line-height: 1.5em;
+	margin: 0 1em 0 0;
+	padding: 0;
+	text-align: right;
+	/*vertical-align: middle;*/
+}
+
+#breadcrumbs {
+	/*background: #404040;*/
+	border-top: 1px solid #fa6000;
+	background: transparent;
+	color: #808080;
+	display: block;
+	float: right;
+	font-family: "DejaVu Sans", "Droid Sans", "Verdana", "Helvetica", "Arial", sans-serif;
+	font-size: 90%;
+	line-height: 1.5em;
+	margin: 0;
+	padding: 0;
+	text-align: right;
+	width: 100%;
+}
+
+#breadcrumbs p {
+	margin: 0;
+	padding: 1em;
+	text-align: right;
+}
+
+#breadcrumbs a, #breadcrumbs a:link, #breadcrumbs a:visited {
+	color: inherit;
+	text-decoration: none;
+}
+
+#breadcrumbs a:hover, #breadcrumbs a:active, #breadcrumbs a:focus {
+	color: #fc8000;
+}
+
+#breadcrumbs a:active, #breadcrumbs a:focus {
+	color: #fca800;
+}
+
+#sidebar {
+	background: transparent;
+	float: left;
+	font-family: "DejaVu Sans", "Droid Sans", "Verdana", "Helvetica", "Arial", sans-serif;
+	font-size: 90%;
+	margin: 0;
+	padding: 0;
+	width: 26%;
+}
+
+#sidebar ul {
+	/*color: #686868;*/
+	list-style: none;
+	margin: 0 0 0.5em 0;
+	padding: 0 1em 0 0;
+	text-align: left;
+}
+
+#sidebar li {
+	line-height: 1.5em;
+	padding: 0 1em;
+}
+
+#sidebar ul li.topLevel {
+	border: none;
+	/*font-weight: bold;*/
+	margin: 0.25em 0;
+	padding: 0.5em 1em;
+	/*text-align: right;*/
+}
+
+#sidebar ul li.topLevel > a {
+	font-size: 120%;
+}
+
+#sidebar li.topLevel > ul {
+	font-weight: normal;
+}
+
+#sidebar li.topLevel > ul li {
+	margin: 0.25em 0;
+}
+
+#sidebar li.subHeading {
+	font-weight: normal !important;
+	margin-top: 0.5em;
+	text-align: inherit;
+	text-decoration: underline;
+}
+
+#sidebar li.subsubHeading {
+	font-weight: normal !important;
+	margin-top: 0.25em;
+	text-align: inherit;
+	text-decoration: underline;
+}
+
+#sidebar .levelTwo li > ul {
+	margin: 0;
+}
+
+/*#sidebar ul li.topLevel:first-child {
+border-top: 1px solid #d8d8d8;
+}*/
+
+/*#sidebar ul li a:before, #sidebar ul li a:before {
+	content: "» ";
+}*/
+
+/*#sidebar ul li:hover {
+	background: #f0f0f0;
+	color: #d00000;
+}*/
+
+#sidebar a, #sidebar a:link, #sidebar a:visited {
+	color: #404040;
+	border: 1px solid transparent;
+	font-weight: inherit;
+	text-decoration: none;
+}
+
+#sidebar a:hover, #sidebar a:active, #sidebar a:focus {
+	color: #004494;
+	/*color: #fa6000;*/
+	/*border-bottom: 1px solid #404040;*/
+	border-bottom: 1px solid #fa6000;
+}
+
+#sidebar a:active, #sidebar a:focus {
+	color: #fc8000;
+	outline: none;
+}
+
+/*#breadcrumb {
+	float: right;
+	font-size: 90%;
+	margin: 0.5em 1em;
+	text-align: right;
+}*/
+
+#content {
+	float: right;
+	margin: 0;
+	padding: 0;
+	/*position: relative;*/
+	width: 74%;
+}
+
+#footer {
+	background: #404040;
+	border: none;
+	clear: both;
+	color: #808080;
+	margin: 2em auto 0 auto;
+	padding: 1em 0;
+	position: relative;
+	text-align: center;
+}
+
+#footer p {
+	font-size: 90%;
+	margin: 0 auto;
+	text-align: center;
+}
+
+
+a, a:link, a:visited {
+	color: #404040;
+	text-decoration: none;
+}
+
+a:hover {
+	/*background: #404040;*/
+	color: #fa6000;
+	text-decoration: underline;
+}
+
+a:active, a:focus {
+	/*color: #fc8000 !important;*/
+	color: #ff6000;
+	outline: none;
+	text-decoration: underline;
+}
+
+#body a, #body a:link, #body a:visited {
+	/*border-bottom: 1px solid #fa6000;*/
+	color: #004494;
+	/*color: #fa6000;*/
+	/*color: #404040;*/
+	text-decoration: none;
+}
+
+#body a:hover {
+	/*border-bottom: 1px solid #404040;*/
+	/*color: #fa6000;*/
+	/*color: #404040;*/
+	text-decoration: underline;
+	/*border-bottom: 1px solid #fa6000;*/
+}
+
+#body a:active, #body a:focus {
+	/*color: #fc8000 !important;*/
+	color: #fa6000;
+	/*color: #fc8000;*/
+	outline: none;
+	text-decoration: underline;
+	/*border-bottom: 1px solid #fa6000;*/
+}
+
+/* Permalinks */
+a.permalink {
+	border: none !important;
+	text-decoration: none !important;
+}
+a.permalink:hover, a.permalink:active {
+	text-decoration: none !important;
+}
+
+/*h1 a.permalink:hover {
+	background-color: #004e9c;
+}
+
+h2 a.permalink:hover {
+	background-color: #c00000;
+}
+
+h3 a.permalink:hover {
+	background-color: #004e9c;
+} 
+
+h4 a.permalink:hover {
+	background-color: #c00000;
+} 
+
+h5 a.permalink:hover {
+	background-color: #202020;
+} 
+
+h6 a.permalink:hover {
+	background-color: #202020;
+}*/
+
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
+	/*font-family: "Linux Biolinum", serif;*/
+	font-family: "DejaVu Sans", "Droid Sans", "Verdana", "Helvetica", "Arial", sans-serif;
+	text-align: left;
+}
+
+h1 {
+	/*color: #004e9c;*/
+}
+
+/*Simulate a "h0" for major pages*/
+h1.title {
+	/*color: #00204c;*/
+	font-size: 2.25em;
+	line-height: 1.2em;
+	margin: 0;
+	padding: 0;
+	text-align: center;
+	text-decoration: underline;
+}
+
+h1.title a {
+	/*color: #00204c !important;*/
+}
+
+h2 {
+	/*color: #c00000;*/
+}
+
+h3 {
+	/*color: #004e9c;*/
+}
+
+h4 {
+	/*color: #c00000;*/
+}
+
+h5 {
+	text-decoration: underline;
+}
+
+dl.dictionary dt.h {
+	/*color: #004e9c;*/
+}
+
+/* Boxes */
+.infobox {
+	border-color: #909090;
+	clear: right;
+	float: right;
+}
+
+.toc {
+	/*border-color: transparent;*/
+	/*margin: inherit auto;*/
+	/*width: 40%;*/
+}
+
+.thumb, .thumb > img, .thumb > a, .thumb > .signal {
+	/*border-color: #d0d0d0;*/
+}
+
+.thumb {
+	/*background: #d0d0d0;*/
+}
+
+.thumb > img, .thumb > a, .thumb > .signal {
+	/*background: #f8f8f8;*/
+}
+
+.letter {
+	/*border-color: #d0d0d0;*/
+}
+
+.letter strong {
+	/*background: #d0d0d0;*/
+}
+
+.noFloatImg {
+	/*background: #d0d0d0;*/
+	/*border: 1px solid #d0d0d0;*/
+}
+
+.hbox, .bbox {
+	border-color: #b0b0b0;
+}
+
+.nbox {
+	/* No specific styles here */
+}
+
+.ibox .caption, .nbox .caption {
+	/* No specific styles here */
+}
+
+.hbox .heading {
+	background: #d0d0d0;
+	border-color: #b0b0b0;
+}
+
+td, th {
+	border-color: #b0b0b0;
+	line-height: 1.2em;
+}
+
+.normal tr td, .normal tr th {
+	border-color: #b0b0b0;
+}
+
+/*tbody > tr > th {*/
+	/*background: none;*/
+/*}*/
+
+th, .normal tr th, thead th {
+	background: #d0d0d0;
+	font-weight: bold;
+}
+
+table.keyval {
+	font-size: 1.0em;
+	width: 50em;
+}
+
+table.keyval, table.keyval * {
+	background: none;
+	/*border: none;*/
+	text-align: justify;
+	vertical-align: baseline;
+}
+
+table.keyval th {
+	font-style: italic;
+	font-weight: normal;
+	width: 12.5em;
+}
+
+/* Forms */
+form {
+	font-family: "Droid Sans", "DejaVu Sans", "Helvetica", "Verdana", "Arial", sans-serif;
+}
+
+label, input {
+}
+
+label {
+}
+
+input {
+	/*border: 1px solid #d0d0d0;*/
+}
+
+/* Code */
+.pre, pre, .code, code {
+	font-family: "DejaVu Sans Mono", "Droid Sans Mono", monospace, sans-serif;
+}

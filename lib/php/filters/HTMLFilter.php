@@ -11,7 +11,7 @@ class HTMLFilter extends Filter {
 	 * @param menuMeta The metadata of the menu for the page. We only read some 
 	 * fields in here, so it's not passed as a reference. It defaults to null as we read meta-comments from a menu file, and reading the menu meta for the menu pulled in by the menu ... yeah, loopiness.
 	 */
-	function __construct($pageData, $menuMeta=null) {
+	function __construct($pageData, $buildPage=true, $menuMeta=null) {
 		$this->pageData =& $pageData;
 
 		if($this->pageData['path'] !== null) {
@@ -27,13 +27,15 @@ class HTMLFilter extends Filter {
 		// Parse meta comments in top of file
 		$this->parseMetaComment();
 
-		// Create page DOM from the path to the file.
-		$this->pageDOM = new simple_html_dom();
-		$this->pageDOM->load($this->file_content);
+		if($buildPage == true) {
+			// Create page DOM from the path to the file.
+			$this->pageDOM = new simple_html_dom();
+			$this->pageDOM->load($this->file_content);
 
-		if($menuMeta != null) {
-			$this->menuMeta = $menuMeta;
-			$this->run();
+			if($menuMeta != null) {
+				$this->menuMeta = $menuMeta;
+				$this->run();
+			}
 		}
 	}
 
@@ -55,8 +57,9 @@ class HTMLFilter extends Filter {
 		// Extract scripties
 		$this->pageData['scripts'] = $this->findScriptElements();
 
-		// Modify image src links
+		// Modify src links and hrefs
 		$this->modifyImgs();
+		$this->modifyHrefs();
 
 		// Generate a TOC based on heading hierarchy
 		if($this->pageData['type'] != 'index' && $this->pageData['type'] != 'menu' && $this->pageData['maketoc'] == true) {
@@ -127,6 +130,20 @@ class HTMLFilter extends Filter {
 			if($imgs[$i]->src) {
 				$url = $imgs[$i]->src;
 				$imgs[$i]->src = Application::getPublicImgDir() . $this->pageData['sitedir'] . '/' . $url;
+			}
+		}
+	}
+
+	private function modifyHrefs() {
+		$anchors = $this->pageDOM->find('a');
+		for($a = 0, $as = count($anchors); $a < $as; $a++) {
+			if($anchors[$a]->href) {
+				$url = $anchors[$a]->href;
+				$is_img_prefix = strpos($url, Application::getImgLinkPrefix());
+				if($is_img_prefix !== false) {
+					$url = substr($url, strlen(Application::getImgLinkPrefix()));
+					$anchors[$a]->href = Application::getPublicImgDir() . $this->pageData['sitedir'] . '/' . $url;
+				} 
 			}
 		}
 	}

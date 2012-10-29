@@ -20,7 +20,7 @@ class TexyFilter extends Filter {
 	 * @param menuMeta The metadata of the menu for the page. We only read some 
 	 * fields in here, so it's not passed as a reference. It defaults to null as we read meta-comments from a menu file, and reading the menu meta for the menu pulled in by the menu ... yeah, loopiness.
 	 */
-	function __construct($pageData, $menuMeta=null) {
+	function __construct($pageData, $buildPage=true, $menuMeta=null) {
 		$this->pageData =& $pageData;
 
 		if($this->pageData['path'] != null) {
@@ -39,12 +39,14 @@ class TexyFilter extends Filter {
 		// Parse meta comments in top of file
 		$this->parseMetaComment();
 
-		// Generate HTML
-		$this->html = $this->texy->process($this->file_content);
+		if($buildPage == true) {
+			// Generate HTML
+			$this->html = $this->texy->process($this->file_content);
 
-		if($menuMeta != null) {
-			$this->menuMeta = $menuMeta;
-			$this->run();
+			if($menuMeta != null) {
+				$this->menuMeta = $menuMeta;
+				$this->run();
+			}
 		}
 	}
 

@@ -1,0 +1,89 @@
+%!TEX TS-program = xelatex
+%!TEX encoding = UTF-8 Unicode
+
+%\documentclass[10pt, a4paper,usenames,dvipsnames]{article}
+\documentclass[usenames,dvipsnames]{scrartcl}
+\KOMAoptions{
+	DIV=calc,
+	fontsize=12pt,
+  mpinclude=true,
+	paper=a4,
+	parskip=half,
+  twoside=off}
+
+\usepackage{quickmaths}
+
+
+% FONTS
+\usepackage{mathspec} 
+\usepackage{color}
+\usepackage{xunicode}
+\usepackage{xltxtra}
+
+% Unicode FTW?
+\usepackage{unicode-math}
+
+\defaultfontfeatures{Mapping=tex-text}
+\setmainfont{Cambria}
+\setmathfont{Cambria Math}
+\setmonofont[Scale=MatchLowercase]{Consolas}
+
+% PDF SETUP
+% ---- FILL IN HERE THE DOC TITLE AND AUTHOR
+\usepackage[bookmarks, colorlinks, breaklinks]{hyperref}  
+\hypersetup{
+	pdfauthor={Robbie Smith},
+	pdftitle={ATC formulae},
+	pdfkeywords={},
+	pdfsubject={},
+	pdfcreator={XeLaTeX},
+	linkcolor=blue,
+  citecolor=blue,
+  filecolor=black,
+  urlcolor=MidnightBlue,
+	pdfborder={0 0 0 0}}
+
+% HEADINGS
+\usepackage[compact]{titlesec}
+\titlespacing{\section}{1pt}{*0}{*0}
+\usepackage{sectsty} 
+\usepackage[normalem]{ulem} 
+\sectionfont{\mdseries\upshape\Large}
+\subsectionfont{\mdseries\scshape\normalsize} 
+\subsubsectionfont{\mdseries\upshape\large} 
+\setcounter{secnumdepth}{-1}
+
+%% LANGUAGE SETTINGS
+\usepackage{polyglossia}
+\setdefaultlanguage[variant=australian]{english}
+
+\begin{document}
+
+  {\Huge\scshape Advanced Train Control formulae}
+
+  \section{Speed and Warning Boards}
+
+  This formula applies to \texttt{A(20)}, \texttt{A(21)}, \texttt{A(24)}, \texttt{A(27)}, \texttt{A(30)}, \texttt{A(31)}, \texttt{A(34)} and \texttt{A(37)} groups:
+  \begin{equation*}
+    "V_{\mathrm{km/h}} = \begin{cases}
+      (\mathtt{AZ} × 15 + \mathtt{AY}") × 6  & \text{if \(0_8 < \mathtt{AZ} \leq 3_8\) and \(0 < \mathtt{AY} \leq 16_8\)}\\
+      ((\mathtt{AZ} - 4) × 15 + \mathtt{AY}") × 6   & \text{if \(3_8 < \mathtt{AZ} \leq 7_8\) and \(0 < \mathtt{AY} \leq 16_8\)}\\
+      ((\mathtt{AZ} - 8) × 15 + \mathtt{AY}") × 6   & \text{if \(7_8 < \mathtt{AZ} \leq 13_8\) and \(0 < \mathtt{AY} \leq 16_8\)}\\
+      ((\mathtt{AZ} - 12) × 15 + \mathtt{AY}") × 6  & \text{if \(13_8 < \mathtt{AZ} \leq 17_8\) and \(0 < \mathtt{AY} \leq 16_8\)}\\
+      ((\mathtt{AZ} - 16) × 15 + \mathtt{AY}") × 6  & \text{if \(17_8 < \mathtt{AZ} \leq 23_8\) and \(0 < \mathtt{AY} \leq 16_8\)}\\
+      ((\mathtt{AZ} - 20) × 15 + \mathtt{AY}") × 6  & \text{if \(23_8 < \mathtt{AZ} \leq 27_8\) and \(0 < \mathtt{AY} \leq 16_8\)}\\
+      0 \quad\text{(annulled)} & \text{if \(\mathtt{AY} = 17_8\)}
+    \end{cases}
+  \end{equation*}
+
+  \section{Distance \texttt{BY} and \texttt{BZ}/\texttt{CY}}
+
+  \begin{equation*}
+    \text{The distance is given by }
+    \begin{cases}
+      "(\mathtt{BY} × 31 + \mathtt{BZ}") × 12.816 & \text{if \(\texttt{BZ} \neq 0\)}\\
+      "(\mathtt{BY} × 31 + \mathtt{CY}") × 12.816 & \text{if \(\texttt{BZ} = 0\)}
+    \end{cases}
+  \end{equation*}
+
+\end{document}

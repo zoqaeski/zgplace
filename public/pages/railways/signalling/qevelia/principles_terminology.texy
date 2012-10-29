@@ -1,18 +1,15 @@
 Qevelian Railway Signalling .[title]
 ###########################
 
-Basic Principles
-################
+## Basic Principles and Terminology
 
 This page describes the basic principles and terminology of Qevelian railway signalling. 
 
-Terminology
-===========
+### Terminology
 
-To understand Qevelian signalling and safeworking principles, it is necessary 
+<!--To understand Qevelian signalling and safeworking principles, it is necessary -->
 
-Stations
---------
+#### Stations
 
 Qevelian safeworking rules maintains a strong distinction between stations and the open line. This influences signal types and placement as well as rules regarding movements and timetabling. A station is a defined section of track between opposing home signals, with at least one turnout, where trains may originate, terminate, pass, overtake and turn. The tracks outside the station limits is called the open line, and are usually governed by some form of block system; within station limits, tracks and movements are governed by a route system.
 
@@ -20,8 +17,7 @@ The signals that permit a train movement to leave the station limits are called 
 
 In larger stations, there are often intermediate interlocking signals which divide the station tracks into several sections. A train may have several successive platform stops without leaving the home signal limits. The track sections between intermediate main signals are generally not referred to as block sections. Junctions and crossovers outside the station limits belong to the open line; however, main signals protecting these are not block signals. Platforms for passenger trains are not necessarily located within home signal limits, and can be located both on station tracks and the open line. 
 
-Movements
----------
+#### Movements
 
 Qevelian safeworking also maintains a distinction between two classes of movements with railway vehicles, train movements and shunting movements.
 
@@ -44,18 +40,25 @@ Shunting movements are all movements other than train movements. On tracks contr
 - a proceed aspect on a shunting signal; or
 - a verbal order.
 
-A main signal is never cleared for a shunting movement, although some shunting signals (such as "dwarf signals":[shunt#Dwarf_Signals]) may need to be cleared for a train movement. Shunting movements do not have a working timetable; instead, employees informed of the movement are verbally informed. Shunting movements run by sight at a maximum of 40 km/h; they do not display end-of-train markers except on the open line. 
+A main signal is never cleared for a shunting movement, and shunting movements do not have a working timetable; instead, employees informed of the movement are verbally informed. Shunting movements run by sight at a maximum of 36 km/h; they do not display end-of-train markers except on the open line. 
 
 The signalman must give explicit permission for a shunting movement to enter a main track, and signals and routes must be locked to protect the movement. Shunting movements are only permitted to leave the home signal limits under special circumstances. On a double-track line, shunting movements are permitted to use the departure track (the left track) as required to move vehicles from one station track to another. The arrival track normally has a shunt limit board placed at the overlap distance behind the Accepting signal. 
 
 The signalman must issue a written authority to permit a shunting movement to proceed beyond the shunt limit. Before issuing the authority, the signalman must ensure that no trains are approaching the home signal on that track. If the signal in rear of the shunt limit board is not within the control district of the signalman, they must obtain confirmation from the adjacent signal box that trains will be held back. 
 
-Classification of Tracks
-------------------------
+At locations where an industrial track is connected to the main line, movements to enter and leave the siding are shunting movements, but movements between that location and the next station are train movements. The home signals protecting the siding are also equipped with shunting indicators, which permit a train movement to be reclassed as a shunting movement, and vice-versa. 
 
+### Classification of Tracks
 
+In accordance with the separation between movement types, there is also a distinction between two classes of tracks:
 
-Operating Staff
----------------
+- **Main tracks** are all tracks that may be regularly used by train movements, and must be equipped with signals that govern train movements.
 
-Lorem ipsum dolor sit amet. 
+- **Secondary tracks** are all other tracks, and are normally only used by shunting movements. Under exceptional circumstances, train movements may be authorised to use secondary tracks, but this is regulated under safety instructions specific to the location.
+
+### Operating Staff
+
+.{color:red}
+To be written…
+
+<!-- vim: ft=html : -->

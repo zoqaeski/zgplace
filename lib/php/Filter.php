@@ -27,7 +27,7 @@ abstract class Filter {
 					if($mcline === "-->") {
 						break;
 					} else {
-						$mcfound = preg_match(Application::getMetacommentPreg(), $mcline, &$matches);
+						$mcfound = preg_match(Application::getMetacommentPreg(), $mcline, $matches);
 						if($mcfound != 0) {
 							$matches[1] = strtolower($matches[1]);
 							// PHP is rather fussy about booleans, so I needed a conversion function. 
