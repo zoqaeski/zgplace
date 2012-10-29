@@ -10,7 +10,7 @@
 
 /* THE BODY!!! */
 body {
-	color: #404040;
+	color: #606060;
 	background: #282828;
 	/*font-family:  "DejaVu Serif", "Georgia", "Droid Serif", "Times", "Times New Roman", serif;*/
 	font-family: "DejaVu Sans", "Lucida Grande", "Verdana", "Helvetica", "Arial", sans-serif;
@@ -22,6 +22,7 @@ body {
 #container {
 	background: #f8f8f8;
 	border: none;
+	color: #303030;
 	margin: 0px auto;
 	min-width: 900px;
 	padding: 0;
@@ -29,7 +30,7 @@ body {
 }
 
 #body {
-	background: transparent;
+	background: #f8f8f8;
 	margin: 0;
 	/*max-width: 48em;*/
 	padding: 1em;
@@ -196,7 +197,7 @@ border-top: 1px solid #d8d8d8;
 }*/
 
 #sidebar a, #sidebar a:link, #sidebar a:visited {
-	color: #404040;
+	color: #303030;
 	border: 1px solid transparent;
 	font-weight: inherit;
 	text-decoration: none;
@@ -248,12 +249,12 @@ border-top: 1px solid #d8d8d8;
 
 
 a, a:link, a:visited {
-	color: #404040;
+	color: #303030;
 	text-decoration: none;
 }
 
 a:hover {
-	/*background: #404040;*/
+	/*background: #303030;*/
 	color: #fa6000;
 	text-decoration: underline;
 }
@@ -269,14 +270,14 @@ a:active, a:focus {
 	/*border-bottom: 1px solid #fa6000;*/
 	color: #004494;
 	/*color: #fa6000;*/
-	/*color: #404040;*/
+	/*color: #303030;*/
 	text-decoration: none;
 }
 
 #body a:hover {
-	/*border-bottom: 1px solid #404040;*/
+	/*border-bottom: 1px solid #303030;*/
 	/*color: #fa6000;*/
-	/*color: #404040;*/
+	/*color: #303030;*/
 	text-decoration: underline;
 	/*border-bottom: 1px solid #fa6000;*/
 }

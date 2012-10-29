@@ -29,15 +29,15 @@ Operations
 Signal Descriptions
 -------------------
 
-"Main and Distant signals":[/railways/signalling/qevelia/main]:
+"Main signals":[/railways/signalling/qevelia/main]:
 	- Signals for train movements.
 "Shunting signals":[/railways/signalling/qevelia/shunt]:
 	- Signals for shunting movements.
 "Supplementary signals":[/railways/signalling/qevelia/supplementary]:
 	- Additional signals for train and shunting movements.
 "Cab Signalling":[/railways/signalling/qevelia/cab]:
-	- "Speed Control by Beacon":[/railways/signalling/qevelia/cab_scb] is the older system based around trackside magnetic beacons.
-	- "Linear Train Control":[/railways/signalling/qevelia/cab_ltc] is a newer system that continuously transmits movement authority telegrams via inductive cable loops.
+	- "Inductive Signal Repetition":[/railways/signalling/qevelia/cab_isr] is the older system based around trackside magnetic beacons.
+	- "Advanced Train Control":[/railways/signalling/qevelia/cab_atc] is a newer system that uses radio-frequency beacons.
 "Route and Speed Indicators":[/railways/signalling/qevelia/route_speed]:
 	- Signals and signs that provide route and speed indications.
 "Lineside signs":[/railways/signalling/qevelia/lineside_signs]:
