@@ -2,11 +2,14 @@
 cache/*
 
 # Do NOT track images
-*.png
-*.jpg
-*.svg
 *.gif
+*.jpg
+*.png
+*.svg
 *.xcf
 
 # BUT we want to track signal images for Qevelia so I don't lose them *again*
-!/public/img/**/qevelia/**/*.png
+!**/qevelia/**/*.gif
+!**/qevelia/**/*.jpg
+!**/qevelia/**/*.png
+!**/qevelia/**/*.svg
