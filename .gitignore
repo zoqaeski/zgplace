@@ -6,3 +6,6 @@ cache/*
 *.jpg
 *.svg
 *.gif
+
+# BUT we want to track signal images for Qevelia so I don't lose them *again*
+!/public/img/**/qevelia/**/*.png
