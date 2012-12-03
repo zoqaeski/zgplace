@@ -25,6 +25,7 @@ body {
 	color: #303030;
 	margin: 0px auto;
 	min-width: 900px;
+	max-width: 1200px;
 	padding: 0;
 	width: 95%;
 }
